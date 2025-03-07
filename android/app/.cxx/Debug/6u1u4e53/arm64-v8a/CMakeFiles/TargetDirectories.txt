@@ -1,0 +1,2 @@
+D:/flutter_mobile_app/discount-me/android/app/.cxx/Debug/6u1u4e53/arm64-v8a/CMakeFiles/edit_cache.dir
+D:/flutter_mobile_app/discount-me/android/app/.cxx/Debug/6u1u4e53/arm64-v8a/CMakeFiles/rebuild_cache.dir
