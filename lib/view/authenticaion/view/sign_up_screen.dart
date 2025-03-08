@@ -71,7 +71,7 @@ class SignUpScreen extends StatelessWidget {
                   /// pick image
                   20.heightBox,
                  AnimatedContainer(
-                     duration: Duration(seconds: 5),
+                   duration: Duration(seconds: 5),
                    width: width,
                    curve: Curves.easeIn,
                    child:Obx(() => Visibility(

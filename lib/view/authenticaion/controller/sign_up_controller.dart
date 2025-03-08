@@ -28,6 +28,25 @@ class SignUpController extends GetxController {
   Rx<File> drivingLicenceFile = File("").obs;
   Rx<File> coverFile = File("").obs;
   Rx<File> taxFile = File("").obs;
+  RxString selectedRole = "User".obs;
+  RxList<String> positions = [
+    'Federal Government Official',
+    'State Government Official',
+    'City Council Member',
+    'Mayor',
+    'Senator',
+    'Congressperson',
+    'Police Officer',
+    'Firefighter',
+    'Public School Teacher',
+    'Healthcare Worker',
+    'Other'
+  ].obs;
+  RxString selectedPosition = "".obs;
+
+  Future<void> changeRole(String value) async {
+    selectedRole.value = value;
+  }
 
   RxBool isPasswordVisible = false.obs;   // For first password field
   RxBool isConfirmPasswordVisible = false.obs; // For confirm password field
@@ -50,6 +69,7 @@ class SignUpController extends GetxController {
     emailController = TextEditingController().obs;
     locationController = TextEditingController().obs;
     contact = "".obs;
+    selectedPosition = "".obs;
     passwordController = TextEditingController().obs;
     confirmPasswordController = TextEditingController().obs;
     documentFile = File("").obs;
