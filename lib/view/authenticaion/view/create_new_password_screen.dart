@@ -13,7 +13,7 @@ class CreateNewPasswordScreen extends StatelessWidget {
     return PopScope(
       canPop: false,
       onPopInvokedWithResult: (didPop, result) async {
-        Get.off(()=> OtpVerifyScreen(email: email),duration: const Duration(milliseconds: 100),preventDuplicates: false);
+        Get.off(()=> OtpVerifyScreen(email: email,isSignUp: false,),duration: const Duration(milliseconds: 100),preventDuplicates: false,);
       },
       child: Scaffold(
         body: CreatePasswordScreenWidget().createPasswordScreenWidget(context: context, email: email),

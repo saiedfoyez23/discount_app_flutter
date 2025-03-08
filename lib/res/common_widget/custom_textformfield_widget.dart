@@ -89,6 +89,47 @@ class CustomTextFormFieldWidget {
     );
   }
 
+  Widget normalTextFormFiledWidgetWithFillColor({
+    required BuildContext context,
+    required TextEditingController controller,
+    required String hintText,
+    TextInputType textInputType = TextInputType.text,
+    double maxHeight = 64,
+    double maxWidth = 428,
+  }) {
+    return TextFormField(
+      controller: controller,
+      keyboardType: textInputType,
+      style: GoogleFonts.urbanist(
+        fontWeight: FontWeight.w700,
+        fontSize: 20.sp(context),
+        color: AppColors.black29,
+      ),
+      decoration: InputDecoration(
+        constraints: BoxConstraints(
+          maxHeight: maxHeight.h(context),
+          maxWidth: maxWidth.w(context),
+        ),
+        filled: true,
+        fillColor: AppColors.white253,
+        focusedBorder: OutlineInputBorder(
+          borderSide: const BorderSide(color: AppColors.orange125, width: 1),
+          borderRadius: BorderRadius.circular(8.r(context)),
+        ) ,
+        border: OutlineInputBorder(
+          borderSide: const BorderSide(color: AppColors.white202, width: 0.5),
+          borderRadius: BorderRadius.circular(8.r(context)),
+        ),
+        hintText: hintText,
+        hintStyle: GoogleFonts.urbanist(
+          fontWeight: FontWeight.w400,
+          fontSize: 20.sp(context),
+          color: AppColors.black114,
+        ),
+      ),
+    );
+  }
+
 
 
   Widget passwordTextFormFieldWidgetWithIcon({

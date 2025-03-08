@@ -14,7 +14,7 @@ class OtpVerifyScreenWidget {
   OtpVerifyController otpVerifyController = Get.put(OtpVerifyController());
 
 
-  Widget otpVerifyScreenWidget({required BuildContext context,required String email}) {
+  Widget otpVerifyScreenWidget({required BuildContext context,required String email,required bool isSignUp}) {
     return Obx(()=>Container(
       height: 926.h(context),
       width: 428.w(context),
@@ -32,9 +32,13 @@ class OtpVerifyScreenWidget {
 
           CustomAppBarContainer().authScreenAppBar(
             context: context,
-            title: "Otp Verify",
+            title: isSignUp == true ? "Sign Up Otp Verify" : "Otp Verify",
             onPress: () async {
-              Get.off(()=>const ForgotPasswordScreen(),duration: const Duration(milliseconds: 100),preventDuplicates: false);
+              if(isSignUp == true) {
+                Get.off(()=>const SignUpScreen(),duration: const Duration(milliseconds: 100),preventDuplicates: false);
+              } else {
+                Get.off(()=>const ForgotPasswordScreen(),duration: const Duration(milliseconds: 100),preventDuplicates: false);
+              }
             },
           ),
 
@@ -190,7 +194,7 @@ class OtpVerifyScreenWidget {
                           data: data,
                           onSuccess: (e) async {
                             CustomSnackBar().successCustomSnackBar(context: context, message: "${e}");
-                            Get.off(()=>OtpVerifyScreen(email: email,),duration: const Duration(milliseconds: 100),preventDuplicates: false);
+                            Get.off(()=>OtpVerifyScreen(email: email,isSignUp: isSignUp,),duration: const Duration(milliseconds: 100),preventDuplicates: false);
                             otpVerifyController.isReset.value = false;
                           },
                           onFail: (e) {
@@ -237,27 +241,53 @@ class OtpVerifyScreenWidget {
                           otpVerifyController.otp5.value.text == "" || otpVerifyController.otp6.value.text == "") {
                         CustomSnackBar().errorCustomSnackBar(context: context, message: "Please fill the otp");
                       } else {
-                        otpVerifyController.isSubmit.value = true;
-                        Map<String,dynamic> data = {
-                          "email": email,
-                          "otp": "${otpVerifyController.otp1.value.text}${otpVerifyController.otp2.value.text}${otpVerifyController.otp3.value.text}${otpVerifyController.otp4.value.text}${otpVerifyController.otp5.value.text}${otpVerifyController.otp6.value.text}"
-                        };
-                        await OtpVerifyController.getVerifyOtpResponse(
-                          data: data,
-                          onSuccess: (e) async {
-                            CustomSnackBar().successCustomSnackBar(context: context, message: "${e}");
-                            Get.off(()=>CreateNewPasswordScreen(email: email,),duration: const Duration(milliseconds: 100),preventDuplicates: false);
-                            otpVerifyController.isSubmit.value = false;
-                          },
-                          onFail: (e) {
-                            otpVerifyController.isSubmit.value = false;
-                            CustomSnackBar().errorCustomSnackBar(context: context, message: "${e}");
-                          },
-                          onExceptionFail: (e) {
-                            otpVerifyController.isSubmit.value = false;
-                            CustomSnackBar().errorCustomSnackBar(context: context, message: "${e}");
-                          },
-                        );
+                        if(isSignUp == false) {
+                          otpVerifyController.isSubmit.value = true;
+                          Map<String,dynamic> data = {
+                            "email": email,
+                            "otp": "${otpVerifyController.otp1.value.text}${otpVerifyController.otp2.value.text}${otpVerifyController.otp3.value.text}${otpVerifyController.otp4.value.text}${otpVerifyController.otp5.value.text}${otpVerifyController.otp6.value.text}"
+                          };
+                          await OtpVerifyController.getVerifyOtpResponse(
+                            data: data,
+                            onSuccess: (e) async {
+                              CustomSnackBar().successCustomSnackBar(context: context, message: "${e}");
+                              Get.off(()=>CreateNewPasswordScreen(email: email,),duration: const Duration(milliseconds: 100),preventDuplicates: false);
+                              otpVerifyController.isSubmit.value = false;
+                            },
+                            onFail: (e) {
+                              otpVerifyController.isSubmit.value = false;
+                              CustomSnackBar().errorCustomSnackBar(context: context, message: "${e}");
+                            },
+                            onExceptionFail: (e) {
+                              otpVerifyController.isSubmit.value = false;
+                              CustomSnackBar().errorCustomSnackBar(context: context, message: "${e}");
+                            },
+                          );
+                        } else {
+                          otpVerifyController.isSubmit.value = true;
+                          Map<String,dynamic> data = {
+                            "email": email,
+                            "otp": "${otpVerifyController.otp1.value.text}${otpVerifyController.otp2.value.text}${otpVerifyController.otp3.value.text}${otpVerifyController.otp4.value.text}${otpVerifyController.otp5.value.text}${otpVerifyController.otp6.value.text}",
+                            "verify_account": true,
+                          };
+                          Get.off(()=>SignUpPreviewScreen(),duration: const Duration(milliseconds: 100),preventDuplicates: false);
+                          // await OtpVerifyController.getVerifyOtpEmailResponse(
+                          //   data: data,
+                          //   onSuccess: (e) async {
+                          //     CustomSnackBar().successCustomSnackBar(context: context, message: "${e}");
+                          //     Get.off(()=>SignUpPreviewScreen(),duration: const Duration(milliseconds: 100),preventDuplicates: false);
+                          //     otpVerifyController.isSubmit.value = false;
+                          //   },
+                          //   onFail: (e) {
+                          //     otpVerifyController.isSubmit.value = false;
+                          //     CustomSnackBar().errorCustomSnackBar(context: context, message: "${e}");
+                          //   },
+                          //   onExceptionFail: (e) {
+                          //     otpVerifyController.isSubmit.value = false;
+                          //     CustomSnackBar().errorCustomSnackBar(context: context, message: "${e}");
+                          //   },
+                          // );
+                        }
                       }
                     },
                     plainButtonHint: "Confirm",

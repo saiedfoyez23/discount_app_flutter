@@ -164,7 +164,7 @@ class ForgotPasswordWidget {
                           data: data,
                           onSuccess: (e) async {
                             CustomSnackBar().successCustomSnackBar(context: context, message: "${e}");
-                            Get.off(()=>OtpVerifyScreen(email: forgotPasswordController.emailController.value.text,),duration: const Duration(milliseconds: 100),preventDuplicates: false);
+                            Get.off(()=>OtpVerifyScreen(email: forgotPasswordController.emailController.value.text,isSignUp: false,),duration: const Duration(milliseconds: 100),preventDuplicates: false);
                             forgotPasswordController.isSubmit.value = false;
                           },
                           onFail: (e) {

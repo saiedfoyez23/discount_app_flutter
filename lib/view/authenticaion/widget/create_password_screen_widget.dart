@@ -29,7 +29,7 @@ class CreatePasswordScreenWidget {
             context: context,
             title: "Create New Password",
             onPress: () async {
-              Get.off(()=> OtpVerifyScreen(email: email),duration: const Duration(milliseconds: 100),preventDuplicates: false);
+              Get.off(()=> OtpVerifyScreen(email: email,isSignUp: false,),duration: const Duration(milliseconds: 100),preventDuplicates: false);
             },
           ),
 

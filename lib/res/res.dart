@@ -11,5 +11,6 @@ export 'common_widget/custom_rich_text_container.dart';
 export 'common_widget/custom_snackbar.dart';
 export 'common_widget/custom_app_bra_container.dart';
 export 'common_widget/custom_textformfield_widget.dart';
+export 'common_widget/custom_dotted_widget.dart';
 export 'app_api_url/app_api_url.dart';
 export 'app_local_storage/app_local_storage.dart';

@@ -94,4 +94,32 @@ class OtpVerifyController extends GetxController {
 
   }
 
+
+  static Future<void> getVerifyOtpEmailResponse({
+    required Map<String,dynamic> data,
+    required Function onSuccess,
+    required Function onFail,
+    required Function onExceptionFail
+  }) async {
+    try{
+      var response = await Dio().post(
+        "${AppApiUrl.serverLinkUrl()}/auth/verify-otp",
+        options: Options(headers: <String, String>{
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+        }),
+        data: jsonEncode(data),
+      );
+      print(response.data["message"]);
+      if(response.statusCode == 200 || response.statusCode == 201) {
+        onSuccess(response.data["message"]);
+      }else {
+        onFail(response.data["message"]);
+      }
+    } on DioException catch (e) {
+      onExceptionFail(e.response?.data["message"]);
+    }
+
+  }
+
 }
