@@ -175,6 +175,15 @@ class SignInScreenWidget {
                             if(role == "user") {
                               Get.off(()=>UserHome(),duration: const Duration(milliseconds: 100),preventDuplicates: false);
                               signInController.isSubmit.value = false;
+                            } else if (role == "rider") {
+                              Get.off(()=>RiderHome(),duration: const Duration(milliseconds: 100),preventDuplicates: false);
+                              signInController.isSubmit.value = false;
+                            } else if (role == "vendor") {
+                              Get.off(()=>VendorHome(),duration: const Duration(milliseconds: 100),preventDuplicates: false);
+                              signInController.isSubmit.value = false;
+                            } else if (role == "broker") {
+                              Get.off(()=>BrokerHome(),duration: const Duration(milliseconds: 100),preventDuplicates: false);
+                              signInController.isSubmit.value = false;
                             }
                           },
                           onFail: (e) {

@@ -11,11 +11,13 @@ class CustomTextFormFieldWidget {
     required BuildContext context,
     required TextEditingController controller,
     required String hintText,
+    bool readOnly = false,
     TextInputType textInputType = TextInputType.text,
     Widget? prefixIcon,
     Widget? suffixIcon,
   }) {
     return TextFormField(
+      readOnly: readOnly,
       controller: controller,
       keyboardType: textInputType,
       style: GoogleFonts.urbanist(

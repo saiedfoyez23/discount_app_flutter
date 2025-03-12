@@ -32,7 +32,7 @@ class CreatePasswordController extends GetxController{
   }) async {
     try{
       var response = await Dio().post(
-        "${AppApiUrl.serverLinkUrl()}/auth/reset-forgotten-password",
+        "${AppApiUrl.serverLinkUrl()}auth/reset-forgotten-password",
         options: Options(headers: <String, String>{
           'Accept': 'application/json',
           'Content-Type': 'application/json',

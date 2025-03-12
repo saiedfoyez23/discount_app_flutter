@@ -47,7 +47,7 @@ class OtpVerifyController extends GetxController {
   }) async {
     try{
       var response = await Dio().post(
-        "${AppApiUrl.serverLinkUrl()}/auth/send-otp",
+        "${AppApiUrl.serverLinkUrl()}auth/send-otp",
         options: Options(headers: <String, String>{
           'Accept': 'application/json',
           'Content-Type': 'application/json',
@@ -75,7 +75,7 @@ class OtpVerifyController extends GetxController {
   }) async {
     try{
       var response = await Dio().post(
-        "${AppApiUrl.serverLinkUrl()}/auth/verify-otp",
+        "${AppApiUrl.serverLinkUrl()}auth/verify-otp",
         options: Options(headers: <String, String>{
           'Accept': 'application/json',
           'Content-Type': 'application/json',
@@ -103,7 +103,7 @@ class OtpVerifyController extends GetxController {
   }) async {
     try{
       var response = await Dio().post(
-        "${AppApiUrl.serverLinkUrl()}/auth/verify-otp",
+        "${AppApiUrl.serverLinkUrl()}auth/verify-otp",
         options: Options(headers: <String, String>{
           'Accept': 'application/json',
           'Content-Type': 'application/json',

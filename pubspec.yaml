@@ -42,6 +42,8 @@ dependencies:
   readmore:
   url_launcher:
   shared_preferences:
+  geocoding:
+  geolocator:
 
   #  for responsive design
   device_preview:

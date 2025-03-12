@@ -263,6 +263,7 @@ class SignUpScreenWidget {
                                   onChanged: (value) async {
                                     signUpController.changeRole(value!);
                                     await signUpController.resetFunction();
+                                    await signUpController.checkLocationPermission();
                                   },
                                   fillColor: WidgetStateProperty.resolveWith<Color>(
                                         (Set<WidgetState> states) {
@@ -454,8 +455,7 @@ class SignUpScreenWidget {
 
                   /// contact for user, rider and vendor
                   Visibility(
-                      visible: signUpController.selectedRole.value == "User" || signUpController.selectedRole.value == "Rider"
-                          || signUpController.selectedRole.value == "Vendor",
+                      visible: signUpController.selectedRole.value == "User" || signUpController.selectedRole.value == "Rider",
                       child: Column(
                         children: [
 
@@ -472,6 +472,34 @@ class SignUpScreenWidget {
 
                           CustomTextFormFieldWidget().normalTextFormFiledWidgetWithIcon(
                             context: context,
+                            controller: signUpController.locationController.value,
+                            hintText: "Enter Location",
+                            prefixIcon: const Icon(Icons.location_on_outlined,size: 24, color: Colors.black),
+                          ),
+                        ],
+                      )
+                  ),
+
+                  /// contact for user, rider and vendor
+                  Visibility(
+                      visible: signUpController.selectedRole.value == "Vendor",
+                      child: Column(
+                        children: [
+
+                          CustomTextContainer.plainTextContainerWidgetWithoutHeightWidth(
+                            plainTextString: "Location",
+                            plainTextStringFontSize: 20.sp(context),
+                            plainTextStringFontWeight: FontWeight.w600,
+                            plainTextContainerAlignment: Alignment.centerLeft,
+                            plainTextStringColor: AppColors.white253,
+                          ),
+
+                          CustomSpaceWidget.spacerWidget(spaceHeight: 8.h(context)),
+
+
+                          CustomTextFormFieldWidget().normalTextFormFiledWidgetWithIcon(
+                            context: context,
+                            readOnly: true,
                             controller: signUpController.locationController.value,
                             hintText: "Enter Location",
                             prefixIcon: const Icon(Icons.location_on_outlined,size: 24, color: Colors.black),
@@ -636,10 +664,11 @@ class SignUpScreenWidget {
                           dottedColor: Colors.white,
                           textColor: Colors.white,
                           buttonColor: Colors.white,
+                          lable: signUpController.documentFile.value.path.split('/').last,
                           onPress: () async {
                             FilePickerResult? result = await FilePicker.platform.pickFiles(
                               type: FileType.custom,
-                              allowedExtensions: ['pdf', 'doc', 'docx', 'xls', 'xlsx'],
+                              allowedExtensions: ['pdf', 'jpg', 'jpeg', 'png', 'svg'],
                             );
                             if (result != null) {
                               // The user has selected a file
@@ -678,10 +707,11 @@ class SignUpScreenWidget {
                             dottedColor: Colors.white,
                             buttonColor: Colors.white,
                             textColor: Colors.white,
+                            lable: signUpController.drivingLicenceFile.value.path.split('/').last,
                             onPress: () async {
                               FilePickerResult? result = await FilePicker.platform.pickFiles(
                                 type: FileType.custom,
-                                allowedExtensions: ['pdf', 'doc', 'docx', 'xls', 'xlsx'],
+                                allowedExtensions: ['pdf', 'jpg', 'jpeg', 'png', 'svg'],
                               );
                               if (result != null) {
                                 // The user has selected a file
@@ -721,6 +751,7 @@ class SignUpScreenWidget {
                             dottedColor: Colors.white,
                             buttonColor: Colors.white,
                             textColor: Colors.white,
+                            lable: signUpController.coverFile.value.path.split('/').last,
                             onPress: () {
                               showDialog(
                                 context: context,
@@ -782,7 +813,7 @@ class SignUpScreenWidget {
                     ),
                   ),
 
-                  /// Upload Cover Photo for Vendor
+                  /// Upload Tax Document for Vendor
                   Visibility(
                     visible: signUpController.selectedRole.value == "Vendor",
                     child:  Column(
@@ -807,10 +838,11 @@ class SignUpScreenWidget {
                             dottedColor: Colors.white,
                             buttonColor: Colors.white,
                             textColor: Colors.white,
+                            lable: signUpController.taxFile.value.path.split('/').last,
                             onPress: () async {
                               FilePickerResult? result = await FilePicker.platform.pickFiles(
                                 type: FileType.custom,
-                                allowedExtensions: ['pdf', 'doc', 'docx', 'xls', 'xlsx'],
+                                allowedExtensions: ['pdf', 'jpg', 'jpeg', 'png', 'svg'],
                               );
                               if (result != null) {
                                 // The user has selected a file
@@ -922,7 +954,136 @@ class SignUpScreenWidget {
                     plainButtonWidth: 428.w(context),
                     plainButtonRadius: 8.r(context),
                     plainButtonOnPress:  () async {
-                      Get.off(()=>OtpVerifyScreen(email: signUpController.emailController.value.text, isSignUp: true),duration: const Duration(milliseconds: 100),preventDuplicates: false);
+                      if(signUpController.selectedRole.value == "User") {
+                        if(signUpController.emailController.value.text == "") {
+                          CustomSnackBar().errorCustomSnackBar(context: context, message: "Please Enter Your Email");
+                        }else if(signUpController.contact.value == "") {
+                          CustomSnackBar().errorCustomSnackBar(context: context, message: "Please Enter Your Contact Number");
+                        }else if(signUpController.firstNameController.value.text == "") {
+                          CustomSnackBar().errorCustomSnackBar(context: context, message: "Please Enter Your First Name");
+                        }else if(signUpController.lastNameController.value.text == "") {
+                          CustomSnackBar().errorCustomSnackBar(context: context, message: "Please Enter Your Last Name");
+                        }else if(signUpController.locationController.value.text == "") {
+                          CustomSnackBar().errorCustomSnackBar(context: context, message: "Please Enter Your Location");
+                        }else if(signUpController.passwordController.value.text == "") {
+                          CustomSnackBar().errorCustomSnackBar(context: context, message: "Please Enter Your Password");
+                        }else if(signUpController.confirmPasswordController.value.text == "") {
+                          CustomSnackBar().errorCustomSnackBar(context: context, message: "Please Enter Your Confirm Password");
+                        }else if(signUpController.confirmPasswordController.value.text != signUpController.passwordController.value.text) {
+                          CustomSnackBar().errorCustomSnackBar(context: context, message: "Password is Not Matching");
+                        } else {
+                          signUpController.isSubmit.value = true;
+                          await signUpController.getUserSignUpResponse(
+                            image: signUpController.imageFile.value,
+                            document: signUpController.documentFile.value,
+                            name: "${signUpController.firstNameController.value.text} ${signUpController.lastNameController.value.text}",
+                            password: signUpController.passwordController.value.text,
+                            email: signUpController.emailController.value.text,
+                            location: signUpController.locationController.value.text,
+                            contact: signUpController.contact.value,
+                            onSuccess: (e) {
+                              signUpController.isSubmit.value = false;
+                              CustomSnackBar().successCustomSnackBar(context: context, message: "${e}");
+                              Get.off(()=>OtpVerifyScreen(email: signUpController.emailController.value.text, isSignUp: true),duration: const Duration(milliseconds: 100),preventDuplicates: false);
+                            },
+                            onFail: (e) {
+                              signUpController.isSubmit.value = false;
+                              CustomSnackBar().errorCustomSnackBar(context: context, message: "${e}");
+                            },
+                            onExceptionFail: (e) {
+                              signUpController.isSubmit.value = false;
+                              CustomSnackBar().errorCustomSnackBar(context: context, message: "${e}");
+                            },
+                          );
+                        }
+                      }else if(signUpController.selectedRole.value == "Rider") {
+                        if(signUpController.emailController.value.text == "") {
+                          CustomSnackBar().errorCustomSnackBar(context: context, message: "Please Enter Your Email");
+                        }else if(signUpController.contact.value == "") {
+                          CustomSnackBar().errorCustomSnackBar(context: context, message: "Please Enter Your Contact Number");
+                        }else if(signUpController.drivingLicenceFile.value.path == "") {
+                          CustomSnackBar().errorCustomSnackBar(context: context, message: "Please upload your driving Licence Document");
+                        }else if(signUpController.firstNameController.value.text == "") {
+                          CustomSnackBar().errorCustomSnackBar(context: context, message: "Please Enter Your First Name");
+                        }else if(signUpController.lastNameController.value.text == "") {
+                          CustomSnackBar().errorCustomSnackBar(context: context, message: "Please Enter Your Last Name");
+                        }else if(signUpController.locationController.value.text == "") {
+                          CustomSnackBar().errorCustomSnackBar(context: context, message: "Please Enter Your Location");
+                        }else if(signUpController.passwordController.value.text == "") {
+                          CustomSnackBar().errorCustomSnackBar(context: context, message: "Please Enter Your Password");
+                        }else if(signUpController.confirmPasswordController.value.text == "") {
+                          CustomSnackBar().errorCustomSnackBar(context: context, message: "Please Enter Your Confirm Password");
+                        }else if(signUpController.confirmPasswordController.value.text != signUpController.passwordController.value.text) {
+                          CustomSnackBar().errorCustomSnackBar(context: context, message: "Password is Not Matching");
+                        } else {
+                          signUpController.isSubmit.value = true;
+                          await signUpController.getRiderSignUpResponse(
+                            image: signUpController.imageFile.value,
+                            document: signUpController.drivingLicenceFile.value,
+                            name: "${signUpController.firstNameController.value.text} ${signUpController.lastNameController.value.text}",
+                            password: signUpController.passwordController.value.text,
+                            email: signUpController.emailController.value.text,
+                            location: signUpController.locationController.value.text,
+                            contact: signUpController.contact.value,
+                            onSuccess: (e) {
+                              signUpController.isSubmit.value = false;
+                              CustomSnackBar().successCustomSnackBar(context: context, message: "${e}");
+                              Get.off(()=>OtpVerifyScreen(email: signUpController.emailController.value.text, isSignUp: true),duration: const Duration(milliseconds: 100),preventDuplicates: false);
+                            },
+                            onFail: (e) {
+                              signUpController.isSubmit.value = false;
+                              CustomSnackBar().errorCustomSnackBar(context: context, message: "${e}");
+                            },
+                            onExceptionFail: (e) {
+                              signUpController.isSubmit.value = false;
+                              CustomSnackBar().errorCustomSnackBar(context: context, message: "${e}");
+                            },
+                          );
+                        }
+                      }else if(signUpController.selectedRole.value == "Vendor") {
+                        if(signUpController.restaurantNameController.value.text == "") {
+                          CustomSnackBar().errorCustomSnackBar(context: context, message: "Please Enter Your Restaurant Name");
+                        }else if(signUpController.restaurantDescriptionController.value.text == "") {
+                          CustomSnackBar().errorCustomSnackBar(context: context, message: "Please Enter Your Restaurant Description");
+                        }else if(signUpController.contact.value == "") {
+                          CustomSnackBar().errorCustomSnackBar(context: context, message: "Please Enter Your Contact Number");
+                        }else if(signUpController.taxFile.value.path == "") {
+                          CustomSnackBar().errorCustomSnackBar(context: context, message: "Please upload your tax Document");
+                        }else if(signUpController.locationController.value.text == "") {
+                          CustomSnackBar().errorCustomSnackBar(context: context, message: "Please Enter Your Location");
+                        }else if(signUpController.passwordController.value.text == "") {
+                          CustomSnackBar().errorCustomSnackBar(context: context, message: "Please Enter Your Password");
+                        }else if(signUpController.confirmPasswordController.value.text == "") {
+                          CustomSnackBar().errorCustomSnackBar(context: context, message: "Please Enter Your Confirm Password");
+                        }else if(signUpController.confirmPasswordController.value.text != signUpController.passwordController.value.text) {
+                          CustomSnackBar().errorCustomSnackBar(context: context, message: "Password is Not Matching");
+                        } else {
+                          signUpController.isSubmit.value = true;
+                          await signUpController.getVendorSignUpResponse(
+                            coverImage: signUpController.coverFile.value,
+                            taxFile: signUpController.taxFile.value,
+                            restaurantName: signUpController.restaurantNameController.value.text,
+                            restaurantDescription: signUpController.restaurantDescriptionController.value.text,
+                            password: signUpController.passwordController.value.text,
+                            email: signUpController.emailController.value.text,
+                            location: signUpController.locationController.value.text,
+                            contact: signUpController.contact.value,
+                            onSuccess: (e) {
+                              signUpController.isSubmit.value = false;
+                              CustomSnackBar().successCustomSnackBar(context: context, message: "${e}");
+                              Get.off(()=>OtpVerifyScreen(email: signUpController.emailController.value.text, isSignUp: true),duration: const Duration(milliseconds: 100),preventDuplicates: false);
+                            },
+                            onFail: (e) {
+                              signUpController.isSubmit.value = false;
+                              CustomSnackBar().errorCustomSnackBar(context: context, message: "${e}");
+                            },
+                            onExceptionFail: (e) {
+                              signUpController.isSubmit.value = false;
+                              CustomSnackBar().errorCustomSnackBar(context: context, message: "${e}");
+                            },
+                          );
+                        }
+                      }
                     },
                     plainButtonHint: "Sign Up",
                     plainButtonHintFontSize: 22.sp(context),

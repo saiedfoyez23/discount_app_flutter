@@ -14,3 +14,4 @@ export 'common_widget/custom_textformfield_widget.dart';
 export 'common_widget/custom_dotted_widget.dart';
 export 'app_api_url/app_api_url.dart';
 export 'app_local_storage/app_local_storage.dart';
+export 'custom_mime_type/custom_mime_type.dart';

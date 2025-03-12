@@ -270,23 +270,22 @@ class OtpVerifyScreenWidget {
                             "otp": "${otpVerifyController.otp1.value.text}${otpVerifyController.otp2.value.text}${otpVerifyController.otp3.value.text}${otpVerifyController.otp4.value.text}${otpVerifyController.otp5.value.text}${otpVerifyController.otp6.value.text}",
                             "verify_account": true,
                           };
-                          Get.off(()=>SignUpPreviewScreen(),duration: const Duration(milliseconds: 100),preventDuplicates: false);
-                          // await OtpVerifyController.getVerifyOtpEmailResponse(
-                          //   data: data,
-                          //   onSuccess: (e) async {
-                          //     CustomSnackBar().successCustomSnackBar(context: context, message: "${e}");
-                          //     Get.off(()=>SignUpPreviewScreen(),duration: const Duration(milliseconds: 100),preventDuplicates: false);
-                          //     otpVerifyController.isSubmit.value = false;
-                          //   },
-                          //   onFail: (e) {
-                          //     otpVerifyController.isSubmit.value = false;
-                          //     CustomSnackBar().errorCustomSnackBar(context: context, message: "${e}");
-                          //   },
-                          //   onExceptionFail: (e) {
-                          //     otpVerifyController.isSubmit.value = false;
-                          //     CustomSnackBar().errorCustomSnackBar(context: context, message: "${e}");
-                          //   },
-                          // );
+                          await OtpVerifyController.getVerifyOtpEmailResponse(
+                            data: data,
+                            onSuccess: (e) async {
+                              CustomSnackBar().successCustomSnackBar(context: context, message: "${e}");
+                              Get.off(()=>SignUpPreviewScreen(),duration: const Duration(milliseconds: 100),preventDuplicates: false);
+                              otpVerifyController.isSubmit.value = false;
+                            },
+                            onFail: (e) {
+                              otpVerifyController.isSubmit.value = false;
+                              CustomSnackBar().errorCustomSnackBar(context: context, message: "${e}");
+                            },
+                            onExceptionFail: (e) {
+                              otpVerifyController.isSubmit.value = false;
+                              CustomSnackBar().errorCustomSnackBar(context: context, message: "${e}");
+                            },
+                          );
                         }
                       }
                     },

@@ -18,6 +18,12 @@ class SplashController extends GetxController{
               Map<String, dynamic> decodedToken = parseJwt(jsonDecode(value)["data"]["accessToken"]);
               if(decodedToken['role'] == "user") {
                 Get.off(()=>UserHome(),duration: const Duration(milliseconds: 100),preventDuplicates: false);
+              } else if (decodedToken['role'] == "rider") {
+                Get.off(()=>RiderHome(),duration: const Duration(milliseconds: 100),preventDuplicates: false);
+              } else if (decodedToken['role'] == "vendor") {
+                Get.off(()=>VendorHome(),duration: const Duration(milliseconds: 100),preventDuplicates: false);
+              }else if (decodedToken['role'] == "broker") {
+                Get.off(()=>BrokerHome(),duration: const Duration(milliseconds: 100),preventDuplicates: false);
               }
             } else {
               Get.off(()=> WelcomeScreen(),duration: const Duration(milliseconds: 100),preventDuplicates: false);

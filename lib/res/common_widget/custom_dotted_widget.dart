@@ -10,12 +10,14 @@ class CustomDottedWidget extends StatelessWidget {
   final Color dottedColor;
   final Color buttonColor;
   final Color textColor;
+  final String lable;
   CustomDottedWidget({
     super.key,
     this.onPress,
-    this.dottedColor=Colors.black,
-    this.buttonColor=Colors.black,
-    this.textColor=Colors.black
+    this.dottedColor= Colors.black,
+    this.buttonColor= Colors.black,
+    this.textColor= Colors.black,
+    this.lable = ""
   });
 
   @override
@@ -66,7 +68,7 @@ class CustomDottedWidget extends StatelessWidget {
 
 
                   CustomTextContainer.plainTextContainerWidgetWithoutHeightWidth(
-                    plainTextString: "Upload",
+                    plainTextString: lable== "" ? "Upload" : lable,
                     plainTextStringFontSize: 24.sp(context),
                     plainTextStringFontWeight: FontWeight.w600,
                     plainTextContainerAlignment: Alignment.center,
@@ -82,3 +84,4 @@ class CustomDottedWidget extends StatelessWidget {
     );
   }
 }
+
