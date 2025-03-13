@@ -6,6 +6,17 @@ class AppImages {
 
   static String forgotPasswordScreenEmailImage = "assets/images/forgot_screen_images/email_icon.png";
 
+  static String userHomePageImageHomeLight = "assets/images/user_home_page_images/home_light.png";
+  static String userHomePageImageHomeBold = "assets/images/user_home_page_images/home_bold.png";
+  static String userHomePageImageTicketBold = "assets/images/user_home_page_images/ticket_bold.png";
+  static String userHomePageImageTicketLight = "assets/images/user_home_page_images/ticket_light.png";
+  static String userHomePageImageExploreBold = "assets/images/user_home_page_images/explore_bold.png";
+  static String userHomePageImageExploreLight = "assets/images/user_home_page_images/explore_light.png";
+  static String userHomePageImageProfileLight = "assets/images/user_home_page_images/profile_light.png";
+  static String userHomePageImageProfileBold = "assets/images/user_home_page_images/profile_bold.png";
+  static String userHomePageImageIndicator = "assets/images/user_home_page_images/indicator.png";
+  static String userHomePageImageCircle = "assets/images/user_home_page_images/circle.png";
+
 
   static String deliciousVitaminFood = "assets/images/splash_one-logo.png";
   static String discountMeLogo = "assets/images/discount_me_logo.png";

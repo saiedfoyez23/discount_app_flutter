@@ -24,8 +24,39 @@ class CustomImageContainer{
         shape: boxShape,
         image: DecorationImage(
           image: AssetImage(assetImage),
-          fit: boxFit
+          fit: boxFit,
         )
+      ) : BoxDecoration(
+          border: Border.all(color: borderColors,width: borderWidth),
+          shape: boxShape,
+          image: DecorationImage(
+              image: AssetImage(assetImage),
+              fit: boxFit
+          )
+      ),
+    );
+  }
+
+
+  static Widget assetImageContainerBottomNavigationBar({
+    required double height,
+    required double width,
+    required String assetImage,
+    double borderWidth = 0.0,
+    Color borderColors = Colors.transparent,
+    BoxFit boxFit = BoxFit.contain,
+    BoxShape boxShape = BoxShape.rectangle
+  }) {
+    return Container(
+      height: height,
+      width: width,
+      decoration: borderWidth == 0.0 ? BoxDecoration(
+          shape: boxShape,
+          image: DecorationImage(
+              image: AssetImage(assetImage),
+              fit: boxFit,
+              colorFilter: ColorFilter.mode(Colors.transparent, BlendMode.darken)
+          )
       ) : BoxDecoration(
           border: Border.all(color: borderColors,width: borderWidth),
           shape: boxShape,

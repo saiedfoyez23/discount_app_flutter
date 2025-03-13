@@ -20,6 +20,12 @@ class MyHttpOverrides extends HttpOverrides{
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   HttpOverrides.global = MyHttpOverrides();
+  SystemChrome.setSystemUIOverlayStyle(
+    SystemUiOverlayStyle(
+      statusBarColor: Colors.transparent, // Set the status bar color
+      statusBarIconBrightness: Brightness.dark, // Use Hello
+    ),
+  );
   runApp(MyApp());
 }
 

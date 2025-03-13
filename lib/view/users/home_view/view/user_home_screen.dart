@@ -27,7 +27,7 @@ class _UserHomeScreenState extends State<UserHomeScreen> {
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
       statusBarColor: Colors.transparent, // Set the status bar color
       statusBarIconBrightness:
-          Brightness.dark, // Use Brightness.light for dark icons
+      Brightness.dark, // Use Brightness.light for dark icons
     ));
 
     var width = MediaQuery.of(context).size.width;
@@ -38,130 +38,130 @@ class _UserHomeScreenState extends State<UserHomeScreen> {
         color: Colors.white,
         image: DecorationImage(
             image: AssetImage(AppImages.homeBg), alignment: Alignment.topRight
-        , opacity: 0.5),
+            , opacity: 0.5),
       ),
       child: Scaffold(
         backgroundColor: Colors.transparent,
         body: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 16, vertical: 16),
-            child: SingleChildScrollView(
-              child: Column(
-                children: [
-                  40.heightBox,
-                  HomeAppbarWidget(),
-                  15.heightBox,
+          padding: EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                40.heightBox,
+                HomeAppbarWidget(),
+                15.heightBox,
 //======================Search Section================================
-                  RoundTextField(hint: "Search",
+                RoundTextField(hint: "Search",
                   prefixIcon: Icon(Icons.search_outlined),),
 
-                  20.heightBox,
-                  SliderView(),
+                20.heightBox,
+                SliderView(),
 
-                  20.heightBox,
-                  HomeCatagoryWidget(),
+                20.heightBox,
+                HomeCatagoryWidget(),
 
-                  // Popular Recipes.......
-                  20.heightBox,
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      CustomText(
-                        title: "Popular Recipes 🔥",
-                        fontWeight: FontWeight.w700,
-                        fontSize: 20.sp,
-                        color: AppColors.blackColor,
+                // Popular Recipes.......
+                20.heightBox,
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    CustomText(
+                      title: "Popular Recipes 🔥",
+                      fontWeight: FontWeight.w700,
+                      fontSize: 20.sp,
+                      color: AppColors.blackColor,
+                    ),
+                    Container(
+                      padding:
+                      EdgeInsets.symmetric(horizontal: 15, vertical: 5),
+                      decoration: BoxDecoration(
+                        color: AppColors.greenLightHover,
+                        borderRadius: BorderRadius.circular(50.r),
                       ),
-                      Container(
+                      child: GestureDetector(
+                        onTap: () {
+                          Get.to(RecipesScreen());
+                        },
+                        child: CustomText(
+                          title: "See all",
+                          color: AppColors.primaryColor,
+                          fontSize: 12,
+                          fontWeight: FontWeight.w400,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                10.heightBox,
+                SizedBox(
+                  height: Get.height / 3.1,
+                  width: width,
+                  child: ListView.builder(
+                    itemCount: 10,
+                    shrinkWrap: true,
+                    scrollDirection: Axis.horizontal,
+                    physics: ScrollPhysics(),
+                    itemBuilder: (context, index) {
+                      return HomePopulerRecipesWidget();
+                    },
+                  ),
+                ),
+
+                // Popular resturant.......
+                20.heightBox,
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    CustomText(
+                      title: "Popular Restaurants",
+                      fontWeight: FontWeight.w700,
+                      fontSize: 20.sp,
+                      color: AppColors.blackColor,
+                    ),
+                    GestureDetector(
+                      onTap: () {
+                        Get.to(ResturantListScreen());
+                      },
+                      child: Container(
                         padding:
-                            EdgeInsets.symmetric(horizontal: 15, vertical: 5),
+                        EdgeInsets.symmetric(horizontal: 15, vertical: 5),
                         decoration: BoxDecoration(
-                          color: AppColors.greenLightHover,
+                          color: AppColors.orangeLight,
                           borderRadius: BorderRadius.circular(50.r),
                         ),
-                        child: GestureDetector(
-                          onTap: () {
-                            Get.to(RecipesScreen());
-                          },
-                          child: CustomText(
-                            title: "See all",
-                            color: AppColors.primaryColor,
-                            fontSize: 12,
-                            fontWeight: FontWeight.w400,
-                          ),
+                        child: CustomText(
+                          title: "See all",
+                          color: AppColors.secondaryColor,
+                          fontSize: 12,
+                          fontWeight: FontWeight.w400,
                         ),
                       ),
-                    ],
-                  ),
-                  10.heightBox,
-                  SizedBox(
-                    height: Get.height / 3.1,
-                    width: width,
-                    child: ListView.builder(
-                      itemCount: 10,
-                      shrinkWrap: true,
-                      scrollDirection: Axis.horizontal,
-                      physics: ScrollPhysics(),
-                      itemBuilder: (context, index) {
-                        return HomePopulerRecipesWidget();
-                      },
-                    ),
-                  ),
+                    )
+                  ],
+                ),
 
-                  // Popular resturant.......
-                  20.heightBox,
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      CustomText(
-                        title: "Popular Restaurants",
-                        fontWeight: FontWeight.w700,
-                        fontSize: 20.sp,
-                        color: AppColors.blackColor,
-                      ),
-                      GestureDetector(
-                        onTap: () {
-                          Get.to(ResturantListScreen());
-                        },
-                        child: Container(
-                          padding:
-                          EdgeInsets.symmetric(horizontal: 15, vertical: 5),
-                          decoration: BoxDecoration(
-                            color: AppColors.orangeLight,
-                            borderRadius: BorderRadius.circular(50.r),
-                          ),
-                          child: CustomText(
-                            title: "See all",
-                            color: AppColors.secondaryColor,
-                            fontSize: 12,
-                            fontWeight: FontWeight.w400,
-                          ),
-                        ),
-                      )
-                    ],
+                SizedBox(
+                  height: Get.height / 6,
+                  width: width,
+                  child: ListView.builder(
+                    scrollDirection: Axis.horizontal,
+                    itemCount: 10,
+                    physics: ScrollPhysics(),
+                    shrinkWrap: true,
+                    itemBuilder: (context, index) {
+                      return Container(
+                        margin: EdgeInsets.only(right: 5, top: 10, bottom: 10),
+                        child: HomePopulerResturantWidget(),
+                      );
+                    },
                   ),
+                ),
 
-                  SizedBox(
-                    height: Get.height / 6,
-                    width: width,
-                    child: ListView.builder(
-                      scrollDirection: Axis.horizontal,
-                      itemCount: 10,
-                      physics: ScrollPhysics(),
-                      shrinkWrap: true,
-                      itemBuilder: (context, index) {
-                        return Container(
-                          margin: EdgeInsets.only(right: 5, top: 10, bottom: 10),
-                          child: HomePopulerResturantWidget(),
-                        );
-                      },
-                    ),
-                  ),
-
-                ],
-              ),
+              ],
             ),
           ),
         ),
+      ),
     );
   }
 }

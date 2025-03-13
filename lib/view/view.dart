@@ -27,6 +27,7 @@ export 'authenticaion/controller/sign_up_verify_screen_controller.dart';
 export 'authenticaion/widget/broker_sign_up_screen_widget.dart';
 export 'authenticaion/controller/broker_sign_up_controller.dart';
 export 'users/home_view/view/user_home.dart';
+export 'users/home_view/view/user_home_screen.dart';
 export 'riders/home_view/view/rider_home.dart';
 export 'vendors/vendor_home_view/view/vendor_home.dart';
 export 'brokers/broker_home_view/view/broker_home.dart';

@@ -3,6 +3,8 @@ import 'package:discount_me_app/res/app_const/import_list.dart';
 import '../custom_style/custom_size.dart';
 
 class CustomAlertDialog {
+
+
   Future<void> customAlert({
     required BuildContext context,
     required String title,
