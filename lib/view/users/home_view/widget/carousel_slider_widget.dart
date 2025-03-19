@@ -11,7 +11,7 @@ class SliderView extends StatefulWidget {
   _SliderViewState createState() => _SliderViewState();
 }
 
-class _SliderViewState extends State<SliderView> with SingleTickerProviderStateMixin {
+class _SliderViewState extends State<SliderView> {
   final CarouselSliderController controller = Get.put(CarouselSliderController());
 
   // List of image assets (you can replace these with URLs if using network images)

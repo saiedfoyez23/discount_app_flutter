@@ -38,10 +38,10 @@ class CustomImageContainer{
   }
 
 
-  static Widget assetImageContainerBottomNavigationBar({
+  static Widget networkImageContainer({
     required double height,
     required double width,
-    required String assetImage,
+    required String networkImage,
     double borderWidth = 0.0,
     Color borderColors = Colors.transparent,
     BoxFit boxFit = BoxFit.contain,
@@ -53,20 +53,20 @@ class CustomImageContainer{
       decoration: borderWidth == 0.0 ? BoxDecoration(
           shape: boxShape,
           image: DecorationImage(
-              image: AssetImage(assetImage),
-              fit: boxFit,
-              colorFilter: ColorFilter.mode(Colors.transparent, BlendMode.darken)
+              image: NetworkImage(networkImage),
+              fit: boxFit
           )
       ) : BoxDecoration(
           border: Border.all(color: borderColors,width: borderWidth),
           shape: boxShape,
           image: DecorationImage(
-              image: AssetImage(assetImage),
+              image: NetworkImage(networkImage),
               fit: boxFit
           )
       ),
     );
   }
+
 
 
   static Widget fileImageContainer({

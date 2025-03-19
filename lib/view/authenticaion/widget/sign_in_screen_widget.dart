@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:discount_me_app/res/res.dart';
 import 'package:discount_me_app/view/view.dart';
 import 'package:flutter/gestures.dart';
@@ -168,12 +170,13 @@ class SignInScreenWidget {
                           "email": signInController.emailController.value.text,
                           "password": signInController.passwordController.value.text,
                         };
+                        print(jsonEncode(data));
                         await SignInController.getUserLoginResponse(
                           data: data,
                           onSuccess: (e,role) async {
                             CustomSnackBar().successCustomSnackBar(context: context, message: "${e}");
                             if(role == "user") {
-                              Get.off(()=>UserHome(),duration: const Duration(milliseconds: 100),preventDuplicates: false);
+                              Get.off(()=>UserHome(selectedIndex: 0,),duration: const Duration(milliseconds: 100),preventDuplicates: false);
                               signInController.isSubmit.value = false;
                             } else if (role == "rider") {
                               Get.off(()=>RiderHome(),duration: const Duration(milliseconds: 100),preventDuplicates: false);

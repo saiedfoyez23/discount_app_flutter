@@ -9,7 +9,7 @@ class HomePopulerRecipesWidget extends StatelessWidget {
     var height = MediaQuery.of(context).size.height;
     return Container(
       width: 280.w, // Adjust width based on your requirement
-      margin: EdgeInsets.symmetric(vertical: 10, horizontal: 5),
+      margin: EdgeInsets.symmetric(vertical: 5, horizontal: 5),
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(15),
@@ -88,7 +88,7 @@ class HomePopulerRecipesWidget extends StatelessWidget {
 
                         // Rating icon and label
                         Icon(Icons.star, size: 16.sp, color: Colors.orange),
-                        SizedBox(width: 4),
+                          SizedBox(width: 4),
                         Text(
                           '9.5', // Rating
                           style: GoogleFonts.urbanist(

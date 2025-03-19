@@ -3,8 +3,8 @@
 import 'package:discount_me_app/res/app_const/import_list.dart';
 
 class UserHome extends StatefulWidget {
-  const UserHome({super.key});
-
+  const UserHome({super.key,required this.selectedIndex});
+  final int selectedIndex;
   @override
   State<UserHome> createState() => _UserHomeState();
 }
@@ -16,7 +16,7 @@ class _UserHomeState extends State<UserHome> {
   static List<Widget> _bodyOptions = <Widget>[
     UserHomeScreen(),
     CouponHomeScreen(),
-    ExploreRecipesScreen(),
+    ExploreProductListScreen(),
     UserProfileHomeScreen(),
   ];
 
@@ -24,6 +24,13 @@ class _UserHomeState extends State<UserHome> {
     setState(() {
       _selectedIndex = index;
     });
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    _selectedIndex = widget.selectedIndex;
   }
 
 

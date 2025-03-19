@@ -16,11 +16,7 @@ class AppRoutes {
     GetPage(name: RouteNames.forgotPasswordScreen, page: () => ForgotPasswordScreen()),
 
     // User screens
-    GetPage(name: RouteNames.home, page: () => UserHome()),
     GetPage(name: RouteNames.userHomeScreen, page: () => UserHomeScreen()),
-    GetPage(name: RouteNames.restaurantProfileScreen, page: () => ResturantProfileScreen()),
-    GetPage(name: RouteNames.restaurantListScreen, page: () => ResturantListScreen()),
-    GetPage(name: RouteNames.recipesScreen, page: () => RecipesScreen()),
     GetPage(name: RouteNames.orderScreen, page: () => OrderScreen()),
     GetPage(name: RouteNames.orderCompleteScreen, page: () => OrderCompleteScreen()),
 
@@ -29,7 +25,6 @@ class AppRoutes {
     GetPage(name: RouteNames.paymentInformationScreen, page: () => PaymentInformationScreen()),
     GetPage(name: RouteNames.transactionSuccessScreen, page: () => TransactionSuccessScreen()),
 
-    GetPage(name: RouteNames.exploreRecipesScreen, page: () => ExploreRecipesScreen()),
 
     // User Profile screens
     GetPage(name: RouteNames.userProfileHomeScreen, page: () => UserProfileHomeScreen()),

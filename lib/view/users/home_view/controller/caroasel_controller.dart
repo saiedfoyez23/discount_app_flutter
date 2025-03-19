@@ -32,12 +32,12 @@ class CarouselSliderController extends GetxController {
   }
 
 
-  @override
-  void onClose() {
-    _timer?.cancel(); // Ensure timer is canceled
-    pageController.dispose(); // Ensure controller is disposed of properly
-    super.onClose();
-  }
+  // @override
+  // void onClose() {
+  //   _timer?.cancel(); // Ensure timer is canceled
+  //   pageController.dispose(); // Ensure controller is disposed of properly
+  //   super.onClose();
+  // }
 
   void onPageChanged(int page) {
     currentPage.value = page;

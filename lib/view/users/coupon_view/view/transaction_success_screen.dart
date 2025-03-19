@@ -165,7 +165,7 @@ class TransactionSuccessScreen extends StatelessWidget {
                                 title: "Close",
                                 buttonColor: AppColors.primaryColor,
                                 onTap: () {
-                                  Get.to(UserHome());
+                                  Get.to(UserHome(selectedIndex: 2,));
                                 },
                               ),
                             ],

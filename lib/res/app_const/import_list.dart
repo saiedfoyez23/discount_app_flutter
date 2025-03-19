@@ -39,12 +39,10 @@ export 'package:discount_me_app/view/users/coupon_view/view/coupon_home_screen.d
 export 'package:discount_me_app/view/users/coupon_view/view/payment_information_screen.dart';
 export 'package:discount_me_app/view/users/coupon_view/view/payment_method_screen.dart';
 export 'package:discount_me_app/view/users/coupon_view/view/transaction_success_screen.dart';
-export 'package:discount_me_app/view/users/explore_view/view/explore_recipes_screen.dart';
+export 'package:discount_me_app/view/users/explore_view/view/explore_product_list_view_screen.dart';
 export 'package:discount_me_app/view/users/home_view/view/order_complete_screen.dart';
 export 'package:discount_me_app/view/users/home_view/view/order_screen.dart';
 export 'package:discount_me_app/view/users/home_view/view/recipes_screen.dart';
-export 'package:discount_me_app/view/users/home_view/view/resturant_list_screen.dart';
-export 'package:discount_me_app/view/users/home_view/view/resturant_profile_screen.dart';
 export 'package:discount_me_app/view/users/profile_view/view/user_change_password_screen.dart';
 export 'package:discount_me_app/view/users/profile_view/view/user_profile_edit_screen.dart';
 export 'package:discount_me_app/view/users/profile_view/view/user_profile_home_screen.dart';

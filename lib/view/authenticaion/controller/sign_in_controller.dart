@@ -41,6 +41,7 @@ class SignInController extends GetxController {
     required Function onExceptionFail
   }) async {
     try{
+      print("${AppApiUrl.serverLinkUrl()}auth/login");
       var response = await Dio().post(
         "${AppApiUrl.serverLinkUrl()}auth/login",
         options: Options(headers: <String, String>{

@@ -1,0 +1,53 @@
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:discount_me_app/res/res.dart';
+import '../../../view.dart';
+import '../../chat_view/view/user_chat_vendor_list_screen.dart';
+
+class SingleStoreViewScreen extends StatelessWidget {
+  const SingleStoreViewScreen({super.key,required this.storeId,required this.isHomePage,required this.isStoreListPage});
+  final bool isHomePage;
+  final bool isStoreListPage;
+  final String storeId;
+  @override
+  Widget build(BuildContext context) {
+    SingleStoreViewScreenWidget singleStoreViewScreenWidget = Get.put(SingleStoreViewScreenWidget(context: context, storeId: storeId));
+    return PopScope(
+      canPop: false,
+      onPopInvokedWithResult: (canPop,onOpoInvoked) {
+        if(isHomePage == true) {
+          Get.off(()=>UserHome(selectedIndex: 0,),duration: const Duration(milliseconds: 100),preventDuplicates: false);
+        } else if (isStoreListPage == true){
+          Get.off(()=>StoreListViewScreen(),duration: const Duration(milliseconds: 100),preventDuplicates: false);
+        }
+      },
+      child: Scaffold(
+        body: singleStoreViewScreenWidget.singleStoreViewScreenWidget(context: context,isHomePage: isHomePage,isStorePage: isStoreListPage),
+        floatingActionButton: FloatingActionButton(
+          backgroundColor: AppColors.primaryColor,
+          elevation: 0,
+          onPressed: () {
+            Get.to(UserChatVendorListScreen());
+          },
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Image.asset(AppImages.supportChatIcon, scale: 4,),
+              SizedBox(height: 5.h(context),),
+              CustomTextContainer.plainTextContainerWidgetWithoutHeightWidth(
+                plainTextString: "support",
+                plainTextStringFontSize: 10.sp(context),
+                plainTextStringFontWeight: FontWeight.w600,
+                plainTextContainerAlignment: Alignment.center,
+                plainTextStringColor: Colors.white,
+                plainTextStringTextAlign: TextAlign.center,
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
