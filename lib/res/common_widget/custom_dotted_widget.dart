@@ -47,7 +47,7 @@ class CustomDottedWidget extends StatelessWidget {
         Positioned.fill(
           child: Container(
             width: 428.w(context),
-            height: 150.h(context),
+            height: 200.h(context),
             decoration: const BoxDecoration(
               color: Colors.transparent, // Background color inside dotted border
             ),

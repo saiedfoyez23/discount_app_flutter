@@ -46,7 +46,7 @@ class MyApp extends StatelessWidget {
           builder: DevicePreview.appBuilder,
 
           theme: ThemeData(
-            colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+            colorScheme: ColorScheme.fromSeed(seedColor: Colors.transparent),
             useMaterial3: true,
           ),
 

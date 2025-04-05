@@ -166,7 +166,7 @@ class WithdrawSuccessScreen extends StatelessWidget {
                                 title: "Close",
                                 buttonColor: AppColors.primaryColor,
                                 onTap: () {
-                                  Get.to(RiderHome());
+                                  Get.to(RiderHome(selectedIndex: 0,));
                                 },
                               ),
                             ],

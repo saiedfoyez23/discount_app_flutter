@@ -3,6 +3,7 @@ import 'package:discount_me_app/res/app_const/import_list.dart';
 class CustomTextfieldWithLabel extends StatelessWidget {
   final VoidCallback? onTap;
   final String labelName;
+  final bool readOnly;
   final TextEditingController? controller;
   final String? hint;
   final Widget? suffixIcon;
@@ -16,6 +17,7 @@ class CustomTextfieldWithLabel extends StatelessWidget {
     super.key,
     required this.labelName,
     this.onTap,
+    this.readOnly = false,
     this.controller,
     this.hint,
     this.suffixIcon,
@@ -40,6 +42,7 @@ class CustomTextfieldWithLabel extends StatelessWidget {
         Material( // Wrap the TextField with Material
           color: Colors.transparent, // Keep it transparent if needed
           child: TextField(
+            readOnly: readOnly,
             controller: controller,
             keyboardType: keyboardType,
             decoration: InputDecoration(

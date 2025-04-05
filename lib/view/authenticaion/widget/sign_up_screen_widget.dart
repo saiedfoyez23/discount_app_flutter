@@ -680,7 +680,7 @@ class SignUpScreenWidget {
                               CustomSnackBar().normalCustomSnackBar(context: context, message: "No file selected");
                             }
                           },
-                        )
+                        ),
                       ],
                     ),
                   ),

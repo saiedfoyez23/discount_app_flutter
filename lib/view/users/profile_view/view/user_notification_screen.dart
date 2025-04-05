@@ -1,7 +1,6 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
 import 'package:discount_me_app/res/app_const/import_list.dart';
-import 'package:discount_me_app/view/users/home_view/widget/home_appbar_widget.dart';
 import 'package:material_color_utilities/material_color_utilities.dart';
 
 class UserNotificationScreen extends StatelessWidget {

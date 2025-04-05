@@ -1,4 +1,3 @@
-
 import 'package:discount_me_app/view/view.dart';
 import 'package:get/get.dart';
 import 'package:flutter/cupertino.dart';

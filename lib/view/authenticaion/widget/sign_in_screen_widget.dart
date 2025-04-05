@@ -179,7 +179,7 @@ class SignInScreenWidget {
                               Get.off(()=>UserHome(selectedIndex: 0,),duration: const Duration(milliseconds: 100),preventDuplicates: false);
                               signInController.isSubmit.value = false;
                             } else if (role == "rider") {
-                              Get.off(()=>RiderHome(),duration: const Duration(milliseconds: 100),preventDuplicates: false);
+                              Get.off(()=>RiderHome(selectedIndex: 0,),duration: const Duration(milliseconds: 100),preventDuplicates: false);
                               signInController.isSubmit.value = false;
                             } else if (role == "vendor") {
                               Get.off(()=>VendorHome(),duration: const Duration(milliseconds: 100),preventDuplicates: false);

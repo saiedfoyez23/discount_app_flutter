@@ -894,7 +894,7 @@ class UserHomeScreenWidget extends GetxController {
                       ),
 
 
-                      CustomSpaceWidget.spacerWidget(spaceHeight: 15.h(context)),
+                      CustomSpaceWidget.spacerWidget(spaceHeight: 96.h(context)),
 
                     ],
                   )

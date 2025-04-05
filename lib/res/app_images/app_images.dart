@@ -14,8 +14,10 @@ class AppImages {
   static String userHomePageImageExploreLight = "assets/images/user_home_page_images/explore_light.png";
   static String userHomePageImageProfileLight = "assets/images/user_home_page_images/profile_light.png";
   static String userHomePageImageProfileBold = "assets/images/user_home_page_images/profile_bold.png";
-  static String userHomePageImageIndicator = "assets/images/user_home_page_images/indicator.png";
-  static String userHomePageImageCircle = "assets/images/user_home_page_images/circle.png";
+  static String bottomNavigationBarOneImage = "assets/images/user_home_page_images/bottom_navigation_bar_1.png";
+  static String bottomNavigationBarTwoImage = "assets/images/user_home_page_images/bottom_navigation_bar_2.png";
+  static String bottomNavigationBarThreeImage = "assets/images/user_home_page_images/bottom_navigation_bar_3.png";
+  static String bottomNavigationBarFourImage = "assets/images/user_home_page_images/bottom_navigation_bar_4.png";
 
 
   static String deliciousVitaminFood = "assets/images/splash_one-logo.png";

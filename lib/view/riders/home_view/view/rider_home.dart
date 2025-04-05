@@ -7,8 +7,8 @@ import 'package:discount_me_app/view/riders/subscription_view/view/subscription_
 import 'package:water_drop_nav_bar/water_drop_nav_bar.dart';
 
 class RiderHome extends StatefulWidget {
-  const RiderHome({super.key});
-
+  const RiderHome({super.key,required this.selectedIndex});
+  final int selectedIndex;
   @override
   State<RiderHome> createState() => _RiderHomeState();
 }
@@ -28,6 +28,13 @@ class _RiderHomeState extends State<RiderHome> {
     setState(() {
       _selectedIndex = index;
     });
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    _selectedIndex = widget.selectedIndex;
   }
 
   @override

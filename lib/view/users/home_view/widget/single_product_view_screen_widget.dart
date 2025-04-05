@@ -15,6 +15,7 @@ import '../view/order_screen.dart';
 class SingleProductViewScreenWidget extends GetxController {
 
   RxBool isLoading = false.obs;
+  RxBool isAdd = false.obs;
   Rx<SingleProductResponseModel> singleProductResponseModel = SingleProductResponseModel().obs;
   final BuildContext context;
   final String productId;
@@ -479,8 +480,34 @@ class SingleProductViewScreenWidget extends GetxController {
                         color: AppColors.green176,
                         borderRadius: BorderRadius.circular(12.r(context)),
                       ),
-                      child: TextButton(
-                        onPressed: () {},
+                      child: isAdd.value == true ?
+                      Center(
+                        child: CircularProgressIndicator(color: AppColors.white253,),
+                      ) : TextButton(
+                        onPressed: () async {
+                          isAdd.value = true;
+                          Map<String,dynamic> data = {
+                            "product": productId,
+                            "quantity": 1,
+                          };
+                          print(data);
+                          await OrderController.addProductToCartResponse(
+                              data: data,
+                              onSuccess: (e) async {
+                                isAdd.value = true;
+                                Get.off(()=>OrderScreen(),preventDuplicates: false,duration: Duration(milliseconds: 100));
+                                CustomSnackBar().successCustomSnackBar(context: context, message: "${e}");
+                              },
+                              onFail: (e) {
+                                isAdd.value = true;
+                                CustomSnackBar().errorCustomSnackBar(context: context, message: "${e}");
+                              },
+                              onExceptionFail: (e) {
+                                isAdd.value = true;
+                                CustomSnackBar().errorCustomSnackBar(context: context, message: "${e}");
+                              }
+                          );
+                        },
                         child: CustomTextContainer.plainTextContainerWidgetWithoutHeightWidth(
                           plainTextString: "+ Add To Cart",
                           plainTextStringFontSize: 18.sp(context),

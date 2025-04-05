@@ -1,6 +1,9 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_constructors_in_immutables
 
-import 'package:discount_me_app/res/app_const/import_list.dart';
+
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+
+import '../../../../res/res.dart';
 
 class ProfileItemWidget extends StatelessWidget {
   final String title;
@@ -12,39 +15,45 @@ class ProfileItemWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: onTap,
-      child: Column(
-        children: [
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: 15),
-            child: Row(
+    return Container(
+      child: TextButton(
+        style: TextButton.styleFrom(padding: EdgeInsets.zero),
+        onPressed: onTap,
+        child: Column(
+          children: [
+            Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Row(
                   children: [
                     icon,
-                    20.widthBox,
-                    CustomText(
-                        title: title,
-                        fontSize: 18.sp,
-                        fontWeight: FontWeight.w400,
-                        color: AppColors.blackColor
+      
+                    CustomSpaceWidget.spacerWidget(spaceWidth: 20.w(context)),
+
+                    CustomTextContainer.plainTextContainerWidgetWithoutHeightWidth(
+                      plainTextString: title,
+                      plainTextStringFontSize: 18.sp(context),
+                      plainTextStringFontWeight: FontWeight.w400,
+                      plainTextContainerAlignment: Alignment.centerLeft,
+                      plainTextStringTextAlign: TextAlign.start,
+                      plainTextStringColor: AppColors.black29,
                     ),
+      
                   ],
                 ),
+      
                 Container(child: navigateIcon,)
               ],
             ),
-          ),
-          10.heightBox,
-          widget??Container(
-            margin: EdgeInsets.symmetric(horizontal: 10.h),
-            height: 0.5,
-            color: Colors.grey,
-          ),
-          15.heightBox,
-        ],
+            CustomSpaceWidget.spacerWidget(spaceHeight: 10.h(context)),
+            widget??Container(
+              margin: EdgeInsets.symmetric(horizontal: 10.hpm(context)),
+              height: 0.5,
+              color: Colors.grey,
+            ),
+            CustomSpaceWidget.spacerWidget(spaceHeight: 15.h(context)),
+          ],
+        ),
       ),
     );
   }
