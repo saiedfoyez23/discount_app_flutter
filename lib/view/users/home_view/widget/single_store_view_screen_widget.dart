@@ -460,6 +460,7 @@ class SingleStoreViewScreenWidget extends GetxController {
                                     storeId: storeId,
                                     isHomePage: isHomePage,
                                     isStoreListPage: isStorePage,
+                                    isVendorHomePage: false,
                                   ),preventDuplicates: false,duration: Duration(milliseconds: 100));
                                 },
                                 child: CustomTextContainer.plainTextContainerWidgetWithoutHeightWidth(

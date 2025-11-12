@@ -21,7 +21,7 @@ class SplashController extends GetxController{
               } else if (decodedToken['role'] == "rider") {
                 Get.off(()=>RiderHome(selectedIndex: 0),duration: const Duration(milliseconds: 100),preventDuplicates: false);
               } else if (decodedToken['role'] == "vendor") {
-                Get.off(()=>VendorHome(),duration: const Duration(milliseconds: 100),preventDuplicates: false);
+                Get.off(()=>VendorHome(selectedIndex: 0,),duration: const Duration(milliseconds: 100),preventDuplicates: false);
               }else if (decodedToken['role'] == "broker") {
                 Get.off(()=>BrokerHome(),duration: const Duration(milliseconds: 100),preventDuplicates: false);
               }

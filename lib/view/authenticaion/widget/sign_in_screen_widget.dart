@@ -182,7 +182,7 @@ class SignInScreenWidget {
                               Get.off(()=>RiderHome(selectedIndex: 0,),duration: const Duration(milliseconds: 100),preventDuplicates: false);
                               signInController.isSubmit.value = false;
                             } else if (role == "vendor") {
-                              Get.off(()=>VendorHome(),duration: const Duration(milliseconds: 100),preventDuplicates: false);
+                              Get.off(()=>VendorHome(selectedIndex: 0,),duration: const Duration(milliseconds: 100),preventDuplicates: false);
                               signInController.isSubmit.value = false;
                             } else if (role == "broker") {
                               Get.off(()=>BrokerHome(),duration: const Duration(milliseconds: 100),preventDuplicates: false);

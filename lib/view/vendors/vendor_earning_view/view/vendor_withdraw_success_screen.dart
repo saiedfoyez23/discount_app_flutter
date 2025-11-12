@@ -167,7 +167,7 @@ class VendorWithdrawSuccessScreen extends StatelessWidget {
                                 title: "Close",
                                 buttonColor: AppColors.primaryColor,
                                 onTap: () {
-                                  Get.to(VendorHome());
+                                  Get.to(VendorHome(selectedIndex: 0,));
                                 },
                               ),
                             ],

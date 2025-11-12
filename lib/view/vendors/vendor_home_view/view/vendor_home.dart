@@ -7,8 +7,8 @@ import 'package:discount_me_app/view/vendors/vendor_profile_view/view/vendor_pro
 import 'package:discount_me_app/view/vendors/vendor_subscription_view/view/vendor_subscription_home_screen.dart';
 
 class VendorHome extends StatefulWidget {
-  const VendorHome({super.key});
-
+  const VendorHome({super.key,required this.selectedIndex});
+  final int selectedIndex;
   @override
   State<VendorHome> createState() => _VendorHomeState();
 }
@@ -17,16 +17,23 @@ class _VendorHomeState extends State<VendorHome> {
   int _selectedIndex = 0;
   // List of body views based on selected index
   static List<Widget> _bodyOptions = <Widget>[
-   VendorHomeScreen(),
+    VendorHomeScreen(),
     VendorSubscriptionHomeScreen(),
-   Vendor_items_screen(),
-   VendorProfileHomeScreen(),
+    VendorItemScreen(),
+    VendorProfileHomeScreen(),
   ];
 
   void _onItemTapped(int index) {
     setState(() {
       _selectedIndex = index;
     });
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    _selectedIndex = widget.selectedIndex;
   }
 
   @override

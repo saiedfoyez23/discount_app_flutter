@@ -1,5 +1,3 @@
-
-
 import 'package:discount_me_app/res/res.dart';
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/cupertino.dart';
@@ -14,10 +12,10 @@ class CustomDottedWidget extends StatelessWidget {
   CustomDottedWidget({
     super.key,
     this.onPress,
-    this.dottedColor= Colors.black,
-    this.buttonColor= Colors.black,
-    this.textColor= Colors.black,
-    this.lable = ""
+    this.dottedColor = Colors.black,
+    this.buttonColor = Colors.black,
+    this.textColor = Colors.black,
+    this.lable = "",
   });
 
   @override
@@ -27,20 +25,19 @@ class CustomDottedWidget extends StatelessWidget {
     return Stack(
       children: [
         DottedBorder(
-          color: dottedColor,
-          // Dotted border color
-          strokeWidth: 1,
-          dashPattern: const [6, 3],
-          // Length of dashes and gaps
-          borderType: BorderType.RRect,
-          // Rounded rectangular border
-          radius: Radius.circular(6.r(context)),
+          options: RoundedRectDottedBorderOptions(
+            color: dottedColor,
+            strokeWidth: 1,
+            dashPattern: const [6, 3],
+            radius: Radius.circular(6.r(context)),
+          ),
           // Border radius
           child: Container(
             width: 428.w(context),
             height: 150.h(context),
             decoration: const BoxDecoration(
-              color: Colors.transparent, // Background color inside dotted border
+              color:
+                  Colors.transparent, // Background color inside dotted border
             ),
           ),
         ),
@@ -49,8 +46,10 @@ class CustomDottedWidget extends StatelessWidget {
             width: 428.w(context),
             height: 200.h(context),
             decoration: const BoxDecoration(
-              color: Colors.transparent, // Background color inside dotted border
+              color:
+                  Colors.transparent, // Background color inside dotted border
             ),
+            padding: EdgeInsets.symmetric(horizontal: 10.hpm(context)),
             child: TextButton(
               style: TextButton.styleFrom(padding: EdgeInsets.zero),
               onPressed: onPress,
@@ -58,23 +57,17 @@ class CustomDottedWidget extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Icon(
-                    Icons.add,
-                    size: 32.r(context),
-                    color: buttonColor,
-                  ),
+                  Icon(Icons.add, size: 32.r(context), color: buttonColor),
 
                   CustomSpaceWidget.spacerWidget(spaceHeight: 10.h(context)),
 
-
                   CustomTextContainer.plainTextContainerWidgetWithoutHeightWidth(
-                    plainTextString: lable== "" ? "Upload" : lable,
+                    plainTextString: lable == "" ? "Upload" : lable,
                     plainTextStringFontSize: 24.sp(context),
                     plainTextStringFontWeight: FontWeight.w600,
                     plainTextContainerAlignment: Alignment.center,
                     plainTextStringColor: textColor,
                   ),
-
                 ],
               ),
             ),
@@ -84,4 +77,3 @@ class CustomDottedWidget extends StatelessWidget {
     );
   }
 }
-
