@@ -1,4 +1,5 @@
 import 'package:discount_me_app/res/res.dart';
+import 'package:discount_me_app/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:discount_me_app/view/view.dart';
 import 'package:get/get.dart';
@@ -87,41 +88,8 @@ class SplashScreenViewOneWidget {
                 ),
             
                 CustomSpaceWidget.spacerWidget(spaceHeight: 19.2.h(context)),
-            
-            
-                Container(
-                  height: 64.h(context),
-                  width: 64.w(context),
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    image: DecorationImage(
-                      image: AssetImage(AppImages.splashScreenRoundImage),
-                      fit: BoxFit.contain,
-                    )
-                  ),
-                  alignment: Alignment.center,
-                  child: TextButton(
-                    onPressed: () async {
-                      Get.off(()=> SplashViewTwo(),preventDuplicates: false,duration: const Duration(milliseconds: 100));
-                    },
-                    style: TextButton.styleFrom(padding: EdgeInsets.zero),
-                    child: Container(
-                      height: 54.94.h(context),
-                      width: 54.94.w(context),
-                      decoration: const BoxDecoration(
-                        color: AppColors.orange41,
-                        shape: BoxShape.circle,
-                      ),
-                      alignment: Alignment.center,
-                      child: CustomImageContainer.assetImageContainer(
-                          height: 30.47.h(context),
-                          width: 30.47.w(context),
-                          assetImage: AppImages.splashScreenArrowImage,
-                          boxFit: BoxFit.contain
-                      ),
-                    ),
-                  ),
-                ),
+
+                ButtonWidget(),
 
                 CustomSpaceWidget.spacerWidget(spaceHeight: 20.h(context)),
             

@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors, prefer_final_fields, prefer_const_literals_to_create_immutables
 
 import 'package:discount_me_app/res/app_const/import_list.dart';
+import 'package:discount_me_app/view/view.dart';
 
 class UserHome extends StatefulWidget {
   const UserHome({super.key,required this.selectedIndex});
@@ -37,9 +38,7 @@ class _UserHomeState extends State<UserHome> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-
       body: _bodyOptions[_selectedIndex],
-
       bottomNavigationBar: Container(
         decoration: BoxDecoration(
           color: AppColors.primaryColor,

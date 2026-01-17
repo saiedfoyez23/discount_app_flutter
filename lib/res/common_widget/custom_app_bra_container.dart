@@ -14,6 +14,7 @@ class CustomAppBarContainer {
       pinned: false,
       primary: true,
       floating: true,
+      automaticallyImplyLeading: false,
       backgroundColor: Colors.transparent,
       collapsedHeight: 115.h(context),
       expandedHeight: 115.h(context),

@@ -35,7 +35,6 @@ dependencies:
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons:
-
   dio:
   google_fonts:
   get:
@@ -45,7 +44,6 @@ dependencies:
   geocoding:
   geolocator:
   skeletonizer:
-
   #  for responsive design
   device_preview:
   #  for responsive design
@@ -55,13 +53,11 @@ dependencies:
 #  for number picker
   intl_phone_number_input:
   dotted_border:
-
   file_picker:
   image_picker:
   image_picker_for_web:
   js:
   material_color_utilities:
-
   water_drop_nav_bar:
   google_maps_flutter:
   lottie:
