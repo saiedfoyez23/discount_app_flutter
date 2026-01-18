@@ -432,6 +432,19 @@ class ProductListScreenWidget extends GetxController {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 // Top Image with rounded corners
+                                products[index].images?.isEmpty == true ?
+                                Container(
+                                  height: 180.h(context),
+                                  width: 428.w(context),
+                                  decoration: BoxDecoration(
+                                    image: DecorationImage(
+                                      image: AssetImage(AppImages.carousel1),
+                                      fit: BoxFit.fill,
+                                    ),
+                                    borderRadius: BorderRadius.vertical(top: Radius.circular(15.r(context))),
+                                    color: Color.fromRGBO(175, 175, 175, 1),
+                                  ),
+                                ) :
                                 ClipRRect(
                                   borderRadius: BorderRadius.vertical(top: Radius.circular(15.r(context))),
                                   child: Image.network(
@@ -439,6 +452,20 @@ class ProductListScreenWidget extends GetxController {
                                     height: 180.h(context), // Responsive height
                                     width: 428.w(context), // Full width
                                     fit: BoxFit.cover,
+                                    errorBuilder: (BuildContext context, Object exception, StackTrace? stackTrace) {
+                                      return Container(
+                                        height: 180.h(context),
+                                        width: 428.w(context),
+                                        decoration: BoxDecoration(
+                                          image: DecorationImage(
+                                            image: AssetImage(AppImages.carousel1),
+                                            fit: BoxFit.fill,
+                                          ),
+                                          borderRadius: BorderRadius.vertical(top: Radius.circular(15.r(context))),
+                                          color: Color.fromRGBO(175, 175, 175, 1),
+                                        ),
+                                      );
+                                    },
                                   ),
                                 ),
 

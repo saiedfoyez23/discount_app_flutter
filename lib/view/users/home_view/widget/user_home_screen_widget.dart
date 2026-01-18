@@ -516,6 +516,19 @@ class UserHomeScreenWidget extends GetxController {
                                       crossAxisAlignment: CrossAxisAlignment.start,
                                       children: [
                                         // Top Image with rounded corners
+                                        productsResponseModel.value.data?.data?[index].images?.isEmpty == true ?
+                                        Container(
+                                          height: 140.h(context),
+                                          width: double.infinity,
+                                          decoration: BoxDecoration(
+                                            image: DecorationImage(
+                                              image: AssetImage(AppImages.carousel1),
+                                              fit: BoxFit.fill,
+                                            ),
+                                            borderRadius: BorderRadius.vertical(top: Radius.circular(15.r(context))),
+                                            color: Color.fromRGBO(175, 175, 175, 1),
+                                          ),
+                                        ) :
                                         ClipRRect(
                                           borderRadius: BorderRadius.vertical(top: Radius.circular(15.r(context))),
                                           child: Image.network(
@@ -523,6 +536,20 @@ class UserHomeScreenWidget extends GetxController {
                                             height: 140.h(context),
                                             width: double.infinity,
                                             fit: BoxFit.cover,
+                                            errorBuilder: (BuildContext context, Object exception, StackTrace? stackTrace) {
+                                              return Container(
+                                                height: 140.h(context),
+                                                width: double.infinity,
+                                                decoration: BoxDecoration(
+                                                  image: DecorationImage(
+                                                    image: AssetImage(AppImages.carousel1),
+                                                    fit: BoxFit.fill,
+                                                  ),
+                                                  borderRadius: BorderRadius.vertical(top: Radius.circular(15.r(context))),
+                                                  color: Color.fromRGBO(175, 175, 175, 1),
+                                                ),
+                                              );
+                                            },
                                           ),
                                         ),
 
@@ -765,6 +792,20 @@ class UserHomeScreenWidget extends GetxController {
                                           height: 180.h(context),
                                           width: 90.w(context),
                                           fit: BoxFit.cover,
+                                          errorBuilder: (BuildContext context, Object exception, StackTrace? stackTrace) {
+                                            return Container(
+                                              height: 180.h(context),
+                                              width: 90.w(context),
+                                              decoration: BoxDecoration(
+                                                image: DecorationImage(
+                                                  image: AssetImage(AppImages.carousel1),
+                                                  fit: BoxFit.fill,
+                                                ),
+                                                borderRadius: BorderRadius.circular(5.r(context)),
+                                                color: Color.fromRGBO(175, 175, 175, 1),
+                                              ),
+                                            );
+                                          },
                                         ),
                                       ),
 

@@ -592,6 +592,19 @@ class SingleStoreViewScreenWidget extends GetxController {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 // Top Image with rounded corners
+                                productsResponseModel.value.data!.data![index].images?.isEmpty == true ?
+                                Container(
+                                  height: 174.h(context), // Responsive height
+                                  width: double.infinity,
+                                  decoration: BoxDecoration(
+                                    image: DecorationImage(
+                                      image: AssetImage(AppImages.carousel1),
+                                      fit: BoxFit.fill,
+                                    ),
+                                    borderRadius: BorderRadius.vertical(top: Radius.circular(15.r(context))),
+                                    color: Color.fromRGBO(175, 175, 175, 1),
+                                  ),
+                                ) :
                                 ClipRRect(
                                   borderRadius: BorderRadius.vertical(top: Radius.circular(15.r(context))), // Responsive border radius
                                   child: Image.network(
@@ -599,6 +612,20 @@ class SingleStoreViewScreenWidget extends GetxController {
                                     height: 174.h(context), // Responsive height
                                     width: double.infinity, // Full width
                                     fit: BoxFit.cover,
+                                    errorBuilder: (BuildContext context, Object exception, StackTrace? stackTrace) {
+                                      return Container(
+                                        height: 174.h(context), // Responsive height
+                                        width: double.infinity,
+                                        decoration: BoxDecoration(
+                                          image: DecorationImage(
+                                            image: AssetImage(AppImages.carousel1),
+                                            fit: BoxFit.fill,
+                                          ),
+                                          borderRadius: BorderRadius.vertical(top: Radius.circular(15.r(context))),
+                                          color: Color.fromRGBO(175, 175, 175, 1),
+                                        ),
+                                      );
+                                    },
                                   ),
                                 ),
 
@@ -741,6 +768,20 @@ Widget _buildScalingTransition(String image, int index) {
         child: Image.network(
           image,
           fit: BoxFit.fill,
+          errorBuilder: (BuildContext context, Object exception, StackTrace? stackTrace) {
+            return Container(
+              height: 180.h(context),
+              width: 90.w(context),
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                  image: AssetImage(AppImages.carousel1),
+                  fit: BoxFit.fill,
+                ),
+                borderRadius: BorderRadius.circular(5.r(context)),
+                color: Color.fromRGBO(175, 175, 175, 1),
+              ),
+            );
+          },
         ),
       );
     },

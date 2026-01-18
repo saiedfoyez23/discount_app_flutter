@@ -389,6 +389,20 @@ class StoreListViewScreenWidget extends GetxController {
                                         height: 180.h(context),
                                         width: 90.w(context),
                                         fit: BoxFit.cover,
+                                        errorBuilder: (BuildContext context, Object exception, StackTrace? stackTrace) {
+                                          return Container(
+                                            height: 180.h(context),
+                                            width: 90.w(context),
+                                            decoration: BoxDecoration(
+                                              image: DecorationImage(
+                                                image: AssetImage(AppImages.carousel1),
+                                                fit: BoxFit.fill,
+                                              ),
+                                              borderRadius: BorderRadius.circular(5.r(context)),
+                                              color: Color.fromRGBO(175, 175, 175, 1),
+                                            ),
+                                          );
+                                        },
                                       ),
                                     ),
 

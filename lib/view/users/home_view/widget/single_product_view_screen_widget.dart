@@ -553,6 +553,20 @@ Widget _buildScalingTransition(String image, int index) {
         child: Image.network(
           image,
           fit: BoxFit.fill,
+          errorBuilder: (BuildContext context, Object exception, StackTrace? stackTrace) {
+            return Container(
+              height: 180.h(context),
+              width: 428.w(context),
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                  image: AssetImage(AppImages.carousel1),
+                  fit: BoxFit.fill,
+                ),
+                borderRadius: BorderRadius.vertical(top: Radius.circular(15.r(context))),
+                color: Color.fromRGBO(175, 175, 175, 1),
+              ),
+            );
+          },
         ),
       );
     },
