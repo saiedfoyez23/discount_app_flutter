@@ -1,8 +1,9 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:discount_me_app/res/app_const/import_list.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
-
+import 'package:discount_me_app/utils/utils.dart';
 
 class OrderCompleteScreen extends StatelessWidget {
   const OrderCompleteScreen({super.key});
@@ -23,8 +24,8 @@ class OrderCompleteScreen extends StatelessWidget {
           children: [
             // Lottie success animation
             Container(
-              height: 150.h,
-              width: 150.w,
+              height: 150.h(context),
+              width: 150.w(context),
               child: Lottie.asset(
                 AppImages.successAnim, // Path to your Lottie animation
                 fit: BoxFit.contain,
@@ -32,13 +33,13 @@ class OrderCompleteScreen extends StatelessWidget {
               ),
             ),
 
-            SizedBox(height: 20.h),
+            SizedBox(height: 20.h(context)),
 
             // Thank You! Order Completed Text
             Text(
               'Thank You!',
               style: GoogleFonts.urbanist(
-                fontSize: 24.sp,
+                fontSize: 24.sp(context),
                 fontWeight: FontWeight.w700,
                 color: Colors.green,
                   decoration: TextDecoration.none
@@ -47,7 +48,7 @@ class OrderCompleteScreen extends StatelessWidget {
             Text(
               'Order Completed',
               style: GoogleFonts.urbanist(
-                fontSize: 24.sp,
+                fontSize: 24.sp(context),
                 fontWeight: FontWeight.w700,
                 color: Colors.green,
                 decoration: TextDecoration.none

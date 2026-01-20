@@ -1,6 +1,8 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:discount_me_app/res/app_const/import_list.dart';
+import 'package:discount_me_app/utils/utils.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class OrderOngoingWidget extends StatelessWidget {
   const OrderOngoingWidget({super.key});
@@ -13,8 +15,8 @@ class OrderOngoingWidget extends StatelessWidget {
     return Container(
       width: width,
       decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(8.r),
-        color: AppColors.greyLightHover,
+          borderRadius: BorderRadius.circular(8.r(context)),
+        color: ColorUtils.greyLightHover,
       ),
       child: Padding(
         padding: const EdgeInsets.all(8.0),
@@ -34,8 +36,8 @@ class OrderOngoingWidget extends StatelessWidget {
                   Text('Best Burger',
                     style: GoogleFonts.urbanist(
                       fontWeight: FontWeight.w700,
-                      color: AppColors.blackColor,
-                      fontSize: 20.sp,
+                      color: ColorUtils.blackColor,
+                      fontSize: 20.sp(context),
                     ),
                   ),
                   SizedBox(height: 6),
@@ -43,9 +45,9 @@ class OrderOngoingWidget extends StatelessWidget {
                   Text(
                     'Amount: \$34',
                     style: GoogleFonts.urbanist(
-                      fontSize: 18.sp,
+                      fontSize: 18.sp(context),
                       fontWeight: FontWeight.w400,
-                      color: AppColors.blackColor,
+                      color: ColorUtils.blackColor,
                     ),
                   ),
                   SizedBox(height: 4),
@@ -56,17 +58,17 @@ class OrderOngoingWidget extends StatelessWidget {
                             TextSpan(
                               text: 'Date: ',
                               style: GoogleFonts.urbanist(
-                                fontSize: 14.sp,
+                                fontSize: 14.sp(context),
                                 fontWeight: FontWeight.w600,
-                                color: AppColors.primaryColor,
+                                color: ColorUtils.primaryColor,
                               ),
                             ),
                             TextSpan(
                               text: '07/02/24 - 09/02/24',
                               style: GoogleFonts.urbanist(
-                                fontSize: 14.sp,
+                                fontSize: 14.sp(context),
                                 fontWeight: FontWeight.w600,
-                                color: AppColors.blackColor,
+                                color: ColorUtils.blackColor,
                               ),
                             )
                           ]
@@ -83,14 +85,14 @@ class OrderOngoingWidget extends StatelessWidget {
                   padding: EdgeInsets.symmetric(horizontal: 4, vertical: 4),
                   decoration: BoxDecoration(
                     color: Color(0xffFFF9E7),
-                    borderRadius: BorderRadius.circular(5.r),
+                    borderRadius: BorderRadius.circular(5.r(context)),
                   ),
                   child: Text(
                     'Ongoing',
                     style: TextStyle(
                       color: Color(0xffFFC60B),
                       fontWeight: FontWeight.w700,
-                      fontSize: 14.sp,
+                      fontSize: 14.sp(context),
                     ),
                   ),
                 ),
@@ -99,7 +101,7 @@ class OrderOngoingWidget extends StatelessWidget {
                 // Arrow icon for navigation
                 Icon(
                   Icons.arrow_forward_ios,
-                  size: 16.sp,
+                  size: 16.sp(context),
                   color: Colors.black,
                 ),
               ],

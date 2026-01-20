@@ -1,8 +1,7 @@
 import 'dart:io';
 import 'dart:ui';
-
+import 'package:discount_me_app/utils/utils.dart';
 import 'package:discount_me_app/res/res.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:discount_me_app/view/view.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
@@ -31,7 +30,7 @@ class BrokerSignUpScreenWidget {
             width: 428.w(context),
             decoration: BoxDecoration(
               image: DecorationImage(
-                image: AssetImage(AppImages.authBg),
+                image: AssetImage(ImageUtils.authBg),
                 fit: BoxFit.fill,
               ),
             ),
@@ -102,10 +101,10 @@ class BrokerSignUpScreenWidget {
                                   child: brokerSignUpController.imageFile.value.path == "" ? CustomImageContainer.assetImageContainer(
                                       height: 110.h(context),
                                       width: 110.w(context),
-                                      assetImage: AppImages.imagePickerIcon,
+                                      assetImage: ImageUtils.imagePickerIcon,
                                       boxFit: BoxFit.fitWidth,
                                       boxShape: BoxShape.circle,
-                                      borderColors: AppColors.green176,
+                                      borderColors: ColorUtils.green176,
                                       borderWidth: 1
                                   ) :
                                   CustomImageContainer.fileImageContainer(
@@ -114,7 +113,7 @@ class BrokerSignUpScreenWidget {
                                       file: brokerSignUpController.imageFile.value,
                                       boxFit: BoxFit.fitWidth,
                                       boxShape: BoxShape.circle,
-                                      borderColors: AppColors.green176,
+                                      borderColors: ColorUtils.green176,
                                       borderWidth: 1
                                   ) ,
                                 ),
@@ -125,7 +124,7 @@ class BrokerSignUpScreenWidget {
                                     width: 40.h(context),
                                     height: 40.w(context),
                                     decoration: BoxDecoration(
-                                        color: AppColors.white253,
+                                        color: ColorUtils.white253,
                                         shape: BoxShape.circle
                                     ),
                                     child: TextButton(
@@ -188,7 +187,7 @@ class BrokerSignUpScreenWidget {
                                       },
                                       child: Icon(
                                         Icons.camera_alt_outlined,
-                                        color: AppColors.secondaryColor,
+                                        color: ColorUtils.secondaryColor,
                                         size: 28.r(context),
                                       ),
                                     ),
@@ -226,8 +225,8 @@ class BrokerSignUpScreenWidget {
                                         fillColor: WidgetStateProperty.resolveWith<Color>(
                                               (Set<WidgetState> states) {
                                             return  brokerSignUpController.selectedRole.value == "Broker"
-                                                ? AppColors.orange41
-                                                : AppColors.white253;
+                                                ? ColorUtils.orange41
+                                                : ColorUtils.white253;
                                           },
                                         ),
                                       ),
@@ -237,8 +236,8 @@ class BrokerSignUpScreenWidget {
                                           plainTextStringFontWeight: FontWeight.w600,
                                           plainTextContainerAlignment: Alignment.centerLeft,
                                           plainTextStringColor: brokerSignUpController.selectedRole.value == "Broker"
-                                              ? AppColors.orange41
-                                              : AppColors.white253
+                                              ? ColorUtils.orange41
+                                              : ColorUtils.white253
                                       ),
                                     ],
                                   ),
@@ -269,7 +268,7 @@ class BrokerSignUpScreenWidget {
                                       plainTextStringFontSize: 20.sp(context),
                                       plainTextStringFontWeight: FontWeight.w600,
                                       plainTextContainerAlignment: Alignment.centerLeft,
-                                      plainTextStringColor: AppColors.white253,
+                                      plainTextStringColor: ColorUtils.white253,
                                     ),
 
                                     CustomSpaceWidget.spacerWidget(spaceHeight: 8.h(context)),
@@ -294,7 +293,7 @@ class BrokerSignUpScreenWidget {
                                       plainTextStringFontSize: 20.sp(context),
                                       plainTextStringFontWeight: FontWeight.w600,
                                       plainTextContainerAlignment: Alignment.centerLeft,
-                                      plainTextStringColor: AppColors.white253,
+                                      plainTextStringColor: ColorUtils.white253,
                                     ),
 
                                     CustomSpaceWidget.spacerWidget(spaceHeight: 8.h(context)),
@@ -326,7 +325,7 @@ class BrokerSignUpScreenWidget {
                                   plainTextStringFontSize: 20.sp(context),
                                   plainTextStringFontWeight: FontWeight.w600,
                                   plainTextContainerAlignment: Alignment.centerLeft,
-                                  plainTextStringColor: AppColors.white253,
+                                  plainTextStringColor: ColorUtils.white253,
                                 ),
 
                                 CustomSpaceWidget.spacerWidget(spaceHeight: 8.h(context)),
@@ -355,7 +354,7 @@ class BrokerSignUpScreenWidget {
                                   plainTextStringFontSize: 20.sp(context),
                                   plainTextStringFontWeight: FontWeight.w600,
                                   plainTextContainerAlignment: Alignment.centerLeft,
-                                  plainTextStringColor: AppColors.white253,
+                                  plainTextStringColor: ColorUtils.white253,
                                 ),
 
                                 CustomSpaceWidget.spacerWidget(spaceHeight: 8.h(context)),
@@ -384,7 +383,7 @@ class BrokerSignUpScreenWidget {
                                 plainTextStringFontSize: 20.sp(context),
                                 plainTextStringFontWeight: FontWeight.w600,
                                 plainTextContainerAlignment: Alignment.centerLeft,
-                                plainTextStringColor: AppColors.white253,
+                                plainTextStringColor: ColorUtils.white253,
                               ),
 
                               CustomSpaceWidget.spacerWidget(spaceHeight: 8.h(context)),
@@ -395,7 +394,7 @@ class BrokerSignUpScreenWidget {
                                 alignment: Alignment.center,
                                 padding: EdgeInsets.symmetric(horizontal: 10.hpm(context)),
                                 decoration: BoxDecoration(
-                                  color: AppColors.white253,
+                                  color: ColorUtils.white253,
                                   borderRadius: BorderRadius.circular(8.r(context)),
                                 ),
                                 child: Material( // Wrapping with Material
@@ -417,7 +416,7 @@ class BrokerSignUpScreenWidget {
                                       hintStyle: GoogleFonts.urbanist(
                                         fontWeight: FontWeight.w400,
                                         fontSize: 20.sp(context),
-                                        color: AppColors.black114,
+                                        color: ColorUtils.black114,
                                       ),
                                       border: InputBorder.none,
                                       contentPadding: EdgeInsets.symmetric(vertical: 15),
@@ -446,7 +445,7 @@ class BrokerSignUpScreenWidget {
                                 plainTextStringFontSize: 20.sp(context),
                                 plainTextStringFontWeight: FontWeight.w600,
                                 plainTextContainerAlignment: Alignment.centerLeft,
-                                plainTextStringColor: AppColors.white253,
+                                plainTextStringColor: ColorUtils.white253,
                               ),
 
                               CustomSpaceWidget.spacerWidget(spaceHeight: 8.h(context)),
@@ -478,7 +477,7 @@ class BrokerSignUpScreenWidget {
                                 plainTextStringFontSize: 20.sp(context),
                                 plainTextStringFontWeight: FontWeight.w600,
                                 plainTextContainerAlignment: Alignment.centerLeft,
-                                plainTextStringColor: AppColors.white253,
+                                plainTextStringColor: ColorUtils.white253,
                               ),
 
                               CustomSpaceWidget.spacerWidget(spaceHeight: 8.h(context)),
@@ -514,7 +513,7 @@ class BrokerSignUpScreenWidget {
                               color: Colors.transparent
                           ),
                           child: const Center(
-                            child: CircularProgressIndicator(color: AppColors.white253,),
+                            child: CircularProgressIndicator(color: ColorUtils.white253,),
                           ),
                         ) :
                         CustomButtonContainer.plainButtonContainer(
@@ -565,8 +564,8 @@ class BrokerSignUpScreenWidget {
                           },
                           plainButtonHint: "Sign Up",
                           plainButtonHintFontSize: 22.sp(context),
-                          plainButtonColor: AppColors.green176,
-                          plainButtonHintFontColor: AppColors.white255,
+                          plainButtonColor: ColorUtils.green176,
+                          plainButtonHintFontColor: ColorUtils.white255,
                         ),
 
                         CustomSpaceWidget.spacerWidget(spaceHeight: 20.h(context)),

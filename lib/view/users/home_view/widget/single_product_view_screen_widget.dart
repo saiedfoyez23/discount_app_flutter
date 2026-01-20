@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:discount_me_app/view/users/home_view/widget/carousel_slider_widget.dart';
 import 'package:discount_me_app/view/users/home_view/widget/home_resturant_app_bar.dart';
 import 'package:discount_me_app/view/view.dart';
@@ -9,6 +8,7 @@ import 'package:get/get.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import '../../../../res/res.dart';
+import 'package:discount_me_app/utils/utils.dart';
 import '../../profile_view/view/user_notification_screen.dart';
 import '../view/order_screen.dart';
 
@@ -177,9 +177,9 @@ class SingleProductViewScreenWidget extends GetxController {
                                 height: 45.h(context),
                                 decoration: BoxDecoration(
                                     shape: BoxShape.circle,
-                                    color: AppColors.primaryColor,
+                                    color: ColorUtils.primaryColor,
                                     boxShadow: const [
-                                      BoxShadow(color: AppColors.whiteColor,
+                                      BoxShadow(color: ColorUtils.whiteColor,
                                           blurRadius: 10, offset: Offset(0, 1))
                                     ]
                                 ),
@@ -190,7 +190,7 @@ class SingleProductViewScreenWidget extends GetxController {
                                   },
                                   child: Icon(
                                     Icons.notifications,
-                                    color: AppColors.whiteColor,
+                                    color: ColorUtils.whiteColor,
                                     size: 25.r(context),
                                   ),
                                 ),
@@ -204,9 +204,9 @@ class SingleProductViewScreenWidget extends GetxController {
                                 height: 45.h(context),
                                 decoration: BoxDecoration(
                                     shape: BoxShape.circle,
-                                    color: AppColors.primaryColor,
+                                    color: ColorUtils.primaryColor,
                                     boxShadow: const [
-                                      BoxShadow(color: AppColors.whiteColor,
+                                      BoxShadow(color: ColorUtils.whiteColor,
                                           blurRadius: 10, offset: Offset(0, 2))
                                     ]
                                 ),
@@ -217,7 +217,7 @@ class SingleProductViewScreenWidget extends GetxController {
                                   },
                                   child: Icon(
                                     Icons.shopping_cart,
-                                    color: AppColors.whiteColor,
+                                    color: ColorUtils.whiteColor,
                                     size: 22.r(context),
                                   ),
                                 ),
@@ -280,7 +280,7 @@ class SingleProductViewScreenWidget extends GetxController {
                             plainTextStringFontSize: 18.sp(context),
                             plainTextStringFontWeight: FontWeight.w700,
                             plainTextContainerAlignment: Alignment.centerLeft,
-                            plainTextStringColor: AppColors.black29,
+                            plainTextStringColor: ColorUtils.black29,
                             plainTextStringTextAlign: TextAlign.start,
                           ),
                         ),
@@ -315,7 +315,7 @@ class SingleProductViewScreenWidget extends GetxController {
                               plainTextStringFontSize: 18.sp(context),
                               plainTextStringFontWeight: FontWeight.w600,
                               plainTextContainerAlignment: Alignment.center,
-                              plainTextStringColor: AppColors.black29,
+                              plainTextStringColor: ColorUtils.black29,
                               plainTextStringTextAlign: TextAlign.start,
                             ),
                           ],
@@ -356,7 +356,7 @@ class SingleProductViewScreenWidget extends GetxController {
                                 plainTextStringFontWeight: FontWeight.w500,
                                 plainTextContainerAlignment: Alignment.centerLeft,
                                 plainTextStringColor: singleProductResponseModel.value.data?.quantity != null && singleProductResponseModel.value.data?.quantity != 0?
-                                AppColors.green176 : AppColors.red191,
+                                ColorUtils.green176 : ColorUtils.red191,
                                 plainTextStringTextAlign: TextAlign.start,
                               ),
                             ],
@@ -370,7 +370,7 @@ class SingleProductViewScreenWidget extends GetxController {
                           plainTextStringFontSize: 22.sp(context),
                           plainTextStringFontWeight: FontWeight.w700,
                           plainTextContainerAlignment: Alignment.centerLeft,
-                          plainTextStringColor: AppColors.black29,
+                          plainTextStringColor: ColorUtils.black29,
                           plainTextStringTextAlign: TextAlign.start,
                         ),
 
@@ -458,7 +458,7 @@ class SingleProductViewScreenWidget extends GetxController {
                                 plainTextStringFontSize: 14.sp(context),
                                 plainTextStringFontWeight: FontWeight.w500,
                                 plainTextContainerAlignment: Alignment.center,
-                                plainTextStringColor: AppColors.black29,
+                                plainTextStringColor: ColorUtils.black29,
                                 plainTextStringTextAlign: TextAlign.center,
                               ),
                             ],
@@ -477,12 +477,12 @@ class SingleProductViewScreenWidget extends GetxController {
                       height: 55.h(context),
                       width: 428.w(context),
                       decoration: BoxDecoration(
-                        color: AppColors.green176,
+                        color: ColorUtils.green176,
                         borderRadius: BorderRadius.circular(12.r(context)),
                       ),
                       child: isAdd.value == true ?
                       Center(
-                        child: CircularProgressIndicator(color: AppColors.white253,),
+                        child: CircularProgressIndicator(color: ColorUtils.white253,),
                       ) : TextButton(
                         onPressed: () async {
                           isAdd.value = true;
@@ -513,7 +513,7 @@ class SingleProductViewScreenWidget extends GetxController {
                           plainTextStringFontSize: 18.sp(context),
                           plainTextStringFontWeight: FontWeight.w700,
                           plainTextContainerAlignment: Alignment.center,
-                          plainTextStringColor: AppColors.white246,
+                          plainTextStringColor: ColorUtils.white246,
                           plainTextStringTextAlign: TextAlign.center,
                         ),
                       ),

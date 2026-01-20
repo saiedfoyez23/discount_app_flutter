@@ -3,7 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:skeletonizer/skeletonizer.dart';
-
+import 'package:discount_me_app/utils/utils.dart';
 import '../../../../res/res.dart';
 import '../../../view.dart';
 import '../../profile_view/view/user_notification_screen.dart';
@@ -204,9 +204,9 @@ class ProductListScreenWidget extends GetxController {
                                 height: 45.h(context),
                                 decoration: BoxDecoration(
                                     shape: BoxShape.circle,
-                                    color: AppColors.primaryColor,
+                                    color: ColorUtils.primaryColor,
                                     boxShadow: const [
-                                      BoxShadow(color: AppColors.whiteColor,
+                                      BoxShadow(color: ColorUtils.whiteColor,
                                           blurRadius: 10, offset: Offset(0, 1))
                                     ]
                                 ),
@@ -217,7 +217,7 @@ class ProductListScreenWidget extends GetxController {
                                   },
                                   child: Icon(
                                     Icons.notifications,
-                                    color: AppColors.whiteColor,
+                                    color: ColorUtils.whiteColor,
                                     size: 25.r(context),
                                   ),
                                 ),
@@ -231,9 +231,9 @@ class ProductListScreenWidget extends GetxController {
                                 height: 45.h(context),
                                 decoration: BoxDecoration(
                                     shape: BoxShape.circle,
-                                    color: AppColors.primaryColor,
+                                    color: ColorUtils.primaryColor,
                                     boxShadow: const [
-                                      BoxShadow(color: AppColors.whiteColor,
+                                      BoxShadow(color: ColorUtils.whiteColor,
                                           blurRadius: 10, offset: Offset(0, 2))
                                     ]
                                 ),
@@ -244,7 +244,7 @@ class ProductListScreenWidget extends GetxController {
                                   },
                                   child: Icon(
                                     Icons.shopping_cart,
-                                    color: AppColors.whiteColor,
+                                    color: ColorUtils.whiteColor,
                                     size: 22.r(context),
                                   ),
                                 ),
@@ -264,7 +264,7 @@ class ProductListScreenWidget extends GetxController {
                       decoration: BoxDecoration(
                         color: Colors.transparent,
                         borderRadius: BorderRadius.circular(8.r(context)),
-                        border:Border.all(width: 1, color: AppColors.whiteDark),
+                        border:Border.all(width: 1, color: ColorUtils.whiteDark),
                       ),
                       child: TextField(
                         onTap: () async {
@@ -379,7 +379,7 @@ class ProductListScreenWidget extends GetxController {
                                     plainTextStringFontSize: 14.sp(context),
                                     plainTextStringFontWeight: FontWeight.w500,
                                     plainTextContainerAlignment: Alignment.center,
-                                    plainTextStringColor: AppColors.black29,
+                                    plainTextStringColor: ColorUtils.black29,
                                     plainTextStringTextAlign: TextAlign.center,
                                   ),
                                 ],
@@ -486,7 +486,7 @@ class ProductListScreenWidget extends GetxController {
                                         plainTextStringFontSize: 22.sp(context),
                                         plainTextStringFontWeight: FontWeight.w700,
                                         plainTextContainerAlignment: Alignment.centerLeft,
-                                        plainTextStringColor: AppColors.black29,
+                                        plainTextStringColor: ColorUtils.black29,
                                         plainTextStringTextAlign: TextAlign.start,
                                       ),
 
@@ -557,7 +557,7 @@ class ProductListScreenWidget extends GetxController {
                                             plainTextStringFontSize: 22.sp(context),
                                             plainTextStringFontWeight: FontWeight.w700,
                                             plainTextContainerAlignment: Alignment.centerLeft,
-                                            plainTextStringColor: AppColors.black29,
+                                            plainTextStringColor: ColorUtils.black29,
                                             plainTextStringTextAlign: TextAlign.start,
                                           ),
 
@@ -579,7 +579,7 @@ class ProductListScreenWidget extends GetxController {
                       plainTextStringFontSize: 22.sp(context),
                       plainTextStringFontWeight: FontWeight.w700,
                       plainTextContainerAlignment: Alignment.center,
-                      plainTextStringColor: AppColors.black29,
+                      plainTextStringColor: ColorUtils.black29,
                       plainTextStringTextAlign: TextAlign.center,
                     ) :
                     CustomSpaceWidget.spacerWidget(),

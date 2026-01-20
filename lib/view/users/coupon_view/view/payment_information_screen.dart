@@ -9,7 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:discount_me_app/utils/utils.dart';
 
 class PaymentInformationScreen extends StatelessWidget {
   PaymentInformationScreen({super.key});
@@ -35,13 +35,13 @@ class PaymentInformationScreen extends StatelessWidget {
         // Add the continue button in the bottom navigation bar
         bottomNavigationBar: Container(
           // padding: EdgeInsets.all(15.w),
-          margin: EdgeInsets.only(bottom: 15.h, left: 15.w, right: 15.w),
+          margin: EdgeInsets.only(bottom: 15.h(context), left: 15.w(context), right: 15.w(context)),
           child: SizedBox(
             width: width,
-            height: 60.h,
+            height: 60.h(context),
             child: Roundbutton(
-              buttonColor: AppColors.primaryColor,
-              padding_vertical: 15.h,
+              buttonColor: ColorUtils.primaryColor,
+              padding_vertical: 15.h(context),
               borderRadius: 8,
               title: "Continue", onTap: () {
                 Get.to(TransactionSuccessScreen());
@@ -62,24 +62,24 @@ class PaymentInformationScreen extends StatelessWidget {
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      SizedBox(height: 8.h),
+                      SizedBox(height: 8.h(context)),
                       TextField(
                         decoration: InputDecoration(
                           labelText: 'Account Name',
                           border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(8.r),
+                            borderRadius: BorderRadius.circular(8.r(context)),
                             borderSide: BorderSide(color: Colors.grey, width: 1.5),
                           ),
                         ),
                       ),
-                      SizedBox(height: 16.h),
+                      SizedBox(height: 16.h(context)),
                       Obx(() {
                         return TextField(
                           obscureText: paymentController.isCardNumberObscured.value,
                           decoration: InputDecoration(
                             labelText: 'Card Number',
                             border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(8.r),
+                              borderRadius: BorderRadius.circular(8.r(context)),
                               borderSide: BorderSide(color: Colors.grey, width: 1.5),
                             ),
                             suffixIcon: IconButton(
@@ -102,7 +102,7 @@ class PaymentInformationScreen extends StatelessWidget {
                           ],
                         );
                       }),
-                      SizedBox(height: 16.h),
+                      SizedBox(height: 16.h(context)),
                       // Exp Date and CVV Row
                       Row(
                         children: [
@@ -115,7 +115,7 @@ class PaymentInformationScreen extends StatelessWidget {
                                   decoration: InputDecoration(
                                     labelText: 'Exp Date',
                                     border: OutlineInputBorder(
-                                      borderRadius: BorderRadius.circular(8.r),
+                                      borderRadius: BorderRadius.circular(8.r(context)),
                                       borderSide: BorderSide(color: Colors.grey, width: 1.5),
                                     ),
                                   ),
@@ -124,7 +124,7 @@ class PaymentInformationScreen extends StatelessWidget {
                               ],
                             ),
                           ),
-                          SizedBox(width: 16.w),
+                          SizedBox(width: 16.w(context)),
                           // CVV
                           Expanded(
                             child: Column(
@@ -134,7 +134,7 @@ class PaymentInformationScreen extends StatelessWidget {
                                   decoration: InputDecoration(
                                     labelText: 'CVV',
                                     border: OutlineInputBorder(
-                                      borderRadius: BorderRadius.circular(8.r),
+                                      borderRadius: BorderRadius.circular(8.r(context)),
                                       borderSide: BorderSide(color: Colors.grey, width: 1.5),
                                     ),
                                   ),

@@ -3,6 +3,7 @@
 import 'package:discount_me_app/res/app_const/import_list.dart';
 import 'package:discount_me_app/res/custom_style/custom_size.dart';
 import 'package:flutter/material.dart';
+import 'package:discount_me_app/utils/utils.dart';
 
 class CustomBrokerAppBar extends StatelessWidget {
   const CustomBrokerAppBar({super.key});
@@ -22,7 +23,7 @@ class CustomBrokerAppBar extends StatelessWidget {
                   color: Colors.lightBlueAccent,
                 ),
                 child: Image.asset(
-                  AppImages.homeProfileAvatar,
+                  ImageUtils.homeProfileAvatar,
                   scale: 4,
                   fit: BoxFit.cover,
                 ),
@@ -34,7 +35,7 @@ class CustomBrokerAppBar extends StatelessWidget {
                 child: Align(
                   alignment: Alignment.center,
                   child: Image.asset(
-                    AppImages.discountMeLogo,
+                    ImageUtils.discountMeLogo,
                     scale: 10,
                   ),
                 ),

@@ -1,7 +1,6 @@
-
-// ignore_for_file: prefer_const_constructors
-
-import 'package:discount_me_app/res/app_const/import_list.dart';
+import 'package:flutter/material.dart';
+import 'package:discount_me_app/utils/utils.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class Roundbutton extends StatelessWidget {
   final String title;
@@ -24,7 +23,7 @@ class Roundbutton extends StatelessWidget {
     this.width = double.infinity,
     this.padding_vertical = 12.0,
     this.borderRadius = 9.0,
-    this.buttonColor = AppColors.secondaryColor,
+    this.buttonColor = ColorUtils.secondaryColor,
     this.border,
     this.titleColor = Colors.white,
     this.widget,

@@ -1,6 +1,5 @@
-
-
 import 'package:discount_me_app/res/res.dart';
+import 'package:discount_me_app/utils/utils.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -36,7 +35,7 @@ class UserProfileAppbarWidget extends StatelessWidget {
             plainTextStringFontWeight: FontWeight.w700,
             plainTextContainerAlignment: Alignment.center,
             plainTextStringTextAlign: TextAlign.center,
-            plainTextStringColor: AppColors.black29,
+            plainTextStringColor: ColorUtils.black29,
           ),
         ),
 

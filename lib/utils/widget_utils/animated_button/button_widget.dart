@@ -28,7 +28,7 @@ class ButtonWidget extends StatelessWidget {
               );
             },
             child: CustomPaint(
-              size: Size(70.w(context), 78.h(context)),
+              size: Size(80.w(context), 80.h(context)),
               painter: ButtonStrokePainter(),
             ),
           ),
@@ -38,14 +38,14 @@ class ButtonWidget extends StatelessWidget {
             height: 69.94.h(context),
             width: 69.94.w(context),
             decoration: const BoxDecoration(
-              color: AppColors.orange41,
+              color: ColorUtils.orange41,
               shape: BoxShape.circle,
             ),
             alignment: Alignment.center,
             child: CustomImageContainer.assetImageContainer(
               height: 39.47.h(context),
               width: 39.47.w(context),
-              assetImage: AppImages.splashScreenArrowImage,
+              assetImage: ImageUtils.splashScreenArrowImage,
               boxFit: BoxFit.contain,
             ),
           ),

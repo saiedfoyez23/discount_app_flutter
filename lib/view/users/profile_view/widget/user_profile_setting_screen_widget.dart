@@ -2,15 +2,13 @@ import 'package:discount_me_app/view/users/profile_view/view/user_change_passwor
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:discount_me_app/utils/utils.dart';
 import 'package:discount_me_app/view/view.dart';
 import 'package:discount_me_app/res/res.dart';
 import 'package:skeletonizer/skeletonizer.dart';
-
 import '../../../../res/common_widget/custom_alert_dialog.dart';
 
 class UserProfileSettingScreenWidget extends GetxController {
-
-
 
   RxBool isLoading = false.obs;
   RxBool isSubmit = false.obs;
@@ -18,8 +16,6 @@ class UserProfileSettingScreenWidget extends GetxController {
   Rx<UserProfileResponseModel> userProfileResponseModel = UserProfileResponseModel().obs;
   BuildContext context;
   UserProfileSettingScreenWidget({required this.context});
-
-
 
 
   @override
@@ -95,7 +91,7 @@ class UserProfileSettingScreenWidget extends GetxController {
                         horizontal: 15.hpm(context),
                       ),
                       decoration: BoxDecoration(
-                        color: AppColors.greenLight,
+                        color: ColorUtils.greenLight,
                         borderRadius: BorderRadius.circular(4.r(context)),
                       ),
                       child: TextButton(
@@ -145,7 +141,7 @@ class UserProfileSettingScreenWidget extends GetxController {
                         horizontal: 15.hpm(context),
                       ),
                       decoration: BoxDecoration(
-                        color: AppColors.greenLight,
+                        color: ColorUtils.greenLight,
                         borderRadius: BorderRadius.circular(4.r(context)),
                       ),
                       child: TextButton(
@@ -228,7 +224,7 @@ class UserProfileSettingScreenWidget extends GetxController {
                                                 color: Colors.transparent
                                             ),
                                             child: const Center(
-                                              child: CircularProgressIndicator(color: AppColors.green176,),
+                                              child: CircularProgressIndicator(color: ColorUtils.green176,),
                                             ),
                                           ) :
                                           ElevatedButton(

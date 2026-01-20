@@ -1,5 +1,5 @@
 import 'dart:io';
-
+import 'package:discount_me_app/utils/utils.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:discount_me_app/res/res.dart';
@@ -8,7 +8,6 @@ import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intl_phone_number_input/intl_phone_number_input.dart';
 import 'package:skeletonizer/skeletonizer.dart';
-
 import '../../../../res/common_widget/custom_text.dart';
 import '../../../../res/common_widget/custom_textfield_with_label.dart';
 
@@ -124,7 +123,7 @@ class UserProfileEditScreenWidget extends GetxController {
                                   networkImage: image.value,
                                   boxFit: BoxFit.fitWidth,
                                   boxShape: BoxShape.circle,
-                                  borderColors: AppColors.primaryColor,
+                                  borderColors: ColorUtils.primaryColor,
                                   borderWidth: 1,
                                 ),
                               ),
@@ -136,7 +135,7 @@ class UserProfileEditScreenWidget extends GetxController {
                                   file: imageFile.value,
                                   boxFit: BoxFit.fitWidth,
                                   boxShape: BoxShape.circle,
-                                  borderColors: AppColors.primaryColor,
+                                  borderColors: ColorUtils.primaryColor,
                                   borderWidth: 1,
                                 ),
                               ),
@@ -148,7 +147,7 @@ class UserProfileEditScreenWidget extends GetxController {
                                   assetImage:  AppImages.imagePickerIcon,
                                   boxFit: BoxFit.fitWidth,
                                   boxShape: BoxShape.circle,
-                                  borderColors: AppColors.primaryColor,
+                                  borderColors: ColorUtils.primaryColor,
                                   borderWidth: 1,
                                 ),
                               ),
@@ -165,8 +164,8 @@ class UserProfileEditScreenWidget extends GetxController {
                                 width: 60.h(context),
                                 height: 60.w(context),
                                 decoration: BoxDecoration(
-                                    color: AppColors.white253,
-                                    shape: BoxShape.circle
+                                  color: ColorUtils.white253,
+                                  shape: BoxShape.circle,
                                 ),
                                 child: TextButton(
                                   style: TextButton.styleFrom(padding: EdgeInsets.zero),
@@ -230,7 +229,7 @@ class UserProfileEditScreenWidget extends GetxController {
                                   },
                                   child: Icon(
                                     Icons.camera_alt_outlined,
-                                    color: AppColors.secondaryColor,
+                                    color: ColorUtils.secondaryColor,
                                     size: 28.r(context),
                                   ),
                                 ),
@@ -376,7 +375,7 @@ class UserProfileEditScreenWidget extends GetxController {
                           color: Colors.transparent
                       ),
                       child: const Center(
-                        child: CircularProgressIndicator(color: AppColors.green176,),
+                        child: CircularProgressIndicator(color: ColorUtils.green176,),
                       ),
                     ) :
                     CustomButtonContainer.plainButtonContainer(
@@ -408,8 +407,8 @@ class UserProfileEditScreenWidget extends GetxController {
                       },
                       plainButtonHint: "Update",
                       plainButtonHintFontSize: 22.sp(context),
-                      plainButtonColor: AppColors.green176,
-                      plainButtonHintFontColor: AppColors.white255,
+                      plainButtonColor: ColorUtils.green176,
+                      plainButtonHintFontColor: ColorUtils.white255,
                     ),
 
 

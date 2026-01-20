@@ -94,11 +94,19 @@ class RiderProfileHomeScreenWidget extends GetxController {
                             ClipRRect(
                               borderRadius: BorderRadius.circular(100.r(context)),
                               child: riderProfileResponse.value.data?.image != null ?
-                              Image.network(
-                                riderProfileResponse.value.data!.image,
-                                fit: BoxFit.fitWidth,
+                              Container(
                                 width: 202.w(context),
                                 height: 202.h(context),
+                                decoration: BoxDecoration(
+                                  shape: BoxShape.circle,
+                                ),
+                                child: AspectRatio(
+                                  aspectRatio: 202.w(context) / 202.h(context),
+                                  child: Image.network(
+                                    riderProfileResponse.value.data!.image,
+                                    fit: BoxFit.cover,
+                                  ),
+                                ),
                               ) :
                               Image.asset(
                                 AppImages.profileImage,
@@ -342,7 +350,7 @@ class RiderProfileHomeScreenWidget extends GetxController {
                         title: "Earnings",
                         icon: Image.asset(
                           AppImages.earnIcon,
-                          scale: 4,
+                          scale: 5,
                         ),
                         navigateIcon: Icon(
                           Icons.navigate_next,
@@ -359,7 +367,7 @@ class RiderProfileHomeScreenWidget extends GetxController {
                         title: "Settings",
                         icon: Image.asset(
                           AppImages.settingIcon,
-                          scale: 4,
+                          scale: 5,
                         ),
                         navigateIcon: Icon(
                           Icons.navigate_next,

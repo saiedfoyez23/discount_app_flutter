@@ -1,12 +1,11 @@
 import 'dart:convert';
 import 'dart:ui';
-
+import 'package:discount_me_app/utils/utils.dart';
 import 'package:discount_me_app/res/res.dart';
 import 'package:discount_me_app/view/view.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class SignInScreenWidget {
 
@@ -29,7 +28,7 @@ class SignInScreenWidget {
             width: 428.w(context),
             decoration: BoxDecoration(
               image: DecorationImage(
-                image: AssetImage(AppImages.authBg),
+                image: AssetImage(ImageUtils.authBg),
                 fit: BoxFit.fill,
               ),
             ),
@@ -83,7 +82,7 @@ class SignInScreenWidget {
                         CustomImageContainer.assetImageContainer(
                           height: 365.h(context),
                           width: 364.w(context),
-                          assetImage: AppImages.loginBg,
+                          assetImage: ImageUtils.loginBg,
                           boxFit: BoxFit.contain,
                         ),
 
@@ -95,7 +94,7 @@ class SignInScreenWidget {
                           plainTextStringFontSize: 27.sp(context),
                           plainTextStringFontWeight: FontWeight.w700,
                           plainTextContainerAlignment: Alignment.center,
-                          plainTextStringColor: AppColors.white253,
+                          plainTextStringColor: ColorUtils.white253,
                         ),
 
                         CustomSpaceWidget.spacerWidget(spaceHeight: 20.h(context)),
@@ -106,7 +105,7 @@ class SignInScreenWidget {
                           plainTextStringFontSize: 20.sp(context),
                           plainTextStringFontWeight: FontWeight.w600,
                           plainTextContainerAlignment: Alignment.centerLeft,
-                          plainTextStringColor: AppColors.white253,
+                          plainTextStringColor: ColorUtils.white253,
                         ),
 
                         CustomSpaceWidget.spacerWidget(spaceHeight: 8.h(context)),
@@ -129,7 +128,7 @@ class SignInScreenWidget {
                           plainTextStringFontSize: 20.sp(context),
                           plainTextStringFontWeight: FontWeight.w600,
                           plainTextContainerAlignment: Alignment.centerLeft,
-                          plainTextStringColor: AppColors.white253,
+                          plainTextStringColor: ColorUtils.white253,
                         ),
 
                         CustomSpaceWidget.spacerWidget(spaceHeight: 8.h(context)),
@@ -167,7 +166,7 @@ class SignInScreenWidget {
                             plainButtonHintTextAlign: TextAlign.end,
                             plainButtonHintFontSize: 18.sp(context),
                             plainButtonColor: Colors.transparent,
-                            plainButtonHintFontColor: AppColors.orange125
+                            plainButtonHintFontColor: ColorUtils.orange125
                         ),
 
 
@@ -181,7 +180,7 @@ class SignInScreenWidget {
                               color: Colors.transparent
                           ),
                           child: const Center(
-                            child: CircularProgressIndicator(color: AppColors.white253,),
+                            child: CircularProgressIndicator(color: ColorUtils.white253,),
                           ),
                         ) :
                         CustomButtonContainer.plainButtonContainer(
@@ -236,8 +235,8 @@ class SignInScreenWidget {
                           },
                           plainButtonHint: "Log in",
                           plainButtonHintFontSize: 22.sp(context),
-                          plainButtonColor: AppColors.green176,
-                          plainButtonHintFontColor: AppColors.white255,
+                          plainButtonColor: ColorUtils.green176,
+                          plainButtonHintFontColor: ColorUtils.white255,
                         ),
 
 
@@ -249,7 +248,7 @@ class SignInScreenWidget {
                             plainPrimaryTextStringAlign: TextAlign.center,
                             plainPrimaryTextString: "Don't have an account? ",
                             plainRichTextStringFontSize: 20.sp(context),
-                            plainRichTextStringColor: AppColors.white253,
+                            plainRichTextStringColor: ColorUtils.white253,
                             plainRichTextStringFontWeight: FontWeight.w500,
                             textSpanList: [
                               TextSpan(
@@ -257,7 +256,7 @@ class SignInScreenWidget {
                                 style: CustomRichTextContainer.plainRichTextStringStyleWithDecoration(
                                     context: context,
                                     plainRichTextStringFontSize: 20.sp(context),
-                                    plainRichTextStringColor:AppColors.orange125,
+                                    plainRichTextStringColor: ColorUtils.orange125,
                                     plainRichTextStringFontWeight: FontWeight.w600
                                 ),
                                 recognizer: TapGestureRecognizer()..onTap = () {

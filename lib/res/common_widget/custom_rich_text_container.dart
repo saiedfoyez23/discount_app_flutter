@@ -1,10 +1,8 @@
-import 'package:discount_me_app/res/res.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:discount_me_app/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class CustomRichTextContainer {
-
 
   static Widget plainRichTextContainerWidgetWithoutWidthHeight({
     required BuildContext context,
@@ -66,7 +64,7 @@ class CustomRichTextContainer {
       color: plainRichTextStringColor,
       fontWeight: plainRichTextStringFontWeight,
       decoration: TextDecoration.underline,
-      decorationColor: AppColors.orange125
+      decorationColor: ColorUtils.orange125
     );
   }
 

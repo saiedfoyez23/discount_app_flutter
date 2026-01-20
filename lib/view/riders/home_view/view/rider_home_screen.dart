@@ -1,11 +1,10 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, avoid_unnecessary_containers
-
 import 'package:discount_me_app/res/app_const/import_list.dart';
-import 'package:discount_me_app/res/common_widget/custom_alert_dialog.dart';
 import 'package:discount_me_app/res/custom_style/custom_style.dart';
 import 'package:discount_me_app/view/riders/home_view/view/rider_home_order_request_details_screen.dart';
-import 'package:flutter/services.dart';
-import 'package:material_color_utilities/material_color_utilities.dart';
+import 'package:flutter/material.dart';
+import 'package:discount_me_app/utils/utils.dart';
+import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class RiderHomeScreen extends StatefulWidget {
   const RiderHomeScreen({super.key});
@@ -27,7 +26,7 @@ class _RiderHomeScreenState extends State<RiderHomeScreen> {
     var width = MediaQuery.of(context).size.width;
     var height = MediaQuery.of(context).size.height;
     return Scaffold(
-        backgroundColor: AppColors.whiteColor,
+        backgroundColor: ColorUtils.whiteColor,
         body: SafeArea(
             child: Padding(
               padding: EdgeInsets.all(16),
@@ -41,8 +40,8 @@ class _RiderHomeScreenState extends State<RiderHomeScreen> {
                       children: [
                         Column(
                           children: [
-                            CustomText(title: "Welcome Back", fontSize: 14.sp, fontWeight: FontWeight.w400,),
-                            CustomText(title: "Allan Smith", fontSize: 18.sp, fontWeight: FontWeight.w700,)
+                            CustomText(title: "Welcome Back", fontSize: 14.sp(context), fontWeight: FontWeight.w400,),
+                            CustomText(title: "Allan Smith", fontSize: 18.sp(context), fontWeight: FontWeight.w700,)
                           ],
                         ),
 
@@ -53,7 +52,7 @@ class _RiderHomeScreenState extends State<RiderHomeScreen> {
                               borderRadius: BorderRadius.circular(50),
                               color: Colors.lightBlueAccent
                           ),
-                          child: Image.asset(AppImages.homeProfileAvatar, scale: 4, fit:BoxFit.cover,),
+                          child: Image.asset(ImageUtils.homeProfileAvatar, scale: 4, fit:BoxFit.cover,),
                         ),
                       ],
                     ),
@@ -65,7 +64,7 @@ class _RiderHomeScreenState extends State<RiderHomeScreen> {
                       padding: EdgeInsets.symmetric(horizontal: 10, vertical: 15),
                       decoration: BoxDecoration(
                         color: Colors.green,
-                        borderRadius: BorderRadius.circular(8.r),
+                        borderRadius: BorderRadius.circular(8.r(context)),
                       ),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -74,9 +73,9 @@ class _RiderHomeScreenState extends State<RiderHomeScreen> {
                           Column(
                             children: [
                               CustomText(title: "Available balance",
-                                fontSize: 14.sp,
+                                fontSize: 14.sp(context),
                                 fontWeight: FontWeight.w600,
-                                color: AppColors.whiteColor,
+                                color: ColorUtils.whiteColor,
                               ),
 
                               Text.rich(
@@ -85,16 +84,16 @@ class _RiderHomeScreenState extends State<RiderHomeScreen> {
                                         TextSpan(
                                             text: "\$ ",
                                             style: GoogleFonts.urbanist(
-                                                color: AppColors.whiteColor,
-                                                fontSize: 20.sp,
+                                                color: ColorUtils.whiteColor,
+                                                fontSize: 20.sp(context),
                                                 fontWeight: FontWeight.w700
                                             )
                                         ),
                                         TextSpan(
                                             text: "750.45",
                                             style: GoogleFonts.urbanist(
-                                                color: AppColors.whiteColor,
-                                                fontSize: 32,
+                                                color: ColorUtils.whiteColor,
+                                                fontSize: 32.sp(context),
                                                 fontWeight: FontWeight.w700
                                             )
                                         ),
@@ -105,9 +104,9 @@ class _RiderHomeScreenState extends State<RiderHomeScreen> {
                           ),
 
                           CustomText(title: "Withdrawal",
-                            fontSize: 18.sp,
+                            fontSize: 18.sp(context),
                             fontWeight: FontWeight.w700,
-                            color: AppColors.whiteColor,
+                            color: ColorUtils.whiteColor,
                           ),
 
                         ],
@@ -126,9 +125,9 @@ class _RiderHomeScreenState extends State<RiderHomeScreen> {
                           Text(
                               "Would you like to specify direction for deliveries?",
                               style: GoogleFonts.inconsolata(
-                                fontSize: 14.sp,
+                                fontSize: 14.sp(context),
                                 fontWeight: FontWeight.w600,
-                                color: AppColors.blackColor,
+                                color: ColorUtils.blackColor,
                               )
                           ),
                           10.heightBox,
@@ -139,7 +138,7 @@ class _RiderHomeScreenState extends State<RiderHomeScreen> {
                               prefixIcon: Icon(Icons.circle_outlined, color: Colors.green,),
                               border: OutlineInputBorder(
                                   borderSide: BorderSide.none,
-                                  borderRadius: BorderRadius.circular(8.r)
+                                  borderRadius: BorderRadius.circular(8.r(context))
                               ),
                               fillColor: Color(0xfff0f5f5),
                               filled: true,
@@ -156,12 +155,12 @@ class _RiderHomeScreenState extends State<RiderHomeScreen> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         CustomText(title: "Available Requests",
-                          fontSize: 18.sp,
+                          fontSize: 18.sp(context),
                           fontWeight: FontWeight.w600,
                         ),
 
                         CustomText(title: "View all",
-                          fontSize: 14.sp,
+                          fontSize: 14.sp(context),
                           fontWeight: FontWeight.w400,
                         ),
                       ],
@@ -192,8 +191,8 @@ class _RiderHomeScreenState extends State<RiderHomeScreen> {
       width: width,
       padding: EdgeInsets.all(15),
       decoration: BoxDecoration(
-        color: AppColors.whiteNormalHover.withOpacity(0.1),
-        border: Border(bottom: BorderSide(color: AppColors.whiteNormalHover, width: 1.17))
+        color: ColorUtils.whiteNormalHover.withOpacity(0.1),
+        border: Border(bottom: BorderSide(color: ColorUtils.whiteNormalHover, width: 1.17))
 
       ),
       child: Column(
@@ -202,15 +201,15 @@ class _RiderHomeScreenState extends State<RiderHomeScreen> {
         children: [
 
           CustomText(title: "Food Kind Restaurant",
-            fontSize: 18.sp,
+            fontSize: 18.sp(context),
             fontWeight: FontWeight.w600,
-            color: AppColors.secondaryColor,
+            color: ColorUtils.secondaryColor,
           ),
           5.heightBox,
           CustomText(title: "Receipient: Paul Pogba",
-            fontSize: 14.sp,
+            fontSize: 14.sp(context),
             fontWeight: FontWeight.w600,
-            color: AppColors.blackColor,
+            color: ColorUtils.blackColor,
           ),
           5.heightBox,
           Row(
@@ -219,10 +218,10 @@ class _RiderHomeScreenState extends State<RiderHomeScreen> {
               Container(
                 padding: EdgeInsets.all(16),
                 decoration: BoxDecoration(
-                  color: AppColors.orangeLight,
+                  color: ColorUtils.orangeLight,
                   borderRadius: BorderRadius.circular(6)
                 ),
-                child: Image.asset(AppImages.bikeVector, scale: 4,),
+                child: Image.asset(ImageUtils.bikeVector, scale: 4,),
               ),
               20.widthBox,
               Column(
@@ -230,19 +229,19 @@ class _RiderHomeScreenState extends State<RiderHomeScreen> {
                 children: [
                   Row(
                     children: [
-                    Icon(Icons.location_on_outlined, color: AppColors.blackColor,),
+                    Icon(Icons.location_on_outlined, color: ColorUtils.blackColor,),
                     CustomText(title: "Drop off",
-                      fontSize: 12.sp,
+                      fontSize: 12.sp(context),
                       fontWeight: FontWeight.w400,
-                      color: AppColors.blackColor,
+                      color: ColorUtils.blackColor,
                     ),
                   ],
                   ),
                   5.heightBox,
                   CustomText(title: "Maryland bustop, Anthony Ikeja",
-                    fontSize: 14.sp,
+                    fontSize: 14.sp(context),
                     fontWeight: FontWeight.w600,
-                    color: AppColors.secondaryColor,
+                    color: ColorUtils.secondaryColor,
                   ),
 
                 ],
@@ -279,7 +278,7 @@ class _RiderHomeScreenState extends State<RiderHomeScreen> {
               Expanded(
                 child: Roundbutton(
                   title: "View Details",
-                  buttonColor: AppColors.secondaryColor,
+                  buttonColor: ColorUtils.secondaryColor,
                   borderRadius: 4,
                   onTap: () {
                     Get.to(RiderHomeOrderRequestDetailsScreen());

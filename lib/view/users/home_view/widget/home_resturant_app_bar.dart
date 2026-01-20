@@ -1,7 +1,9 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:discount_me_app/res/app_const/import_list.dart';
-
+import 'package:discount_me_app/utils/utils.dart';
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class HomeResturantAppBar extends StatelessWidget {
   const HomeResturantAppBar({super.key});
@@ -21,7 +23,7 @@ class HomeResturantAppBar extends StatelessWidget {
                   color: Colors.lightBlueAccent,
                 ),
                 child: Image.asset(
-                  AppImages.homeProfileAvatar,
+                  ImageUtils.homeProfileAvatar,
                   scale: 4,
                   fit: BoxFit.cover,
                 ),
@@ -32,7 +34,7 @@ class HomeResturantAppBar extends StatelessWidget {
                 child: Align(
                   alignment: Alignment.center,
                   child: Image.asset(
-                    AppImages.discountMeLogo,
+                    ImageUtils.discountMeLogo,
                     scale: 10,
                   ),
                 ),
@@ -53,13 +55,13 @@ class HomeResturantAppBar extends StatelessWidget {
                 height: 30,
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(50),
-                    color: AppColors.primaryColor,
+                    color: ColorUtils.primaryColor,
                     boxShadow: const [
-                      BoxShadow(color: AppColors.whiteColor,
+                      BoxShadow(color: ColorUtils.whiteColor,
                           blurRadius: 10, offset: Offset(0, 1))
                     ]
                 ),
-                child: Icon(Icons.notifications, color: AppColors.whiteColor, size: 20.sp,),
+                child: Icon(Icons.notifications, color: ColorUtils.whiteColor, size: 20.sp(context),),
               ),
             ),
 
@@ -73,13 +75,13 @@ class HomeResturantAppBar extends StatelessWidget {
                 height: 30,
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(50),
-                    color: AppColors.primaryColor,
+                    color: ColorUtils.primaryColor,
                     boxShadow: const [
-                      BoxShadow(color: AppColors.whiteColor,
+                      BoxShadow(color: ColorUtils.whiteColor,
                           blurRadius: 10, offset: Offset(0, 2))
                     ]
                 ),
-                child: Icon(Icons.shopping_cart, color: AppColors.whiteColor,size: 18.sp,),
+                child: Icon(Icons.shopping_cart, color: ColorUtils.whiteColor,size: 18.sp(context),),
               ),
             ),
 

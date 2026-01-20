@@ -1,7 +1,8 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
-
+import 'package:discount_me_app/utils/utils.dart';
 import 'package:discount_me_app/res/app_const/import_list.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class UserShareReviewScreen extends StatelessWidget {
   const UserShareReviewScreen({super.key});
@@ -48,7 +49,7 @@ class UserShareReviewScreen extends StatelessWidget {
                               Text(
                                 '4.8 ★',
                                 style: GoogleFonts.urbanist(
-                                  fontSize: 20.sp,
+                                  fontSize: 20.sp(context),
                                   fontWeight: FontWeight.w700,
                                   color: Colors.black,
                                 ),
@@ -58,7 +59,7 @@ class UserShareReviewScreen extends StatelessWidget {
                                 '1,64,002 Ratings\n&\n 5,922 Reviews',
                                 textAlign: TextAlign.center,
                                 style: GoogleFonts.urbanist(
-                                  fontSize: 10.sp,
+                                  fontSize: 10.sp(context),
                                   color: Colors.black54,
                                 ),
                               ),
@@ -69,11 +70,11 @@ class UserShareReviewScreen extends StatelessWidget {
                           Expanded(
                             child: Column(
                               children: [
-                                ratingBar(5, 0.8),
-                                ratingBar(4, 0.6),
-                                ratingBar(3, 0.4),
-                                ratingBar(2, 0.2),
-                                ratingBar(1, 0.1),
+                                ratingBar(5, 0.8,context),
+                                ratingBar(4, 0.6,context),
+                                ratingBar(3, 0.4,context),
+                                ratingBar(2, 0.2,context),
+                                ratingBar(1, 0.1,context),
                               ],
                             ),
                           ),
@@ -86,7 +87,7 @@ class UserShareReviewScreen extends StatelessWidget {
                         child: Text(
                           'What is your rate?',
                           style: GoogleFonts.urbanist(
-                            fontSize: 20.sp,
+                            fontSize: 20.sp(context),
                             fontWeight: FontWeight.w600,
                             color: Colors.black,
                           ),
@@ -117,8 +118,8 @@ class UserShareReviewScreen extends StatelessWidget {
                       // Share Review Button
                       Center(
                         child: Roundbutton(title: "Share Review",
-                          buttonColor: AppColors.primaryColor,
-                          borderRadius: 8.r,
+                          buttonColor: ColorUtils.primaryColor,
+                          borderRadius: 8.r(context),
                           onTap: () {
                         },),
                       ),
@@ -135,7 +136,7 @@ class UserShareReviewScreen extends StatelessWidget {
     );
   }
   // Widget for creating the star rating distribution bar
-  Widget ratingBar(int starCount, double fillPercent) {
+  Widget ratingBar(int starCount, double fillPercent, BuildContext context) {
     return Row(
       children: [
         Text(
@@ -147,7 +148,7 @@ class UserShareReviewScreen extends StatelessWidget {
           child: Stack(
             children: [
               Container(
-                height: 5.h,
+                height: 5.h(context),
                 decoration: BoxDecoration(
                   color: Colors.grey[300],
                   borderRadius: BorderRadius.circular(5),
@@ -156,7 +157,7 @@ class UserShareReviewScreen extends StatelessWidget {
               FractionallySizedBox(
                 widthFactor: fillPercent,
                 child: Container(
-                  height: 5.h,
+                  height: 5.h(context),
                   decoration: BoxDecoration(
                     color: Colors.orange,
                     borderRadius: BorderRadius.circular(5),

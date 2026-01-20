@@ -11,7 +11,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:skeletonizer/skeletonizer.dart';
-
+import 'package:discount_me_app/utils/utils.dart';
 import '../../../../res/res.dart';
 import '../../../view.dart';
 import '../../user_profile_order_view/view/user_profile_order_status_screen.dart';
@@ -120,7 +120,7 @@ class UserProfileHomeScreenWidget extends GetxController {
                                 width: 34.w(context),
                                 height: 34.h(context),
                                 decoration: BoxDecoration(
-                                  color: AppColors.secondaryColor,
+                                  color: ColorUtils.secondaryColor,
                                   borderRadius: BorderRadius.only(
                                     topLeft: Radius.circular(10.r(context)),
                                     topRight: Radius.circular(10.r(context)),
@@ -232,7 +232,7 @@ class UserProfileHomeScreenWidget extends GetxController {
                                   child: Icon(
                                     Icons.edit,
                                     size: 16.r(context),
-                                    color: AppColors.whiteColor,
+                                    color: ColorUtils.whiteColor,
                                   ),
                                 ),
                               ),
@@ -255,7 +255,7 @@ class UserProfileHomeScreenWidget extends GetxController {
                             plainTextStringFontWeight: FontWeight.w700,
                             plainTextContainerAlignment: Alignment.center,
                             plainTextStringTextAlign: TextAlign.center,
-                            plainTextStringColor: AppColors.black29,
+                            plainTextStringColor: ColorUtils.black29,
                           ),
 
 

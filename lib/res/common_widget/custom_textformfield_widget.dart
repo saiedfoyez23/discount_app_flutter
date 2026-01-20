@@ -1,8 +1,7 @@
-import 'package:discount_me_app/res/res.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:discount_me_app/utils/utils.dart';
 
 class CustomTextFormFieldWidget {
 
@@ -23,7 +22,7 @@ class CustomTextFormFieldWidget {
       style: GoogleFonts.urbanist(
         fontWeight: FontWeight.w700,
         fontSize: 20.sp(context),
-        color: AppColors.black29,
+        color: ColorUtils.black29,
       ),
       decoration: InputDecoration(
         constraints: BoxConstraints(
@@ -32,13 +31,13 @@ class CustomTextFormFieldWidget {
         ),
         contentPadding: EdgeInsets.zero,
         filled: true,
-        fillColor: AppColors.white253,
+        fillColor: ColorUtils.white253,
         focusedBorder: OutlineInputBorder(
-          borderSide: const BorderSide(color: AppColors.orange125, width: 1),
+          borderSide: const BorderSide(color: ColorUtils.orange125, width: 1),
           borderRadius: BorderRadius.circular(8.r(context)),
         ) ,
         border: OutlineInputBorder(
-          borderSide: const BorderSide(color: AppColors.white202, width: 0.5),
+          borderSide: const BorderSide(color: ColorUtils.white202, width: 0.5),
           borderRadius: BorderRadius.circular(8.r(context)),
         ),
         prefixIcon: prefixIcon,
@@ -47,7 +46,7 @@ class CustomTextFormFieldWidget {
         hintStyle: GoogleFonts.urbanist(
           fontWeight: FontWeight.w400,
           fontSize: 20.sp(context),
-          color: AppColors.black114,
+          color: ColorUtils.black114,
         ),
       ),
     );
@@ -68,7 +67,7 @@ class CustomTextFormFieldWidget {
       style: GoogleFonts.urbanist(
         fontWeight: FontWeight.w600,
         fontSize: 16.sp(context),
-        color: AppColors.white253,
+        color: ColorUtils.white253,
       ),
       decoration: InputDecoration(
         constraints: BoxConstraints(
@@ -85,7 +84,7 @@ class CustomTextFormFieldWidget {
         hintStyle: GoogleFonts.urbanist(
           fontWeight: FontWeight.w600,
           fontSize: 16.sp(context),
-          color: AppColors.white253,
+          color: ColorUtils.white253,
         ),
       ),
     );
@@ -105,7 +104,7 @@ class CustomTextFormFieldWidget {
       style: GoogleFonts.urbanist(
         fontWeight: FontWeight.w700,
         fontSize: 20.sp(context),
-        color: AppColors.black29,
+        color: ColorUtils.black29,
       ),
       decoration: InputDecoration(
         constraints: BoxConstraints(
@@ -113,20 +112,20 @@ class CustomTextFormFieldWidget {
           maxWidth: maxWidth.w(context),
         ),
         filled: true,
-        fillColor: AppColors.white253,
+        fillColor: ColorUtils.white253,
         focusedBorder: OutlineInputBorder(
-          borderSide: const BorderSide(color: AppColors.orange125, width: 1),
+          borderSide: const BorderSide(color: ColorUtils.orange125, width: 1),
           borderRadius: BorderRadius.circular(8.r(context)),
         ) ,
         border: OutlineInputBorder(
-          borderSide: const BorderSide(color: AppColors.white202, width: 0.5),
+          borderSide: const BorderSide(color: ColorUtils.white202, width: 0.5),
           borderRadius: BorderRadius.circular(8.r(context)),
         ),
         hintText: hintText,
         hintStyle: GoogleFonts.urbanist(
           fontWeight: FontWeight.w400,
           fontSize: 20.sp(context),
-          color: AppColors.black114,
+          color: ColorUtils.black114,
         ),
       ),
     );
@@ -150,7 +149,7 @@ class CustomTextFormFieldWidget {
       style: GoogleFonts.urbanist(
         fontWeight: FontWeight.w700,
         fontSize: 20.sp(context),
-        color: AppColors.black29,
+        color: ColorUtils.black29,
       ),
       decoration: InputDecoration(
         constraints: BoxConstraints(
@@ -159,13 +158,13 @@ class CustomTextFormFieldWidget {
         ),
         contentPadding: EdgeInsets.zero,
         filled: true,
-        fillColor: AppColors.white253,
+        fillColor: ColorUtils.white253,
         focusedBorder: OutlineInputBorder(
-          borderSide: const BorderSide(color: AppColors.orange125, width: 1),
+          borderSide: const BorderSide(color: ColorUtils.orange125, width: 1),
           borderRadius: BorderRadius.circular(8.r(context)),
         ) ,
         border: OutlineInputBorder(
-          borderSide: const BorderSide(color: AppColors.white202, width: 0.5),
+          borderSide: const BorderSide(color: ColorUtils.white202, width: 0.5),
           borderRadius: BorderRadius.circular(8.r(context)),
         ),
         prefixIcon: prefixIcon,
@@ -174,7 +173,7 @@ class CustomTextFormFieldWidget {
         hintStyle: GoogleFonts.urbanist(
           fontWeight: FontWeight.w400,
           fontSize: 20.sp(context),
-          color: AppColors.black114,
+          color: ColorUtils.black114,
         ),
       ),
     );
@@ -199,14 +198,14 @@ class CustomTextFormFieldWidget {
       style: GoogleFonts.urbanist(
         fontWeight: FontWeight.w700,
         fontSize: 35.sp(context),
-        color: AppColors.black29,
+        color: ColorUtils.black29,
       ),
       cursorHeight: 35.h(context),
       decoration: InputDecoration(
         filled: true,
-        fillColor: AppColors.white253,
+        fillColor: ColorUtils.white253,
         focusedBorder: OutlineInputBorder(
-          borderSide: const BorderSide(color: AppColors.orange125, width: 1),
+          borderSide: const BorderSide(color: ColorUtils.orange125, width: 1),
           borderRadius: BorderRadius.circular(8.r(context)),
         ) ,
         contentPadding: EdgeInsets.zero,
@@ -222,7 +221,7 @@ class CustomTextFormFieldWidget {
         hintStyle: GoogleFonts.urbanist(
           fontWeight: FontWeight.w400,
           fontSize: 35.sp(context),
-          color: AppColors.black114,
+          color: ColorUtils.black114,
         ),
       ),
     );

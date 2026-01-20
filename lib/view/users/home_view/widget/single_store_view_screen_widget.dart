@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'dart:math';
-
 import 'package:discount_me_app/view/users/home_view/controller/single_store_view_controller.dart';
 import 'package:discount_me_app/view/users/home_view/view/recipes_screen.dart';
 import 'package:discount_me_app/view/users/home_view/widget/home_resturant_app_bar.dart';
@@ -11,7 +10,7 @@ import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
-
+import 'package:discount_me_app/utils/utils.dart';
 import '../../../../res/res.dart';
 import '../../../view.dart';
 import '../../profile_view/view/user_notification_screen.dart';
@@ -255,9 +254,9 @@ class SingleStoreViewScreenWidget extends GetxController {
                                 height: 45.h(context),
                                 decoration: BoxDecoration(
                                     shape: BoxShape.circle,
-                                    color: AppColors.primaryColor,
+                                    color: ColorUtils.primaryColor,
                                     boxShadow: const [
-                                      BoxShadow(color: AppColors.whiteColor,
+                                      BoxShadow(color: ColorUtils.whiteColor,
                                           blurRadius: 10, offset: Offset(0, 1))
                                     ]
                                 ),
@@ -268,7 +267,7 @@ class SingleStoreViewScreenWidget extends GetxController {
                                   },
                                   child: Icon(
                                     Icons.notifications,
-                                    color: AppColors.whiteColor,
+                                    color: ColorUtils.whiteColor,
                                     size: 25.r(context),
                                   ),
                                 ),
@@ -282,9 +281,9 @@ class SingleStoreViewScreenWidget extends GetxController {
                                 height: 45.h(context),
                                 decoration: BoxDecoration(
                                     shape: BoxShape.circle,
-                                    color: AppColors.primaryColor,
+                                    color: ColorUtils.primaryColor,
                                     boxShadow: const [
-                                      BoxShadow(color: AppColors.whiteColor,
+                                      BoxShadow(color: ColorUtils.whiteColor,
                                           blurRadius: 10, offset: Offset(0, 2))
                                     ]
                                 ),
@@ -295,7 +294,7 @@ class SingleStoreViewScreenWidget extends GetxController {
                                   },
                                   child: Icon(
                                     Icons.shopping_cart,
-                                    color: AppColors.whiteColor,
+                                    color: ColorUtils.whiteColor,
                                     size: 22.r(context),
                                   ),
                                 ),
@@ -364,7 +363,7 @@ class SingleStoreViewScreenWidget extends GetxController {
                                 plainTextStringFontSize: 20.sp(context),
                                 plainTextStringFontWeight: FontWeight.w700,
                                 plainTextContainerAlignment: Alignment.centerLeft,
-                                plainTextStringColor: AppColors.black29,
+                                plainTextStringColor: ColorUtils.black29,
                                 plainTextStringTextAlign: TextAlign.start,
                               ),
 
@@ -388,7 +387,7 @@ class SingleStoreViewScreenWidget extends GetxController {
                                               plainTextStringFontSize: 14.sp(context),
                                               plainTextStringFontWeight: FontWeight.w600,
                                               plainTextContainerAlignment: Alignment.centerLeft,
-                                              plainTextStringColor: AppColors.blackColor,
+                                              plainTextStringColor: ColorUtils.blackColor,
                                               plainTextStringTextAlign: TextAlign.start,
                                             ),
                                           ],
@@ -400,7 +399,7 @@ class SingleStoreViewScreenWidget extends GetxController {
                                     plainTextStringFontSize: 14.sp(context),
                                     plainTextStringFontWeight: FontWeight.w600,
                                     plainTextContainerAlignment: Alignment.centerLeft,
-                                    plainTextStringColor: AppColors.blackColor,
+                                    plainTextStringColor: ColorUtils.blackColor,
                                     plainTextStringTextAlign: TextAlign.start,
                                   ),
                                 ],
@@ -442,7 +441,7 @@ class SingleStoreViewScreenWidget extends GetxController {
                                   plainTextStringFontSize: 18.sp(context),
                                   plainTextStringFontWeight: FontWeight.w600,
                                   plainTextContainerAlignment: Alignment.center,
-                                  plainTextStringColor: AppColors.black29,
+                                  plainTextStringColor: ColorUtils.black29,
                                   plainTextStringTextAlign: TextAlign.start,
                                 ),
                               ],
@@ -468,7 +467,7 @@ class SingleStoreViewScreenWidget extends GetxController {
                                   plainTextStringFontSize: 12.sp(context),
                                   plainTextStringFontWeight: FontWeight.w600,
                                   plainTextContainerAlignment: Alignment.center,
-                                  plainTextStringColor: AppColors.primaryColor,
+                                  plainTextStringColor: ColorUtils.primaryColor,
                                   plainTextStringTextAlign: TextAlign.start,
                                 ),
                               ),
@@ -515,7 +514,7 @@ class SingleStoreViewScreenWidget extends GetxController {
                           plainTextStringFontSize: 22.sp(context),
                           plainTextStringFontWeight: FontWeight.w700,
                           plainTextContainerAlignment: Alignment.centerLeft,
-                          plainTextStringColor: AppColors.black29,
+                          plainTextStringColor: ColorUtils.black29,
                           plainTextStringTextAlign: TextAlign.start,
                         ),
 
@@ -526,7 +525,7 @@ class SingleStoreViewScreenWidget extends GetxController {
                             vertical: 5.vpm(context),
                           ),
                           decoration: BoxDecoration(
-                            color: AppColors.greenLightHover,
+                            color: ColorUtils.greenLightHover,
                             borderRadius: BorderRadius.circular(50.r(context)),
                           ),
                           child: TextButton(
@@ -539,7 +538,7 @@ class SingleStoreViewScreenWidget extends GetxController {
                               plainTextStringFontSize: 14.sp(context),
                               plainTextStringFontWeight: FontWeight.w400,
                               plainTextContainerAlignment: Alignment.center,
-                              plainTextStringColor: AppColors.primaryColor,
+                              plainTextStringColor: ColorUtils.primaryColor,
                               plainTextStringTextAlign: TextAlign.center,
                             ),
                           ),
@@ -648,7 +647,7 @@ class SingleStoreViewScreenWidget extends GetxController {
                                         plainTextStringFontSize: 18.sp(context),
                                         plainTextStringFontWeight: FontWeight.w700,
                                         plainTextContainerAlignment: Alignment.centerLeft,
-                                        plainTextStringColor: AppColors.black29,
+                                        plainTextStringColor: ColorUtils.black29,
                                         plainTextStringTextAlign: TextAlign.start,
                                       ),
 
@@ -716,7 +715,7 @@ class SingleStoreViewScreenWidget extends GetxController {
                                             plainTextStringFontSize: 22.sp(context),
                                             plainTextStringFontWeight: FontWeight.w700,
                                             plainTextContainerAlignment: Alignment.centerLeft,
-                                            plainTextStringColor: AppColors.black29,
+                                            plainTextStringColor: ColorUtils.black29,
                                             plainTextStringTextAlign: TextAlign.start,
                                           ),
 
@@ -739,7 +738,7 @@ class SingleStoreViewScreenWidget extends GetxController {
                       plainTextStringFontSize: 22.sp(context),
                       plainTextStringFontWeight: FontWeight.w700,
                       plainTextContainerAlignment: Alignment.center,
-                      plainTextStringColor: AppColors.black29,
+                      plainTextStringColor: ColorUtils.black29,
                       plainTextStringTextAlign: TextAlign.center,
                     ):
                     CustomSpaceWidget.spacerWidget(),
@@ -767,6 +766,7 @@ Widget _buildScalingTransition(String image, int index) {
         scale: scale, // Scale the image
         child: Image.network(
           image,
+          scale: 10,
           fit: BoxFit.fill,
           errorBuilder: (BuildContext context, Object exception, StackTrace? stackTrace) {
             return Container(

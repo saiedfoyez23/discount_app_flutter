@@ -1,15 +1,12 @@
-import 'package:discount_me_app/view/users/home_view/widget/home_resturant_app_bar.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:skeletonizer/skeletonizer.dart';
-
 import '../../../../res/res.dart';
 import '../../../view.dart';
+import 'package:discount_me_app/utils/utils.dart';
 import '../../profile_view/view/user_notification_screen.dart';
-import '../view/order_screen.dart';
 
 class StoreListViewScreenWidget extends GetxController {
 
@@ -53,7 +50,10 @@ class StoreListViewScreenWidget extends GetxController {
       if(permission == LocationPermission.denied) {
         await checkLocationPermission();
       }else if(permission == LocationPermission.deniedForever){
-        CustomSnackBar().errorCustomSnackBar(context: context, message: "Location Permission need.Please go to app setting or unInstall the app");
+        CustomSnackBar().errorCustomSnackBar(
+          context: context,
+          message: "Location Permission need.Please go to app setting or unInstall the app",
+        );
       }else {
         await determinePosition();
       }
@@ -149,7 +149,8 @@ class StoreListViewScreenWidget extends GetxController {
                                         color: Colors.lightBlueAccent,
                                         image: DecorationImage(
                                           image: AssetImage(AppImages.homeProfileAvatar),
-                                          fit: BoxFit.fitHeight,
+                                          fit: BoxFit.cover,
+                                          scale: 1
                                         )
                                     ),
                                   ) :
@@ -157,12 +158,12 @@ class StoreListViewScreenWidget extends GetxController {
                                     width: 45.w(context),
                                     height: 45.h(context),
                                     decoration: BoxDecoration(
-                                        shape: BoxShape.circle,
-                                        color: Colors.lightBlueAccent,
-                                        image: DecorationImage(
-                                          image: NetworkImage(userProfileResponseModel.value.data!.image),
-                                          fit: BoxFit.fitHeight,
-                                        )
+                                      shape: BoxShape.circle,
+                                      color: Colors.lightBlueAccent,
+                                      image: DecorationImage(
+                                        image: NetworkImage(userProfileResponseModel.value.data!.image),
+                                        fit: BoxFit.fitHeight,
+                                      ),
                                     ),
                                   ),
 
@@ -188,12 +189,14 @@ class StoreListViewScreenWidget extends GetxController {
                                   width: 45.w(context),
                                   height: 45.h(context),
                                   decoration: BoxDecoration(
-                                      shape: BoxShape.circle,
-                                      color: AppColors.primaryColor,
-                                      boxShadow: const [
-                                        BoxShadow(color: AppColors.whiteColor,
-                                            blurRadius: 10, offset: Offset(0, 1))
-                                      ]
+                                    shape: BoxShape.circle,
+                                    color: ColorUtils.primaryColor,
+                                    boxShadow: const [
+                                      BoxShadow(
+                                        color: ColorUtils.whiteColor,
+                                        blurRadius: 10, offset: Offset(0, 1),
+                                      )
+                                    ],
                                   ),
                                   child: TextButton(
                                     style: TextButton.styleFrom(padding: EdgeInsets.zero),
@@ -202,7 +205,7 @@ class StoreListViewScreenWidget extends GetxController {
                                     },
                                     child: Icon(
                                       Icons.notifications,
-                                      color: AppColors.whiteColor,
+                                      color: ColorUtils.whiteColor,
                                       size: 25.r(context),
                                     ),
                                   ),
@@ -216,9 +219,9 @@ class StoreListViewScreenWidget extends GetxController {
                                   height: 45.h(context),
                                   decoration: BoxDecoration(
                                       shape: BoxShape.circle,
-                                      color: AppColors.primaryColor,
+                                      color: ColorUtils.primaryColor,
                                       boxShadow: const [
-                                        BoxShadow(color: AppColors.whiteColor,
+                                        BoxShadow(color: ColorUtils.whiteColor,
                                             blurRadius: 10, offset: Offset(0, 2))
                                       ]
                                   ),
@@ -229,7 +232,7 @@ class StoreListViewScreenWidget extends GetxController {
                                     },
                                     child: Icon(
                                       Icons.shopping_cart,
-                                      color: AppColors.whiteColor,
+                                      color: ColorUtils.whiteColor,
                                       size: 22.r(context),
                                     ),
                                   ),
@@ -248,7 +251,7 @@ class StoreListViewScreenWidget extends GetxController {
                         plainTextStringFontSize: 20.sp(context),
                         plainTextStringFontWeight: FontWeight.w700,
                         plainTextContainerAlignment: Alignment.centerLeft,
-                        plainTextStringColor: AppColors.black29,
+                        plainTextStringColor: ColorUtils.black29,
                         plainTextStringTextAlign: TextAlign.start,
                       ),
 
@@ -259,7 +262,7 @@ class StoreListViewScreenWidget extends GetxController {
                         decoration: BoxDecoration(
                           color: Colors.transparent,
                           borderRadius: BorderRadius.circular(8.r(context)),
-                          border:Border.all(width: 1, color: AppColors.whiteDark),
+                          border:Border.all(width: 1, color: ColorUtils.whiteDark),
                         ),
                         child: TextField(
                           onTap: () async {
@@ -328,7 +331,7 @@ class StoreListViewScreenWidget extends GetxController {
                             plainTextStringFontSize: 16.sp(context),
                             plainTextStringFontWeight: FontWeight.w600,
                             plainTextContainerAlignment: Alignment.centerRight,
-                            plainTextStringColor: AppColors.primaryColor,
+                            plainTextStringColor: ColorUtils.primaryColor,
                             plainTextStringTextAlign: TextAlign.end,
                           ),
                         ),
@@ -386,8 +389,7 @@ class StoreListViewScreenWidget extends GetxController {
                                       borderRadius: BorderRadius.circular(5.r(context)),
                                       child: Image.network(
                                         stores[index].coverImages!.first,
-                                        height: 180.h(context),
-                                        width: 90.w(context),
+                                        scale: 10,
                                         fit: BoxFit.cover,
                                         errorBuilder: (BuildContext context, Object exception, StackTrace? stackTrace) {
                                           return Container(
@@ -425,7 +427,7 @@ class StoreListViewScreenWidget extends GetxController {
                                                   plainTextStringFontSize: 14.sp(context),
                                                   plainTextStringFontWeight: FontWeight.w700,
                                                   plainTextContainerAlignment: Alignment.centerLeft,
-                                                  plainTextStringColor: AppColors.black29,
+                                                  plainTextStringColor: ColorUtils.black29,
                                                   plainTextStringTextAlign: TextAlign.start,
                                                 ),
                                               ),
@@ -460,7 +462,7 @@ class StoreListViewScreenWidget extends GetxController {
                                                     plainTextStringFontSize: 14.sp(context),
                                                     plainTextStringFontWeight: FontWeight.w600,
                                                     plainTextContainerAlignment: Alignment.center,
-                                                    plainTextStringColor: AppColors.black29,
+                                                    plainTextStringColor: ColorUtils.black29,
                                                     plainTextStringTextAlign: TextAlign.start,
                                                   ),
                                                 ],
@@ -482,7 +484,7 @@ class StoreListViewScreenWidget extends GetxController {
                                             plainTextStringFontSize: 14.sp(context),
                                             plainTextStringFontWeight: FontWeight.w700,
                                             plainTextContainerAlignment: Alignment.centerLeft,
-                                            plainTextStringColor:  AppColors.blackColor,
+                                            plainTextStringColor: ColorUtils.blackColor,
                                             plainTextStringTextAlign: TextAlign.start,
                                           ),
 
@@ -504,7 +506,7 @@ class StoreListViewScreenWidget extends GetxController {
                                                         plainTextStringFontSize: 14.sp(context),
                                                         plainTextStringFontWeight: FontWeight.w600,
                                                         plainTextContainerAlignment: Alignment.centerLeft,
-                                                        plainTextStringColor: AppColors.blackColor,
+                                                        plainTextStringColor: ColorUtils.blackColor,
                                                         plainTextStringTextAlign: TextAlign.start,
                                                       ),
                                                     ),
@@ -528,7 +530,7 @@ class StoreListViewScreenWidget extends GetxController {
                         plainTextStringFontSize: 22.sp(context),
                         plainTextStringFontWeight: FontWeight.w700,
                         plainTextContainerAlignment: Alignment.center,
-                        plainTextStringColor: AppColors.black29,
+                        plainTextStringColor: ColorUtils.black29,
                         plainTextStringTextAlign: TextAlign.center,
                       ) :
                       CustomSpaceWidget.spacerWidget(),

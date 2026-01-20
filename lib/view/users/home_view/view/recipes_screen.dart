@@ -5,6 +5,8 @@ import 'package:discount_me_app/view/users/home_view/view/order_screen.dart';
 import 'package:discount_me_app/view/users/home_view/widget/home_catagory_widget.dart';
 import 'package:discount_me_app/view/users/home_view/widget/home_resturant_app_bar.dart';
 import 'package:discount_me_app/view/users/home_view/widget/home_searchbar_widget.dart';
+import 'package:discount_me_app/utils/utils.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class RecipesScreen extends StatelessWidget {
   const RecipesScreen({super.key});
@@ -52,7 +54,7 @@ class RecipesScreen extends StatelessWidget {
                           margin: EdgeInsets.only(bottom: 10),
                           decoration: BoxDecoration(
                             color: Colors.white,
-                            borderRadius: BorderRadius.circular(15.r), // Responsive border radius
+                            borderRadius: BorderRadius.circular(15.r(context)), // Responsive border radius
                             boxShadow: [
                               BoxShadow(
                                 color: Colors.black.withOpacity(0.1), // Subtle shadow for elevation
@@ -67,10 +69,10 @@ class RecipesScreen extends StatelessWidget {
                             children: [
                               // Top Image with rounded corners
                               ClipRRect(
-                                borderRadius: BorderRadius.vertical(top: Radius.circular(15.r)), // Responsive border radius
+                                borderRadius: BorderRadius.vertical(top: Radius.circular(15.r(context))), // Responsive border radius
                                 child: Image.asset(
                                   AppImages.poRecipeImg, // Replace with your image path
-                                  height: 180.h, // Responsive height
+                                  height: 180.h(context), // Responsive height
                                   width: double.infinity, // Full width
                                   fit: BoxFit.cover,
                                 ),
@@ -78,7 +80,7 @@ class RecipesScreen extends StatelessWidget {
 
                               // Padding around the text and details
                               Padding(
-                                padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 8.h), // Responsive padding
+                                padding: EdgeInsets.symmetric(horizontal: 8.w(context), vertical: 8.h(context)), // Responsive padding
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
@@ -86,26 +88,26 @@ class RecipesScreen extends StatelessWidget {
                                     Text(
                                       'Crazy Taco', // Replace with dynamic data if necessary
                                       style: GoogleFonts.urbanist(
-                                        fontSize: 18.sp, // Responsive font size
+                                        fontSize: 18.sp(context), // Responsive font size
                                         fontWeight: FontWeight.bold,
                                         color: Colors.black,
                                       ),
                                     ),
 
-                                    SizedBox(height: 5.h), // Responsive height
+                                    SizedBox(height: 5.h(context)), // Responsive height
 
                                     // Description
                                     Text(
                                       'Delicious tacos, appetizing...', // Short description
                                       style: GoogleFonts.urbanist(
-                                        fontSize: 14.sp, // Responsive font size
+                                        fontSize: 14.sp(context), // Responsive font size
                                         color: Colors.grey[600],
                                       ),
                                       maxLines: 1,
                                       overflow: TextOverflow.ellipsis,
                                     ),
 
-                                    SizedBox(height: 10.h), // Responsive height
+                                    SizedBox(height: 10.h(context)), // Responsive height
 
                                     Row(
                                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -114,24 +116,24 @@ class RecipesScreen extends StatelessWidget {
                                         Row(
                                           children: [
                                             // Time icon and label
-                                            Icon(Icons.access_time, size: 16.sp, color: Colors.orange),
-                                            SizedBox(width: 4.w),
+                                            Icon(Icons.access_time, size: 16.sp(context), color: Colors.orange),
+                                            SizedBox(width: 4.w(context)),
                                             Text(
                                               '40-50min', // Time estimate
                                               style: GoogleFonts.urbanist(
-                                                fontSize: 14.sp, // Responsive font size
+                                                fontSize: 14.sp(context), // Responsive font size
                                                 color: Colors.grey[700],
                                               ),
                                             ),
 
-                                            SizedBox(width: 5.w),
+                                            SizedBox(width: 5.w(context)),
                                             // Rating icon and label
-                                            Icon(Icons.star, size: 16.sp, color: Colors.orange),
-                                            SizedBox(width: 4.w),
+                                            Icon(Icons.star, size: 16.sp(context), color: Colors.orange),
+                                            SizedBox(width: 4.w(context)),
                                             Text(
                                               '9.5', // Rating
                                               style: GoogleFonts.urbanist(
-                                                fontSize: 14.sp, // Responsive font size
+                                                fontSize: 14.sp(context), // Responsive font size
                                                 color: Colors.grey[700],
                                               ),
                                             ),
@@ -141,7 +143,7 @@ class RecipesScreen extends StatelessWidget {
                                         Text(
                                           '\$45.5', // Replace with dynamic price
                                           style: GoogleFonts.urbanist(
-                                            fontSize: 14.sp, // Responsive font size
+                                            fontSize: 14.sp(context), // Responsive font size
                                             fontWeight: FontWeight.bold,
                                             color: Colors.black,
                                           ),

@@ -1,13 +1,9 @@
-import 'dart:convert';
 import 'dart:ui';
-
+import 'package:discount_me_app/utils/utils.dart';
 import 'package:discount_me_app/res/res.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:discount_me_app/view/view.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 
 class OtpVerifyScreenWidget {
@@ -21,7 +17,7 @@ class OtpVerifyScreenWidget {
       width: 428.w(context),
       decoration: BoxDecoration(
         image: DecorationImage(
-          image: AssetImage(AppImages.authBg),
+          image: AssetImage(ImageUtils.authBg),
           fit: BoxFit.fill,
           opacity: 0.3,
           colorFilter: const ColorFilter.mode(Colors.black, BlendMode.dstATop),
@@ -37,7 +33,7 @@ class OtpVerifyScreenWidget {
             width: 428.w(context),
             decoration: BoxDecoration(
               image: DecorationImage(
-                image: AssetImage(AppImages.authBg),
+                image: AssetImage(ImageUtils.authBg),
                 fit: BoxFit.fill,
               ),
             ),
@@ -98,7 +94,7 @@ class OtpVerifyScreenWidget {
                         CustomImageContainer.assetImageContainer(
                           height: 270.4.h(context),
                           width: 274.w(context),
-                          assetImage: AppImages.otpBg,
+                          assetImage: ImageUtils.otpBg,
                           boxFit: BoxFit.fitWidth,
                         ),
 
@@ -111,7 +107,7 @@ class OtpVerifyScreenWidget {
                           plainTextStringFontSize: 22.sp(context),
                           plainTextStringFontWeight: FontWeight.w500,
                           plainTextContainerAlignment: Alignment.center,
-                          plainTextStringColor: AppColors.white253,
+                          plainTextStringColor: ColorUtils.white253,
                           plainTextStringTextAlign: TextAlign.center,
                         ),
 
@@ -199,7 +195,7 @@ class OtpVerifyScreenWidget {
                           plainTextStringFontSize: 22.sp(context),
                           plainTextStringFontWeight: FontWeight.w500,
                           plainTextContainerAlignment: Alignment.center,
-                          plainTextStringColor: AppColors.white253,
+                          plainTextStringColor: ColorUtils.white253,
                           plainTextStringTextAlign: TextAlign.center,
                         ) :
                         Container(
@@ -216,7 +212,7 @@ class OtpVerifyScreenWidget {
                                 color: Colors.transparent
                             ),
                             child: const Center(
-                              child: CircularProgressIndicator(color: AppColors.white253,),
+                              child: CircularProgressIndicator(color: ColorUtils.white253,),
                             ),
                           ) : CustomButtonContainer.plainButtonContainer(
                             plainButtonHeight: 64.h(context),
@@ -249,7 +245,7 @@ class OtpVerifyScreenWidget {
                             plainButtonHintTextAlign: TextAlign.center,
                             plainButtonHintFontSize: 18.sp(context),
                             plainButtonColor: Colors.transparent,
-                            plainButtonHintFontColor: AppColors.orange125,
+                            plainButtonHintFontColor: ColorUtils.orange125,
                           ),
                         ),
 
@@ -265,7 +261,7 @@ class OtpVerifyScreenWidget {
                               color: Colors.transparent
                           ),
                           child: const Center(
-                            child: CircularProgressIndicator(color: AppColors.white253,),
+                            child: CircularProgressIndicator(color: ColorUtils.white253,),
                           ),
                         ) :
                         CustomButtonContainer.plainButtonContainer(
@@ -328,8 +324,8 @@ class OtpVerifyScreenWidget {
                           },
                           plainButtonHint: "Confirm",
                           plainButtonHintFontSize: 22.sp(context),
-                          plainButtonColor: AppColors.green176,
-                          plainButtonHintFontColor: AppColors.white255,
+                          plainButtonColor: ColorUtils.green176,
+                          plainButtonHintFontColor: ColorUtils.white255,
                         ),
 
                         CustomSpaceWidget.spacerWidget(spaceHeight: 30.h(context)),

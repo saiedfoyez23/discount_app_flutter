@@ -1,15 +1,9 @@
-export 'package:flutter/material.dart';
-export 'package:get/get.dart';
 export 'dart:async';
 export 'dart:math';
 export 'const.dart';
-export 'package:google_fonts/google_fonts.dart';
 export 'package:discount_me_app/res/common_widget/snack_message.dart';
 export 'package:discount_me_app/res/common_widget/custom_app_bar_with_body.dart';
-export 'package:discount_me_app/res/app_images/app_images.dart';
-export 'package:flutter_screenutil/flutter_screenutil.dart';
 export 'package:discount_me_app/res/common_widget/custom_text.dart';
-export 'package:discount_me_app/res/app_color/app_colors.dart';
 export 'package:dotted_border/dotted_border.dart';
 export 'package:image_picker/image_picker.dart';
 export 'package:file_picker/file_picker.dart';

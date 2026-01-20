@@ -142,6 +142,7 @@ class _VendorProfileHomeScreenState extends State<VendorProfileHomeScreen> {
                 },
               ),
               Divider(),
+
               5.heightBox,
               CustomProfileItemWidget(
                 title: "Coupon Management ",

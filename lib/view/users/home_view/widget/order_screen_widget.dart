@@ -1,11 +1,9 @@
 import 'package:discount_me_app/res/common_widget/custom_text.dart';
 import 'package:discount_me_app/view/view.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:skeletonizer/skeletonizer.dart';
-
+import 'package:discount_me_app/utils/utils.dart';
 import '../../../../res/common_widget/RoundButton.dart';
 import '../../../../res/res.dart';
 import '../../profile_view/view/user_notification_screen.dart';
@@ -167,9 +165,9 @@ class OrderScreenWidget extends GetxController {
                                 height: 45.h(context),
                                 decoration: BoxDecoration(
                                     shape: BoxShape.circle,
-                                    color: AppColors.primaryColor,
+                                    color: ColorUtils.primaryColor,
                                     boxShadow: const [
-                                      BoxShadow(color: AppColors.whiteColor,
+                                      BoxShadow(color: ColorUtils.whiteColor,
                                           blurRadius: 10, offset: Offset(0, 1))
                                     ]
                                 ),
@@ -180,7 +178,7 @@ class OrderScreenWidget extends GetxController {
                                   },
                                   child: Icon(
                                     Icons.notifications,
-                                    color: AppColors.whiteColor,
+                                    color: ColorUtils.whiteColor,
                                     size: 25.r(context),
                                   ),
                                 ),
@@ -199,16 +197,16 @@ class OrderScreenWidget extends GetxController {
                                 plainTextStringFontSize: 20.sp(context),
                                 plainTextStringFontWeight: FontWeight.w700,
                                 plainTextContainerAlignment: Alignment.centerLeft,
-                                plainTextStringColor: AppColors.black29,
+                                plainTextStringColor: ColorUtils.black29,
                                 plainTextStringTextAlign: TextAlign.start,
                               ),
 
                               Container(
                                 height: 45.h(context),
-                                width: 120.w(context),
+                                width: 130.w(context),
                                 padding: EdgeInsets.symmetric(horizontal: 10.hpm(context), vertical: 5.vpm(context)),
                                 decoration: BoxDecoration(
-                                  color: AppColors.secondaryColor,
+                                  color: ColorUtils.secondaryColor,
                                   borderRadius: BorderRadius.circular(5.r(context)),
                                 ),
                                 child: TextButton(
@@ -223,7 +221,7 @@ class OrderScreenWidget extends GetxController {
                                         plainTextStringFontSize: 18.sp(context),
                                         plainTextStringFontWeight: FontWeight.w600,
                                         plainTextContainerAlignment: Alignment.centerLeft,
-                                        plainTextStringColor: AppColors.white253,
+                                        plainTextStringColor: ColorUtils.white253,
                                         plainTextStringTextAlign: TextAlign.start,
                                       ),
                                       CustomSpaceWidget.spacerWidget(spaceWidth: 10.w(context)),
@@ -231,7 +229,7 @@ class OrderScreenWidget extends GetxController {
                                       Icon(
                                         Icons.add,
                                         size: 18.r(context),
-                                        color: AppColors.whiteColor,
+                                        color: ColorUtils.whiteColor,
                                       )
                                     ],
                                   ),
@@ -268,8 +266,19 @@ class OrderScreenWidget extends GetxController {
                             ),
                             child: Row(
                               children: [
-                                getAllProductCartResponse.value.data?.carts?[index].product?.images?.first == null ?
-                                CustomSpaceWidget.spacerWidget() :
+                                getAllProductCartResponse.value.data?.carts?[index].product?.images?.isEmpty == true ?
+                                Container(
+                                  height: 120.h(context),
+                                  width: 100.w(context),
+                                  decoration: BoxDecoration(
+                                    image: DecorationImage(
+                                      image: AssetImage(AppImages.carousel1),
+                                      fit: BoxFit.fill,
+                                    ),
+                                    borderRadius: BorderRadius.circular(8.r(context)),
+                                    color: Color.fromRGBO(175, 175, 175, 1),
+                                  ),
+                                ) :
                                 ClipRRect(
                                   borderRadius: BorderRadius.circular(8.r(context)),
                                   child: CustomImageContainer.networkImageContainer(
@@ -289,7 +298,7 @@ class OrderScreenWidget extends GetxController {
                                         plainTextStringFontSize: 17.sp(context),
                                         plainTextStringFontWeight: FontWeight.w600,
                                         plainTextContainerAlignment: Alignment.centerLeft,
-                                        plainTextStringColor: AppColors.black29,
+                                        plainTextStringColor: ColorUtils.black29,
                                         plainTextStringTextAlign: TextAlign.start,
                                       ),
                                       CustomTextContainer.plainTextContainerWidgetWithoutHeightWidth(
@@ -297,7 +306,7 @@ class OrderScreenWidget extends GetxController {
                                         plainTextStringFontSize: 14.sp(context),
                                         plainTextStringFontWeight: FontWeight.w400,
                                         plainTextContainerAlignment: Alignment.centerLeft,
-                                        plainTextStringColor: AppColors.black29,
+                                        plainTextStringColor: ColorUtils.black29,
                                         plainTextStringTextAlign: TextAlign.start,
                                       ),
                                       CustomTextContainer.plainTextContainerWidgetWithoutHeightWidth(
@@ -305,7 +314,7 @@ class OrderScreenWidget extends GetxController {
                                         plainTextStringFontSize: 21.sp(context),
                                         plainTextStringFontWeight: FontWeight.w700,
                                         plainTextContainerAlignment: Alignment.centerLeft,
-                                        plainTextStringColor: AppColors.primaryColor,
+                                        plainTextStringColor: ColorUtils.primaryColor,
                                         plainTextStringTextAlign: TextAlign.start,
                                       ),
                                     ],
@@ -323,7 +332,7 @@ class OrderScreenWidget extends GetxController {
                                           width: 32.w(context),
                                           decoration: BoxDecoration(
                                             borderRadius: BorderRadius.circular(8.r(context)),
-                                            color: AppColors.greenLightHover,
+                                            color: ColorUtils.greenLightHover,
                                           ),
                                           child: getAllProductCartResponse.value.data?.carts?[index].sId == productId.value && isDecrease.value == true ?
                                           Center(
@@ -333,7 +342,7 @@ class OrderScreenWidget extends GetxController {
                                             padding: EdgeInsets.zero,
                                             icon: Icon(
                                               Icons.remove,
-                                              color: AppColors.primaryColor,
+                                              color: ColorUtils.primaryColor,
                                             ),
                                             onPressed: isDecrease.value == true ? null : () async {
                                               isDecrease.value = true;
@@ -389,7 +398,7 @@ class OrderScreenWidget extends GetxController {
                                           plainTextStringFontSize: 16.sp(context),
                                           plainTextStringFontWeight: FontWeight.w600,
                                           plainTextContainerAlignment: Alignment.center,
-                                          plainTextStringColor: AppColors.black29,
+                                          plainTextStringColor: ColorUtils.black29,
                                           plainTextStringTextAlign: TextAlign.center,
                                         ),
                                         SizedBox(width: 8.w(context)),
@@ -398,7 +407,7 @@ class OrderScreenWidget extends GetxController {
                                           width: 32.w(context),
                                           decoration: BoxDecoration(
                                             borderRadius: BorderRadius.circular(8.r(context)),
-                                            color: AppColors.primaryColor,
+                                            color: ColorUtils.primaryColor,
                                           ),
                                           child: getAllProductCartResponse.value.data?.carts?[index].sId == productId.value && isIncrease.value == true ?
                                           Center(
@@ -464,7 +473,7 @@ class OrderScreenWidget extends GetxController {
                                       width: 32.w(context),
                                       decoration: BoxDecoration(
                                         borderRadius: BorderRadius.circular(8.r(context)),
-                                        color: AppColors.greenLightHover,
+                                        color: ColorUtils.greenLightHover,
                                       ),
                                       child: getAllProductCartResponse.value.data?.carts?[index].sId == productId.value && isDelete.value == true ?
                                       Center(
@@ -474,7 +483,7 @@ class OrderScreenWidget extends GetxController {
                                         padding: EdgeInsets.zero,
                                         icon: Icon(
                                           Icons.delete_forever,
-                                          color: AppColors.primaryColor,
+                                          color: ColorUtils.primaryColor,
                                         ),
                                         onPressed: isDelete.value == true ? null : () async {
                                           isDelete.value = true;
@@ -562,7 +571,7 @@ class OrderScreenWidget extends GetxController {
                               },
                               child: CustomText(title: 'Redeem', fontSize: 14, color: Colors.white, fontWeight: FontWeight.w500,),
                               style: ElevatedButton.styleFrom(
-                                backgroundColor: AppColors.secondaryColor,
+                                backgroundColor: ColorUtils.secondaryColor,
                                 shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(10),
                                 ),
@@ -585,7 +594,7 @@ class OrderScreenWidget extends GetxController {
                           fit: BoxFit.cover,
                           opacity: 0.3,
                           colorFilter: ColorFilter.mode(
-                              AppColors.primaryColor, BlendMode.dstATop),
+                              ColorUtils.primaryColor, BlendMode.dstATop),
                         ),
                       ),
                       child: Column(
@@ -685,9 +694,9 @@ class OrderScreenWidget extends GetxController {
                             alignment: Alignment.center,
                             child: Roundbutton(
                               title: "Place My Order",
-                              titleColor: AppColors.primaryColor,
+                              titleColor: ColorUtils.primaryColor,
                               borderRadius: 8.r(context),
-                              buttonColor: AppColors.whiteColor,
+                              buttonColor: ColorUtils.whiteColor,
                               onTap: () {
                                 Get.to(OrderCompleteScreen());
                               },

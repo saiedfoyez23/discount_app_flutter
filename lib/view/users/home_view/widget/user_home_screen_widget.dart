@@ -1,5 +1,5 @@
 import 'dart:async';
-
+import 'package:discount_me_app/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
@@ -237,7 +237,7 @@ class UserHomeScreenWidget extends GetxController {
                                     plainTextStringFontSize: 16.sp(context),
                                     plainTextStringFontWeight: FontWeight.w400,
                                     plainTextContainerAlignment: Alignment.centerLeft,
-                                    plainTextStringColor: AppColors.black29,
+                                    plainTextStringColor: ColorUtils.black29,
                                     plainTextStringTextAlign: TextAlign.start,
                                   ),
                                 ],
@@ -256,13 +256,13 @@ class UserHomeScreenWidget extends GetxController {
                                     height: 45.h(context),
                                     decoration: BoxDecoration(
                                         shape: BoxShape.circle,
-                                        color: AppColors.primaryColor,
+                                        color: ColorUtils.primaryColor,
                                         boxShadow: const [
-                                          BoxShadow(color: AppColors.whiteColor,
+                                          BoxShadow(color: ColorUtils.whiteColor,
                                               blurRadius: 10, offset: Offset(0, 1))
                                         ]
                                     ),
-                                    child: Icon(Icons.notifications, color: AppColors.whiteColor, size: 25.r(context),),
+                                    child: Icon(Icons.notifications, color: ColorUtils.whiteColor, size: 25.r(context),),
                                   ),
                                 ),
 
@@ -277,13 +277,13 @@ class UserHomeScreenWidget extends GetxController {
                                     height: 45.h(context),
                                     decoration: BoxDecoration(
                                         shape: BoxShape.circle,
-                                        color: AppColors.primaryColor,
+                                        color: ColorUtils.primaryColor,
                                         boxShadow: const [
-                                          BoxShadow(color: AppColors.whiteColor,
+                                          BoxShadow(color: ColorUtils.whiteColor,
                                               blurRadius: 10, offset: Offset(0, 2))
                                         ]
                                     ),
-                                    child: Icon(Icons.shopping_cart, color: AppColors.whiteColor,size: 22.r(context),),
+                                    child: Icon(Icons.shopping_cart, color: ColorUtils.whiteColor,size: 22.r(context),),
                                   ),
                                 ),
 
@@ -401,7 +401,7 @@ class UserHomeScreenWidget extends GetxController {
                                       plainTextStringFontSize: 14.sp(context),
                                       plainTextStringFontWeight: FontWeight.w500,
                                       plainTextContainerAlignment: Alignment.center,
-                                      plainTextStringColor: AppColors.black29,
+                                      plainTextStringColor: ColorUtils.black29,
                                       plainTextStringTextAlign: TextAlign.center,
                                     ),
                                   ],
@@ -430,7 +430,7 @@ class UserHomeScreenWidget extends GetxController {
                             plainTextStringFontSize: 22.sp(context),
                             plainTextStringFontWeight: FontWeight.w700,
                             plainTextContainerAlignment: Alignment.centerLeft,
-                            plainTextStringColor: AppColors.black29,
+                            plainTextStringColor: ColorUtils.black29,
                             plainTextStringTextAlign: TextAlign.start,
                           ),
 
@@ -441,7 +441,7 @@ class UserHomeScreenWidget extends GetxController {
                               vertical: 5.vpm(context),
                             ),
                             decoration: BoxDecoration(
-                              color: AppColors.greenLightHover,
+                              color: ColorUtils.greenLightHover,
                               borderRadius: BorderRadius.circular(50.r(context)),
                             ),
                             child: TextButton(
@@ -454,7 +454,7 @@ class UserHomeScreenWidget extends GetxController {
                                 plainTextStringFontSize: 14.sp(context),
                                 plainTextStringFontWeight: FontWeight.w400,
                                 plainTextContainerAlignment: Alignment.center,
-                                plainTextStringColor: AppColors.primaryColor,
+                                plainTextStringColor: ColorUtils.primaryColor,
                                 plainTextStringTextAlign: TextAlign.center,
                               ),
                             ),
@@ -569,7 +569,7 @@ class UserHomeScreenWidget extends GetxController {
                                                 plainTextStringFontSize: 22.sp(context),
                                                 plainTextStringFontWeight: FontWeight.w700,
                                                 plainTextContainerAlignment: Alignment.centerLeft,
-                                                plainTextStringColor: AppColors.black29,
+                                                plainTextStringColor: ColorUtils.black29,
                                                 plainTextStringTextAlign: TextAlign.start,
                                               ),
 
@@ -641,7 +641,7 @@ class UserHomeScreenWidget extends GetxController {
                                                     plainTextStringFontSize: 22.sp(context),
                                                     plainTextStringFontWeight: FontWeight.w700,
                                                     plainTextContainerAlignment: Alignment.centerLeft,
-                                                    plainTextStringColor: AppColors.black29,
+                                                    plainTextStringColor: ColorUtils.black29,
                                                     plainTextStringTextAlign: TextAlign.start,
                                                   ),
 
@@ -663,7 +663,7 @@ class UserHomeScreenWidget extends GetxController {
                                   child: Container(
                                     height: 40.h(context),
                                     decoration: BoxDecoration(
-                                      color: AppColors.white246,
+                                      color: ColorUtils.white246,
                                       borderRadius: BorderRadius.circular(12.r(context)),
                                     ),
                                     child: TextButton(
@@ -673,7 +673,7 @@ class UserHomeScreenWidget extends GetxController {
                                         plainTextStringFontSize: 12.sp(context),
                                         plainTextStringFontWeight: FontWeight.w700,
                                         plainTextContainerAlignment: Alignment.centerLeft,
-                                        plainTextStringColor: AppColors.black29,
+                                        plainTextStringColor: ColorUtils.black29,
                                         plainTextStringTextAlign: TextAlign.start,
                                       ),
                                     ),
@@ -704,14 +704,14 @@ class UserHomeScreenWidget extends GetxController {
                             plainTextStringFontSize: 22.sp(context),
                             plainTextStringFontWeight: FontWeight.w700,
                             plainTextContainerAlignment: Alignment.centerLeft,
-                            plainTextStringColor: AppColors.black29,
+                            plainTextStringColor: ColorUtils.black29,
                             plainTextStringTextAlign: TextAlign.start,
                           ),
                           Container(
                             height: 30.h(context),
                             padding: EdgeInsets.symmetric(horizontal: 15.hpm(context), vertical: 5.vpm(context)),
                             decoration: BoxDecoration(
-                              color: AppColors.orangeLight,
+                              color: ColorUtils.orangeLight,
                               borderRadius: BorderRadius.circular(50.r(context)),
                             ),
                             child: TextButton(
@@ -725,7 +725,7 @@ class UserHomeScreenWidget extends GetxController {
                                 plainTextStringFontSize: 14.sp(context),
                                 plainTextStringFontWeight: FontWeight.w400,
                                 plainTextContainerAlignment: Alignment.center,
-                                plainTextStringColor: AppColors.secondaryColor,
+                                plainTextStringColor: ColorUtils.secondaryColor,
                                 plainTextStringTextAlign: TextAlign.center,
                               ),
                             ),
@@ -828,7 +828,7 @@ class UserHomeScreenWidget extends GetxController {
                                                     plainTextStringFontSize: 14.sp(context),
                                                     plainTextStringFontWeight: FontWeight.w700,
                                                     plainTextContainerAlignment: Alignment.centerLeft,
-                                                    plainTextStringColor: AppColors.black29,
+                                                    plainTextStringColor: ColorUtils.black29,
                                                     plainTextStringTextAlign: TextAlign.start,
                                                   ),
                                                 ),
@@ -863,7 +863,7 @@ class UserHomeScreenWidget extends GetxController {
                                                       plainTextStringFontSize: 14.sp(context),
                                                       plainTextStringFontWeight: FontWeight.w600,
                                                       plainTextContainerAlignment: Alignment.center,
-                                                      plainTextStringColor: AppColors.black29,
+                                                      plainTextStringColor: ColorUtils.black29,
                                                       plainTextStringTextAlign: TextAlign.start,
                                                     ),
                                                   ],
@@ -885,7 +885,7 @@ class UserHomeScreenWidget extends GetxController {
                                               plainTextStringFontSize: 14.sp(context),
                                               plainTextStringFontWeight: FontWeight.w700,
                                               plainTextContainerAlignment: Alignment.centerLeft,
-                                              plainTextStringColor:  AppColors.blackColor,
+                                              plainTextStringColor: ColorUtils.blackColor,
                                               plainTextStringTextAlign: TextAlign.start,
                                             ),
 
@@ -907,7 +907,7 @@ class UserHomeScreenWidget extends GetxController {
                                                           plainTextStringFontSize: 14.sp(context),
                                                           plainTextStringFontWeight: FontWeight.w600,
                                                           plainTextContainerAlignment: Alignment.centerLeft,
-                                                          plainTextStringColor: AppColors.blackColor,
+                                                          plainTextStringColor: ColorUtils.blackColor,
                                                           plainTextStringTextAlign: TextAlign.start,
                                                         ),
                                                       ),

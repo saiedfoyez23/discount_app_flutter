@@ -1,8 +1,6 @@
-
-
-import 'package:discount_me_app/res/res.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:discount_me_app/utils/utils.dart';
 
 class CustomSnackBar {
 
@@ -15,12 +13,12 @@ class CustomSnackBar {
           style: GoogleFonts.urbanist(
             fontSize: 20.sp(context),
             fontStyle: FontStyle.normal,
-            color: AppColors.white253,
+            color: ColorUtils.white253,
             fontWeight: FontWeight.w600,
           ),
         ),
         behavior: SnackBarBehavior.floating,
-        backgroundColor: AppColors.green106,// Makes it floating
+        backgroundColor: ColorUtils.green106,// Makes it floating
         margin: EdgeInsets.only(
           bottom: 50.bpm(context), // Adjust position
           left: 20.lpm(context),
@@ -44,12 +42,12 @@ class CustomSnackBar {
           style: GoogleFonts.urbanist(
             fontSize: 20.sp(context),
             fontStyle: FontStyle.normal,
-            color: AppColors.white253,
+            color: ColorUtils.white253,
             fontWeight: FontWeight.w600,
           ),
         ),
         behavior: SnackBarBehavior.floating,
-        backgroundColor: AppColors.red191,// Makes it floating
+        backgroundColor: ColorUtils.red191,// Makes it floating
         margin: EdgeInsets.only(
           bottom: 50.bpm(context), // Adjust position
           left: 20.lpm(context),
@@ -74,12 +72,12 @@ class CustomSnackBar {
           style: GoogleFonts.urbanist(
             fontSize: 20.sp(context),
             fontStyle: FontStyle.normal,
-            color: AppColors.white253,
+            color: ColorUtils.white253,
             fontWeight: FontWeight.w600,
           ),
         ),
         behavior: SnackBarBehavior.floating,
-        backgroundColor: AppColors.black29,// Makes it floating
+        backgroundColor: ColorUtils.black29,// Makes it floating
         margin: EdgeInsets.only(
           bottom: 50.bpm(context), // Adjust position
           left: 20.lpm(context),

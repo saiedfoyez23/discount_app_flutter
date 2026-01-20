@@ -2,10 +2,13 @@
 
 import 'package:discount_me_app/res/app_const/import_list.dart';
 import 'package:discount_me_app/res/custom_style/custom_size.dart';
+import 'package:discount_me_app/utils/utils.dart';
 import 'package:discount_me_app/view/brokers/broker_home_view/view/broker_payment_withdraw_screen.dart';
 import 'package:discount_me_app/view/brokers/broker_home_view/widget/broker_transaction_table_widget.dart';
 import 'package:discount_me_app/view/brokers/broker_home_view/widget/custom_borker_appbar.dart';
 import 'package:discount_me_app/view/brokers/broker_referral_view/widget/referral_users_widget.dart';
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class BrokerHomeScreen extends StatefulWidget {
   const BrokerHomeScreen({super.key});
@@ -37,11 +40,11 @@ class _BrokerHomeScreenState extends State<BrokerHomeScreen> {
               Container(
                 padding: EdgeInsets.all(15),
                 width: width,
-                height: 200.h,
+                height: 200.h(context),
                 decoration: BoxDecoration(
-                  color: AppColors.greenLightHover,
+                  color: ColorUtils.greenLightHover,
                   image: DecorationImage(
-                      image: AssetImage(AppImages.walletBg),
+                      image: AssetImage(ImageUtils.walletBg),
                       alignment: Alignment.centerRight),
                 ),
                 child: Column(
@@ -52,22 +55,22 @@ class _BrokerHomeScreenState extends State<BrokerHomeScreen> {
                       children: [
                         CustomText(
                           title: "Your Balance",
-                          color: AppColors.blackColor,
-                          fontSize: 14.sp,
+                          color: ColorUtils.blackColor,
+                          fontSize: 14.sp(context),
                           fontWeight: FontWeight.w400,
                         ),
                         CustomText(
                           title: "\$1000",
-                          color: AppColors.blackColor,
-                          fontSize: 40.sp,
+                          color: ColorUtils.blackColor,
+                          fontSize: 40.sp(context),
                           fontWeight: FontWeight.w700,
                         ),
                       ],
                     ),
                     Roundbutton(
                       title: "Withdraw",
-                      buttonColor: AppColors.primaryColor,
-                      borderRadius: 8.r,
+                      buttonColor: ColorUtils.primaryColor,
+                      borderRadius: 8.r(context),
                       onTap: () {
                         Get.to(BrokerPaymentWithdrawScreen());
                       },
@@ -83,14 +86,14 @@ class _BrokerHomeScreenState extends State<BrokerHomeScreen> {
                 children: [
                   CustomText(
                     title: "Your Referral Code",
-                    color: AppColors.blackColor,
-                    fontSize: 20.sp,
+                    color: ColorUtils.blackColor,
+                    fontSize: 20.sp(context),
                     fontWeight: FontWeight.w400,
                   ),
                   CustomText(
                     title: "GT-023821",
-                    color: AppColors.secondaryColor,
-                    fontSize: 32.sp,
+                    color: ColorUtils.secondaryColor,
+                    fontSize: 32.sp(context),
                     fontWeight: FontWeight.w700,
                   ),
                 ],
@@ -110,12 +113,12 @@ class _BrokerHomeScreenState extends State<BrokerHomeScreen> {
                     ),
                   ),
                   Container(
-                    width: 160.w,
+                    width: 160.w(context),
                     alignment: Alignment.center,
                     child:  CustomText(
                       title: "Recent referral users",
-                      color: AppColors.blackColor,
-                      fontSize: 16.sp,
+                      color: ColorUtils.blackColor,
+                      fontSize: 16.sp(context),
                       fontWeight: FontWeight.w500,
                     ),
                   ),

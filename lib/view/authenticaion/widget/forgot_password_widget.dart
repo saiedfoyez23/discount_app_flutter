@@ -1,9 +1,7 @@
 import 'dart:ui';
-
+import 'package:discount_me_app/utils/utils.dart';
 import 'package:discount_me_app/res/res.dart';
-import 'package:discount_me_app/view/authenticaion/view/sign_in_screen.dart';
 import 'package:discount_me_app/view/view.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -28,7 +26,7 @@ class ForgotPasswordWidget {
             width: 428.w(context),
             decoration: BoxDecoration(
               image: DecorationImage(
-                image: AssetImage(AppImages.authBg),
+                image: AssetImage(ImageUtils.authBg),
                 fit: BoxFit.fill,
               ),
             ),
@@ -83,7 +81,7 @@ class ForgotPasswordWidget {
                         CustomImageContainer.assetImageContainer(
                           height: 277.55.h(context),
                           width: 372.5.w(context),
-                          assetImage: AppImages.forgotBg,
+                          assetImage: ImageUtils.forgotBg,
                           boxFit: BoxFit.fitWidth,
                         ),
 
@@ -96,7 +94,7 @@ class ForgotPasswordWidget {
                           plainTextStringFontSize: 22.sp(context),
                           plainTextStringFontWeight: FontWeight.w500,
                           plainTextContainerAlignment: Alignment.centerLeft,
-                          plainTextStringColor: AppColors.white253,
+                          plainTextStringColor: ColorUtils.white253,
                           plainTextStringTextAlign: TextAlign.start,
                         ),
 
@@ -112,7 +110,7 @@ class ForgotPasswordWidget {
                           decoration: BoxDecoration(
                             color: Colors.transparent,
                             border: Border.all(
-                              color: AppColors.white253,
+                              color: ColorUtils.white253,
                               width: 1,
                             ),
                             borderRadius: BorderRadius.circular(8.r(context)),
@@ -126,7 +124,7 @@ class ForgotPasswordWidget {
                               CustomImageContainer.assetImageContainer(
                                 height: 80.h(context),
                                 width: 80.w(context),
-                                assetImage: AppImages.forgotPasswordScreenEmailImage,
+                                assetImage: ImageUtils.forgotPasswordScreenEmailImage,
                                 boxFit: BoxFit.fitWidth,
                                 boxShape: BoxShape.circle,
                               ),
@@ -144,7 +142,7 @@ class ForgotPasswordWidget {
                                       plainTextStringFontSize: 17.sp(context),
                                       plainTextStringFontWeight: FontWeight.w400,
                                       plainTextContainerAlignment: Alignment.centerLeft,
-                                      plainTextStringColor: AppColors.white253,
+                                      plainTextStringColor: ColorUtils.white253,
                                     ),
 
 
@@ -177,7 +175,7 @@ class ForgotPasswordWidget {
                               color: Colors.transparent
                           ),
                           child: const Center(
-                            child: CircularProgressIndicator(color: AppColors.white253,),
+                            child: CircularProgressIndicator(color: ColorUtils.white253,),
                           ),
                         ) :
                         CustomButtonContainer.plainButtonContainer(
@@ -215,8 +213,8 @@ class ForgotPasswordWidget {
                           },
                           plainButtonHint: "Verify",
                           plainButtonHintFontSize: 22.sp(context),
-                          plainButtonColor: AppColors.green176,
-                          plainButtonHintFontColor: AppColors.white255,
+                          plainButtonColor: ColorUtils.green176,
+                          plainButtonHintFontColor: ColorUtils.white255,
                         ),
 
                         CustomSpaceWidget.spacerWidget(spaceHeight: 20.h(context)),

@@ -1,10 +1,9 @@
 // ignore_for_file: prefer_const_constructors_in_immutables, prefer_const_constructors
 
 import 'package:discount_me_app/res/app_const/import_list.dart';
-import 'package:flutter/material.dart';
+import 'package:discount_me_app/utils/utils.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:google_fonts/google_fonts.dart'; // For Urbanist Font
-import 'package:flutter_screenutil/flutter_screenutil.dart'; // For responsive sizing
 
 class HomePopulerResturantWidget extends StatelessWidget {
   HomePopulerResturantWidget({super.key});
@@ -20,7 +19,7 @@ class HomePopulerResturantWidget extends StatelessWidget {
       padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 5),
       decoration: BoxDecoration(
         color: Colors.white,
-        borderRadius: BorderRadius.circular(4.r),
+        borderRadius: BorderRadius.circular(4.r(context)),
         boxShadow: [
           BoxShadow(
             color: Colors.black.withOpacity(0.1),
@@ -43,7 +42,7 @@ class HomePopulerResturantWidget extends StatelessWidget {
               fit: BoxFit.cover,
             ),
           ),
-          SizedBox(width: 10.w),
+          SizedBox(width: 10.w(context)),
 
           // Right Section
           Expanded(
@@ -60,7 +59,7 @@ class HomePopulerResturantWidget extends StatelessWidget {
                       child: Text(
                         'Restaurant Name', // Replace with dynamic data
                         style: GoogleFonts.urbanist(
-                          fontSize: 12.sp,
+                          fontSize: 12.sp(context),
                           fontWeight: FontWeight.w700,
                           color: Colors.black,
                         ),
@@ -101,15 +100,15 @@ class HomePopulerResturantWidget extends StatelessWidget {
                 // Description Text
                 Text('Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod...', // Replace with dynamic description
                   style: GoogleFonts.urbanist(
-                    fontSize: 12.sp,
+                    fontSize: 12.sp(context),
                     fontWeight: FontWeight.w400,
-                    color: AppColors.blackColor,
+                    color: ColorUtils.blackColor,
                   ),
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
                 ),
 
-                SizedBox(height: 6.h),
+                SizedBox(height: 6.h(context)),
 
                 // Location
                 Row(
@@ -119,9 +118,9 @@ class HomePopulerResturantWidget extends StatelessWidget {
                     Text(
                       'Rampura, Banasree, Dhaka', // Replace with dynamic address
                       style: GoogleFonts.urbanist(
-                        fontSize: 14.sp,
+                        fontSize: 14.sp(context),
                         fontWeight: FontWeight.w400,
-                        color: AppColors.blackColor,
+                        color: ColorUtils.blackColor,
                       ),
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,

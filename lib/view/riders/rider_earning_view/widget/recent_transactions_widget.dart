@@ -1,4 +1,7 @@
 import 'package:discount_me_app/res/app_const/import_list.dart';
+import 'package:flutter/material.dart';
+import 'package:discount_me_app/utils/utils.dart';
+
 
 class RecentTransactionsWidget extends StatelessWidget {
   const RecentTransactionsWidget({super.key});
@@ -20,12 +23,12 @@ class RecentTransactionsWidget extends StatelessWidget {
           ),
         ),
         Container(
-          width: 160.w,
+          width: 160.w(context),
           alignment: Alignment.center,
           child:  CustomText(
             title: "Recent Transactions",
-            color: AppColors.blackColor,
-            fontSize: 16.sp,
+            color: ColorUtils.blackColor,
+            fontSize: 16.sp(context),
             fontWeight: FontWeight.w500,
           ),
         ),

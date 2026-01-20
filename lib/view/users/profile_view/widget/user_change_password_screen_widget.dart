@@ -2,6 +2,7 @@ import 'package:discount_me_app/view/users/profile_view/widget/user_profile_appb
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:discount_me_app/utils/utils.dart';
 import 'package:discount_me_app/view/view.dart';
 import 'package:discount_me_app/res/res.dart';
 
@@ -68,7 +69,7 @@ class UserChangePasswordScreenWidget extends GetxController {
                       vertical: 8.vpm(context),
                     ),
                     decoration: BoxDecoration(
-                      color: AppColors.greenLight,
+                      color: ColorUtils.greenLight,
                       borderRadius: BorderRadius.circular(8.r(context)),
                     ),
                     child: Row(
@@ -103,7 +104,7 @@ class UserChangePasswordScreenWidget extends GetxController {
                   Container(
                     padding: EdgeInsets.symmetric(horizontal: 16.hpm(context), vertical: 8.vpm(context)),
                     decoration: BoxDecoration(
-                      color: AppColors.greenLight,
+                      color: ColorUtils.greenLight,
                       borderRadius: BorderRadius.circular(8.r(context)),
                     ),
                     child: Row(
@@ -138,7 +139,7 @@ class UserChangePasswordScreenWidget extends GetxController {
                   Container(
                     padding: EdgeInsets.symmetric(horizontal: 16.hpm(context), vertical: 8.vpm(context)),
                     decoration: BoxDecoration(
-                      color: AppColors.greenLight,
+                      color: ColorUtils.greenLight,
                       borderRadius: BorderRadius.circular(8.r(context)),
                     ),
                     child: Row(
@@ -180,7 +181,7 @@ class UserChangePasswordScreenWidget extends GetxController {
                       plainButtonHintTextAlign: TextAlign.start,
                       plainButtonHintFontSize: 18.sp(context),
                       plainButtonColor: Colors.transparent,
-                      plainButtonHintFontColor: AppColors.orange125
+                      plainButtonHintFontColor: ColorUtils.orange125
                   ),
 
 
@@ -192,7 +193,7 @@ class UserChangePasswordScreenWidget extends GetxController {
                         color: Colors.transparent
                     ),
                     child: const Center(
-                      child: CircularProgressIndicator(color: AppColors.green176,),
+                      child: CircularProgressIndicator(color: ColorUtils.green176,),
                     ),
                   ) :
                   CustomButtonContainer.plainButtonContainer(
@@ -236,8 +237,8 @@ class UserChangePasswordScreenWidget extends GetxController {
                     },
                     plainButtonHint: "Confirm",
                     plainButtonHintFontSize: 22.sp(context),
-                    plainButtonColor: AppColors.green176,
-                    plainButtonHintFontColor: AppColors.white255,
+                    plainButtonColor: ColorUtils.green176,
+                    plainButtonHintFontColor: ColorUtils.white255,
                   ),
 
                 ],

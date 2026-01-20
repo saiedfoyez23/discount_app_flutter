@@ -3,7 +3,9 @@
 import 'package:discount_me_app/res/app_const/import_list.dart';
 import 'package:discount_me_app/res/common_widget/RoundTextField.dart';
 import 'package:discount_me_app/res/common_widget/custom_app_bar.dart';
+import 'package:discount_me_app/utils/utils.dart';
 import 'package:discount_me_app/view/users/chat_view/view/user_chat_screen.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class UserChatVendorListScreen extends StatefulWidget {
   const UserChatVendorListScreen({super.key});
@@ -113,14 +115,14 @@ class _UserChatVendorListScreenState extends State<UserChatVendorListScreen> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   CustomText(title: userName,
-                    fontSize: 18.sp, fontWeight: FontWeight.w700, color: Colors.black,
+                    fontSize: 18.sp(context), fontWeight: FontWeight.w700, color: Colors.black,
                   ),
 
                   Text(lastMsg,
                     maxLines: 1,
                     style: GoogleFonts.urbanist(
                         fontWeight: FontWeight.w400,
-                        fontSize: 16.sp, color: AppColors.blackColor
+                        fontSize: 16.sp(context), color: ColorUtils.blackColor
                     ),
                   )
 

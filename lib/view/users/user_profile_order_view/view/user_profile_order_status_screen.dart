@@ -6,7 +6,7 @@ import 'package:discount_me_app/view/users/user_profile_order_view/view/user_ord
 import 'package:discount_me_app/view/users/profile_view/widget/order_canceled_widget.dart';
 import 'package:discount_me_app/view/users/profile_view/widget/order_delivered_widget.dart';
 import 'package:discount_me_app/view/users/profile_view/widget/order_ongoing_widget.dart';
-
+import 'package:discount_me_app/utils/utils.dart';
 class UserProfileOrderStatusScreen extends StatefulWidget {
   @override
   _UserProfileOrderStatusScreenState createState() => _UserProfileOrderStatusScreenState();
@@ -19,13 +19,13 @@ class _UserProfileOrderStatusScreenState extends State<UserProfileOrderStatusScr
   Color getTabColor(int index) {
     switch (index) {
       case 0:
-        return AppColors.secondaryColor; // Ongoing
+        return ColorUtils.secondaryColor; // Ongoing
       case 1:
         return Colors.green; // Delivered
       case 2:
         return Colors.red; // Canceled
       default:
-        return AppColors.primaryColor; // Default color
+        return ColorUtils.primaryColor; // Default color
     }
   }
 

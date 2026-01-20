@@ -1,7 +1,8 @@
 // ignore_for_file: prefer_const_constructors
-
-import 'package:discount_me_app/res/app_const/import_list.dart';
+import 'package:discount_me_app/res/common_widget/custom_text.dart';
 import 'package:intl_phone_number_input/intl_phone_number_input.dart';
+import 'package:flutter/material.dart';
+import 'package:discount_me_app/utils/utils.dart';
 
 class CountryCodePicker extends StatelessWidget {
   const CountryCodePicker({super.key});
@@ -15,15 +16,15 @@ class CountryCodePicker extends StatelessWidget {
         CustomText(
           title: "Contact",
           fontWeight: FontWeight.w600,
-          fontSize: 16.sp,
-          color: AppColors.whiteColor,
+          fontSize: 16.sp(context),
+          color: ColorUtils.whiteColor,
         ),
 
-        SizedBox(height: 10.h),
+        SizedBox(height: 10.h(context)),
 
         Container(
           alignment: Alignment.center,
-          padding: EdgeInsets.symmetric(horizontal: 10.w),
+          padding: EdgeInsets.symmetric(horizontal: 10.w(context)),
           decoration: BoxDecoration(
             color: Colors.white,
             borderRadius: BorderRadius.circular(8),

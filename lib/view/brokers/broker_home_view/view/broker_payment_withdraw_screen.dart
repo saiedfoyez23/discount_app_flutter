@@ -1,10 +1,9 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
-
 import 'package:discount_me_app/res/app_const/import_list.dart';
 import 'package:discount_me_app/res/common_widget/custom_textfield_with_label.dart';
-import 'package:discount_me_app/res/custom_style/custom_size.dart';
+import 'package:discount_me_app/utils/utils.dart';
 import 'package:discount_me_app/view/brokers/broker_home_view/view/broker_withdraw_success_screen.dart';
-import 'package:discount_me_app/view/vendors/vendor_earning_view/view/vendor_withdraw_success_screen.dart';
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class BrokerPaymentWithdrawScreen extends StatefulWidget {
   const BrokerPaymentWithdrawScreen({super.key});
@@ -42,8 +41,8 @@ class _BrokerPaymentWithdrawScreenState extends State<BrokerPaymentWithdrawScree
       appBar: AppBar(
         title: CustomText(
           title: "Earnings",
-          color: AppColors.blackColor,
-          fontSize: 24.sp,
+          color: ColorUtils.blackColor,
+          fontSize: 24.sp(context),
           fontWeight: FontWeight.w700,
         ),
         centerTitle: true,
@@ -55,17 +54,17 @@ class _BrokerPaymentWithdrawScreenState extends State<BrokerPaymentWithdrawScree
               children: [
                 Container(
                     width: width,
-                    height: 200.h,
+                    height: 200.h(context),
                     decoration: BoxDecoration(
-                      color: AppColors.greenLightHover,
+                      color: ColorUtils.greenLightHover,
                       image: DecorationImage(
-                          image: AssetImage(AppImages.walletBg),
+                          image: AssetImage(ImageUtils.walletBg),
                           alignment: Alignment.centerRight),
                     ),
                     child: Stack(
                       children: [
                         Image.asset(
-                          AppImages.walletBg2,
+                          ImageUtils.walletBg2,
                           fit: BoxFit.fill,
                           width: width,
                         ),
@@ -80,22 +79,22 @@ class _BrokerPaymentWithdrawScreenState extends State<BrokerPaymentWithdrawScree
                                   children: [
                                     CustomText(
                                       title: "Your Balance",
-                                      color: AppColors.blackColor,
-                                      fontSize: 14.sp,
+                                      color: ColorUtils.blackColor,
+                                      fontSize: 14.sp(context),
                                       fontWeight: FontWeight.w400,
                                     ),
                                     CustomText(
                                       title: "\$1000",
-                                      color: AppColors.blackColor,
-                                      fontSize: 40.sp,
+                                      color: ColorUtils.blackColor,
+                                      fontSize: 40.sp(context),
                                       fontWeight: FontWeight.w700,
                                     ),
                                   ],
                                 ),
                                 Roundbutton(
                                   title: "Withdraw",
-                                  buttonColor: AppColors.primaryColor,
-                                  borderRadius: 8.r,
+                                  buttonColor: ColorUtils.primaryColor,
+                                  borderRadius: 8.r(context),
                                   onTap: () {
                                     Get.to(BrokerWithdrawSuccessScreen());
                                   },
@@ -130,12 +129,12 @@ class _BrokerPaymentWithdrawScreenState extends State<BrokerPaymentWithdrawScree
                 CustomTextfieldWithLabel(
                   labelTextColor: Colors.black,
                   labelName: "Card number",
-                  focusColor: AppColors.primaryColor,
+                  focusColor: ColorUtils.primaryColor,
                   hint: "1234 1234 1234 1234",
                   suffixIcon: Padding(
                     padding: EdgeInsets.only(right: 10),
                     child: Image.asset(
-                      AppImages.cardsFixed,
+                      ImageUtils.cardsFixed,
                       scale: 4,
                       width: 60,
                       alignment: Alignment.centerRight,
@@ -149,7 +148,7 @@ class _BrokerPaymentWithdrawScreenState extends State<BrokerPaymentWithdrawScree
                       child: CustomTextfieldWithLabel(
                         labelTextColor: Colors.black,
                         labelName: "Expiration",
-                        focusColor: AppColors.primaryColor,
+                        focusColor: ColorUtils.primaryColor,
                         hint: " MM / YY",
                         keyboardType: TextInputType.number,
                       ),
@@ -159,7 +158,7 @@ class _BrokerPaymentWithdrawScreenState extends State<BrokerPaymentWithdrawScree
                       child: CustomTextfieldWithLabel(
                         labelTextColor: Colors.black,
                         labelName: "CVC",
-                        focusColor: AppColors.primaryColor,
+                        focusColor: ColorUtils.primaryColor,
                         hint: "CVC",
                         suffixIcon: Icon(Icons.credit_card),
                         keyboardType: TextInputType.number,
@@ -183,7 +182,7 @@ class _BrokerPaymentWithdrawScreenState extends State<BrokerPaymentWithdrawScree
       decoration: BoxDecoration(
           color: Colors.white,
           border: Border.all(color: Colors.grey),
-          borderRadius: BorderRadius.circular(4.r),
+          borderRadius: BorderRadius.circular(4.r(context)),
           boxShadow: [
             BoxShadow(
                 offset: Offset(0, 1),
@@ -196,13 +195,13 @@ class _BrokerPaymentWithdrawScreenState extends State<BrokerPaymentWithdrawScree
         children: [
           Icon(
             Icons.credit_card,
-            color: AppColors.primaryColor,
+            color: ColorUtils.primaryColor,
             size: 16,
           ),
           CustomText(
             title: "Card",
-            color: AppColors.primaryColor,
-            fontSize: 16.sp,
+            color: ColorUtils.primaryColor,
+            fontSize: 16.sp(context),
             fontWeight: FontWeight.w600,
           ),
         ],
@@ -226,10 +225,10 @@ class _BrokerPaymentWithdrawScreenState extends State<BrokerPaymentWithdrawScree
         });
       },
       decoration: InputDecoration(
-          border: OutlineInputBorder(borderRadius: BorderRadius.circular(8.r)),
+          border: OutlineInputBorder(borderRadius: BorderRadius.circular(8.r(context))),
           focusedBorder: OutlineInputBorder(
-              borderSide: BorderSide(color: AppColors.primaryColor),
-              borderRadius: BorderRadius.circular(8.r)
+              borderSide: BorderSide(color: ColorUtils.primaryColor),
+              borderRadius: BorderRadius.circular(8.r(context))
           )
       ),
     );

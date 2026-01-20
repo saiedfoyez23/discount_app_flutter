@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:discount_me_app/res/res.dart';
 import '../../../view.dart';
+import 'package:discount_me_app/utils/utils.dart';
 import '../../chat_view/view/user_chat_vendor_list_screen.dart';
 
 class SingleStoreViewScreen extends StatelessWidget {
@@ -25,7 +26,7 @@ class SingleStoreViewScreen extends StatelessWidget {
       child: Scaffold(
         body: singleStoreViewScreenWidget.singleStoreViewScreenWidget(context: context,isHomePage: isHomePage,isStorePage: isStoreListPage),
         floatingActionButton: FloatingActionButton(
-          backgroundColor: AppColors.primaryColor,
+          backgroundColor: ColorUtils.primaryColor,
           elevation: 0,
           onPressed: () {
             Get.to(UserChatVendorListScreen());

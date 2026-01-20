@@ -2,6 +2,8 @@
 
 import '../app_const/import_list.dart';
 import 'custom_text.dart';
+import 'package:flutter/material.dart';
+import 'package:discount_me_app/utils/utils.dart';
 
 class CustomAppBar extends StatelessWidget {
   final String appBarName;
@@ -29,7 +31,7 @@ class CustomAppBar extends StatelessWidget {
               title: appBarName,
               color: titleColor,
               fontWeight: FontWeight.w700,
-              fontSize: 24.sp,
+              fontSize: 24.sp(context)
             ),
           ),
         ),

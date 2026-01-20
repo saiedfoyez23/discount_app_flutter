@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-
+import 'package:discount_me_app/utils/utils.dart';
 import '../../../../res/res.dart';
 
 class StorePositionScreenWidget extends GetxController {
@@ -77,7 +77,7 @@ class StorePositionScreenWidget extends GetxController {
       height: 926.h(context),
       width: 428.w(context),
       decoration: BoxDecoration(
-        color: AppColors.white246,
+        color: ColorUtils.white246,
       ),
       child: ClipRRect(
         child: GoogleMap(

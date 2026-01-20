@@ -6,6 +6,7 @@ import 'package:file_picker/file_picker.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:discount_me_app/utils/utils.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intl_phone_number_input/intl_phone_number_input.dart';
@@ -32,7 +33,7 @@ class SignUpScreenWidget {
             width: 428.w(context),
             decoration: BoxDecoration(
               image: DecorationImage(
-                image: AssetImage(AppImages.authBg),
+                image: AssetImage(ImageUtils.authBg),
                 fit: BoxFit.fill,
               ),
             ),
@@ -107,10 +108,10 @@ class SignUpScreenWidget {
                                       child: signUpController.imageFile.value.path == "" ? CustomImageContainer.assetImageContainer(
                                           height: 110.h(context),
                                           width: 110.w(context),
-                                          assetImage: AppImages.imagePickerIcon,
-                                          boxFit: BoxFit.fitWidth,
+                                          assetImage: ImageUtils.imagePickerIcon,
+                                          boxFit: BoxFit.fill,
                                           boxShape: BoxShape.circle,
-                                          borderColors: AppColors.green176,
+                                          borderColors: ColorUtils.green176,
                                           borderWidth: 1
                                       ) :
                                       CustomImageContainer.fileImageContainer(
@@ -119,7 +120,7 @@ class SignUpScreenWidget {
                                           file: signUpController.imageFile.value,
                                           boxFit: BoxFit.fitWidth,
                                           boxShape: BoxShape.circle,
-                                          borderColors: AppColors.green176,
+                                          borderColors: ColorUtils.green176,
                                           borderWidth: 1
                                       ) ,
                                   ),
@@ -130,8 +131,8 @@ class SignUpScreenWidget {
                                       width: 40.h(context),
                                       height: 40.w(context),
                                       decoration: BoxDecoration(
-                                          color: AppColors.white253,
-                                          shape: BoxShape.circle
+                                        color: ColorUtils.white253,
+                                        shape: BoxShape.circle,
                                       ),
                                       child: TextButton(
                                         style: TextButton.styleFrom(padding: EdgeInsets.zero),
@@ -193,7 +194,7 @@ class SignUpScreenWidget {
                                         },
                                         child: Icon(
                                           Icons.camera_alt_outlined,
-                                          color: AppColors.secondaryColor,
+                                          color: ColorUtils.secondaryColor,
                                           size: 28.r(context),
                                         ),
                                       ),
@@ -233,8 +234,8 @@ class SignUpScreenWidget {
                                         fillColor: WidgetStateProperty.resolveWith<Color>(
                                               (Set<WidgetState> states) {
                                             return  signUpController.selectedRole.value == "User"
-                                                ? AppColors.orange41
-                                                : AppColors.white253;
+                                                ? ColorUtils.orange41
+                                                : ColorUtils.white253;
                                           },
                                         ),
                                       ),
@@ -244,8 +245,8 @@ class SignUpScreenWidget {
                                           plainTextStringFontWeight: FontWeight.w600,
                                           plainTextContainerAlignment: Alignment.centerLeft,
                                           plainTextStringColor: signUpController.selectedRole.value == "User"
-                                              ? AppColors.orange41
-                                              : AppColors.white253
+                                              ? ColorUtils.orange41
+                                              : ColorUtils.white253
                                       ),
                                     ],
                                   ),
@@ -264,8 +265,8 @@ class SignUpScreenWidget {
                                         fillColor: WidgetStateProperty.resolveWith<Color>(
                                               (Set<WidgetState> states) {
                                             return  signUpController.selectedRole.value == "Rider"
-                                                ? AppColors.orange41
-                                                : AppColors.white253;
+                                                ? ColorUtils.orange41
+                                                : ColorUtils.white253;
                                           },
                                         ),
                                       ),
@@ -275,8 +276,8 @@ class SignUpScreenWidget {
                                           plainTextStringFontWeight: FontWeight.w600,
                                           plainTextContainerAlignment: Alignment.centerLeft,
                                           plainTextStringColor: signUpController.selectedRole.value == "Rider"
-                                              ? AppColors.orange41
-                                              : AppColors.white253
+                                              ? ColorUtils.orange41
+                                              : ColorUtils.white253
                                       ),
                                     ],
                                   ),
@@ -297,8 +298,8 @@ class SignUpScreenWidget {
                                         fillColor: WidgetStateProperty.resolveWith<Color>(
                                               (Set<WidgetState> states) {
                                             return  signUpController.selectedRole.value == "Vendor"
-                                                ? AppColors.orange41
-                                                : AppColors.white253;
+                                                ? ColorUtils.orange41
+                                                : ColorUtils.white253;
                                           },
                                         ),
                                       ),
@@ -308,8 +309,8 @@ class SignUpScreenWidget {
                                           plainTextStringFontWeight: FontWeight.w600,
                                           plainTextContainerAlignment: Alignment.centerLeft,
                                           plainTextStringColor: signUpController.selectedRole.value == "Vendor"
-                                              ? AppColors.orange41
-                                              : AppColors.white253
+                                              ? ColorUtils.orange41
+                                              : ColorUtils.white253
                                       ),
                                     ],
                                   ),
@@ -338,7 +339,7 @@ class SignUpScreenWidget {
                                     plainTextStringFontSize: 20.sp(context),
                                     plainTextStringFontWeight: FontWeight.w600,
                                     plainTextContainerAlignment: Alignment.centerLeft,
-                                    plainTextStringColor: AppColors.white253,
+                                    plainTextStringColor: ColorUtils.white253,
                                   ),
 
                                   CustomSpaceWidget.spacerWidget(spaceHeight: 8.h(context)),
@@ -375,7 +376,7 @@ class SignUpScreenWidget {
                                       plainTextStringFontSize: 20.sp(context),
                                       plainTextStringFontWeight: FontWeight.w600,
                                       plainTextContainerAlignment: Alignment.centerLeft,
-                                      plainTextStringColor: AppColors.white253,
+                                      plainTextStringColor: ColorUtils.white253,
                                     ),
 
                                     CustomSpaceWidget.spacerWidget(spaceHeight: 8.h(context)),
@@ -400,7 +401,7 @@ class SignUpScreenWidget {
                                       plainTextStringFontSize: 20.sp(context),
                                       plainTextStringFontWeight: FontWeight.w600,
                                       plainTextContainerAlignment: Alignment.centerLeft,
-                                      plainTextStringColor: AppColors.white253,
+                                      plainTextStringColor: ColorUtils.white253,
                                     ),
 
                                     CustomSpaceWidget.spacerWidget(spaceHeight: 8.h(context)),
@@ -430,7 +431,7 @@ class SignUpScreenWidget {
                                   plainTextStringFontSize: 20.sp(context),
                                   plainTextStringFontWeight: FontWeight.w600,
                                   plainTextContainerAlignment: Alignment.centerLeft,
-                                  plainTextStringColor: AppColors.white253,
+                                  plainTextStringColor: ColorUtils.white253,
                                 ),
 
                                 CustomSpaceWidget.spacerWidget(spaceHeight: 8.h(context)),
@@ -464,7 +465,7 @@ class SignUpScreenWidget {
                                 plainTextStringFontSize: 20.sp(context),
                                 plainTextStringFontWeight: FontWeight.w600,
                                 plainTextContainerAlignment: Alignment.centerLeft,
-                                plainTextStringColor: AppColors.white253,
+                                plainTextStringColor: ColorUtils.white253,
                               ),
 
                               CustomSpaceWidget.spacerWidget(spaceHeight: 8.h(context)),
@@ -493,7 +494,7 @@ class SignUpScreenWidget {
                                   plainTextStringFontSize: 20.sp(context),
                                   plainTextStringFontWeight: FontWeight.w600,
                                   plainTextContainerAlignment: Alignment.centerLeft,
-                                  plainTextStringColor: AppColors.white253,
+                                  plainTextStringColor: ColorUtils.white253,
                                 ),
 
                                 CustomSpaceWidget.spacerWidget(spaceHeight: 8.h(context)),
@@ -520,7 +521,7 @@ class SignUpScreenWidget {
                                   plainTextStringFontSize: 20.sp(context),
                                   plainTextStringFontWeight: FontWeight.w600,
                                   plainTextContainerAlignment: Alignment.centerLeft,
-                                  plainTextStringColor: AppColors.white253,
+                                  plainTextStringColor: ColorUtils.white253,
                                 ),
 
                                 CustomSpaceWidget.spacerWidget(spaceHeight: 8.h(context)),
@@ -553,7 +554,7 @@ class SignUpScreenWidget {
                                 plainTextStringFontSize: 20.sp(context),
                                 plainTextStringFontWeight: FontWeight.w600,
                                 plainTextContainerAlignment: Alignment.centerLeft,
-                                plainTextStringColor: AppColors.white253,
+                                plainTextStringColor: ColorUtils.white253,
                               ),
 
                               CustomSpaceWidget.spacerWidget(spaceHeight: 8.h(context)),
@@ -564,7 +565,7 @@ class SignUpScreenWidget {
                                 alignment: Alignment.center,
                                 padding: EdgeInsets.symmetric(horizontal: 10.hpm(context)),
                                 decoration: BoxDecoration(
-                                  color: AppColors.white253,
+                                  color: ColorUtils.white253,
                                   borderRadius: BorderRadius.circular(8.r(context)),
                                 ),
                                 child: Material( // Wrapping with Material
@@ -586,7 +587,7 @@ class SignUpScreenWidget {
                                       hintStyle: GoogleFonts.urbanist(
                                         fontWeight: FontWeight.w400,
                                         fontSize: 20.sp(context),
-                                        color: AppColors.black114,
+                                        color: ColorUtils.black114,
                                       ),
                                       border: InputBorder.none,
                                       contentPadding: EdgeInsets.symmetric(vertical: 15),
@@ -684,7 +685,7 @@ class SignUpScreenWidget {
                                 plainTextStringFontSize: 20.sp(context),
                                 plainTextStringFontWeight: FontWeight.w600,
                                 plainTextContainerAlignment: Alignment.centerLeft,
-                                plainTextStringColor: AppColors.white253,
+                                plainTextStringColor: ColorUtils.white253,
                               ),
 
                               CustomSpaceWidget.spacerWidget(spaceHeight: 8.h(context)),
@@ -727,7 +728,7 @@ class SignUpScreenWidget {
                                 plainTextStringFontSize: 20.sp(context),
                                 plainTextStringFontWeight: FontWeight.w600,
                                 plainTextContainerAlignment: Alignment.centerLeft,
-                                plainTextStringColor: AppColors.white253,
+                                plainTextStringColor: ColorUtils.white253,
                               ),
 
                               CustomSpaceWidget.spacerWidget(spaceHeight: 8.h(context)),
@@ -771,7 +772,7 @@ class SignUpScreenWidget {
                                 plainTextStringFontSize: 20.sp(context),
                                 plainTextStringFontWeight: FontWeight.w600,
                                 plainTextContainerAlignment: Alignment.centerLeft,
-                                plainTextStringColor: AppColors.white253,
+                                plainTextStringColor: ColorUtils.white253,
                               ),
 
                               CustomSpaceWidget.spacerWidget(spaceHeight: 8.h(context)),
@@ -857,7 +858,7 @@ class SignUpScreenWidget {
                                 plainTextStringFontSize: 20.sp(context),
                                 plainTextStringFontWeight: FontWeight.w600,
                                 plainTextContainerAlignment: Alignment.centerLeft,
-                                plainTextStringColor: AppColors.white253,
+                                plainTextStringColor: ColorUtils.white253,
                               ),
 
                               CustomSpaceWidget.spacerWidget(spaceHeight: 8.h(context)),
@@ -905,7 +906,7 @@ class SignUpScreenWidget {
                                 plainTextStringFontSize: 20.sp(context),
                                 plainTextStringFontWeight: FontWeight.w600,
                                 plainTextContainerAlignment: Alignment.centerLeft,
-                                plainTextStringColor: AppColors.white253,
+                                plainTextStringColor: ColorUtils.white253,
                               ),
 
                               CustomSpaceWidget.spacerWidget(spaceHeight: 8.h(context)),
@@ -937,7 +938,7 @@ class SignUpScreenWidget {
                                 plainTextStringFontSize: 20.sp(context),
                                 plainTextStringFontWeight: FontWeight.w600,
                                 plainTextContainerAlignment: Alignment.centerLeft,
-                                plainTextStringColor: AppColors.white253,
+                                plainTextStringColor: ColorUtils.white253,
                               ),
 
                               CustomSpaceWidget.spacerWidget(spaceHeight: 8.h(context)),
@@ -975,7 +976,7 @@ class SignUpScreenWidget {
                               color: Colors.transparent
                           ),
                           child: const Center(
-                            child: CircularProgressIndicator(color: AppColors.white253,),
+                            child: CircularProgressIndicator(color: ColorUtils.white253,),
                           ),
                         ) :
                         CustomButtonContainer.plainButtonContainer(
@@ -1116,8 +1117,8 @@ class SignUpScreenWidget {
                           },
                           plainButtonHint: "Sign Up",
                           plainButtonHintFontSize: 22.sp(context),
-                          plainButtonColor: AppColors.green176,
-                          plainButtonHintFontColor: AppColors.white255,
+                          plainButtonColor: ColorUtils.green176,
+                          plainButtonHintFontColor: ColorUtils.white255,
                         ),
 
                         CustomSpaceWidget.spacerWidget(spaceHeight: 20.h(context)),
@@ -1128,7 +1129,7 @@ class SignUpScreenWidget {
                             plainPrimaryTextStringAlign: TextAlign.center,
                             plainPrimaryTextString: "Already have an account? ",
                             plainRichTextStringFontSize: 20.sp(context),
-                            plainRichTextStringColor: AppColors.white253,
+                            plainRichTextStringColor: ColorUtils.white253,
                             plainRichTextStringFontWeight: FontWeight.w500,
                             textSpanList: [
                               TextSpan(
@@ -1136,7 +1137,7 @@ class SignUpScreenWidget {
                                 style: CustomRichTextContainer.plainRichTextStringStyleWithDecoration(
                                     context: context,
                                     plainRichTextStringFontSize: 20.sp(context),
-                                    plainRichTextStringColor:AppColors.orange125,
+                                    plainRichTextStringColor: ColorUtils.orange125,
                                     plainRichTextStringFontWeight: FontWeight.w600
                                 ),
                                 recognizer: TapGestureRecognizer()..onTap = () {

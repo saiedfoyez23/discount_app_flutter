@@ -1,9 +1,7 @@
 import 'dart:ui';
-
+import 'package:discount_me_app/utils/utils.dart';
 import 'package:discount_me_app/res/res.dart';
-import 'package:discount_me_app/view/authenticaion/view/otp_verify_screen.dart';
 import 'package:discount_me_app/view/view.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -27,7 +25,7 @@ class CreatePasswordScreenWidget {
             width: 428.w(context),
             decoration: BoxDecoration(
               image: DecorationImage(
-                image: AssetImage(AppImages.authBg),
+                image: AssetImage(ImageUtils.authBg),
                 fit: BoxFit.fill,
               ),
             ),
@@ -82,7 +80,7 @@ class CreatePasswordScreenWidget {
                         CustomImageContainer.assetImageContainer(
                           height: 308.h(context),
                           width: 302.w(context),
-                          assetImage: AppImages.createPassBg,
+                          assetImage: ImageUtils.createPassBg,
                           boxFit: BoxFit.fitWidth,
                         ),
 
@@ -95,7 +93,7 @@ class CreatePasswordScreenWidget {
                           plainTextStringFontSize: 20.sp(context),
                           plainTextStringFontWeight: FontWeight.w600,
                           plainTextContainerAlignment: Alignment.centerLeft,
-                          plainTextStringColor: AppColors.white253,
+                          plainTextStringColor: ColorUtils.white253,
                         ),
 
                         CustomSpaceWidget.spacerWidget(spaceHeight: 8.h(context)),
@@ -127,7 +125,7 @@ class CreatePasswordScreenWidget {
                           plainTextStringFontSize: 20.sp(context),
                           plainTextStringFontWeight: FontWeight.w600,
                           plainTextContainerAlignment: Alignment.centerLeft,
-                          plainTextStringColor: AppColors.white253,
+                          plainTextStringColor: ColorUtils.white253,
                         ),
 
                         CustomSpaceWidget.spacerWidget(spaceHeight: 8.h(context)),
@@ -162,7 +160,7 @@ class CreatePasswordScreenWidget {
                               color: Colors.transparent
                           ),
                           child: const Center(
-                            child: CircularProgressIndicator(color: AppColors.white253,),
+                            child: CircularProgressIndicator(color: ColorUtils.white253,),
                           ),
                         ) :
                         CustomButtonContainer.plainButtonContainer(
@@ -205,8 +203,8 @@ class CreatePasswordScreenWidget {
                           },
                           plainButtonHint: "Confirm",
                           plainButtonHintFontSize: 22.sp(context),
-                          plainButtonColor: AppColors.green176,
-                          plainButtonHintFontColor: AppColors.white255,
+                          plainButtonColor: ColorUtils.green176,
+                          plainButtonHintFontColor: ColorUtils.white255,
                         ),
 
                         CustomSpaceWidget.spacerWidget(spaceHeight: 20.h(context)),

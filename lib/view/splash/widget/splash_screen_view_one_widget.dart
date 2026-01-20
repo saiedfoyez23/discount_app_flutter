@@ -20,9 +20,9 @@ class SplashScreenViewOneWidget {
       decoration: const BoxDecoration(
         gradient: LinearGradient(
           colors: [
-            AppColors.whiteColor,
-            AppColors.green247,
-            AppColors.green106,
+            ColorUtils.whiteColor,
+            ColorUtils.green247,
+            ColorUtils.green106,
           ],
           begin: Alignment.topCenter,
           end: Alignment.bottomCenter,
@@ -42,7 +42,7 @@ class SplashScreenViewOneWidget {
                 CustomImageContainer.assetImageContainer(
                   height: 246.5.h(context),
                   width: 428.w(context),
-                  assetImage: AppImages.deliciousVitaminFood,
+                  assetImage: ImageUtils.deliciousVitaminFood,
                   boxFit: BoxFit.contain,
                 ),
             
@@ -52,7 +52,7 @@ class SplashScreenViewOneWidget {
                 CustomImageContainer.assetImageContainer(
                   height: 93.h(context),
                   width: 428.w(context),
-                  assetImage: AppImages.discountMeLogo,
+                  assetImage: ImageUtils.discountMeLogo,
                   boxFit: BoxFit.contain,
                 ),
             
@@ -63,7 +63,7 @@ class SplashScreenViewOneWidget {
                   plainTextStringFontSize: 24.sp(context),
                   plainTextStringFontWeight: FontWeight.w400,
                   plainTextContainerAlignment: Alignment.center,
-                  plainTextStringColor: AppColors.black114,
+                  plainTextStringColor: ColorUtils.black114,
                 ),
             
                 CustomSpaceWidget.spacerWidget(spaceHeight: 5.h(context)),
@@ -73,7 +73,7 @@ class SplashScreenViewOneWidget {
                   plainTextStringFontSize: 24.sp(context),
                   plainTextStringFontWeight: FontWeight.w700,
                   plainTextContainerAlignment: Alignment.center,
-                  plainTextStringColor: AppColors.black114,
+                  plainTextStringColor: ColorUtils.black114,
                 ),
             
                 CustomSpaceWidget.spacerWidget(spaceHeight: 162.h(context)),
@@ -84,7 +84,7 @@ class SplashScreenViewOneWidget {
                   plainTextStringFontSize: 12.sp(context),
                   plainTextStringFontWeight: FontWeight.w700,
                   plainTextContainerAlignment: Alignment.center,
-                  plainTextStringColor: AppColors.white255,
+                  plainTextStringColor: ColorUtils.white255,
                 ),
             
                 CustomSpaceWidget.spacerWidget(spaceHeight: 19.2.h(context)),

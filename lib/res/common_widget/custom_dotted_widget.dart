@@ -1,7 +1,8 @@
 import 'package:discount_me_app/res/res.dart';
 import 'package:dotted_border/dotted_border.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:discount_me_app/utils/utils.dart';
+
 
 class CustomDottedWidget extends StatelessWidget {
   final VoidCallback? onPress;

@@ -1,6 +1,6 @@
 // ignore_for_file: prefer_const_constructors_in_immutables
 
-import 'package:discount_me_app/res/app_const/import_list.dart';
+import 'package:discount_me_app/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -27,7 +27,7 @@ class CustomText extends StatelessWidget {
     return Text(
       title,
       style: GoogleFonts.urbanist(
-        fontSize: fontSize.sp,
+        fontSize: fontSize.sp(context),
         color: color,
         fontWeight: fontWeight,
         decoration: decoration,

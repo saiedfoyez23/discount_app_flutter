@@ -1,6 +1,10 @@
 // ignore_for_file: prefer_const_constructors, sort_child_properties_last, prefer_const_literals_to_create_immutables
-import 'package:discount_me_app/res/app_const/import_list.dart';
+import 'package:discount_me_app/res/common_widget/RoundButton.dart';
+import 'package:get/get.dart';
 import '../custom_style/custom_size.dart';
+import 'package:discount_me_app/utils/utils.dart';
+import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class CustomAlertDialog {
 
@@ -55,8 +59,8 @@ class CustomAlertDialog {
                         title: NegativebuttonText,
                         padding_vertical: 10,
                         buttonColor: Colors.transparent,
-                        titleColor: AppColors.primaryColor,
-                        border: Border.all(color: AppColors.primaryColor),
+                        titleColor: ColorUtils.primaryColor,
+                        border: Border.all(color: ColorUtils.primaryColor),
                         fontSize: 14,
                         onTap: onNegativeButtonPressed
                     ),

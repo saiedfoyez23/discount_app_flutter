@@ -1,4 +1,5 @@
 import 'package:discount_me_app/res/app_const/import_list.dart';
+import 'package:discount_me_app/utils/utils.dart';
 
 class HomeSearchbarWidget extends StatelessWidget {
   const HomeSearchbarWidget({super.key});
@@ -12,8 +13,8 @@ class HomeSearchbarWidget extends StatelessWidget {
       width: width,
       decoration: BoxDecoration(
           color: Colors.transparent,
-          borderRadius: BorderRadius.circular(8.r),
-          border:Border.all(width: 1, color: AppColors.whiteDark),
+          borderRadius: BorderRadius.circular(8.r(context)),
+          border:Border.all(width: 1, color: ColorUtils.whiteDark),
       ),
       child: TextField(
         decoration: InputDecoration(
@@ -21,11 +22,11 @@ class HomeSearchbarWidget extends StatelessWidget {
             prefixIcon: Icon(
               Icons.search_outlined,
               color: Colors.grey,
-              size: 32.h.w,
+              size: 32.r(context),
             ),
             border: OutlineInputBorder(
                 borderSide: BorderSide.none,
-                borderRadius: BorderRadius.circular(10.r))),
+                borderRadius: BorderRadius.circular(10.r(context)))),
       ),
     );
   }

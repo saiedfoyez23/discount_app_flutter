@@ -1,9 +1,10 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
-
 import 'package:discount_me_app/res/app_const/import_list.dart';
 import 'package:discount_me_app/res/common_widget/custom_textfield_with_label.dart';
 import 'package:discount_me_app/view/riders/rider_earning_view/view/withdraw_success_screen.dart';
 import 'package:dropdown_search/dropdown_search.dart';
+import 'package:flutter/material.dart';
+import 'package:discount_me_app/utils/utils.dart';
+import 'package:get/get.dart';
 
 class RiderPaymentWithdrawScreen extends StatelessWidget {
   RiderPaymentWithdrawScreen({super.key});
@@ -36,8 +37,8 @@ class RiderPaymentWithdrawScreen extends StatelessWidget {
       appBar: AppBar(
         title: CustomText(
           title: "Profile",
-          color: AppColors.blackColor,
-          fontSize: 24.sp,
+          color: ColorUtils.blackColor,
+          fontSize: 24.sp(context),
           fontWeight: FontWeight.w700,
         ),
         centerTitle: true,
@@ -49,17 +50,17 @@ class RiderPaymentWithdrawScreen extends StatelessWidget {
             children: [
               Container(
                   width: width,
-                  height: 200.h,
+                  height: 200.h(context),
                   decoration: BoxDecoration(
-                    color: AppColors.greenLightHover,
+                    color: ColorUtils.greenLightHover,
                     image: DecorationImage(
-                        image: AssetImage(AppImages.walletBg),
+                        image: AssetImage(ImageUtils.walletBg),
                         alignment: Alignment.centerRight),
                   ),
                   child: Stack(
                     children: [
                       Image.asset(
-                        AppImages.walletBg2,
+                        ImageUtils.walletBg2,
                         fit: BoxFit.fill,
                         width: width,
                       ),
@@ -74,22 +75,22 @@ class RiderPaymentWithdrawScreen extends StatelessWidget {
                                 children: [
                                   CustomText(
                                     title: "Your Balance",
-                                    color: AppColors.blackColor,
-                                    fontSize: 14.sp,
+                                    color: ColorUtils.blackColor,
+                                    fontSize: 14.sp(context),
                                     fontWeight: FontWeight.w400,
                                   ),
                                   CustomText(
                                     title: "\$1000",
-                                    color: AppColors.blackColor,
-                                    fontSize: 40.sp,
+                                    color: ColorUtils.blackColor,
+                                    fontSize: 40.sp(context),
                                     fontWeight: FontWeight.w700,
                                   ),
                                 ],
                               ),
                               Roundbutton(
                                 title: "Withdraw",
-                                buttonColor: AppColors.primaryColor,
-                                borderRadius: 8.r,
+                                buttonColor: ColorUtils.primaryColor,
+                                borderRadius: 8.r(context),
                                 onTap: () {
                                   Get.to(WithdrawSuccessScreen());
                                 },
@@ -114,7 +115,7 @@ class RiderPaymentWithdrawScreen extends StatelessWidget {
                   itemBuilder: (context, index) {
                     return Container(
                       margin: EdgeInsets.only(right: 5),
-                      child: _cardWidget(),
+                      child: _cardWidget(context: context),
                     );
                   },
                 ),
@@ -124,12 +125,12 @@ class RiderPaymentWithdrawScreen extends StatelessWidget {
               CustomTextfieldWithLabel(
                 labelTextColor: Colors.black,
                 labelName: "Card number",
-                focusColor: AppColors.primaryColor,
+                focusColor: ColorUtils.primaryColor,
                 hint: "1234 1234 1234 1234",
                 suffixIcon: Padding(
                   padding: EdgeInsets.only(right: 10),
                   child: Image.asset(
-                    AppImages.cardsFixed,
+                    ImageUtils.cardsFixed,
                     scale: 4,
                     width: 60,
                     alignment: Alignment.centerRight,
@@ -143,7 +144,7 @@ class RiderPaymentWithdrawScreen extends StatelessWidget {
                       child: CustomTextfieldWithLabel(
                         labelTextColor: Colors.black,
                         labelName: "Expiration",
-                        focusColor: AppColors.primaryColor,
+                        focusColor: ColorUtils.primaryColor,
                         hint: " MM / YY",
                         keyboardType: TextInputType.number,
                       ),
@@ -153,7 +154,7 @@ class RiderPaymentWithdrawScreen extends StatelessWidget {
                       child: CustomTextfieldWithLabel(
                         labelTextColor: Colors.black,
                         labelName: "CVC",
-                        focusColor: AppColors.primaryColor,
+                        focusColor: ColorUtils.primaryColor,
                         hint: "CVC",
                         suffixIcon: Icon(Icons.credit_card),
                         keyboardType: TextInputType.number,
@@ -161,7 +162,7 @@ class RiderPaymentWithdrawScreen extends StatelessWidget {
                   )
                 ],
               ),
-              _countrySelectWidget(),
+              _countrySelectWidget(context: context),
             ],
           ),
         )
@@ -169,7 +170,7 @@ class RiderPaymentWithdrawScreen extends StatelessWidget {
     );
   }
 
-  Widget _cardWidget() {
+  Widget _cardWidget({required BuildContext context}) {
     return Container(
       height: 60,
       width: 120,
@@ -177,7 +178,7 @@ class RiderPaymentWithdrawScreen extends StatelessWidget {
       decoration: BoxDecoration(
           color: Colors.white,
           border: Border.all(color: Colors.grey),
-          borderRadius: BorderRadius.circular(4.r),
+          borderRadius: BorderRadius.circular(4.r(context)),
           boxShadow: [
             BoxShadow(
                 offset: Offset(0, 1),
@@ -190,13 +191,13 @@ class RiderPaymentWithdrawScreen extends StatelessWidget {
         children: [
           Icon(
             Icons.credit_card,
-            color: AppColors.primaryColor,
+            color: ColorUtils.primaryColor,
             size: 16,
           ),
           CustomText(
             title: "Card",
-            color: AppColors.primaryColor,
-            fontSize: 16.sp,
+            color: ColorUtils.primaryColor,
+            fontSize: 16.sp(context),
             fontWeight: FontWeight.w600,
           ),
         ],
@@ -204,7 +205,7 @@ class RiderPaymentWithdrawScreen extends StatelessWidget {
     );
   }
 
-  Widget _countrySelectWidget(){
+  Widget _countrySelectWidget({required BuildContext context}){
     return DropdownButtonFormField<String>(
       value: selectedCountry,
       hint: Text('Select a country'),
@@ -218,10 +219,10 @@ class RiderPaymentWithdrawScreen extends StatelessWidget {
         selectedCountry = value;
       },
       decoration: InputDecoration(
-        border: OutlineInputBorder(borderRadius: BorderRadius.circular(8.r)),
+        border: OutlineInputBorder(borderRadius: BorderRadius.circular(8.r(context))),
         focusedBorder: OutlineInputBorder(
-          borderSide: BorderSide(color: AppColors.primaryColor),
-            borderRadius: BorderRadius.circular(8.r)
+          borderSide: BorderSide(color: ColorUtils.primaryColor),
+            borderRadius: BorderRadius.circular(8.r(context))
         )
       ),
     );

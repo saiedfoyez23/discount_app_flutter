@@ -1,9 +1,8 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
-
 import 'package:discount_me_app/res/app_const/import_list.dart';
-import 'package:discount_me_app/res/common_widget/country_code_picker.dart';
+import 'package:discount_me_app/utils/utils.dart';
 import 'package:discount_me_app/res/common_widget/custom_textfield_with_label.dart';
-import 'package:discount_me_app/res/custom_style/custom_size.dart';
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:intl_phone_number_input/intl_phone_number_input.dart';
 
 class BrokerEditProfileScreen extends StatefulWidget {
@@ -25,7 +24,7 @@ class _BrokerEditProfileScreenState extends State<BrokerEditProfileScreen> {
       decoration: BoxDecoration(
         color: Colors.white,
         image: DecorationImage(
-            image: AssetImage(AppImages.homeBg),
+            image: AssetImage(ImageUtils.homeBg),
             alignment: Alignment.topRight,
             opacity: 0.5),
       ),
@@ -49,8 +48,8 @@ class _BrokerEditProfileScreenState extends State<BrokerEditProfileScreen> {
                     child: Stack(
                       children: [
                         Image.asset(
-                          AppImages.imagePickerIcon,
-                          scale: 4.w.h,
+                          ImageUtils.imagePickerIcon,
+                          scale: 4,
                         ),
                         Positioned(
                           bottom: 0,
@@ -66,8 +65,8 @@ class _BrokerEditProfileScreenState extends State<BrokerEditProfileScreen> {
                               ),
                               child: Icon(
                                 Icons.camera_alt_outlined,
-                                color: AppColors.secondaryColor,
-                                size: 28.w.h,
+                                color: ColorUtils.secondaryColor,
+                                size: 28.r(context),
                               ),
                             ),
                           ),
@@ -84,7 +83,7 @@ class _BrokerEditProfileScreenState extends State<BrokerEditProfileScreen> {
                       Expanded
                         (child: CustomTextfieldWithLabel(
                         labelName: "First name",
-                        labelTextColor: AppColors.blackColor,
+                        labelTextColor: ColorUtils.blackColor,
                         hint: "First name",
                       ),
                       ),
@@ -92,7 +91,7 @@ class _BrokerEditProfileScreenState extends State<BrokerEditProfileScreen> {
                       Expanded
                         (child:  CustomTextfieldWithLabel(
                         labelName: "Last name",
-                        labelTextColor: AppColors.blackColor,
+                        labelTextColor: ColorUtils.blackColor,
                         hint: "Last name",
                       ),
                       ),
@@ -101,13 +100,13 @@ class _BrokerEditProfileScreenState extends State<BrokerEditProfileScreen> {
 
                   CustomTextfieldWithLabel(
                     labelName: "Email address",
-                    labelTextColor: AppColors.blackColor,
+                    labelTextColor: ColorUtils.blackColor,
                     hint: "roy@roy.com",
                     prefixIcon: Icon(Icons.email_outlined),
                   ),
                   CustomTextfieldWithLabel(
                     labelName: "Location",
-                    labelTextColor: AppColors.blackColor,
+                    labelTextColor: ColorUtils.blackColor,
                     hint: "London park, UK",
                     prefixIcon: Icon(Icons.location_on_outlined),
                   ),
@@ -121,15 +120,15 @@ class _BrokerEditProfileScreenState extends State<BrokerEditProfileScreen> {
                       CustomText(
                         title: "Contact",
                         fontWeight: FontWeight.w600,
-                        fontSize: 16.sp,
-                        color: AppColors.blackColor,
+                        fontSize: 16.sp(context),
+                        color: ColorUtils.blackColor,
                       ),
 
                       // country code
-                      SizedBox(height: 10.h),
+                      SizedBox(height: 10.h(context)),
                       Container(
                         alignment: Alignment.center,
-                        padding: EdgeInsets.symmetric(horizontal: 10.w),
+                        padding: EdgeInsets.symmetric(horizontal: 10.w(context)),
                         decoration: BoxDecoration(
                           color: Colors.white,
                           border: Border.all(color: Colors.grey, width: 1),
@@ -167,8 +166,8 @@ class _BrokerEditProfileScreenState extends State<BrokerEditProfileScreen> {
 
                   40.heightBox,
                   Roundbutton(title: "Update",
-                    buttonColor: AppColors.secondaryColor,
-                    borderRadius: 8.0.r,
+                    buttonColor: ColorUtils.secondaryColor,
+                    borderRadius: 8.r(context),
                     onTap: () {},)
 
 

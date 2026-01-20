@@ -1,7 +1,8 @@
 // ignore_for_file: prefer_const_constructors
-
+import 'package:discount_me_app/utils/utils.dart';
 import 'package:discount_me_app/res/app_const/import_list.dart';
 import 'package:discount_me_app/view/users/user_profile_order_view/view/user_rider_location_screen.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class UserOrderOngoingStatusScreen extends StatelessWidget {
   const UserOrderOngoingStatusScreen({super.key});
@@ -40,7 +41,7 @@ class UserOrderOngoingStatusScreen extends StatelessWidget {
                         title: "Order details",
                         fontWeight: FontWeight.w700,
                         fontSize: 20,
-                        color: AppColors.blackColor,
+                        color: ColorUtils.blackColor,
                       ),
                       GestureDetector(
                           onTap: () {
@@ -54,7 +55,7 @@ class UserOrderOngoingStatusScreen extends StatelessWidget {
                               padding:EdgeInsets.symmetric(horizontal: 10, vertical: 5),
                               decoration: BoxDecoration(
                                 color: Color(0xfffff9e7),
-                                borderRadius: BorderRadius.circular(5.r),
+                                borderRadius: BorderRadius.circular(5.r(context)),
                               ),
                               child: CustomText(
                                 title: "Ongoing",
@@ -74,11 +75,11 @@ class UserOrderOngoingStatusScreen extends StatelessWidget {
                     shrinkWrap: true,
                     itemBuilder: (context, index) {
                       return Container(
-                        padding: EdgeInsets.all(8.w),
+                        padding: EdgeInsets.all(8.w(context)),
                         margin: EdgeInsets.only(bottom: 10),
                         decoration: BoxDecoration(
                           color: Colors.white,
-                          borderRadius: BorderRadius.circular(8.r),
+                          borderRadius: BorderRadius.circular(8.r(context)),
                           boxShadow: [
                             BoxShadow(
                               color: Colors.black.withOpacity(0.07),
@@ -93,14 +94,14 @@ class UserOrderOngoingStatusScreen extends StatelessWidget {
                           children: [
                             // Product Image
                             ClipRRect(
-                              borderRadius: BorderRadius.circular(8.r),
+                              borderRadius: BorderRadius.circular(8.r(context)),
                               child: Image.asset(
                                 AppImages.burgerCard, // Replace with your image path
                                 scale: 4,
                                 fit: BoxFit.cover,
                               ),
                             ),
-                            SizedBox(width: 12.w),
+                            SizedBox(width: 12.w(context)),
 
                             // Product details
                             Expanded(
@@ -110,27 +111,27 @@ class UserOrderOngoingStatusScreen extends StatelessWidget {
                                   Text(
                                     'Chicken Burger',
                                     style: GoogleFonts.urbanist(
-                                      fontSize: 17.sp,
+                                      fontSize: 17.sp(context),
                                       fontWeight: FontWeight.w600,
-                                      color: AppColors.blackColor,
+                                      color: ColorUtils.blackColor,
                                     ),
                                   ),
-                                  SizedBox(height: 4.h),
+                                  SizedBox(height: 4.h(context)),
                                   Text(
                                     'Burger Factory LTD',
                                     style: GoogleFonts.urbanist(
-                                      fontSize: 14.sp,
+                                      fontSize: 14.sp(context),
                                       fontWeight: FontWeight.w400,
-                                      color: AppColors.blackColor,
+                                      color: ColorUtils.blackColor,
                                     ),
                                   ),
-                                  SizedBox(height: 4.h),
+                                  SizedBox(height: 4.h(context)),
                                   Text(
                                     'Rs 200',
                                     style: GoogleFonts.urbanist(
-                                      fontSize: 21.sp,
+                                      fontSize: 21.sp(context),
                                       fontWeight: FontWeight.w700,
-                                      color: AppColors.primaryColor,
+                                      color: ColorUtils.primaryColor,
                                     ),
                                   ),
                                 ],
@@ -142,39 +143,39 @@ class UserOrderOngoingStatusScreen extends StatelessWidget {
                               children: [
                                 // Minus Button
                                 Container(
-                                  height: 32.h,
-                                  width: 32.w,
+                                  height: 32.h(context),
+                                  width: 32.w(context),
                                   decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(8.r),
-                                    color: AppColors.greenLightHover,
+                                    borderRadius: BorderRadius.circular(8.r(context)),
+                                    color: ColorUtils.greenLightHover,
                                   ),
                                   child: IconButton(
                                     padding: EdgeInsets.zero,
-                                    icon: Icon(Icons.remove, color: AppColors.primaryColor),
+                                    icon: Icon(Icons.remove, color: ColorUtils.primaryColor),
                                     onPressed: () {
                                       // Reduce item quantity logic here
                                     },
                                   ),
                                 ),
-                                SizedBox(width: 8.w),
+                                SizedBox(width: 8.w(context)),
                                 // Quantity
                                 Text(
                                   '1', // Quantity value (replace with dynamic value)
                                   style: GoogleFonts.urbanist(
-                                    fontSize: 16.sp,
+                                    fontSize: 16.sp(context),
                                     fontWeight: FontWeight.w600,
                                     color: Colors.black,
                                   ),
                                 ),
-                                SizedBox(width: 8.w),
+                                SizedBox(width: 8.w(context)),
 
                                 // Plus Button
                                 Container(
-                                  height: 32.h,
-                                  width: 32.w,
+                                  height: 32.h(context),
+                                  width: 32.w(context),
                                   decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(8.r),
-                                    color: AppColors.primaryColor,
+                                    borderRadius: BorderRadius.circular(8.r(context)),
+                                    color: ColorUtils.primaryColor,
                                   ),
                                   child: IconButton(
                                     padding: EdgeInsets.zero,
@@ -202,11 +203,11 @@ class UserOrderOngoingStatusScreen extends StatelessWidget {
                         },
                         child: CustomText(
                           title: "View Rider Location",
-                          color: AppColors.secondaryColor,
-                          fontSize: 18.sp,
+                          color: ColorUtils.secondaryColor,
+                          fontSize: 18.sp(context),
                           fontWeight: FontWeight.w500,
                           decoration: TextDecoration.underline,
-                          decorationColor: AppColors.secondaryColor,
+                          decorationColor: ColorUtils.secondaryColor,
                         ),
                       )
                     ],
@@ -227,83 +228,83 @@ class UserOrderOngoingStatusScreen extends StatelessWidget {
                               Text(
                                 'Sub-Total',
                                 style: GoogleFonts.manrope(
-                                  fontSize: 16.sp,
+                                  fontSize: 16.sp(context),
                                   fontWeight: FontWeight.w500,
-                                  color: AppColors.blackColor, // Set text color to #fefeff
+                                  color: ColorUtils.blackColor, // Set text color to #fefeff
                                 ),
                               ),
                               Text(
                                 'Rs 950',
                                 style: GoogleFonts.manrope(
-                                  fontSize: 16.sp,
+                                  fontSize: 16.sp(context),
                                   fontWeight: FontWeight.w500,
-                                  color: AppColors.blackColor, // Set text color to #fefeff
+                                  color: ColorUtils.blackColor, // Set text color to #fefeff
                                 ),
                               ),
                             ],
                           ),
-                          SizedBox(height: 5.h),
+                          SizedBox(height: 5.h(context)),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Text(
                                 'Delivery Charge',
                                 style: GoogleFonts.manrope(
-                                  fontSize: 16.sp,
+                                  fontSize: 16.sp(context),
                                   fontWeight: FontWeight.w500,
-                                  color: AppColors.blackColor, // Set text color to #fefeff
+                                  color: ColorUtils.blackColor, // Set text color to #fefeff
                                 ),
                               ),
                               Text(
                                 'Rs 50',
                                 style: GoogleFonts.manrope(
-                                  fontSize: 16.sp,
+                                  fontSize: 16.sp(context),
                                   fontWeight: FontWeight.w500,
-                                  color: AppColors.blackColor,
+                                  color: ColorUtils.blackColor,
                                 ),
                               ),
                             ],
                           ),
-                          SizedBox(height: 5.h),
+                          SizedBox(height: 5.h(context)),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Text(
                                 'Discount',
                                 style: GoogleFonts.manrope(
-                                    fontSize: 16.sp,
+                                    fontSize: 16.sp(context),
                                     fontWeight: FontWeight.w500,
-                                    color: AppColors.blackColor
+                                    color: ColorUtils.blackColor
                                 ),
                               ),
                               Text(
                                 'Rs 0',
                                 style: GoogleFonts.manrope(
-                                    fontSize: 16.sp,
+                                    fontSize: 16.sp(context),
                                     fontWeight: FontWeight.w500,
-                                    color: AppColors.blackColor
+                                    color: ColorUtils.blackColor
                                 ),
                               ),
                             ],
                           ),
-                          SizedBox(height: 20.h),
+                          SizedBox(height: 20.h(context)),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Text(
                                 'Total',
                                 style: GoogleFonts.manrope(
-                                    fontSize: 20.sp,
+                                    fontSize: 20.sp(context),
                                     fontWeight: FontWeight.w800,
-                                    color: AppColors.blackColor
+                                    color: ColorUtils.blackColor
                                 ),
                               ),
                               Text(
                                 'Rs 1,000',
                                 style: GoogleFonts.manrope(
-                                    fontSize: 18.sp,
+                                    fontSize: 18.sp(context),
                                     fontWeight: FontWeight.bold,
-                                    color: AppColors.blackColor
+                                    color: ColorUtils.blackColor
                                 ),
                               ),
                             ],

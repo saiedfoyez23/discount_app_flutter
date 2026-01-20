@@ -1,8 +1,3 @@
-export 'app_custom_responsive_utils/design_utils.dart';
-export 'app_custom_responsive_utils/responsive_utils.dart';
-export 'app_custom_responsive_utils/screen_utils.dart';
-export 'app_images/app_images.dart';
-export 'app_color/app_colors.dart';
 export 'common_widget/custom_image_container.dart';
 export 'common_widget/custom_space_widget.dart';
 export 'common_widget/custom_text_container.dart';

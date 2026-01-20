@@ -1,9 +1,10 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
 import 'package:discount_me_app/res/app_const/import_list.dart';
-import 'package:discount_me_app/res/custom_style/custom_size.dart';
+import 'package:discount_me_app/utils/utils.dart';
 import 'package:discount_me_app/view/brokers/broker_home_view/widget/custom_borker_appbar.dart';
 import 'package:discount_me_app/view/brokers/broker_referral_view/widget/referral_users_widget.dart';
+import 'package:flutter/material.dart';
 
 class BrokerReferralHomeScreen extends StatefulWidget {
   const BrokerReferralHomeScreen({super.key});
@@ -20,7 +21,7 @@ class _BrokerReferralHomeScreenState extends State<BrokerReferralHomeScreen> {
     double height = MediaQuery.of(context).size.height;
 
     return Scaffold(
-      backgroundColor: AppColors.whiteColor,
+      backgroundColor: ColorUtils.whiteColor,
       body: SafeArea(
           child: Padding(
             padding: EdgeInsets.all(16),
@@ -48,8 +49,8 @@ class _BrokerReferralHomeScreenState extends State<BrokerReferralHomeScreen> {
                         alignment: Alignment.center,
                         child:  CustomText(
                           title: "Referral users",
-                          color: AppColors.blackColor,
-                          fontSize: 16.sp,
+                          color: ColorUtils.blackColor,
+                          fontSize: 16.sp(context),
                           fontWeight: FontWeight.w500,
                         ),
                       ),

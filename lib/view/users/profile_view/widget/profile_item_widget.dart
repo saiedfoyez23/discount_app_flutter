@@ -1,9 +1,6 @@
-
-
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
 import '../../../../res/res.dart';
+import 'package:discount_me_app/utils/utils.dart';
 
 class ProfileItemWidget extends StatelessWidget {
   final String title;
@@ -36,7 +33,7 @@ class ProfileItemWidget extends StatelessWidget {
                       plainTextStringFontWeight: FontWeight.w400,
                       plainTextContainerAlignment: Alignment.centerLeft,
                       plainTextStringTextAlign: TextAlign.start,
-                      plainTextStringColor: AppColors.black29,
+                      plainTextStringColor: ColorUtils.black29,
                     ),
       
                   ],

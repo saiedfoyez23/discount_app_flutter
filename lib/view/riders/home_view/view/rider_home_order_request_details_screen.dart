@@ -1,8 +1,11 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
 import 'package:discount_me_app/res/app_const/import_list.dart';
+import 'package:discount_me_app/utils/utils.dart';
 import 'package:discount_me_app/view/riders/home_view/view/view_home_map_route_screen.dart';
-import 'package:flutter/services.dart';
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class RiderHomeOrderRequestDetailsScreen extends StatelessWidget {
   const RiderHomeOrderRequestDetailsScreen({super.key});
@@ -21,9 +24,9 @@ class RiderHomeOrderRequestDetailsScreen extends StatelessWidget {
     var width = MediaQuery.of(context).size.width;
     var height = MediaQuery.of(context).size.height;
     return Scaffold(
-      backgroundColor: AppColors.whiteColor,
+      backgroundColor: ColorUtils.whiteColor,
       appBar: AppBar(
-      title: CustomText(title: "Order Details", fontWeight: FontWeight.w700, fontSize: 24.sp,),
+      title: CustomText(title: "Order Details", fontWeight: FontWeight.w700, fontSize: 24.sp(context),),
         centerTitle: true,
         flexibleSpace: FlexibleSpaceBar(
           background: Container(
@@ -43,13 +46,13 @@ class RiderHomeOrderRequestDetailsScreen extends StatelessWidget {
                   Row(
                     children: [
                       Container(
-                        width: 60.w,
-                        height: 60.h,
+                        width: 60.w(context),
+                        height: 60.h(context),
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(50),
                             color: Colors.lightBlueAccent),
                         child: Image.asset(
-                          AppImages.homeProfileAvatar,
+                          ImageUtils.homeProfileAvatar,
                           scale: 4,
                           fit: BoxFit.cover,
                         ),
@@ -60,15 +63,15 @@ class RiderHomeOrderRequestDetailsScreen extends StatelessWidget {
                         children: [
                           CustomText(
                             title: "Davidson Edgar",
-                            fontSize: 18.sp,
+                            fontSize: 18.sp(context),
                             fontWeight: FontWeight.w600,
-                            color: AppColors.secondaryColor,
+                            color: ColorUtils.secondaryColor,
                           ),
                           CustomText(
                             title: "20 Deliveries",
-                            fontSize: 14.sp,
+                            fontSize: 14.sp(context),
                             fontWeight: FontWeight.w400,
-                            color: AppColors.primaryColor,
+                            color: ColorUtils.primaryColor,
                           ),
                           Row(
                             children: [
@@ -77,10 +80,8 @@ class RiderHomeOrderRequestDetailsScreen extends StatelessWidget {
                                 children: List.generate(5, (index) {
                                   return Icon(
                                     index < 4 ? Icons.star : Icons.star_half,
-                                    size: 16
-                                        .w
-                                        .h, // Full star for 4, half star for 0.5
-                                    color: AppColors.secondaryColor,
+                                    size: 16.r(context), // Full star for 4, half star for 0.5
+                                    color: ColorUtils.secondaryColor,
                                   );
                                 }),
                               ),
@@ -91,9 +92,9 @@ class RiderHomeOrderRequestDetailsScreen extends StatelessWidget {
                               Text(
                                 '4.5',
                                 style: TextStyle(
-                                    fontSize: 12.sp,
+                                    fontSize: 12.sp(context),
                                     fontWeight: FontWeight.w700,
-                                    color: AppColors.primaryColor),
+                                    color: ColorUtils.primaryColor),
                               ),
                             ],
                           )
@@ -102,7 +103,7 @@ class RiderHomeOrderRequestDetailsScreen extends StatelessWidget {
                     ],
                   ),
                   Image.asset(
-                    AppImages.bikeVector,
+                    ImageUtils.bikeVector,
                     scale: 4,
                     fit: BoxFit.cover,
                   ),
@@ -169,15 +170,15 @@ class RiderHomeOrderRequestDetailsScreen extends StatelessWidget {
                         children: [
                           CustomText(
                             title: "What you are sending",
-                            color: AppColors.whiteDarkHover,
+                            color: ColorUtils.whiteDarkHover,
                             fontWeight: FontWeight.w400,
-                            fontSize: 16.sp,
+                            fontSize: 16.sp(context),
                           ),
                           CustomText(
                             title: "Pizza",
-                            color: AppColors.blackColor,
+                            color: ColorUtils.blackColor,
                             fontWeight: FontWeight.w600,
-                            fontSize: 18.sp,
+                            fontSize: 18.sp(context),
                           )
                         ],
                       ),
@@ -186,15 +187,15 @@ class RiderHomeOrderRequestDetailsScreen extends StatelessWidget {
                         children: [
                           CustomText(
                             title: "Receipient",
-                            color: AppColors.whiteDarkHover,
+                            color: ColorUtils.whiteDarkHover,
                             fontWeight: FontWeight.w400,
-                            fontSize: 16.sp,
+                            fontSize: 16.sp(context),
                           ),
                           CustomText(
                             title: "Donald Duck",
-                            color: AppColors.blackColor,
+                            color: ColorUtils.blackColor,
                             fontWeight: FontWeight.w600,
-                            fontSize: 18.sp,
+                            fontSize: 18.sp(context),
                           )
                         ],
                       )
@@ -206,15 +207,15 @@ class RiderHomeOrderRequestDetailsScreen extends StatelessWidget {
                     children: [
                       CustomText(
                         title: "Receipient contact number",
-                        color: AppColors.whiteDarkHover,
+                        color: ColorUtils.whiteDarkHover,
                         fontWeight: FontWeight.w400,
-                        fontSize: 16.sp,
+                        fontSize: 16.sp(context),
                       ),
                       CustomText(
                         title: "08123456789",
-                        color: AppColors.blackColor,
+                        color: ColorUtils.blackColor,
                         fontWeight: FontWeight.w600,
-                        fontSize: 18.sp,
+                        fontSize: 18.sp(context),
                       )
                     ],
                   ),
@@ -224,15 +225,15 @@ class RiderHomeOrderRequestDetailsScreen extends StatelessWidget {
                     children: [
                       CustomText(
                         title: "Fee:",
-                        color: AppColors.whiteDarkHover,
+                        color: ColorUtils.whiteDarkHover,
                         fontWeight: FontWeight.w400,
-                        fontSize: 16.sp,
+                        fontSize: 16.sp(context),
                       ),
                       CustomText(
                         title: "\$150",
-                        color: AppColors.blackColor,
+                        color: ColorUtils.blackColor,
                         fontWeight: FontWeight.w600,
-                        fontSize: 18.sp,
+                        fontSize: 18.sp(context),
                       )
                     ],
                   ),
@@ -242,9 +243,9 @@ class RiderHomeOrderRequestDetailsScreen extends StatelessWidget {
                     children: [
                       CustomText(
                         title: "Pickup image(s)",
-                        color: AppColors.whiteDarkHover,
+                        color: ColorUtils.whiteDarkHover,
                         fontWeight: FontWeight.w400,
-                        fontSize: 16.sp,
+                        fontSize: 16.sp(context),
                       ),
                       10.heightBox,
                       Row(
@@ -254,7 +255,7 @@ class RiderHomeOrderRequestDetailsScreen extends StatelessWidget {
                             return Padding(
                               padding: EdgeInsets.symmetric(horizontal: 5),
                               child: Image.asset(
-                                AppImages.burger,
+                                ImageUtils.burger,
                                 scale: 4,
                               ),
                             );
@@ -274,11 +275,11 @@ class RiderHomeOrderRequestDetailsScreen extends StatelessWidget {
                   child: Text(
                    "View Map Route",
                     style: GoogleFonts.urbanist(
-                      color: AppColors.secondaryColor,
+                      color: ColorUtils.secondaryColor,
                       fontWeight: FontWeight.w500,
-                      fontSize: 22.sp,
+                      fontSize: 22.sp(context),
                       decoration: TextDecoration.underline,
-                      decorationColor: AppColors.secondaryColor,
+                      decorationColor: ColorUtils.secondaryColor,
                       decorationStyle: TextDecorationStyle.solid,
                       decorationThickness: 2.0,
                       shadows: [
@@ -298,8 +299,8 @@ class RiderHomeOrderRequestDetailsScreen extends StatelessWidget {
                 children: [
                   Expanded(
                     child: Roundbutton(
-                      borderRadius: 10.r,
-                      titleColor: AppColors.secondaryColor,
+                      borderRadius: 10.r(context),
+                      titleColor: ColorUtils.secondaryColor,
                       buttonColor: Color(0xff086634).withOpacity(0.05),
                       title: "Reject",
                       onTap: () {},
@@ -308,8 +309,8 @@ class RiderHomeOrderRequestDetailsScreen extends StatelessWidget {
                   10.widthBox,
                   Expanded(
                     child: Roundbutton(
-                      borderRadius: 10.r,
-                      buttonColor: AppColors.secondaryColor,
+                      borderRadius: 10.r(context),
+                      buttonColor: ColorUtils.secondaryColor,
                       title: "Accept",
                       onTap: () {},
                     ),

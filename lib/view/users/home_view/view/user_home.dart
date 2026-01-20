@@ -2,6 +2,7 @@
 
 import 'package:discount_me_app/res/app_const/import_list.dart';
 import 'package:discount_me_app/view/view.dart';
+import 'package:discount_me_app/utils/utils.dart';
 
 class UserHome extends StatefulWidget {
   const UserHome({super.key,required this.selectedIndex});
@@ -41,14 +42,14 @@ class _UserHomeState extends State<UserHome> {
       body: _bodyOptions[_selectedIndex],
       bottomNavigationBar: Container(
         decoration: BoxDecoration(
-          color: AppColors.primaryColor,
+          color: ColorUtils.primaryColor,
           borderRadius: BorderRadius.only(
             topLeft: Radius.circular(30),
             topRight: Radius.circular(30),
           ),
           boxShadow: [
             BoxShadow(
-              color: AppColors.primaryColor,
+              color: ColorUtils.primaryColor,
               offset: Offset(0, 1),blurRadius: 5
             )
           ]
@@ -70,8 +71,8 @@ class _UserHomeState extends State<UserHome> {
             enableFeedback: false,
             items: [
               BottomNavigationBarItem(
-                icon: Icon(Icons.home_outlined, size: 28.sp),
-                activeIcon: Icon(Icons.home, size: 28.sp),
+                icon: Icon(Icons.home_outlined, size: 28.r(context)),
+                activeIcon: Icon(Icons.home, size: 28.r(context)),
                 label: 'Home',
               ),
               BottomNavigationBarItem(
@@ -85,8 +86,8 @@ class _UserHomeState extends State<UserHome> {
                 label: 'Explore',
               ),
               BottomNavigationBarItem(
-                icon: Icon(Icons.person_outline, size: 28.sp),
-                activeIcon: Icon(Icons.person, size: 28.sp),
+                icon: Icon(Icons.person_outline, size: 28.r(context)),
+                activeIcon: Icon(Icons.person, size: 28.r(context)),
                 label: 'Profile',
               ),
             ],
