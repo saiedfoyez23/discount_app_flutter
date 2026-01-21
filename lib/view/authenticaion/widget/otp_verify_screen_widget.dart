@@ -47,7 +47,7 @@ class OtpVerifyScreenWidget {
             child: Container(
               height: 926.h(context),
               width: 428.w(context),
-              color: Color.fromRGBO(29, 36, 45, .53),
+              color: ColorUtils.black36,
             ),
           ),
 

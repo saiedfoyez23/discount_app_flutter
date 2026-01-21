@@ -8,10 +8,10 @@ import 'package:get/get.dart';
 class UserChangePasswordScreen extends StatelessWidget {
   UserChangePasswordScreen({super.key});
 
-  final UserChangePasswordScreenWidget userChangePasswordScreenWidget = Get.put(UserChangePasswordScreenWidget());
 
   @override
   Widget build(BuildContext context) {
+    final UserChangePasswordScreenWidget userChangePasswordScreenWidget = Get.put(UserChangePasswordScreenWidget(context: context));
     return PopScope(
       canPop: false,
       onPopInvokedWithResult: (canPop,onOpoInvoked) {

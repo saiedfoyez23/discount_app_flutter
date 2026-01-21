@@ -172,6 +172,7 @@ class UserProfileEditController {
   static Future<void> updatePasswordResponse({
     required String oldPassword,
     required String newPassword,
+    required String email,
     required Function onSuccess,
     required Function onFail,
     required Function onExceptionFail
@@ -185,6 +186,7 @@ class UserProfileEditController {
       print(accessToken);
 
       Map<String,dynamic> data = {
+        "email": email,
         "oldPassword": oldPassword,
         "newPassword": newPassword
       };
@@ -193,6 +195,7 @@ class UserProfileEditController {
       var response = await dio.Dio().post(
         "${AppApiUrl.serverLinkUrl()}auth/change-password",
         data: {
+          "email": email,
           "oldPassword": oldPassword,
           "newPassword": newPassword
         },

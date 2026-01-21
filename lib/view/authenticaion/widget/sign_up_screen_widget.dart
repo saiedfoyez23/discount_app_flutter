@@ -16,7 +16,6 @@ class SignUpScreenWidget {
 
   final SignUpController signUpController = Get.put(SignUpController());
 
-
   Widget signUpScreenWidget({required BuildContext context}) {
     return Obx(()=>Container(
       height: 926.h(context),
@@ -47,7 +46,7 @@ class SignUpScreenWidget {
             child: Container(
               height: 926.h(context),
               width: 428.w(context),
-              color: Color.fromRGBO(29, 36, 45, 1).withOpacity(0.53),
+              color: ColorUtils.black36,
             ),
           ),
 
@@ -115,8 +114,8 @@ class SignUpScreenWidget {
                                           borderWidth: 1
                                       ) :
                                       CustomImageContainer.fileImageContainer(
-                                          height: 110.h(context),
-                                          width: 110.w(context),
+                                          height: 120.h(context),
+                                          width: 120.w(context),
                                           file: signUpController.imageFile.value,
                                           boxFit: BoxFit.fitWidth,
                                           boxShape: BoxShape.circle,

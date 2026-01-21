@@ -96,24 +96,23 @@ class UserProfileHomeScreenWidget extends GetxController {
                       Center(
                         child: Stack(
                           children: [
-                            ClipRRect(
-                              borderRadius: BorderRadius.circular(100.r(context)),
-                              child: userProfileResponseModel.value.data?.image != null ?
-                              Image.network(
-                                userProfileResponseModel.value.data!.image,
-                                fit: BoxFit.fitWidth,
-                                width: 202.w(context),
-                                height: 202.h(context),
-                              ) :
-                              Image.asset(
-                                ImageUtils.profileImage,
-                                fit: BoxFit.fitHeight,
-                                width: 202.w(context),
-                                height: 202.h(context),
-                              ),
+                            userProfileResponseModel.value.data?.image != null ?
+                            CustomImageContainer.networkImageContainer(
+                              height: 220.h(context),
+                              width: 220.w(context),
+                              networkImage: userProfileResponseModel.value.data?.image,
+                              boxFit: BoxFit.fitWidth,
+                              boxShape: BoxShape.circle,
+                            ) :
+                            CustomImageContainer.assetImageContainer(
+                              height: 220.h(context),
+                              width: 220.w(context),
+                              assetImage: ImageUtils.profileImage,
+                              boxFit: BoxFit.fitWidth,
+                              boxShape: BoxShape.circle,
                             ),
                             Positioned(
-                              bottom: 10.h(context),
+                              bottom: 24.h(context),
                               right: 17.w(context),
                               child: Container(
                                 alignment: Alignment.center,
@@ -243,12 +242,13 @@ class UserProfileHomeScreenWidget extends GetxController {
 
                       // name section
 
-                      CustomSpaceWidget.spacerWidget(spaceHeight: 20.h(context)),
+                      CustomSpaceWidget.spacerWidget(spaceHeight: 10.h(context)),
 
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
+
                           CustomTextContainer.plainTextContainerWidgetWithoutHeightWidth(
                             plainTextString: nameControllerText.value.text,
                             plainTextStringFontSize: 18.sp(context),
@@ -324,8 +324,8 @@ class UserProfileHomeScreenWidget extends GetxController {
 
                       ProfileItemWidget(
                         title: "Edit Profile",
-                        icon: Image.asset(ImageUtils.userEdite, scale: 4,),
-                        navigateIcon: Icon(Icons.navigate_next, size: 24, color: Colors.black54,),
+                        icon: Image.asset(ImageUtils.userEdite, scale: 5,),
+                        navigateIcon: Icon(Icons.navigate_next, size: 24.r(context), color: Colors.black54,),
                         onTap: () {
                           Get.off(()=>UserProfileEditScreen(),preventDuplicates: false,duration: Duration(milliseconds: 100));
                         },
@@ -333,43 +333,47 @@ class UserProfileHomeScreenWidget extends GetxController {
 
                       ProfileItemWidget(
                         title: "Card",
-                        icon: Image.asset(ImageUtils.shoppingCardIcon, scale: 4,),
-                        navigateIcon: Icon(Icons.navigate_next,size: 24, color: Colors.black54,),
+                        icon: Image.asset(ImageUtils.shoppingCardIcon, scale: 5,),
+                        navigateIcon: Icon(Icons.navigate_next,size: 24.r(context), color: Colors.black54,),
                         onTap: () {
                           Get.to(OrderScreen());
                         },
                       ),
 
-                      ProfileItemWidget(title: "Order",
-                        icon: Image.asset(ImageUtils.userOrder, scale: 4,),
-                        navigateIcon: Icon(Icons.navigate_next,size: 24, color: Colors.black54,),
+                      ProfileItemWidget(
+                        title: "Order",
+                        icon: Image.asset(ImageUtils.userOrder, scale: 5,),
+                        navigateIcon: Icon(Icons.navigate_next,size: 24.r(context), color: Colors.black54,),
                         onTap: () {
                           Get.to(UserProfileOrderStatusScreen());
                         },
                       ),
-                      ProfileItemWidget(title: "Support Chat",
-                        icon: Image.asset(ImageUtils.chat, scale: 4,),
-                        navigateIcon: Icon(Icons.navigate_next,size: 24, color: Colors.black54,),
+                      ProfileItemWidget(
+                        title: "Support Chat",
+                        icon: Image.asset(ImageUtils.chat, scale: 5,),
+                        navigateIcon: Icon(Icons.navigate_next,size: 24.r(context), color: Colors.black54,),
                         onTap: () {
                           Get.to(UserChatVendorListScreen());
                         },
                       ),
-                      ProfileItemWidget(title: "Notification",
-                        icon: Image.asset(ImageUtils.userNotification, scale: 4,),
-                        navigateIcon: Icon(Icons.navigate_next,size: 24, color: Colors.black54,),
+                      ProfileItemWidget(
+                        title: "Notification",
+                        icon: Image.asset(ImageUtils.userNotification, scale: 5,),
+                        navigateIcon: Icon(Icons.navigate_next,size: 24.r(context), color: Colors.black54,),
                         onTap: () {
                           Get.to(UserNotificationScreen());
                         },
                       ),
-                      ProfileItemWidget(title: "Settings",
-                        icon: Image.asset(ImageUtils.settingIcon, scale: 4,),
-                        navigateIcon: Icon(Icons.navigate_next,size: 24, color: Colors.black54,),
+                      ProfileItemWidget(
+                        title: "Settings",
+                        icon: Image.asset(ImageUtils.settingIcon, scale: 5,),
+                        navigateIcon: Icon(Icons.navigate_next,size: 24.r(context), color: Colors.black54,),
                         onTap: () {
                           Get.off(()=>UserProfileSettingScreen(),preventDuplicates: false,duration: Duration(milliseconds: 100));
                         },
                       ),
                       ProfileItemWidget(title: "Logout",
-                        icon: Image.asset(ImageUtils.logout, scale: 4,),
+                        icon: Image.asset(ImageUtils.logout, scale: 5,),
                         onTap: () {
 
                           CustomAlertDialog().customAlert(

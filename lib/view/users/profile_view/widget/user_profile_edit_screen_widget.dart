@@ -241,9 +241,10 @@ class UserProfileEditScreenWidget extends GetxController {
                     ),
 
 
-                    CustomSpaceWidget.spacerWidget(spaceHeight: 20.h(context)),
 
                     CustomSpaceWidget.spacerWidget(spaceHeight: 20.h(context)),
+
+
                     Row(
                       children: [
                         Expanded(

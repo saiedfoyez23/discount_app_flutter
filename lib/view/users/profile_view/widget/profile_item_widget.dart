@@ -42,12 +42,16 @@ class ProfileItemWidget extends StatelessWidget {
                 Container(child: navigateIcon,)
               ],
             ),
+
             CustomSpaceWidget.spacerWidget(spaceHeight: 10.h(context)),
-            widget??Container(
+
+            widget ?? Container(
               margin: EdgeInsets.symmetric(horizontal: 10.hpm(context)),
               height: 0.5,
               color: Colors.grey,
             ),
+
+
             CustomSpaceWidget.spacerWidget(spaceHeight: 15.h(context)),
           ],
         ),
