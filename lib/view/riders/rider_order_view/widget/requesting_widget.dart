@@ -1,8 +1,10 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:discount_me_app/res/app_const/import_list.dart';
-import 'package:discount_me_app/res/common_widget/custom_alert_dialog.dart';
 import 'package:discount_me_app/view/riders/home_view/view/rider_home_order_request_details_screen.dart';
+import 'package:flutter/material.dart';
+import 'package:discount_me_app/utils/utils.dart';
+import 'package:get/get.dart';
 
 class RequestingWidget extends StatelessWidget {
   const RequestingWidget({super.key});
@@ -16,8 +18,8 @@ class RequestingWidget extends StatelessWidget {
       width: width,
       padding: EdgeInsets.all(15),
       decoration: BoxDecoration(
-          color: AppColors.whiteNormalHover.withOpacity(0.1),
-          border: Border(bottom: BorderSide(color: AppColors.whiteNormalHover, width: 1.17))
+          color: ColorUtils.whiteNormalHover.withOpacity(0.1),
+          border: Border(bottom: BorderSide(color: ColorUtils.whiteNormalHover, width: 1.17))
 
       ),
       child: Column(
@@ -26,15 +28,15 @@ class RequestingWidget extends StatelessWidget {
         children: [
 
           CustomText(title: "Food Kind Restaurant",
-            fontSize: 18.sp,
+            fontSize: 18.sp(context),
             fontWeight: FontWeight.w600,
-            color: AppColors.secondaryColor,
+            color: ColorUtils.secondaryColor,
           ),
           5.heightBox,
           CustomText(title: "Receipient: Paul Pogba",
-            fontSize: 14.sp,
+            fontSize: 14.sp(context),
             fontWeight: FontWeight.w600,
-            color: AppColors.blackColor,
+            color: ColorUtils.blackColor,
           ),
           10.heightBox,
           Row(
@@ -43,10 +45,10 @@ class RequestingWidget extends StatelessWidget {
               Container(
                 padding: EdgeInsets.all(16),
                 decoration: BoxDecoration(
-                    color: AppColors.orangeLight,
+                    color: ColorUtils.orangeLight,
                     borderRadius: BorderRadius.circular(6)
                 ),
-                child: Image.asset(AppImages.bikeVector, scale: 4,),
+                child: Image.asset(ImageUtils.bikeVector, scale: 4,),
               ),
               20.widthBox,
               Column(
@@ -54,19 +56,19 @@ class RequestingWidget extends StatelessWidget {
                 children: [
                   Row(
                     children: [
-                      Icon(Icons.location_on_outlined, color: AppColors.blackColor,),
+                      Icon(Icons.location_on_outlined, color: ColorUtils.blackColor,),
                       CustomText(title: "Drop off",
-                        fontSize: 12.sp,
+                        fontSize: 12.sp(context),
                         fontWeight: FontWeight.w400,
-                        color: AppColors.blackColor,
+                        color: ColorUtils.blackColor,
                       ),
                     ],
                   ),
                   5.heightBox,
                   CustomText(title: "Maryland bustop, Anthony Ikeja",
-                    fontSize: 14.sp,
+                    fontSize: 14.sp(context),
                     fontWeight: FontWeight.w600,
-                    color: AppColors.secondaryColor,
+                    color: ColorUtils.secondaryColor,
                   ),
 
                 ],
@@ -102,7 +104,7 @@ class RequestingWidget extends StatelessWidget {
               Expanded(
                 child: Roundbutton(
                   title: "View Details",
-                  buttonColor: AppColors.secondaryColor,
+                  buttonColor: ColorUtils.secondaryColor,
                   borderRadius: 4,
                   onTap: () {
                     Get.to(RiderHomeOrderRequestDetailsScreen());

@@ -1,7 +1,8 @@
-// ignore_for_file: prefer_const_constructors
-
 import 'package:discount_me_app/res/app_const/import_list.dart';
 import 'package:discount_me_app/view/vendors/vendor_profile_view/view/vendor_change_password_screen.dart';
+import 'package:flutter/material.dart';
+import 'package:discount_me_app/utils/utils.dart';
+import 'package:get/get.dart';
 
 class VendorSettingScreen extends StatefulWidget {
   const VendorSettingScreen({super.key});
@@ -21,7 +22,7 @@ class _VendorSettingScreenState extends State<VendorSettingScreen> {
       decoration: BoxDecoration(
         color: Colors.white,
         image: DecorationImage(
-            image: AssetImage(AppImages.homeBg),
+            image: AssetImage(ImageUtils.homeBg),
             alignment: Alignment.topRight,
             opacity: 0.5),
       ),
@@ -70,7 +71,7 @@ class _VendorSettingScreenState extends State<VendorSettingScreen> {
       width: Get.width,
       padding: EdgeInsets.symmetric(vertical: 15, horizontal: 10),
       decoration: BoxDecoration(
-          color: AppColors.greenLight,
+          color: ColorUtils.greenLight,
           borderRadius: BorderRadius.circular(4)
       ),
       child: Row(
@@ -84,7 +85,7 @@ class _VendorSettingScreenState extends State<VendorSettingScreen> {
               15.widthBox,
 
               CustomText(title: "Change Password",
-                fontSize: 16.sp, fontWeight: FontWeight.w500,
+                fontSize: 16.sp(context), fontWeight: FontWeight.w500,
                 color: Color(0xff727272),
               )
             ],
@@ -101,7 +102,7 @@ class _VendorSettingScreenState extends State<VendorSettingScreen> {
       width: Get.width,
       padding: EdgeInsets.symmetric(vertical: 15, horizontal: 10),
       decoration: BoxDecoration(
-          color: AppColors.greenLight,
+          color: ColorUtils.greenLight,
           borderRadius: BorderRadius.circular(4)
       ),
       child: Row(
@@ -111,7 +112,7 @@ class _VendorSettingScreenState extends State<VendorSettingScreen> {
           15.widthBox,
 
           CustomText(title: "Delete Account",
-            fontSize: 16.sp, fontWeight: FontWeight.w500,
+            fontSize: 16.sp(context), fontWeight: FontWeight.w500,
             color: Color(0xff727272),
           )
         ],

@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:skeletonizer/skeletonizer.dart';
-
+import 'package:discount_me_app/utils/utils.dart';
 import '../../../../res/res.dart';
 import '../../../view.dart';
 
@@ -120,7 +120,7 @@ class VendorItemScreenWidget extends GetxController {
                         decoration: BoxDecoration(
                           color: Colors.transparent,
                           borderRadius: BorderRadius.circular(8.r(context)),
-                          border:Border.all(width: 1, color: AppColors.whiteDark),
+                          border:Border.all(width: 1, color: ColorUtils.whiteDark),
                         ),
                         child: TextField(
                           onTap: () async {
@@ -271,7 +271,7 @@ class VendorItemScreenWidget extends GetxController {
                                       plainTextStringFontSize: 14.sp(context),
                                       plainTextStringFontWeight: FontWeight.w500,
                                       plainTextContainerAlignment: Alignment.center,
-                                      plainTextStringColor: AppColors.black29,
+                                      plainTextStringColor: ColorUtils.black29,
                                       plainTextStringTextAlign: TextAlign.center,
                                     ),
                                   ],
@@ -357,7 +357,7 @@ class VendorItemScreenWidget extends GetxController {
                                           plainTextStringFontSize: 22.sp(context),
                                           plainTextStringFontWeight: FontWeight.w700,
                                           plainTextContainerAlignment: Alignment.centerLeft,
-                                          plainTextStringColor: AppColors.black29,
+                                          plainTextStringColor: ColorUtils.black29,
                                           plainTextStringTextAlign: TextAlign.start,
                                         ),
 
@@ -431,7 +431,7 @@ class VendorItemScreenWidget extends GetxController {
                                               plainTextStringFontSize: 22.sp(context),
                                               plainTextStringFontWeight: FontWeight.w700,
                                               plainTextContainerAlignment: Alignment.centerLeft,
-                                              plainTextStringColor: AppColors.black29,
+                                              plainTextStringColor: ColorUtils.black29,
                                               plainTextStringTextAlign: TextAlign.start,
                                             ),
 
@@ -453,7 +453,7 @@ class VendorItemScreenWidget extends GetxController {
                         plainTextStringFontSize: 22.sp(context),
                         plainTextStringFontWeight: FontWeight.w700,
                         plainTextContainerAlignment: Alignment.center,
-                        plainTextStringColor: AppColors.black29,
+                        plainTextStringColor: ColorUtils.black29,
                         plainTextStringTextAlign: TextAlign.center,
                       ) :
                       CustomSpaceWidget.spacerWidget(),

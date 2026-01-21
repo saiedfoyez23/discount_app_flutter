@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors
 import 'package:discount_me_app/res/app_const/import_list.dart';
 import 'package:discount_me_app/utils/utils.dart';
+import 'package:flutter/material.dart';
 
 class HomeCatagoryWidget extends StatelessWidget {
   const HomeCatagoryWidget({super.key});
@@ -38,7 +39,7 @@ class HomeCatagoryWidget extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Image.asset(AppImages.catMilk, scale: 4,),
+                Image.asset(ImageUtils.catMilk, scale: 4,),
                 6.heightBox,
                 CustomText(title: "Milk",color: Colors.black, fontSize: 14.sp(context), fontWeight: FontWeight.w500,),
               ],

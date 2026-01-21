@@ -92,7 +92,7 @@ class OrderScreenWidget extends GetxController {
       decoration: BoxDecoration(
         color: Colors.white,
         image: DecorationImage(
-          image: AssetImage(AppImages.homeBg),
+          image: AssetImage(ImageUtils.homeBg),
           alignment: Alignment.topRight,
           opacity: 0.5,
         ),
@@ -129,7 +129,7 @@ class OrderScreenWidget extends GetxController {
                                           shape: BoxShape.circle,
                                           color: Colors.lightBlueAccent,
                                           image: DecorationImage(
-                                            image: AssetImage(AppImages.homeProfileAvatar),
+                                            image: AssetImage(ImageUtils.homeProfileAvatar),
                                             fit: BoxFit.fitHeight,
                                           )
                                       ),
@@ -152,7 +152,7 @@ class OrderScreenWidget extends GetxController {
                                       child: Align(
                                         alignment: Alignment.center,
                                         child: Image.asset(
-                                          AppImages.discountMeLogo,
+                                          ImageUtils.discountMeLogo,
                                           scale: 10,
                                         ),
                                       ),
@@ -272,7 +272,7 @@ class OrderScreenWidget extends GetxController {
                                   width: 100.w(context),
                                   decoration: BoxDecoration(
                                     image: DecorationImage(
-                                      image: AssetImage(AppImages.carousel1),
+                                      image: AssetImage(ImageUtils.carousel1),
                                       fit: BoxFit.fill,
                                     ),
                                     borderRadius: BorderRadius.circular(8.r(context)),
@@ -590,7 +590,7 @@ class OrderScreenWidget extends GetxController {
                         color: Colors.green,
                         borderRadius: BorderRadius.circular(8.r(context)),
                         image: DecorationImage(
-                          image: AssetImage(AppImages.orderBg),
+                          image: AssetImage(ImageUtils.orderBg),
                           fit: BoxFit.cover,
                           opacity: 0.3,
                           colorFilter: ColorFilter.mode(

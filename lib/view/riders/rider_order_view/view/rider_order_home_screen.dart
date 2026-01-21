@@ -3,6 +3,8 @@
 import 'package:discount_me_app/res/app_const/import_list.dart';
 import 'package:discount_me_app/view/riders/rider_order_view/widget/order_tab_view_details_widget.dart';
 import 'package:discount_me_app/view/riders/rider_order_view/widget/requesting_widget.dart';
+import 'package:flutter/material.dart';
+import 'package:discount_me_app/utils/utils.dart';
 
 class RiderOrderHomeScreen extends StatelessWidget {
   const RiderOrderHomeScreen({super.key});
@@ -14,8 +16,8 @@ class RiderOrderHomeScreen extends StatelessWidget {
         automaticallyImplyLeading: false,
         title: CustomText(
           title: "Order",
-          color: AppColors.blackColor,
-          fontSize: 24.sp,
+          color: ColorUtils.blackColor,
+          fontSize: 24.sp(context),
           fontWeight: FontWeight.w700,
         ),
         centerTitle: true,
@@ -35,8 +37,8 @@ class RiderOrderHomeScreen extends StatelessWidget {
                 isScrollable: true,
                 physics: ScrollPhysics(),
                 tabAlignment: TabAlignment.start,
-                indicatorColor: AppColors.blackColor,
-                labelColor: AppColors.secondaryColor,
+                indicatorColor: ColorUtils.blackColor,
+                labelColor: ColorUtils.secondaryColor,
                 unselectedLabelColor: Colors.black,
                 tabs: [
                   Tab(text: 'Requesting'),

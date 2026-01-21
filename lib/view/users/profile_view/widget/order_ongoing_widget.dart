@@ -2,6 +2,7 @@
 
 import 'package:discount_me_app/res/app_const/import_list.dart';
 import 'package:discount_me_app/utils/utils.dart';
+import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class OrderOngoingWidget extends StatelessWidget {
@@ -24,7 +25,7 @@ class OrderOngoingWidget extends StatelessWidget {
           children: [
             // Image of the food item
             Image.asset(
-              AppImages.orderItemBg, scale: 4,
+              ImageUtils.orderItemBg, scale: 4,
               fit: BoxFit.cover,
             ),
             SizedBox(width: 12),

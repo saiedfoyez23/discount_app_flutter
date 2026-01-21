@@ -1,7 +1,6 @@
-// ignore_for_file: prefer_const_constructors
-
-import 'package:discount_me_app/res/app_const/import_list.dart';
 import 'package:discount_me_app/view/view.dart';
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class UserProfileSettingScreen extends StatelessWidget {
   UserProfileSettingScreen({super.key});

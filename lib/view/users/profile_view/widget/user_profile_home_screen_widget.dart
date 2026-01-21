@@ -62,7 +62,7 @@ class UserProfileHomeScreenWidget extends GetxController {
       decoration: BoxDecoration(
         color: Colors.white,
         image: DecorationImage(
-            image: AssetImage(AppImages.homeBg),
+            image: AssetImage(ImageUtils.homeBg),
             alignment: Alignment.topRight,
             opacity: 0.5),
       ),
@@ -106,7 +106,7 @@ class UserProfileHomeScreenWidget extends GetxController {
                                 height: 202.h(context),
                               ) :
                               Image.asset(
-                                AppImages.profileImage,
+                                ImageUtils.profileImage,
                                 fit: BoxFit.fitHeight,
                                 width: 202.w(context),
                                 height: 202.h(context),
@@ -324,7 +324,7 @@ class UserProfileHomeScreenWidget extends GetxController {
 
                       ProfileItemWidget(
                         title: "Edit Profile",
-                        icon: Image.asset(AppImages.userEdite, scale: 4,),
+                        icon: Image.asset(ImageUtils.userEdite, scale: 4,),
                         navigateIcon: Icon(Icons.navigate_next, size: 24, color: Colors.black54,),
                         onTap: () {
                           Get.off(()=>UserProfileEditScreen(),preventDuplicates: false,duration: Duration(milliseconds: 100));
@@ -333,7 +333,7 @@ class UserProfileHomeScreenWidget extends GetxController {
 
                       ProfileItemWidget(
                         title: "Card",
-                        icon: Image.asset(AppImages.shoppingCardIcon, scale: 4,),
+                        icon: Image.asset(ImageUtils.shoppingCardIcon, scale: 4,),
                         navigateIcon: Icon(Icons.navigate_next,size: 24, color: Colors.black54,),
                         onTap: () {
                           Get.to(OrderScreen());
@@ -341,35 +341,35 @@ class UserProfileHomeScreenWidget extends GetxController {
                       ),
 
                       ProfileItemWidget(title: "Order",
-                        icon: Image.asset(AppImages.userOrder, scale: 4,),
+                        icon: Image.asset(ImageUtils.userOrder, scale: 4,),
                         navigateIcon: Icon(Icons.navigate_next,size: 24, color: Colors.black54,),
                         onTap: () {
                           Get.to(UserProfileOrderStatusScreen());
                         },
                       ),
                       ProfileItemWidget(title: "Support Chat",
-                        icon: Image.asset(AppImages.chat, scale: 4,),
+                        icon: Image.asset(ImageUtils.chat, scale: 4,),
                         navigateIcon: Icon(Icons.navigate_next,size: 24, color: Colors.black54,),
                         onTap: () {
                           Get.to(UserChatVendorListScreen());
                         },
                       ),
                       ProfileItemWidget(title: "Notification",
-                        icon: Image.asset(AppImages.userNotification, scale: 4,),
+                        icon: Image.asset(ImageUtils.userNotification, scale: 4,),
                         navigateIcon: Icon(Icons.navigate_next,size: 24, color: Colors.black54,),
                         onTap: () {
                           Get.to(UserNotificationScreen());
                         },
                       ),
                       ProfileItemWidget(title: "Settings",
-                        icon: Image.asset(AppImages.settingIcon, scale: 4,),
+                        icon: Image.asset(ImageUtils.settingIcon, scale: 4,),
                         navigateIcon: Icon(Icons.navigate_next,size: 24, color: Colors.black54,),
                         onTap: () {
                           Get.off(()=>UserProfileSettingScreen(),preventDuplicates: false,duration: Duration(milliseconds: 100));
                         },
                       ),
                       ProfileItemWidget(title: "Logout",
-                        icon: Image.asset(AppImages.logout, scale: 4,),
+                        icon: Image.asset(ImageUtils.logout, scale: 4,),
                         onTap: () {
 
                           CustomAlertDialog().customAlert(

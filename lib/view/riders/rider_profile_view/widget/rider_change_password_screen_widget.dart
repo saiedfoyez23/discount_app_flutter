@@ -3,7 +3,7 @@ import 'package:discount_me_app/view/view.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
+import 'package:discount_me_app/utils/utils.dart';
 import '../../../users/profile_view/widget/user_profile_appbar_widget.dart';
 
 class RiderChangePasswordScreenWidget extends GetxController {
@@ -42,7 +42,7 @@ class RiderChangePasswordScreenWidget extends GetxController {
       decoration: BoxDecoration(
         color: Colors.white,
         image: DecorationImage(
-          image: AssetImage(AppImages.homeBg),
+          image: AssetImage(ImageUtils.homeBg),
           alignment: Alignment.topRight,
           opacity: 0.5,
         ),
@@ -72,7 +72,7 @@ class RiderChangePasswordScreenWidget extends GetxController {
                       vertical: 8.vpm(context),
                     ),
                     decoration: BoxDecoration(
-                      color: AppColors.greenLight,
+                      color: ColorUtils.greenLight,
                       borderRadius: BorderRadius.circular(8.r(context)),
                     ),
                     child: Row(
@@ -107,7 +107,7 @@ class RiderChangePasswordScreenWidget extends GetxController {
                   Container(
                     padding: EdgeInsets.symmetric(horizontal: 16.hpm(context), vertical: 8.vpm(context)),
                     decoration: BoxDecoration(
-                      color: AppColors.greenLight,
+                      color: ColorUtils.greenLight,
                       borderRadius: BorderRadius.circular(8.r(context)),
                     ),
                     child: Row(
@@ -142,7 +142,7 @@ class RiderChangePasswordScreenWidget extends GetxController {
                   Container(
                     padding: EdgeInsets.symmetric(horizontal: 16.hpm(context), vertical: 8.vpm(context)),
                     decoration: BoxDecoration(
-                      color: AppColors.greenLight,
+                      color: ColorUtils.greenLight,
                       borderRadius: BorderRadius.circular(8.r(context)),
                     ),
                     child: Row(
@@ -184,7 +184,7 @@ class RiderChangePasswordScreenWidget extends GetxController {
                       plainButtonHintTextAlign: TextAlign.start,
                       plainButtonHintFontSize: 18.sp(context),
                       plainButtonColor: Colors.transparent,
-                      plainButtonHintFontColor: AppColors.orange125
+                      plainButtonHintFontColor: ColorUtils.orange125
                   ),
 
 
@@ -196,7 +196,7 @@ class RiderChangePasswordScreenWidget extends GetxController {
                         color: Colors.transparent
                     ),
                     child: const Center(
-                      child: CircularProgressIndicator(color: AppColors.green176,),
+                      child: CircularProgressIndicator(color: ColorUtils.green176,),
                     ),
                   ) :
                   CustomButtonContainer.plainButtonContainer(
@@ -240,8 +240,8 @@ class RiderChangePasswordScreenWidget extends GetxController {
                     },
                     plainButtonHint: "Confirm",
                     plainButtonHintFontSize: 22.sp(context),
-                    plainButtonColor: AppColors.green176,
-                    plainButtonHintFontColor: AppColors.white255,
+                    plainButtonColor: ColorUtils.green176,
+                    plainButtonHintFontColor: ColorUtils.white255,
                   ),
 
                 ],

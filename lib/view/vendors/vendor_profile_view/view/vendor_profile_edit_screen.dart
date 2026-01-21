@@ -1,8 +1,8 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
-
 import 'package:discount_me_app/res/app_const/import_list.dart';
 import 'package:discount_me_app/res/common_widget/custom_dotted_widget.dart';
 import 'package:discount_me_app/res/common_widget/custom_textfield_with_label.dart';
+import 'package:flutter/material.dart';
+import 'package:discount_me_app/utils/utils.dart';
 import 'package:intl_phone_number_input/intl_phone_number_input.dart';
 
 class VendorProfileEditScreen extends StatelessWidget {
@@ -15,12 +15,12 @@ class VendorProfileEditScreen extends StatelessWidget {
     double height = MediaQuery.of(context).size.height;
 
     return Scaffold(
-      backgroundColor: AppColors.whiteColor,
+      backgroundColor: ColorUtils.whiteColor,
       appBar: AppBar(
         title: CustomText(
           title: "Edit Profile",
-          color: AppColors.blackColor,
-          fontSize: 24.sp,
+          color: ColorUtils.blackColor,
+          fontSize: 24.sp(context),
           fontWeight: FontWeight.w700,
         ),
         centerTitle: true,
@@ -38,23 +38,23 @@ class VendorProfileEditScreen extends StatelessWidget {
 
               CustomTextfieldWithLabel(
                 labelName: "Restaurant Name",
-                labelTextColor: AppColors.blackColor,
+                labelTextColor: ColorUtils.blackColor,
                 hint: "Food King Restaurant",
               ),
               CustomTextfieldWithLabel(
                 labelName: "Restaurant Description",
-                labelTextColor: AppColors.blackColor,
+                labelTextColor: ColorUtils.blackColor,
                 hint: "Food King Restaurant",
               ),
               CustomTextfieldWithLabel(
                 labelName: "Email address",
-                labelTextColor: AppColors.blackColor,
+                labelTextColor: ColorUtils.blackColor,
                 hint: "roy@roy.com",
                 prefixIcon: Icon(Icons.email_outlined),
               ),
               CustomTextfieldWithLabel(
                 labelName: "Location",
-                labelTextColor: AppColors.blackColor,
+                labelTextColor: ColorUtils.blackColor,
                 hint: "London park, UK",
                 prefixIcon: Icon(Icons.location_on_outlined),
               ),
@@ -65,16 +65,16 @@ class VendorProfileEditScreen extends StatelessWidget {
                 CustomText(
                   title: "Contact",
                   fontWeight: FontWeight.w600,
-                  fontSize: 18.sp,
-                  color: AppColors.blackColor,
+                  fontSize: 18.sp(context),
+                  color: ColorUtils.blackColor,
                 ),
                   10.heightBox,
                   Container(
                     alignment: Alignment.center,
-                    padding: EdgeInsets.symmetric(horizontal: 10.w),
+                    padding: EdgeInsets.symmetric(horizontal: 10.w(context)),
                     decoration: BoxDecoration(
                         color: Colors.white,
-                        borderRadius: BorderRadius.circular(8.r),
+                        borderRadius: BorderRadius.circular(8.r(context)),
                         border: Border.all(width: 1, color: Colors.grey)
                     ),
                     child: Material( // Wrapping with Material
@@ -113,8 +113,8 @@ class VendorProfileEditScreen extends StatelessWidget {
                   CustomText(
                     title: "Update Cover Photo",
                     fontWeight: FontWeight.w600,
-                    fontSize: 18.sp,
-                    color: AppColors.blackColor,
+                    fontSize: 18.sp(context),
+                    color: ColorUtils.blackColor,
                   ),
                   10.heightBox,
                  CustomDottedWidget(),
@@ -128,8 +128,8 @@ class VendorProfileEditScreen extends StatelessWidget {
                   CustomText(
                     title: "Update Tax Document",
                     fontWeight: FontWeight.w600,
-                    fontSize: 18.sp,
-                    color: AppColors.blackColor,
+                    fontSize: 18.sp(context),
+                    color: ColorUtils.blackColor,
                   ),
                   10.heightBox,
                   CustomDottedWidget(),
@@ -139,9 +139,9 @@ class VendorProfileEditScreen extends StatelessWidget {
               20.heightBox,
               Roundbutton(
                   title: "Update",
-                  borderRadius: 8.r,
-                  buttonColor: AppColors.secondaryColor,
-                  onTap: (){}
+                  borderRadius: 8.r(context),
+                  buttonColor: ColorUtils.secondaryColor,
+                  onTap: (){},
               ),
 
               40.heightBox,

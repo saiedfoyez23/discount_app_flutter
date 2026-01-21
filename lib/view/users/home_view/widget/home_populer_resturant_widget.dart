@@ -1,8 +1,8 @@
-// ignore_for_file: prefer_const_constructors_in_immutables, prefer_const_constructors
-
 import 'package:discount_me_app/res/app_const/import_list.dart';
 import 'package:discount_me_app/utils/utils.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart'; // For Urbanist Font
 
 class HomePopulerResturantWidget extends StatelessWidget {
@@ -37,7 +37,7 @@ class HomePopulerResturantWidget extends StatelessWidget {
           ClipRRect(
             borderRadius: BorderRadius.circular(5),
             child: Image.asset(
-              AppImages.restuImg,
+              ImageUtils.restuImg,
               height: Get.height / 8,
               fit: BoxFit.cover,
             ),

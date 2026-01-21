@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
 import 'package:dio/dio.dart' as dio;
-import 'package:discount_me_app/res/app_const/import_list.dart';
+import 'package:get/get.dart';
 import '../../../../res/res.dart';
 
 class AddProductController extends GetxController {

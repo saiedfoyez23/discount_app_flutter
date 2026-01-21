@@ -1,6 +1,4 @@
-// ignore_for_file: prefer_const_constructors
-
-import 'package:discount_me_app/res/app_const/import_list.dart';
+import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
 import 'package:discount_me_app/utils/utils.dart';
@@ -14,7 +12,7 @@ class OrderCompleteScreen extends StatelessWidget {
       decoration: BoxDecoration(
         color: Colors.white,
         image: DecorationImage(
-            image: AssetImage(AppImages.orderCompleteBg),
+            image: AssetImage(ImageUtils.orderCompleteBg),
             alignment: Alignment.topCenter,
         ),
       ),
@@ -27,7 +25,7 @@ class OrderCompleteScreen extends StatelessWidget {
               height: 150.h(context),
               width: 150.w(context),
               child: Lottie.asset(
-                AppImages.successAnim, // Path to your Lottie animation
+                ImageUtils.successAnim, // Path to your Lottie animation
                 fit: BoxFit.contain,
                 repeat: false
               ),

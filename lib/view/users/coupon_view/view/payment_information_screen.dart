@@ -1,14 +1,8 @@
-// ignore_for_file: prefer_const_constructors
-
 import 'package:discount_me_app/res/app_const/import_list.dart';
 import 'package:discount_me_app/res/common_widget/custom_card_number_input_formatter_widget.dart';
 import 'package:discount_me_app/view/users/coupon_view/controller/payment_info_controller.dart';
-import 'package:discount_me_app/view/users/coupon_view/view/transaction_success_screen.dart';
-import 'package:discount_me_app/view/users/home_view/widget/home_resturant_app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:flutter/services.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:discount_me_app/utils/utils.dart';
 
 class PaymentInformationScreen extends StatelessWidget {
@@ -25,7 +19,7 @@ class PaymentInformationScreen extends StatelessWidget {
       decoration: BoxDecoration(
         color: Colors.white,
         image: DecorationImage(
-          image: AssetImage(AppImages.homeBg),
+          image: AssetImage(ImageUtils.homeBg),
           alignment: Alignment.topRight,
           opacity: 0.5,
         ),

@@ -108,7 +108,7 @@ class StoreListViewScreenWidget extends GetxController {
       decoration: BoxDecoration(
         color: Colors.white,
         image: DecorationImage(
-          image: AssetImage(AppImages.homeBg),
+          image: AssetImage(ImageUtils.homeBg),
           alignment: Alignment.topRight,
           opacity: 0.5,
         ),
@@ -148,7 +148,7 @@ class StoreListViewScreenWidget extends GetxController {
                                         shape: BoxShape.circle,
                                         color: Colors.lightBlueAccent,
                                         image: DecorationImage(
-                                          image: AssetImage(AppImages.homeProfileAvatar),
+                                          image: AssetImage(ImageUtils.homeProfileAvatar),
                                           fit: BoxFit.cover,
                                           scale: 1
                                         )
@@ -173,7 +173,7 @@ class StoreListViewScreenWidget extends GetxController {
                                     child: Align(
                                       alignment: Alignment.center,
                                       child: Image.asset(
-                                        AppImages.discountMeLogo,
+                                        ImageUtils.discountMeLogo,
                                         scale: 10,
                                       ),
                                     ),
@@ -397,7 +397,7 @@ class StoreListViewScreenWidget extends GetxController {
                                             width: 90.w(context),
                                             decoration: BoxDecoration(
                                               image: DecorationImage(
-                                                image: AssetImage(AppImages.carousel1),
+                                                image: AssetImage(ImageUtils.carousel1),
                                                 fit: BoxFit.fill,
                                               ),
                                               borderRadius: BorderRadius.circular(5.r(context)),

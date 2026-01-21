@@ -1,6 +1,7 @@
-// ignore_for_file: prefer_const_constructors
-
 import 'package:discount_me_app/res/app_const/import_list.dart';
+import 'package:flutter/material.dart';
+import 'package:discount_me_app/utils/utils.dart';
+
 
 class VendorChangePasswordScreen extends StatefulWidget {
   const VendorChangePasswordScreen({super.key});
@@ -37,20 +38,14 @@ class _VendorChangePasswordScreenState extends State<VendorChangePasswordScreen>
 
   @override
   Widget build(BuildContext context) {
-    double width = MediaQuery
-        .of(context)
-        .size
-        .width;
-    double height = MediaQuery
-        .of(context)
-        .size
-        .height;
+    double width = MediaQuery.of(context).size.width;
+    double height = MediaQuery.of(context).size.height;
 
     return Container(
       decoration: BoxDecoration(
         color: Colors.white,
         image: DecorationImage(
-            image: AssetImage(AppImages.homeBg),
+            image: AssetImage(ImageUtils.homeBg),
             alignment: Alignment.topRight,
             opacity: 0.5),
       ),
@@ -74,8 +69,8 @@ class _VendorChangePasswordScreenState extends State<VendorChangePasswordScreen>
                   Container(
                     padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
                     decoration: BoxDecoration(
-                      color: AppColors.greenLight,
-                      borderRadius: BorderRadius.circular(8.r),
+                      color: ColorUtils.greenLight,
+                      borderRadius: BorderRadius.circular(8.r(context)),
                     ),
                     child: Row(
                       children: [
@@ -108,8 +103,8 @@ class _VendorChangePasswordScreenState extends State<VendorChangePasswordScreen>
                   Container(
                     padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
                     decoration: BoxDecoration(
-                      color: AppColors.greenLight,
-                      borderRadius: BorderRadius.circular(8.r),
+                      color: ColorUtils.greenLight,
+                      borderRadius: BorderRadius.circular(8.r(context)),
                     ),
                     child: Row(
                       children: [
@@ -142,8 +137,8 @@ class _VendorChangePasswordScreenState extends State<VendorChangePasswordScreen>
                   Container(
                     padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
                     decoration: BoxDecoration(
-                      color: AppColors.greenLight,
-                      borderRadius: BorderRadius.circular(8.r),
+                      color: ColorUtils.greenLight,
+                      borderRadius: BorderRadius.circular(8.r(context)),
                     ),
                     child: Row(
                       children: [
@@ -182,9 +177,9 @@ class _VendorChangePasswordScreenState extends State<VendorChangePasswordScreen>
                     },
                     child: CustomText(
                       title: "Forgot the password?",
-                      color: AppColors.secondaryColor,
+                      color: ColorUtils.secondaryColor,
                       fontWeight: FontWeight.w600,
-                      fontSize: 16.sp,
+                      fontSize: 16.sp(context),
                     ),
                   ),
 
@@ -193,8 +188,8 @@ class _VendorChangePasswordScreenState extends State<VendorChangePasswordScreen>
                   // Confirm button
                   Roundbutton(
                     title: "Confirm",
-                    buttonColor: AppColors.primaryColor,
-                    borderRadius: 8.r,
+                    buttonColor: ColorUtils.primaryColor,
+                    borderRadius: 8.r(context),
                     onTap: () {
                       // Handle password change confirmation
                     },

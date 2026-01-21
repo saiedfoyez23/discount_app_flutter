@@ -1,23 +1,18 @@
 import 'dart:io';
-
 import 'package:file_picker/file_picker.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intl_phone_number_input/intl_phone_number_input.dart';
 import 'package:skeletonizer/skeletonizer.dart';
-
+import 'package:discount_me_app/utils/utils.dart';
 import '../../../../res/common_widget/RoundTextField.dart';
 import '../../../../res/common_widget/custom_text.dart';
 import '../../../../res/res.dart';
 import '../../../view.dart';
 
 class RiderProfileEditScreenWidget extends GetxController{
-
-
-
-
+  
   Rx<File> imageFile = File("").obs;
   Rx<File> documentFile = File("").obs;
   RxBool isSubmit = false.obs;
@@ -129,7 +124,7 @@ class RiderProfileEditScreenWidget extends GetxController{
                                   networkImage: image.value,
                                   boxFit: BoxFit.fitWidth,
                                   boxShape: BoxShape.circle,
-                                  borderColors: AppColors.primaryColor,
+                                  borderColors: ColorUtils.primaryColor,
                                   borderWidth: 1,
                                 ),
                               ),
@@ -141,7 +136,7 @@ class RiderProfileEditScreenWidget extends GetxController{
                                   file: imageFile.value,
                                   boxFit: BoxFit.fitWidth,
                                   boxShape: BoxShape.circle,
-                                  borderColors: AppColors.primaryColor,
+                                  borderColors: ColorUtils.primaryColor,
                                   borderWidth: 1,
                                 ),
                               ),
@@ -150,10 +145,10 @@ class RiderProfileEditScreenWidget extends GetxController{
                                 child: CustomImageContainer.assetImageContainer(
                                   height: 220.h(context),
                                   width: 220.w(context),
-                                  assetImage:  AppImages.imagePickerIcon,
+                                  assetImage: ImageUtils.imagePickerIcon,
                                   boxFit: BoxFit.fitWidth,
                                   boxShape: BoxShape.circle,
-                                  borderColors: AppColors.primaryColor,
+                                  borderColors: ColorUtils.primaryColor,
                                   borderWidth: 1,
                                 ),
                               ),
@@ -171,7 +166,7 @@ class RiderProfileEditScreenWidget extends GetxController{
                                 width: 60.h(context),
                                 height: 60.w(context),
                                 decoration: BoxDecoration(
-                                    color: AppColors.white253,
+                                    color: ColorUtils.white253,
                                     shape: BoxShape.circle
                                 ),
                                 child: TextButton(
@@ -236,7 +231,7 @@ class RiderProfileEditScreenWidget extends GetxController{
                                   },
                                   child: Icon(
                                     Icons.camera_alt_outlined,
-                                    color: AppColors.secondaryColor,
+                                    color: ColorUtils.secondaryColor,
                                     size: 28.r(context),
                                   ),
                                 ),
@@ -474,7 +469,7 @@ class RiderProfileEditScreenWidget extends GetxController{
                           color: Colors.transparent
                       ),
                       child: const Center(
-                        child: CircularProgressIndicator(color: AppColors.green176,),
+                        child: CircularProgressIndicator(color: ColorUtils.green176,),
                       ),
                     ) :
                     CustomButtonContainer.plainButtonContainer(
@@ -508,8 +503,8 @@ class RiderProfileEditScreenWidget extends GetxController{
                       },
                       plainButtonHint: "Update",
                       plainButtonHintFontSize: 22.sp(context),
-                      plainButtonColor: AppColors.green176,
-                      plainButtonHintFontColor: AppColors.white255,
+                      plainButtonColor: ColorUtils.green176,
+                      plainButtonHintFontColor: ColorUtils.white255,
                     ),
 
 

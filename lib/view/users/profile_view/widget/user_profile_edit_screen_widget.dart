@@ -69,7 +69,7 @@ class UserProfileEditScreenWidget extends GetxController {
       decoration: BoxDecoration(
         color: Colors.white,
         image: DecorationImage(
-          image: AssetImage(AppImages.homeBg),
+          image: AssetImage(ImageUtils.homeBg),
           alignment: Alignment.topRight,
           opacity: 0.5,
         ),
@@ -144,7 +144,7 @@ class UserProfileEditScreenWidget extends GetxController {
                                 child: CustomImageContainer.assetImageContainer(
                                   height: 220.h(context),
                                   width: 220.w(context),
-                                  assetImage:  AppImages.imagePickerIcon,
+                                  assetImage: ImageUtils.imagePickerIcon,
                                   boxFit: BoxFit.fitWidth,
                                   boxShape: BoxShape.circle,
                                   borderColors: ColorUtils.primaryColor,

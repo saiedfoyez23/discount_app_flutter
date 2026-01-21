@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
-
+import 'package:discount_me_app/utils/utils.dart';
 import '../../../../res/res.dart';
 import '../../../view.dart';
 
@@ -153,7 +153,7 @@ class VendorItemDetailsViewScreenWidget extends GetxController {
                             plainTextStringFontSize: 18.sp(context),
                             plainTextStringFontWeight: FontWeight.w700,
                             plainTextContainerAlignment: Alignment.centerLeft,
-                            plainTextStringColor: AppColors.black29,
+                            plainTextStringColor: ColorUtils.black29,
                             plainTextStringTextAlign: TextAlign.start,
                           ),
                         ),
@@ -188,7 +188,7 @@ class VendorItemDetailsViewScreenWidget extends GetxController {
                               plainTextStringFontSize: 18.sp(context),
                               plainTextStringFontWeight: FontWeight.w600,
                               plainTextContainerAlignment: Alignment.center,
-                              plainTextStringColor: AppColors.black29,
+                              plainTextStringColor: ColorUtils.black29,
                               plainTextStringTextAlign: TextAlign.start,
                             ),
                           ],
@@ -229,7 +229,7 @@ class VendorItemDetailsViewScreenWidget extends GetxController {
                                 plainTextStringFontWeight: FontWeight.w500,
                                 plainTextContainerAlignment: Alignment.centerLeft,
                                 plainTextStringColor: singleProductResponseModel.value.data?.quantity != null && singleProductResponseModel.value.data?.quantity != 0?
-                                AppColors.green176 : AppColors.red191,
+                                ColorUtils.green176 : ColorUtils.red191,
                                 plainTextStringTextAlign: TextAlign.start,
                               ),
                             ],
@@ -243,7 +243,7 @@ class VendorItemDetailsViewScreenWidget extends GetxController {
                           plainTextStringFontSize: 22.sp(context),
                           plainTextStringFontWeight: FontWeight.w700,
                           plainTextContainerAlignment: Alignment.centerLeft,
-                          plainTextStringColor: AppColors.black29,
+                          plainTextStringColor: ColorUtils.black29,
                           plainTextStringTextAlign: TextAlign.start,
                         ),
 
@@ -331,7 +331,7 @@ class VendorItemDetailsViewScreenWidget extends GetxController {
                                 plainTextStringFontSize: 14.sp(context),
                                 plainTextStringFontWeight: FontWeight.w500,
                                 plainTextContainerAlignment: Alignment.center,
-                                plainTextStringColor: AppColors.black29,
+                                plainTextStringColor: ColorUtils.black29,
                                 plainTextStringTextAlign: TextAlign.center,
                               ),
                             ],
@@ -350,7 +350,7 @@ class VendorItemDetailsViewScreenWidget extends GetxController {
                       height: 55.h(context),
                       width: 428.w(context),
                       decoration: BoxDecoration(
-                        color: AppColors.green176,
+                        color: ColorUtils.green176,
                         borderRadius: BorderRadius.circular(12.r(context)),
                       ),
                       child: TextButton(
@@ -360,7 +360,7 @@ class VendorItemDetailsViewScreenWidget extends GetxController {
                           plainTextStringFontSize: 18.sp(context),
                           plainTextStringFontWeight: FontWeight.w700,
                           plainTextContainerAlignment: Alignment.center,
-                          plainTextStringColor: AppColors.white246,
+                          plainTextStringColor: ColorUtils.white246,
                           plainTextStringTextAlign: TextAlign.center,
                         ),
                       ),
@@ -372,7 +372,7 @@ class VendorItemDetailsViewScreenWidget extends GetxController {
                       height: 55.h(context),
                       width: 428.w(context),
                       decoration: BoxDecoration(
-                        color: AppColors.red191,
+                        color: ColorUtils.red191,
                         borderRadius: BorderRadius.circular(12.r(context)),
                       ),
                       child: TextButton(
@@ -382,7 +382,7 @@ class VendorItemDetailsViewScreenWidget extends GetxController {
                           plainTextStringFontSize: 18.sp(context),
                           plainTextStringFontWeight: FontWeight.w700,
                           plainTextContainerAlignment: Alignment.center,
-                          plainTextStringColor: AppColors.white246,
+                          plainTextStringColor: ColorUtils.white246,
                           plainTextStringTextAlign: TextAlign.center,
                         ),
                       ),

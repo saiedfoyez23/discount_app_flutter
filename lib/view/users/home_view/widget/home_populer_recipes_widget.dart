@@ -1,5 +1,6 @@
 import 'package:discount_me_app/res/app_const/import_list.dart';
 import 'package:discount_me_app/utils/utils.dart';
+import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 
@@ -32,7 +33,7 @@ class HomePopulerRecipesWidget extends StatelessWidget {
           ClipRRect(
             borderRadius: BorderRadius.vertical(top: Radius.circular(15)),
             child: Image.asset(
-              AppImages.poRecipeImg, // Replace with your image path
+              ImageUtils.poRecipeImg, // Replace with your image path
               height: 120.h(context),
               width: double.infinity,
               fit: BoxFit.cover,

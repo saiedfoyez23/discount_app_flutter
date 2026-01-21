@@ -1,5 +1,7 @@
 import 'package:discount_me_app/res/app_const/import_list.dart';
 import 'package:discount_me_app/utils/utils.dart';
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 
 class UserNotificationScreen extends StatelessWidget {
@@ -15,7 +17,7 @@ class UserNotificationScreen extends StatelessWidget {
       decoration: BoxDecoration(
         color: Colors.white,
         image: DecorationImage(
-            image: AssetImage(AppImages.homeBg),
+            image: AssetImage(ImageUtils.homeBg),
             alignment: Alignment.topRight,
             opacity: 0.5),
       ),
@@ -76,7 +78,7 @@ class UserNotificationScreen extends StatelessWidget {
                   borderRadius: BorderRadius.circular(50.r(context)),
                   color: ColorUtils.greenLight
               ),
-              child: Image.asset(AppImages.userNotification, scale: 4,),
+              child: Image.asset(ImageUtils.userNotification, scale: 4,),
             )
           ],
         ),

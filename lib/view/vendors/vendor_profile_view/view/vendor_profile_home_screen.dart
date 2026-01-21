@@ -1,15 +1,15 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, unnecessary_string_interpolations
-
 import 'package:discount_me_app/res/app_const/import_list.dart';
 import 'package:discount_me_app/view/vendors/vendor_coupon_management/view/vendor_created_coupon_screen.dart';
 import 'package:discount_me_app/view/vendors/vendor_suppor_chat_view/view/vendor_chat_user_list_screen.dart';
+import 'package:flutter/material.dart';
+import 'package:discount_me_app/utils/utils.dart';
+import 'package:get/get.dart';
 
 class VendorProfileHomeScreen extends StatefulWidget {
   const VendorProfileHomeScreen({super.key});
 
   @override
-  State<VendorProfileHomeScreen> createState() =>
-      _VendorProfileHomeScreenState();
+  State<VendorProfileHomeScreen> createState() => _VendorProfileHomeScreenState();
 }
 
 class _VendorProfileHomeScreenState extends State<VendorProfileHomeScreen> {
@@ -22,19 +22,19 @@ class _VendorProfileHomeScreenState extends State<VendorProfileHomeScreen> {
     double height = MediaQuery.of(context).size.height;
 
     return Scaffold(
-      backgroundColor: AppColors.whiteColor,
+      backgroundColor: ColorUtils.whiteColor,
       appBar: AppBar(
         automaticallyImplyLeading: false,
         title: CustomText(
           title: "Profile",
-          color: AppColors.blackColor,
-          fontSize: 24.sp,
+          color: ColorUtils.blackColor,
+          fontSize: 24.sp(context),
           fontWeight: FontWeight.w700,
         ),
         centerTitle: true,
         flexibleSpace: FlexibleSpaceBar(
           background: Container(
-            color: AppColors.whiteColor,
+            color: ColorUtils.whiteColor,
           ),
         ),
       ),
@@ -51,10 +51,10 @@ class _VendorProfileHomeScreenState extends State<VendorProfileHomeScreen> {
                     ClipRRect(
                       borderRadius: BorderRadius.circular(100),
                       child: Image.asset(
-                        AppImages.homeResProImg,
+                        ImageUtils.homeResProImg,
                         fit: BoxFit.cover,
-                        width: 202.w,
-                        height: 202.h,
+                        width: 202.w(context),
+                        height: 202.h(context),
                       ),
                     ),
                     Positioned(
@@ -66,10 +66,10 @@ class _VendorProfileHomeScreenState extends State<VendorProfileHomeScreen> {
                         },
                         child: Container(
                           alignment: Alignment.center,
-                          width: 34.w,
-                          height: 34.h,
+                          width: 34.w(context),
+                          height: 34.h(context),
                           decoration: BoxDecoration(
-                            color: AppColors.secondaryColor,
+                            color: ColorUtils.secondaryColor,
                             borderRadius: BorderRadius.only(
                               topLeft: Radius.circular(10),
                               topRight: Radius.circular(10),
@@ -78,7 +78,7 @@ class _VendorProfileHomeScreenState extends State<VendorProfileHomeScreen> {
                           ),
                           child: Icon(
                             Icons.edit,
-                            color: AppColors.whiteColor,
+                            color: ColorUtils.whiteColor,
                           ),
                         ),
                       ),
@@ -95,9 +95,9 @@ class _VendorProfileHomeScreenState extends State<VendorProfileHomeScreen> {
                 children: [
                   CustomText(
                     title: "$username",
-                    fontSize: 18.sp,
+                    fontSize: 18.sp(context),
                     fontWeight: FontWeight.w700,
-                    color: AppColors.blackColor,
+                    color: ColorUtils.blackColor,
                   ),
                   10.widthBox,
                   GestureDetector(
@@ -109,7 +109,7 @@ class _VendorProfileHomeScreenState extends State<VendorProfileHomeScreen> {
                       child: Icon(
                         Icons.edit,
                         color: Colors.white,
-                        size: 18.sp,
+                        size: 18.sp(context),
                       )
                     ),
                   )
@@ -120,7 +120,7 @@ class _VendorProfileHomeScreenState extends State<VendorProfileHomeScreen> {
               CustomProfileItemWidget(
                 title: "Edit Profile",
                 icon: Image.asset(
-                  AppImages.userEdite,
+                  ImageUtils.userEdite,
                   scale: 4,
                 ),
                 navigateIcon: Icon(Icons.navigate_next),
@@ -133,7 +133,7 @@ class _VendorProfileHomeScreenState extends State<VendorProfileHomeScreen> {
               CustomProfileItemWidget(
                 title: "Earnings",
                 icon: Image.asset(
-                  AppImages.earnIcon,
+                  ImageUtils.earnIcon,
                   scale: 4,
                 ),
                 navigateIcon: Icon(Icons.navigate_next),
@@ -147,7 +147,7 @@ class _VendorProfileHomeScreenState extends State<VendorProfileHomeScreen> {
               CustomProfileItemWidget(
                 title: "Coupon Management ",
                 icon: Image.asset(
-                  AppImages.couponManagementIcon,
+                  ImageUtils.couponManagementIcon,
                   scale: 4,
                 ),
                 navigateIcon: Icon(Icons.navigate_next),
@@ -159,7 +159,7 @@ class _VendorProfileHomeScreenState extends State<VendorProfileHomeScreen> {
               5.heightBox,
               CustomProfileItemWidget(
                 title: "Support Chat",
-                icon: Image.asset(AppImages.chat, scale: 4,),
+                icon: Image.asset(ImageUtils.chat, scale: 4,),
                 navigateIcon: Icon(Icons.navigate_next),
                 onTap: () {
                   Get.to(()=>VendorChatUserListScreen());
@@ -170,7 +170,7 @@ class _VendorProfileHomeScreenState extends State<VendorProfileHomeScreen> {
               5.heightBox,
               CustomProfileItemWidget(
                 title: "Settings",
-                icon: Image.asset(AppImages.settingIcon, scale: 4,),
+                icon: Image.asset(ImageUtils.settingIcon, scale: 4,),
                 navigateIcon: Icon(Icons.navigate_next),
                 onTap: () {
                   Get.to(()=>VendorSettingScreen());
@@ -181,7 +181,7 @@ class _VendorProfileHomeScreenState extends State<VendorProfileHomeScreen> {
               CustomProfileItemWidget(
                 title: "Logout",
                 icon: Image.asset(
-                  AppImages.userEdite,
+                  ImageUtils.userEdite,
                   scale: 4,
                 ),
                 onTap: () {

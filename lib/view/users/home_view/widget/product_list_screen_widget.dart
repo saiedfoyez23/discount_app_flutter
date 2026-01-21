@@ -124,7 +124,7 @@ class ProductListScreenWidget extends GetxController {
       decoration: BoxDecoration(
         color: Colors.white,
         image: DecorationImage(
-          image: AssetImage(AppImages.homeBg),
+          image: AssetImage(ImageUtils.homeBg),
           alignment: Alignment.topRight,
           opacity: 0.5,
         ),
@@ -163,7 +163,7 @@ class ProductListScreenWidget extends GetxController {
                                       shape: BoxShape.circle,
                                       color: Colors.lightBlueAccent,
                                       image: DecorationImage(
-                                        image: AssetImage(AppImages.homeProfileAvatar),
+                                        image: AssetImage(ImageUtils.homeProfileAvatar),
                                         fit: BoxFit.fitHeight,
                                       )
                                   ),
@@ -187,7 +187,7 @@ class ProductListScreenWidget extends GetxController {
                                   child: Align(
                                     alignment: Alignment.center,
                                     child: Image.asset(
-                                      AppImages.discountMeLogo,
+                                      ImageUtils.discountMeLogo,
                                       scale: 10,
                                     ),
                                   ),
@@ -438,7 +438,7 @@ class ProductListScreenWidget extends GetxController {
                                   width: 428.w(context),
                                   decoration: BoxDecoration(
                                     image: DecorationImage(
-                                      image: AssetImage(AppImages.carousel1),
+                                      image: AssetImage(ImageUtils.carousel1),
                                       fit: BoxFit.fill,
                                     ),
                                     borderRadius: BorderRadius.vertical(top: Radius.circular(15.r(context))),
@@ -458,7 +458,7 @@ class ProductListScreenWidget extends GetxController {
                                         width: 428.w(context),
                                         decoration: BoxDecoration(
                                           image: DecorationImage(
-                                            image: AssetImage(AppImages.carousel1),
+                                            image: AssetImage(ImageUtils.carousel1),
                                             fit: BoxFit.fill,
                                           ),
                                           borderRadius: BorderRadius.vertical(top: Radius.circular(15.r(context))),

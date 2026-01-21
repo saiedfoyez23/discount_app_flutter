@@ -1,11 +1,10 @@
-// ignore_for_file: prefer_const_constructors
-
 import 'package:discount_me_app/res/app_const/import_list.dart';
 import 'package:discount_me_app/view/users/home_view/view/order_screen.dart';
 import 'package:discount_me_app/view/users/home_view/widget/home_catagory_widget.dart';
 import 'package:discount_me_app/view/users/home_view/widget/home_resturant_app_bar.dart';
 import 'package:discount_me_app/view/users/home_view/widget/home_searchbar_widget.dart';
 import 'package:discount_me_app/utils/utils.dart';
+import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class RecipesScreen extends StatelessWidget {
@@ -24,7 +23,7 @@ class RecipesScreen extends StatelessWidget {
       decoration: BoxDecoration(
         color: Colors.white,
         image: DecorationImage(
-            image: AssetImage(AppImages.homeBg),
+            image: AssetImage(ImageUtils.homeBg),
             alignment: Alignment.topRight,
             opacity: 0.5),
       ),
@@ -71,7 +70,7 @@ class RecipesScreen extends StatelessWidget {
                               ClipRRect(
                                 borderRadius: BorderRadius.vertical(top: Radius.circular(15.r(context))), // Responsive border radius
                                 child: Image.asset(
-                                  AppImages.poRecipeImg, // Replace with your image path
+                                  ImageUtils.poRecipeImg, // Replace with your image path
                                   height: 180.h(context), // Responsive height
                                   width: double.infinity, // Full width
                                   fit: BoxFit.cover,

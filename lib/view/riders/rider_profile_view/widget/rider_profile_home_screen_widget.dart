@@ -1,15 +1,12 @@
 import 'dart:io';
-
 import 'package:discount_me_app/res/res.dart';
 import 'package:discount_me_app/view/riders/rider_profile_view/view/rider_profile_edit_screen.dart';
-import 'package:discount_me_app/view/riders/rider_profile_view/view/rider_setting_screen.dart';
 import 'package:discount_me_app/view/view.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:skeletonizer/skeletonizer.dart';
-
+import 'package:discount_me_app/utils/utils.dart';
 import '../../../../res/common_widget/custom_alert_dialog.dart';
 import '../../rider_earning_view/view/rider_profile_earing_home_screen.dart';
 
@@ -109,7 +106,7 @@ class RiderProfileHomeScreenWidget extends GetxController {
                                 ),
                               ) :
                               Image.asset(
-                                AppImages.profileImage,
+                                ImageUtils.profileImage,
                                 fit: BoxFit.fitHeight,
                                 width: 202.w(context),
                                 height: 202.h(context),
@@ -123,7 +120,7 @@ class RiderProfileHomeScreenWidget extends GetxController {
                                 width: 34.w(context),
                                 height: 34.h(context),
                                 decoration: BoxDecoration(
-                                  color: AppColors.secondaryColor,
+                                  color: ColorUtils.secondaryColor,
                                   borderRadius: BorderRadius.only(
                                     topLeft: Radius.circular(10.r(context)),
                                     topRight: Radius.circular(10.r(context)),
@@ -237,7 +234,7 @@ class RiderProfileHomeScreenWidget extends GetxController {
                                   child: Icon(
                                     Icons.edit,
                                     size: 16.r(context),
-                                    color: AppColors.whiteColor,
+                                    color: ColorUtils.whiteColor,
                                   ),
                                 ),
                               ),
@@ -260,7 +257,7 @@ class RiderProfileHomeScreenWidget extends GetxController {
                             plainTextStringFontWeight: FontWeight.w700,
                             plainTextContainerAlignment: Alignment.center,
                             plainTextStringTextAlign: TextAlign.center,
-                            plainTextStringColor: AppColors.black29,
+                            plainTextStringColor: ColorUtils.black29,
                           ),
 
 
@@ -332,7 +329,7 @@ class RiderProfileHomeScreenWidget extends GetxController {
                       ProfileItemWidget(
                         title: "Edit Profile",
                         icon: Image.asset(
-                          AppImages.userEdite,
+                          ImageUtils.userEdite,
                           scale: 4,
                         ),
                         navigateIcon: Icon(
@@ -349,7 +346,7 @@ class RiderProfileHomeScreenWidget extends GetxController {
                       ProfileItemWidget(
                         title: "Earnings",
                         icon: Image.asset(
-                          AppImages.earnIcon,
+                          ImageUtils.earnIcon,
                           scale: 5,
                         ),
                         navigateIcon: Icon(
@@ -366,7 +363,7 @@ class RiderProfileHomeScreenWidget extends GetxController {
                       ProfileItemWidget(
                         title: "Settings",
                         icon: Image.asset(
-                          AppImages.settingIcon,
+                          ImageUtils.settingIcon,
                           scale: 5,
                         ),
                         navigateIcon: Icon(
@@ -384,7 +381,7 @@ class RiderProfileHomeScreenWidget extends GetxController {
                         widget: CustomSpaceWidget.spacerWidget(),
                         title: "Logout",
                         icon: Image.asset(
-                          AppImages.logout,
+                          ImageUtils.logout,
                           scale: 4,
                         ),
                         onTap: () {

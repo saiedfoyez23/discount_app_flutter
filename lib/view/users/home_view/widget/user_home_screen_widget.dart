@@ -32,9 +32,9 @@ class UserHomeScreenWidget extends GetxController {
   }
 
   final RxList<String> imageList = [
-    AppImages.sliderImg, // Replace with actual asset paths or URLs
-    AppImages.sliderImg,
-    AppImages.sliderImg,
+    ImageUtils.sliderImg, // Replace with actual asset paths or URLs
+    ImageUtils.sliderImg,
+    ImageUtils.sliderImg,
   ].obs;
 
   Rx<PageController> pageController = PageController(initialPage: 0).obs; // Start at the first page
@@ -166,7 +166,7 @@ class UserHomeScreenWidget extends GetxController {
       decoration: BoxDecoration(
         color: Colors.white,
         image: DecorationImage(
-          image: AssetImage(AppImages.homeBg),
+          image: AssetImage(ImageUtils.homeBg),
           alignment: Alignment.topRight,
           opacity: 0.5,
         ),
@@ -209,7 +209,7 @@ class UserHomeScreenWidget extends GetxController {
                                       shape: BoxShape.circle,
                                       color: Colors.lightBlueAccent,
                                       image: DecorationImage(
-                                        image: AssetImage(AppImages.homeProfileAvatar),
+                                        image: AssetImage(ImageUtils.homeProfileAvatar),
                                         fit: BoxFit.fitHeight,
                                       )
                                     ),
@@ -522,7 +522,7 @@ class UserHomeScreenWidget extends GetxController {
                                           width: double.infinity,
                                           decoration: BoxDecoration(
                                             image: DecorationImage(
-                                              image: AssetImage(AppImages.carousel1),
+                                              image: AssetImage(ImageUtils.carousel1),
                                               fit: BoxFit.fill,
                                             ),
                                             borderRadius: BorderRadius.vertical(top: Radius.circular(15.r(context))),
@@ -542,7 +542,7 @@ class UserHomeScreenWidget extends GetxController {
                                                 width: double.infinity,
                                                 decoration: BoxDecoration(
                                                   image: DecorationImage(
-                                                    image: AssetImage(AppImages.carousel1),
+                                                    image: AssetImage(ImageUtils.carousel1),
                                                     fit: BoxFit.fill,
                                                   ),
                                                   borderRadius: BorderRadius.vertical(top: Radius.circular(15.r(context))),
@@ -798,7 +798,7 @@ class UserHomeScreenWidget extends GetxController {
                                               width: 90.w(context),
                                               decoration: BoxDecoration(
                                                 image: DecorationImage(
-                                                  image: AssetImage(AppImages.carousel1),
+                                                  image: AssetImage(ImageUtils.carousel1),
                                                   fit: BoxFit.fill,
                                                 ),
                                                 borderRadius: BorderRadius.circular(5.r(context)),

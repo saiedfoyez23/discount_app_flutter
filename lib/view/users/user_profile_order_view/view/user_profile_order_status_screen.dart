@@ -7,6 +7,8 @@ import 'package:discount_me_app/view/users/profile_view/widget/order_canceled_wi
 import 'package:discount_me_app/view/users/profile_view/widget/order_delivered_widget.dart';
 import 'package:discount_me_app/view/users/profile_view/widget/order_ongoing_widget.dart';
 import 'package:discount_me_app/utils/utils.dart';
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 class UserProfileOrderStatusScreen extends StatefulWidget {
   @override
   _UserProfileOrderStatusScreenState createState() => _UserProfileOrderStatusScreenState();
@@ -38,7 +40,7 @@ class _UserProfileOrderStatusScreenState extends State<UserProfileOrderStatusScr
       decoration: BoxDecoration(
         color: Colors.white,
         image: DecorationImage(
-            image: AssetImage(AppImages.homeBg),
+            image: AssetImage(ImageUtils.homeBg),
             alignment: Alignment.topRight,
             opacity: 0.5),
       ),

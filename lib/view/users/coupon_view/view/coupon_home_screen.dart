@@ -1,7 +1,6 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
-
 import 'package:discount_me_app/res/app_const/import_list.dart';
-import 'package:discount_me_app/view/users/coupon_view/view/payment_method_screen.dart';
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:discount_me_app/utils/utils.dart';
 
@@ -18,7 +17,7 @@ class CouponHomeScreen extends StatelessWidget {
       decoration: BoxDecoration(
         color: Colors.white,
         image: DecorationImage(
-            image: AssetImage(AppImages.homeBg),
+            image: AssetImage(ImageUtils.homeBg),
             alignment: Alignment.topRight,
             opacity: 0.5),
       ),
@@ -48,7 +47,7 @@ class CouponHomeScreen extends StatelessWidget {
                         child: Stack(
                           children: [
                             Image.asset(
-                              AppImages.couponBg, // Replace with your image path
+                              ImageUtils.couponBg, // Replace with your image path
                               scale: 4,
                             ),
                             Positioned.fill(

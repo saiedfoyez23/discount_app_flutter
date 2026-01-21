@@ -4,6 +4,8 @@ import 'package:discount_me_app/res/app_const/import_list.dart';
 import 'package:discount_me_app/res/common_widget/custom_card_number_input_formatter_widget.dart';
 import 'package:discount_me_app/view/riders/payment_view/rider_transaction_success_screen.dart';
 import 'package:discount_me_app/view/vendors/vendor_subscription_view/view/vendor_transaction_success_screen.dart';
+import 'package:flutter/material.dart';
+import 'package:discount_me_app/utils/utils.dart';
 
 class VendorCardInformationScreen extends StatefulWidget {
   const VendorCardInformationScreen({super.key});
@@ -32,7 +34,7 @@ class _VendorCardInformationScreenState extends State<VendorCardInformationScree
       decoration: BoxDecoration(
         color: Colors.white,
         image: DecorationImage(
-          image: AssetImage(AppImages.homeBg),
+          image: AssetImage(ImageUtils.homeBg),
           alignment: Alignment.topRight,
           opacity: 0.5,
         ),
@@ -41,13 +43,13 @@ class _VendorCardInformationScreenState extends State<VendorCardInformationScree
         backgroundColor: Colors.transparent,
         // Add the continue button in the bottom navigation bar
         bottomNavigationBar: Container(
-          margin: EdgeInsets.only(bottom: 15.h, left: 15.w, right: 15.w),
+          margin: EdgeInsets.only(bottom: 15.h(context), left: 15.w(context), right: 15.w(context)),
           child: SizedBox(
             width: width,
-            height: 60.h,
+            height: 60.h(context),
             child: Roundbutton(
-              buttonColor: AppColors.primaryColor,
-              padding_vertical: 15.h,
+              buttonColor: ColorUtils.primaryColor,
+              padding_vertical: 15.h(context),
               borderRadius: 8,
               title: "Continue",
               onTap: () {
@@ -72,18 +74,18 @@ class _VendorCardInformationScreenState extends State<VendorCardInformationScree
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      SizedBox(height: 8.h),
+                      SizedBox(height: 8.h(context)),
                       // Account Name Input
                       TextField(
                         decoration: InputDecoration(
                           labelText: 'Account Name',
                           border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(8.r),
+                            borderRadius: BorderRadius.circular(8.r(context)),
                             borderSide: BorderSide(color: Colors.grey, width: 1.5),
                           ),
                         ),
                       ),
-                      SizedBox(height: 16.h),
+                      SizedBox(height: 16.h(context)),
 
                       // Card Number Input
                       TextField(
@@ -91,7 +93,7 @@ class _VendorCardInformationScreenState extends State<VendorCardInformationScree
                         decoration: InputDecoration(
                           labelText: 'Card Number',
                           border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(8.r),
+                            borderRadius: BorderRadius.circular(8.r(context)),
                             borderSide: BorderSide(color: Colors.grey, width: 1.5),
                           ),
                           suffixIcon: IconButton(
@@ -109,7 +111,7 @@ class _VendorCardInformationScreenState extends State<VendorCardInformationScree
                           CustomCardNumberInputFormatterWidget(),
                         ],
                       ),
-                      SizedBox(height: 16.h),
+                      SizedBox(height: 16.h(context)),
                       // Exp Date and CVV Row
                       Row(
                         children: [
@@ -122,7 +124,7 @@ class _VendorCardInformationScreenState extends State<VendorCardInformationScree
                                   decoration: InputDecoration(
                                     labelText: 'Exp Date',
                                     border: OutlineInputBorder(
-                                      borderRadius: BorderRadius.circular(8.r),
+                                      borderRadius: BorderRadius.circular(8.r(context)),
                                       borderSide: BorderSide(color: Colors.grey, width: 1.5),
                                     ),
                                   ),
@@ -131,7 +133,7 @@ class _VendorCardInformationScreenState extends State<VendorCardInformationScree
                               ],
                             ),
                           ),
-                          SizedBox(width: 16.w),
+                          SizedBox(width: 16.w(context)),
                           // CVV
                           Expanded(
                             child: Column(
@@ -141,7 +143,7 @@ class _VendorCardInformationScreenState extends State<VendorCardInformationScree
                                   decoration: InputDecoration(
                                     labelText: 'CVV',
                                     border: OutlineInputBorder(
-                                      borderRadius: BorderRadius.circular(8.r),
+                                      borderRadius: BorderRadius.circular(8.r(context)),
                                       borderSide: BorderSide(color: Colors.grey, width: 1.5),
                                     ),
                                   ),

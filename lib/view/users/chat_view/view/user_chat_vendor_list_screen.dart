@@ -5,6 +5,8 @@ import 'package:discount_me_app/res/common_widget/RoundTextField.dart';
 import 'package:discount_me_app/res/common_widget/custom_app_bar.dart';
 import 'package:discount_me_app/utils/utils.dart';
 import 'package:discount_me_app/view/users/chat_view/view/user_chat_screen.dart';
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class UserChatVendorListScreen extends StatefulWidget {
@@ -27,7 +29,7 @@ class _UserChatVendorListScreenState extends State<UserChatVendorListScreen> {
       decoration: BoxDecoration(
         color: Colors.white,
         image: DecorationImage(
-            image: AssetImage(AppImages.homeBg),
+            image: AssetImage(ImageUtils.homeBg),
             alignment: Alignment.topRight,
             opacity: 0.5),
       ),
@@ -65,7 +67,7 @@ class _UserChatVendorListScreenState extends State<UserChatVendorListScreen> {
                       return Container(
                           margin: EdgeInsets.only(bottom: 10),
                           child: _userWidget(
-                            userImage: AppImages.profileImage,
+                            userImage: ImageUtils.profileImage,
                             userName: "Vendor",
                             lastMsg: "Worem consectetur adipiscing elit.",
                             time: "12.50",

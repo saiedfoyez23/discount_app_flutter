@@ -35,7 +35,7 @@ class SingleStoreViewScreen extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Image.asset(AppImages.supportChatIcon, scale: 4,),
+              Image.asset(ImageUtils.supportChatIcon, scale: 4,),
               SizedBox(height: 5.h(context),),
               CustomTextContainer.plainTextContainerWidgetWithoutHeightWidth(
                 plainTextString: "support",

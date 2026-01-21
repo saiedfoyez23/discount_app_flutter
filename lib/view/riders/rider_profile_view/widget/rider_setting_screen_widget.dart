@@ -1,15 +1,11 @@
 import 'package:discount_me_app/res/res.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:skeletonizer/skeletonizer.dart';
-
-import '../../../../res/common_widget/custom_alert_dialog.dart';
-import '../../../users/profile_view/widget/user_profile_appbar_widget.dart';
+import 'package:discount_me_app/utils/utils.dart';
 import '../../../view.dart';
 
 class RiderSettingScreenWidget extends GetxController {
-
 
   RxBool isLoading = false.obs;
   RxBool isSubmit = false.obs;
@@ -17,8 +13,6 @@ class RiderSettingScreenWidget extends GetxController {
   Rx<RiderProfileResponse> riderProfileResponse = RiderProfileResponse().obs;
   BuildContext context;
   RiderSettingScreenWidget({required this.context});
-
-
 
 
   @override
@@ -59,7 +53,7 @@ class RiderSettingScreenWidget extends GetxController {
         decoration: BoxDecoration(
           color: Colors.white,
           image: DecorationImage(
-            image: AssetImage(AppImages.homeBg),
+            image: AssetImage(ImageUtils.homeBg),
             alignment: Alignment.topRight,
             opacity: 0.5,
           ),
@@ -96,7 +90,7 @@ class RiderSettingScreenWidget extends GetxController {
                         horizontal: 15.hpm(context),
                       ),
                       decoration: BoxDecoration(
-                        color: AppColors.greenLight,
+                        color: ColorUtils.greenLight,
                         borderRadius: BorderRadius.circular(4.r(context)),
                       ),
                       child: TextButton(
@@ -146,7 +140,7 @@ class RiderSettingScreenWidget extends GetxController {
                         horizontal: 15.hpm(context),
                       ),
                       decoration: BoxDecoration(
-                        color: AppColors.greenLight,
+                        color: ColorUtils.greenLight,
                         borderRadius: BorderRadius.circular(4.r(context)),
                       ),
                       child: TextButton(
@@ -229,7 +223,7 @@ class RiderSettingScreenWidget extends GetxController {
                                                 color: Colors.transparent
                                             ),
                                             child: const Center(
-                                              child: CircularProgressIndicator(color: AppColors.green176,),
+                                              child: CircularProgressIndicator(color: ColorUtils.green176,),
                                             ),
                                           ) :
                                           ElevatedButton(

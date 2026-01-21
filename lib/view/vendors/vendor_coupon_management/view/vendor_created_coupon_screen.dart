@@ -1,9 +1,10 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
-
 import 'package:discount_me_app/res/app_const/import_list.dart';
-import 'package:discount_me_app/view/users/coupon_view/view/payment_method_screen.dart';
-
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'vendor_edit_coupon_screen.dart';
+import 'package:discount_me_app/utils/utils.dart';
+
 
 class VendorCreatedCouponScreen extends StatelessWidget {
   const VendorCreatedCouponScreen({super.key});
@@ -18,7 +19,7 @@ class VendorCreatedCouponScreen extends StatelessWidget {
       decoration: BoxDecoration(
         color: Colors.white,
         image: DecorationImage(
-            image: AssetImage(AppImages.homeBg),
+            image: AssetImage(ImageUtils.homeBg),
             alignment: Alignment.topRight,
             opacity: 0.5),
       ),
@@ -48,7 +49,7 @@ class VendorCreatedCouponScreen extends StatelessWidget {
                               child: Align(
                                 alignment: Alignment.center,
                                 child: Image.asset(
-                                  AppImages.discountMeLogo,
+                                  ImageUtils.discountMeLogo,
                                   scale: 10,
                                 ),
                               ),
@@ -65,7 +66,7 @@ class VendorCreatedCouponScreen extends StatelessWidget {
                           color: Colors.lightBlueAccent,
                         ),
                         child: Image.asset(
-                          AppImages.homeProfileAvatar,
+                          ImageUtils.homeProfileAvatar,
                           scale: 4,
                           fit: BoxFit.cover,
                         ),
@@ -73,22 +74,18 @@ class VendorCreatedCouponScreen extends StatelessWidget {
                     ],
                   ),
 
-                  SizedBox(height: 20.h),
+                  SizedBox(height: 20.h(context)),
                   Roundbutton(
                       title: "Create Coupon Card",
-                      buttonColor: AppColors.secondaryColor,
+                      buttonColor: ColorUtils.secondaryColor,
                       titleColor: Colors.white,
-                      borderRadius: 8.r,
+                      borderRadius: 8.r(context),
                       onTap: () {
-                        Get.to(
-                                () => VendorEditCouponScreen(),
-                            transition: Transition.rightToLeft,
-                          duration: Duration(milliseconds: 500),
-                        );
+                        Get.to(() => VendorEditCouponScreen(), transition: Transition.rightToLeft, duration: Duration(milliseconds: 500),);
                       },
                   ),
 
-                  SizedBox(height: 20.h),
+                  SizedBox(height: 20.h(context)),
                   ListView.builder(
                     itemCount: 3,
                     shrinkWrap: true,
@@ -102,7 +99,7 @@ class VendorCreatedCouponScreen extends StatelessWidget {
                           child: Stack(
                             children: [
                               Image.asset(
-                                AppImages.couponBg, // Replace with your image path
+                                ImageUtils.couponBg, // Replace with your image path
                                 scale: 4,
                               ),
                               Positioned.fill(
@@ -111,7 +108,7 @@ class VendorCreatedCouponScreen extends StatelessWidget {
                                   children: [
                                     // Price Section
                                     Padding(
-                                      padding: EdgeInsets.only(left: 40.w), // Responsive padding using ScreenUtil
+                                      padding: EdgeInsets.only(left: 40.w(context)), // Responsive padding using ScreenUtil
                                       child: Column(
                                         mainAxisAlignment: MainAxisAlignment.center,
                                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -120,7 +117,7 @@ class VendorCreatedCouponScreen extends StatelessWidget {
                                             'Price',
                                             style: GoogleFonts.urbanist(
                                               color: Colors.green,
-                                              fontSize: 24.sp,
+                                              fontSize: 24.sp(context),
                                               fontWeight: FontWeight.w700,
                                             ),
                                           ),
@@ -128,7 +125,7 @@ class VendorCreatedCouponScreen extends StatelessWidget {
                                             '\$10.99',
                                             style: GoogleFonts.urbanist(
                                               color: Colors.orange,
-                                              fontSize: 24.sp,
+                                              fontSize: 24.sp(context),
                                               fontWeight: FontWeight.w700,
                                             ),
                                           ),
@@ -138,7 +135,7 @@ class VendorCreatedCouponScreen extends StatelessWidget {
 
                                     // Discount Info Section
                                     Padding(
-                                      padding: EdgeInsets.only(right: 40.w), // Responsive padding using ScreenUtil
+                                      padding: EdgeInsets.only(right: 40.w(context)), // Responsive padding using ScreenUtil
                                       child: Column(
                                         mainAxisAlignment: MainAxisAlignment.center,
                                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -147,7 +144,7 @@ class VendorCreatedCouponScreen extends StatelessWidget {
                                             'Single Discount',
                                             style: GoogleFonts.urbanist(
                                               color: Colors.black,
-                                              fontSize: 20.sp, // Responsive font size using ScreenUtil
+                                              fontSize: 20.sp(context), // Responsive font size using ScreenUtil
                                               fontWeight: FontWeight.w700,
                                             ),
                                           ),
@@ -155,9 +152,9 @@ class VendorCreatedCouponScreen extends StatelessWidget {
                                           Text(
                                             'Customer takes 6 discount',
                                             style: GoogleFonts.urbanist(
-                                              color: AppColors.whiteNormalActive,
+                                              color: ColorUtils.whiteNormalActive,
                                               fontWeight: FontWeight.w400,
-                                              fontSize: 12.sp, // Responsive font size using ScreenUtil
+                                              fontSize: 12.sp(context), // Responsive font size using ScreenUtil
                                             ),
                                           ),
                                         ],

@@ -1,16 +1,13 @@
 import 'dart:async';
-import 'dart:math';
-
+import 'package:discount_me_app/utils/utils.dart';
 import 'package:discount_me_app/res/res.dart';
 import 'package:discount_me_app/view/view.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
-
 import '../../../../res/common_widget/RoundButton.dart';
 import '../../vendor_earning_view/view/vendor_earning_home_screen.dart';
 import '../../vendor_subscription_view/view/vendor_subscription_home_screen.dart';
@@ -197,7 +194,7 @@ class VendorHomeScreenWidget extends GetxController {
                                     plainTextStringFontSize: 16.sp(context),
                                     plainTextStringFontWeight: FontWeight.w600,
                                     plainTextContainerAlignment: Alignment.centerLeft,
-                                    plainTextStringColor: AppColors.blackColor,
+                                    plainTextStringColor: ColorUtils.blackColor,
                                     plainTextStringTextAlign: TextAlign.start,
                                   ),
                                 ),
@@ -215,7 +212,7 @@ class VendorHomeScreenWidget extends GetxController {
                             ),
                             child: IconButton(
                               onPressed: () async {},
-                              icon: Icon(Icons.notifications,color: AppColors.primaryColor,),
+                              icon: Icon(Icons.notifications,color: ColorUtils.primaryColor,),
                               iconSize: 32.r(context),
                             ),
                           ),
@@ -279,7 +276,7 @@ class VendorHomeScreenWidget extends GetxController {
                                   plainTextStringFontSize: 20.sp(context),
                                   plainTextStringFontWeight: FontWeight.w700,
                                   plainTextContainerAlignment: Alignment.centerLeft,
-                                  plainTextStringColor: AppColors.black29,
+                                  plainTextStringColor: ColorUtils.black29,
                                   plainTextStringTextAlign: TextAlign.start,
                                 ),
                               ],
@@ -318,7 +315,7 @@ class VendorHomeScreenWidget extends GetxController {
                                     plainTextStringFontSize: 18.sp(context),
                                     plainTextStringFontWeight: FontWeight.w600,
                                     plainTextContainerAlignment: Alignment.center,
-                                    plainTextStringColor: AppColors.black29,
+                                    plainTextStringColor: ColorUtils.black29,
                                     plainTextStringTextAlign: TextAlign.start,
                                   ),
                                 ],
@@ -344,7 +341,7 @@ class VendorHomeScreenWidget extends GetxController {
                                     plainTextStringFontSize: 12.sp(context),
                                     plainTextStringFontWeight: FontWeight.w600,
                                     plainTextContainerAlignment: Alignment.center,
-                                    plainTextStringColor: AppColors.primaryColor,
+                                    plainTextStringColor: ColorUtils.primaryColor,
                                     plainTextStringTextAlign: TextAlign.start,
                                   ),
                                 ),
@@ -370,7 +367,7 @@ class VendorHomeScreenWidget extends GetxController {
                         children: [
 
                           _itemWidget(
-                            img: AppImages.itemAddBg,
+                            img: ImageUtils.itemAddBg,
                             title: "Items Add",
                             context: context,
                             onTap: () {
@@ -378,7 +375,7 @@ class VendorHomeScreenWidget extends GetxController {
                             },),
 
                           _itemWidget(
-                            img: AppImages.orderManageBg,
+                            img: ImageUtils.orderManageBg,
                             title: "Order Manage",
                             context: context,
                             onTap: () {
@@ -386,7 +383,7 @@ class VendorHomeScreenWidget extends GetxController {
                             },),
 
                           _itemWidget(
-                            img: AppImages.subscriptionBg,
+                            img: ImageUtils.subscriptionBg,
                             title: "Subscription",
                             context: context,
                             onTap: () {
@@ -394,7 +391,7 @@ class VendorHomeScreenWidget extends GetxController {
                             },),
 
                           _itemWidget(
-                            img: AppImages.paymentRevBg,
+                            img: ImageUtils.paymentRevBg,
                             title: "Payment & Revenue",
                             context: context,
                             onTap: () {
@@ -470,7 +467,7 @@ Widget _itemWidget({required String img, required String title, required VoidCal
         ),
         Roundbutton(
           title: title,
-          buttonColor: AppColors.secondaryColor,
+          buttonColor: ColorUtils.secondaryColor,
           borderRadius: 5.r(context),
           fontSize: 16.sp(context),
           titleColor: Colors.white,

@@ -24,7 +24,7 @@ class OrderDeliveredWidget extends StatelessWidget {
           children: [
             // Image of the food item
             Image.asset(
-              AppImages.orderItemBg, scale: 4,
+              ImageUtils.orderItemBg, scale: 4,
               fit: BoxFit.cover,
             ),
             SizedBox(width: 12),

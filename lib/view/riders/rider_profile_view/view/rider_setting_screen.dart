@@ -1,11 +1,9 @@
-// ignore_for_file: prefer_const_constructors
-
-import 'package:discount_me_app/res/app_const/import_list.dart';
-import 'package:discount_me_app/view/riders/rider_profile_view/view/rider_change_password_screen.dart';
 import 'package:discount_me_app/view/view.dart';
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class RiderSettingScreen extends StatelessWidget {
-  RiderSettingScreen({super.key});
+  const RiderSettingScreen({super.key});
 
 
   @override

@@ -5,7 +5,7 @@ import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:skeletonizer/skeletonizer.dart';
-
+import 'package:discount_me_app/utils/utils.dart';
 import '../../../../res/common_widget/RoundTextField.dart';
 import '../../../../res/common_widget/custom_text.dart';
 import '../../../users/profile_view/widget/user_profile_appbar_widget.dart';
@@ -94,7 +94,7 @@ class VendorAddItemScreenWidget extends GetxController {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         CustomText(title: "Upload Food Image",
-                          color: AppColors.blackColor,
+                          color: ColorUtils.blackColor,
                           fontSize: 16.sp(context),
                           fontWeight: FontWeight.w600,
                         ),
@@ -140,7 +140,7 @@ class VendorAddItemScreenWidget extends GetxController {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         CustomText(title: "Item Name",
-                          color: AppColors.blackColor,
+                          color: ColorUtils.blackColor,
                           fontSize: 16.sp(context),
                           fontWeight: FontWeight.w600,
                         ),
@@ -156,7 +156,7 @@ class VendorAddItemScreenWidget extends GetxController {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         CustomText(title: "Item Details",
-                          color: AppColors.blackColor,
+                          color: ColorUtils.blackColor,
                           fontSize: 16.sp(context),
                           fontWeight: FontWeight.w600,
                         ),
@@ -172,7 +172,7 @@ class VendorAddItemScreenWidget extends GetxController {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         CustomText(title: "Select Items Category",
-                          color: AppColors.blackColor,
+                          color: ColorUtils.blackColor,
                           fontSize: 16.sp(context),
                           fontWeight: FontWeight.w600,
                         ),
@@ -223,7 +223,7 @@ class VendorAddItemScreenWidget extends GetxController {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         CustomText(title: "Item Price",
-                          color: AppColors.blackColor,
+                          color: ColorUtils.blackColor,
                           fontSize: 16.sp(context),
                           fontWeight: FontWeight.w600,
                         ),
@@ -240,7 +240,7 @@ class VendorAddItemScreenWidget extends GetxController {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         CustomText(title: "Item Quantity",
-                          color: AppColors.blackColor,
+                          color: ColorUtils.blackColor,
                           fontSize: 16.sp(context),
                           fontWeight: FontWeight.w600,
                         ),
@@ -264,14 +264,14 @@ class VendorAddItemScreenWidget extends GetxController {
                           color: Colors.transparent
                       ),
                       child: const Center(
-                        child: CircularProgressIndicator(color: AppColors.black29,),
+                        child: CircularProgressIndicator(color: ColorUtils.black29,),
                       ),
                     ) :
                     Container(
                       height: 65.h(context),
                       width: 428.w(context),
                       decoration: BoxDecoration(
-                        color: AppColors.green176,
+                        color: ColorUtils.green176,
                         borderRadius: BorderRadius.circular(12.r(context)),
                       ),
                       child: TextButton(
@@ -321,7 +321,7 @@ class VendorAddItemScreenWidget extends GetxController {
                           plainTextStringFontSize: 22.sp(context),
                           plainTextStringFontWeight: FontWeight.w700,
                           plainTextContainerAlignment: Alignment.center,
-                          plainTextStringColor: AppColors.white246,
+                          plainTextStringColor: ColorUtils.white246,
                           plainTextStringTextAlign: TextAlign.center,
                         ),
                       ),

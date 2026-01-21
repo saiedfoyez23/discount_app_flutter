@@ -1,7 +1,7 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, sized_box_for_whitespace
-
 import 'package:discount_me_app/res/app_const/import_list.dart';
 import 'package:discount_me_app/utils/utils.dart';
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class UserChatScreen extends StatefulWidget {
@@ -57,7 +57,7 @@ class _UserChatScreenState extends State<UserChatScreen> {
       decoration: BoxDecoration(
         color: Colors.white,
         image: DecorationImage(
-          image: AssetImage(AppImages.homeBg),
+          image: AssetImage(ImageUtils.homeBg),
           alignment: Alignment.topRight,
           opacity: 0.5,
         ),
@@ -82,7 +82,7 @@ class _UserChatScreenState extends State<UserChatScreen> {
                         ClipRRect(
                           borderRadius: BorderRadius.circular(50.r(context)),
                           child: Image.asset(
-                            AppImages.profileImage,
+                            ImageUtils.profileImage,
                             width: 50.w(context),
                             height: 50.h(context),
                             fit: BoxFit.cover,
@@ -168,7 +168,7 @@ class _UserChatScreenState extends State<UserChatScreen> {
                                     children: [
                                       isSentByMe
                                           ? Image.asset(
-                                        AppImages.sendIcon,
+                                        ImageUtils.sendIcon,
                                         scale: 4,
                                       )
                                           : SizedBox(),
@@ -209,7 +209,7 @@ class _UserChatScreenState extends State<UserChatScreen> {
                           PickerDialog().showImagePickerDialog(context);
                         },
                         icon: Image.asset(
-                          AppImages.fileAttachmentIcon,
+                          ImageUtils.fileAttachmentIcon,
                           scale: 4,
                         ),
                       ),
@@ -222,7 +222,7 @@ class _UserChatScreenState extends State<UserChatScreen> {
                           suffixIcon: Padding(
                             padding: EdgeInsets.only(right: 5),
                             child: Image.asset(
-                              AppImages.msgSendIcon,
+                              ImageUtils.msgSendIcon,
                               scale: 3.5,
                             ),
                           ),
