@@ -83,6 +83,8 @@ class UserHomeScreenWidget extends GetxController {
 
 
   RxBool isLoading = false.obs;
+  RxString selectProductId = "".obs;
+  RxBool isAdd = false.obs;
   Rx<CategoriesResponseModel> categoriesResponseModel = CategoriesResponseModel().obs;
   Rx<ProductsResponseModel> productsResponseModel = ProductsResponseModel().obs;
   Rx<StoresResponseModel> storesResponseModel = StoresResponseModel().obs;
@@ -660,14 +662,43 @@ class UserHomeScreenWidget extends GetxController {
                                 Positioned(
                                   top: 100.h(context),
                                   left: 10.w(context),
-                                  child: Container(
+                                  child: selectProductId.value == productsResponseModel.value.data?.data?[index].sId &&
+                                      isAdd.value == true ?
+                                  Center(
+                                    child: CircularProgressIndicator(color: ColorUtils.black29,),
+                                  ) :
+                                  Container(
                                     height: 40.h(context),
                                     decoration: BoxDecoration(
                                       color: ColorUtils.white246,
                                       borderRadius: BorderRadius.circular(12.r(context)),
                                     ),
                                     child: TextButton(
-                                      onPressed: () {},
+                                      onPressed: () async {
+                                        selectProductId.value = productsResponseModel.value.data?.data?[index].sId;
+                                        isAdd.value = true;
+                                        Map<String,dynamic> data = {
+                                          "product": productsResponseModel.value.data?.data?[index].sId,
+                                          "quantity": 1,
+                                        };
+                                        print(data);
+                                        await OrderController.addProductToCartResponse(
+                                            data: data,
+                                            onSuccess: (e) async {
+                                              isAdd.value = false;
+                                              Get.off(()=>OrderScreen(),preventDuplicates: false,duration: Duration(milliseconds: 100));
+                                              CustomSnackBar().successCustomSnackBar(context: context, message: "${e}");
+                                            },
+                                            onFail: (e) {
+                                              isAdd.value = false;
+                                              CustomSnackBar().errorCustomSnackBar(context: context, message: "${e}");
+                                            },
+                                            onExceptionFail: (e) {
+                                              isAdd.value = false;
+                                              CustomSnackBar().errorCustomSnackBar(context: context, message: "${e}");
+                                            }
+                                        );
+                                      },
                                       child: CustomTextContainer.plainTextContainerWidgetWithoutHeightWidth(
                                         plainTextString: "Add To Cart",
                                         plainTextStringFontSize: 12.sp(context),

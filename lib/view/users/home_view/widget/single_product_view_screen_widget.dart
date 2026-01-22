@@ -1,8 +1,5 @@
 import 'dart:async';
-import 'package:discount_me_app/view/users/home_view/widget/carousel_slider_widget.dart';
-import 'package:discount_me_app/view/users/home_view/widget/home_resturant_app_bar.dart';
 import 'package:discount_me_app/view/view.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:skeletonizer/skeletonizer.dart';
@@ -10,7 +7,6 @@ import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import '../../../../res/res.dart';
 import 'package:discount_me_app/utils/utils.dart';
 import '../../profile_view/view/user_notification_screen.dart';
-import '../view/order_screen.dart';
 
 class SingleProductViewScreenWidget extends GetxController {
 
@@ -423,7 +419,6 @@ class SingleProductViewScreenWidget extends GetxController {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Container(
-                          height: 90.h(context),
                           width: 90.w(context),
                           padding: EdgeInsets.symmetric(
                             horizontal: 10.hpm(context),
@@ -494,16 +489,16 @@ class SingleProductViewScreenWidget extends GetxController {
                           await OrderController.addProductToCartResponse(
                               data: data,
                               onSuccess: (e) async {
-                                isAdd.value = true;
+                                isAdd.value = false;
                                 Get.off(()=>OrderScreen(),preventDuplicates: false,duration: Duration(milliseconds: 100));
                                 CustomSnackBar().successCustomSnackBar(context: context, message: "${e}");
                               },
                               onFail: (e) {
-                                isAdd.value = true;
+                                isAdd.value = false;
                                 CustomSnackBar().errorCustomSnackBar(context: context, message: "${e}");
                               },
                               onExceptionFail: (e) {
-                                isAdd.value = true;
+                                isAdd.value = false;
                                 CustomSnackBar().errorCustomSnackBar(context: context, message: "${e}");
                               }
                           );

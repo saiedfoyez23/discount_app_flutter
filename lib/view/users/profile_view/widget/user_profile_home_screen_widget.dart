@@ -1,12 +1,7 @@
 import 'dart:io';
-
 import 'package:discount_me_app/res/common_widget/custom_alert_dialog.dart';
 import 'package:discount_me_app/view/users/chat_view/view/user_chat_vendor_list_screen.dart';
-import 'package:discount_me_app/view/users/home_view/view/order_screen.dart';
 import 'package:discount_me_app/view/users/profile_view/view/user_notification_screen.dart';
-import 'package:discount_me_app/view/users/profile_view/view/user_profile_edit_screen.dart';
-import 'package:discount_me_app/view/users/profile_view/view/user_profile_setting_screen.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
@@ -18,15 +13,12 @@ import '../../user_profile_order_view/view/user_profile_order_status_screen.dart
 
 class UserProfileHomeScreenWidget extends GetxController {
 
-
   RxBool isLoading = false.obs;
 
   Rx<UserProfileResponseModel> userProfileResponseModel = UserProfileResponseModel().obs;
   BuildContext context;
   Rx<TextEditingController> nameControllerText = TextEditingController().obs;
   UserProfileHomeScreenWidget({required this.context});
-
-
 
 
   @override
@@ -336,7 +328,7 @@ class UserProfileHomeScreenWidget extends GetxController {
                         icon: Image.asset(ImageUtils.shoppingCardIcon, scale: 5,),
                         navigateIcon: Icon(Icons.navigate_next,size: 24.r(context), color: Colors.black54,),
                         onTap: () {
-                          Get.to(OrderScreen());
+                          Get.off(OrderScreen(),preventDuplicates: false,duration: Duration(milliseconds: 100));
                         },
                       ),
 

@@ -266,7 +266,8 @@ class OrderScreenWidget extends GetxController {
                             ),
                             child: Row(
                               children: [
-                                getAllProductCartResponse.value.data?.carts?[index].product?.images?.isEmpty == true ?
+                                getAllProductCartResponse.value.data?.carts?[index].product?.images?.isEmpty == true ||
+                                    getAllProductCartResponse.value.data?.carts?[index].product?.images == null ?
                                 Container(
                                   height: 120.h(context),
                                   width: 100.w(context),
