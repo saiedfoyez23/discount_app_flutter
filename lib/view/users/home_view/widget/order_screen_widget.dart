@@ -1,4 +1,5 @@
 import 'package:discount_me_app/res/common_widget/custom_text.dart';
+import 'package:discount_me_app/view/users/home_view/view/order_select_address_view.dart';
 import 'package:discount_me_app/view/view.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -699,7 +700,8 @@ class OrderScreenWidget extends GetxController {
                               borderRadius: 8.r(context),
                               buttonColor: ColorUtils.whiteColor,
                               onTap: () {
-                                Get.to(OrderCompleteScreen());
+                                Get.off(()=>OrderSelectAddressView(),duration: const Duration(milliseconds: 100),preventDuplicates: false);
+                                //Get.to(OrderCompleteScreen());
                               },
                             ),
                           ),

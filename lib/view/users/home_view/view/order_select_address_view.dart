@@ -1,0 +1,72 @@
+import 'package:discount_me_app/view/users/home_view/controller/order_select_address_controller.dart';
+import 'package:discount_me_app/view/users/home_view/view/order_screen.dart';
+import 'package:discount_me_app/view/users/profile_view/widget/user_profile_appbar_widget.dart';
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:discount_me_app/utils/utils.dart';
+import 'package:skeletonizer/skeletonizer.dart';
+
+import '../../../../res/res.dart';
+
+class OrderSelectAddressView extends StatelessWidget {
+  OrderSelectAddressView({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    final OrderSelectAddressController orderSelectAddressController = Get.put(OrderSelectAddressController(context: context));
+    return PopScope(
+      canPop: false,
+      onPopInvokedWithResult: (canPop,onOpoInvoked) {
+        Get.off(()=>OrderScreen(),duration: const Duration(milliseconds: 100),preventDuplicates: false);
+      },
+      child: Scaffold(
+        body: Container(
+          decoration: BoxDecoration(
+            color: Colors.white,
+            image: DecorationImage(
+              image: AssetImage(ImageUtils.homeBg),
+              alignment: Alignment.topRight,
+              opacity: 0.5,
+            ),
+          ),
+          child: Obx(()=>Skeletonizer(
+            effect: PulseEffect(),
+            enabled: orderSelectAddressController.isLoading.value,
+            child: CustomScrollView(
+              slivers: [
+
+
+                SliverToBoxAdapter(
+                  child: Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 16.hpm(context), vertical: 16.vpm(context)),
+                    child: Column(
+                      children: [
+
+                        CustomSpaceWidget.spacerWidget(spaceHeight: 40.h(context)),
+
+                        UserProfileAppbarWidget(
+                          title: "Order Billing Address",
+                          onTap: () {
+                            Get.off(()=>OrderScreen(),duration: const Duration(milliseconds: 100),preventDuplicates: false);
+                          },
+                        ),
+
+                        CustomSpaceWidget.spacerWidget(spaceHeight: 50.h(context)),
+
+
+                      ],
+                    ),
+                  ),
+                )
+
+
+
+
+              ],
+            ),
+          )),
+        ),
+      ),
+    );
+  }
+}
