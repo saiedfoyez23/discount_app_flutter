@@ -4,17 +4,50 @@ import 'package:discount_me_app/view/authenticaion/view/sign_in_screen.dart';
 import 'package:discount_me_app/view/users/home_view/model/get_all_product_cart_response.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '';
 import '../../../../res/res.dart';
 class OrderSelectAddressController extends GetxController {
 
   Rx<GetAllProductCartResponse> getAllProductCartResponse = GetAllProductCartResponse().obs;
   RxBool isLoading = false.obs;
+  RxBool isSubmit = false.obs;
   RxDouble subTotal = 0.0.obs;
   RxDouble discount = 0.0.obs;
   RxDouble shippingFee = 0.0.obs;
   RxDouble total = 0.0.obs;
+
+  //Billing Address
+  Rx<TextEditingController> billingNameController = TextEditingController().obs;
+  Rx<TextEditingController> billingCompanyNameController = TextEditingController().obs;
+  Rx<TextEditingController> billingStreetAddressController = TextEditingController().obs;
+  Rx<TextEditingController> billingCountryController = TextEditingController().obs;
+  Rx<TextEditingController> billingStateController = TextEditingController().obs;
+  Rx<TextEditingController> billingCityController = TextEditingController().obs;
+  Rx<TextEditingController> billingZipCodeController = TextEditingController().obs;
+  Rx<TextEditingController> billingHouseNoController = TextEditingController().obs;
+  Rx<TextEditingController> billingEmailController = TextEditingController().obs;
+  Rx<TextEditingController> billingPhoneController = TextEditingController().obs;
+
+  //Shipping Address
+  Rx<TextEditingController> shippingNameController = TextEditingController().obs;
+  Rx<TextEditingController> shippingCompanyNameController = TextEditingController().obs;
+  Rx<TextEditingController> shippingStreetAddressController = TextEditingController().obs;
+  Rx<TextEditingController> shippingCountryController = TextEditingController().obs;
+  Rx<TextEditingController> shippingStateController = TextEditingController().obs;
+  Rx<TextEditingController> shippingCityController = TextEditingController().obs;
+  Rx<TextEditingController> shippingZipCodeController = TextEditingController().obs;
+  Rx<TextEditingController> shippingHouseNoController = TextEditingController().obs;
+  Rx<TextEditingController> shippingEmailController = TextEditingController().obs;
+  Rx<TextEditingController> shippingPhoneController = TextEditingController().obs;
+
   BuildContext context;
+
+
+  RxList<RadioValueClass> paymentType = <RadioValueClass>[
+    RadioValueClass(value: "cash on delivery",name: "Cash On Delivery"),
+    RadioValueClass(value: "stripe",name: "Stripe")
+  ].obs;
+
+  Rx<RadioValueClass> selectPaymentType = RadioValueClass(name: '', value: '').obs;
 
   OrderSelectAddressController({required this.context});
 
@@ -88,4 +121,12 @@ class OrderSelectAddressController extends GetxController {
 
 
 
+}
+
+
+class RadioValueClass {
+  String? name;
+  String? value;
+
+  RadioValueClass({required this.name,required this.value});
 }

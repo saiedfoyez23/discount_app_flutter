@@ -8,7 +8,6 @@ import 'package:discount_me_app/utils/utils.dart';
 import '../../../../res/common_widget/RoundButton.dart';
 import '../../../../res/res.dart';
 import '../../profile_view/view/user_notification_screen.dart';
-import '../view/order_complete_screen.dart';
 
 class OrderScreenWidget extends GetxController {
   
@@ -700,7 +699,11 @@ class OrderScreenWidget extends GetxController {
                               borderRadius: 8.r(context),
                               buttonColor: ColorUtils.whiteColor,
                               onTap: () {
-                                Get.off(()=>OrderSelectAddressView(),duration: const Duration(milliseconds: 100),preventDuplicates: false);
+                                if(getAllProductCartResponse.value.data?.carts?.isEmpty == true) {
+                                  CustomSnackBar().errorCustomSnackBar(context: context, message: "Please Add At least 1 Product to Cart");
+                                } else {
+                                  Get.off(()=>OrderSelectAddressView(),duration: const Duration(milliseconds: 100),preventDuplicates: false);
+                                }
                                 //Get.to(OrderCompleteScreen());
                               },
                             ),

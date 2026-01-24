@@ -162,12 +162,12 @@ class VendorHomeScreenWidget extends GetxController {
                       CustomSpaceWidget.spacerWidget(spaceHeight: 40.h(context)),
 
                       Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.center,
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           Expanded(
                             child: Row(
-                              mainAxisAlignment: MainAxisAlignment.start,
+                              mainAxisAlignment: MainAxisAlignment.center,
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
 
@@ -178,6 +178,7 @@ class VendorHomeScreenWidget extends GetxController {
                                     color: Colors.transparent,
                                   ),
                                   child: IconButton(
+                                    padding: EdgeInsets.zero,
                                     onPressed: () async {},
                                     icon: Icon(Icons.menu,color: Colors.black,),
                                     iconSize: 32.r(context),
@@ -187,7 +188,9 @@ class VendorHomeScreenWidget extends GetxController {
                                 CustomSpaceWidget.spacerWidget(spaceWidth: 20.w(context)),
 
                                 Icon(Icons.location_on, size: 32.r(context),),
+
                                 CustomSpaceWidget.spacerWidget(spaceWidth: 5.w(context)),
+
                                 Expanded(
                                   child: CustomTextContainer.plainTextContainerWidgetWithoutHeightWidth(
                                     plainTextString: vendorAddress.value,
@@ -211,6 +214,7 @@ class VendorHomeScreenWidget extends GetxController {
                               color: Colors.transparent,
                             ),
                             child: IconButton(
+                              padding: EdgeInsets.zero,
                               onPressed: () async {},
                               icon: Icon(Icons.notifications,color: ColorUtils.primaryColor,),
                               iconSize: 32.r(context),
