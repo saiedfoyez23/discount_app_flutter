@@ -1,116 +1,82 @@
 import 'dart:convert';
 import 'dart:io';
 import 'package:dio/dio.dart' as dio;
+import 'package:discount_me_app/view/riders/home_view/view/rider_home.dart';
+import 'package:discount_me_app/view/riders/rider_profile_view/model/rider_profile_response.dart';
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import '../../../../res/res.dart';
+import '../../../../utils/utils.dart';
 
-class RiderProfileEditController {
+class RiderProfileEditController extends GetxController {
 
+  Rx<File> imageFile = File("").obs;
+  Rx<File> documentFile = File("").obs;
+  RxBool isSubmit = false.obs;
+  RxBool isLoading = false.obs;
 
-  static Future<void> getRiderNameUpdateResponse({
-    required String riderId,
-    required String name,
-    required Function onSuccess,
-    required Function onFail,
-    required Function onExceptionFail
-  }) async {
-    try {
+  Rx<TextEditingController> firstNameController = TextEditingController().obs;
+  Rx<TextEditingController> lastNameController = TextEditingController().obs;
+  Rx<TextEditingController> emailController = TextEditingController().obs;
+  Rx<TextEditingController> locationController = TextEditingController().obs;
+  RxString image = "".obs;
+  RxString document = "".obs;
+  RxString contact = "".obs;
 
-      String accessToken = "";
-      await AppLocalStorage.getString(key: "Login").then((value) {
-        accessToken = jsonDecode(value!)["data"]["accessToken"];
-      });
-      print(accessToken);
+  Rx<RiderProfileResponse> riderProfileResponse = RiderProfileResponse().obs;
+  BuildContext context;
+  Rx<TextEditingController> nameControllerText = TextEditingController().obs;
+  RiderProfileEditController({required this.context});
 
-      Map<String,dynamic> data = {
-        "name": name,
-      };
-
-      print(jsonEncode(data));
-
-      dio.FormData formData = dio.FormData.fromMap({
-        "data": jsonEncode(data),
-      });
-
-
-
-
-      var response = await dio.Dio().put(
-        "${AppApiUrl.serverLinkUrl()}riders/${riderId}",
-        data: formData,
-        options: dio.Options(headers: <String, String>{
-          'Content-Type': 'multipart/form-data',
-          'Authorization': 'Bearer, ${accessToken}'
-        }),
-      );
-      print(jsonEncode(response.data));
-      if (response.statusCode == 200 || response.statusCode == 201) {
-        onSuccess(response.data["message"]);
-      } else {
-        onFail(response.data["message"]);
-      }
-    } on dio.DioException catch (e) {
-      print(e.response?.data);
-      onExceptionFail(e.response?.data["message"]);
-    }
+  @override
+  void onInit() {
+    // TODO: implement onInit
+    super.onInit();
+    isLoading.value = true;
+    Future.delayed(Duration(seconds: 1),() async {
+      await getRiderProfileController(context: context);
+    });
   }
 
 
-  static Future<void> getRiderImageUpdateResponse({
-    required String riderId,
-    required String name,
-    required File image,
-    required Function onSuccess,
-    required Function onFail,
-    required Function onExceptionFail
+  Future<void> getRiderProfileController({
+    required BuildContext context,
   }) async {
-    try {
 
-      String accessToken = "";
-      await AppLocalStorage.getString(key: "Login").then((value) {
-        accessToken = jsonDecode(value!)["data"]["accessToken"];
-      });
-      print(accessToken);
+    String accessToken = "";
+    await AppLocalStorage.getString(key: "Login").then((value) {
+      accessToken = jsonDecode(value!)["data"]["accessToken"];
+    });
+    print(accessToken);
 
-      String? mimeTypeImage = image.path == "" ? "" : CustomMimeType.getMimeType(image.path);
+    BaseApiUtils.get(
+      url: ApiUtils.riderProfile,
+      authorization: accessToken,
+      onSuccess: (e,data) async {
+        isLoading.value = false;
+        riderProfileResponse.value = RiderProfileResponse.fromJson(data);
+        firstNameController.value.text = riderProfileResponse.value.data?.name ?? "";
+        emailController.value.text =riderProfileResponse.value.data?.email ?? "";
+        locationController.value.text = riderProfileResponse.value.data?.location ?? "";
+        contact.value = riderProfileResponse.value.data?.contact ?? "";
+        image.value = riderProfileResponse.value.data?.image ?? "";
+        document.value = riderProfileResponse.value.data?.drivingLicense ?? "";
+      },
+      onFail: (e,data) {
+        MessageSnackBarWidget.errorSnackBarWidget(context: context, message: e);
+        isLoading.value = false;
+      },
+      onExceptionFail: (e,data) {
+        MessageSnackBarWidget.errorSnackBarWidget(context: context, message: e);
+        isLoading.value = false;
+      },
+    );
 
-      Map<String,dynamic> data = {
-        "name": name,
-      };
-
-      print(jsonEncode(data));
-
-
-
-      dio.FormData formData = dio.FormData.fromMap({
-        "data": jsonEncode(data),
-        "image": image.path != "" ? await dio.MultipartFile.fromFile(image.path,filename: image.path.split('/').last,contentType: dio.DioMediaType(mimeTypeImage.split('/').first,mimeTypeImage.split('/').last)) : "",
-      });
-
-
-
-
-      var response = await dio.Dio().put(
-        "${AppApiUrl.serverLinkUrl()}riders/${riderId}",
-        data: formData,
-        options: dio.Options(headers: <String, String>{
-          'Content-Type': 'multipart/form-data',
-          'Authorization': 'Bearer, ${accessToken}'
-        }),
-      );
-      print(jsonEncode(response.data));
-      if (response.statusCode == 200 || response.statusCode == 201) {
-        onSuccess(response.data["message"]);
-      } else {
-        onFail(response.data["message"]);
-      }
-    } on dio.DioException catch (e) {
-      print(e.response?.data);
-      onExceptionFail(e.response?.data["message"]);
-    }
   }
 
 
-  static Future<void> getRiderUpdateResponse({
+  Future<void> updateRiderProfileController({
+    required BuildContext context,
     required String riderId,
     required String name,
     required String email,
@@ -118,58 +84,66 @@ class RiderProfileEditController {
     required String contact,
     required File image,
     required File document,
-    required Function onSuccess,
-    required Function onFail,
-    required Function onExceptionFail
   }) async {
-    try {
+    isSubmit.value = true;
 
-      String accessToken = "";
-      await AppLocalStorage.getString(key: "Login").then((value) {
-        accessToken = jsonDecode(value!)["data"]["accessToken"];
-      });
-      print(accessToken);
+    String accessToken = "";
+    await AppLocalStorage.getString(key: "Login").then((value) {
+      accessToken = jsonDecode(value!)["data"]["accessToken"];
+    });
+    print(accessToken);
 
-      String? mimeTypeImage = image.path == "" ? "" : CustomMimeType.getMimeType(image.path);
-      String? mimeTypeDocument = document.path == "" ? "" : CustomMimeType.getMimeType(document.path);
-      Map<String,dynamic> data = {
-        "name": name,
-        "ëmail": email,
-        "contact": contact,
-        "location": location
-      };
+    final Map<String, dynamic> jsonData = {
+      "name": name,
+      "email": email,
+      "contact": contact,
+      "location": location,
+    };
 
-      print(jsonEncode(data));
+    print(jsonData);
+    print(image.path);
+    print(document.path);
 
+    dio.FormData formData = dio.FormData.fromMap({
+      if(image.path != "")
+        "image": await dio.MultipartFile.fromFile(
+          image.path,
+          filename: image.path.split('/').last,
+          contentType: dio.DioMediaType(
+            MimeTypeUtils.getMimeType(image.path).split('/').first,
+            MimeTypeUtils.getMimeType(image.path).split('/').last,
+          ),
+        ),
+      if(document.path != "")
+        "document": await dio.MultipartFile.fromFile(
+          document.path,
+          filename: document.path.split('/').last,
+          contentType: dio.DioMediaType(
+            MimeTypeUtils.getMimeType(document.path).split('/').first,
+            MimeTypeUtils.getMimeType(document.path).split('/').last,
+          ),
+        ),
+      "data": jsonEncode(jsonData),  // important → JSON encoded string!
+    });
 
-
-      dio.FormData formData = dio.FormData.fromMap({
-        "image": image.path != "" ? await dio.MultipartFile.fromFile(image.path,filename: image.path.split('/').last,contentType: dio.DioMediaType(mimeTypeImage.split('/').first,mimeTypeImage.split('/').last)) : "",
-        "data": jsonEncode(data),
-        "document": document.path != "" ? await dio.MultipartFile.fromFile(document.path,filename: document.path.split('/').last,contentType: dio.DioMediaType(mimeTypeDocument.split('/').first,mimeTypeDocument.split('/').last)) : "",
-      });
-
-
-
-
-      var response = await dio.Dio().put(
-        "${AppApiUrl.serverLinkUrl()}riders/${riderId}",
-        data: formData,
-        options: dio.Options(headers: <String, String>{
-          'Content-Type': 'multipart/form-data',
-          'Authorization': 'Bearer, ${accessToken}'
-        }),
-      );
-      print(jsonEncode(response.data));
-      if (response.statusCode == 200 || response.statusCode == 201) {
-        onSuccess(response.data["message"]);
-      } else {
-        onFail(response.data["message"]);
-      }
-    } on dio.DioException catch (e) {
-      print(e.response?.data);
-      onExceptionFail(e.response?.data["message"]);
-    }
+    await BaseApiUtils.put(
+      url: ApiUtils.riderProfileUpdate(riderId),
+      formData: formData,
+      authorization: accessToken,
+      onSuccess: (e,data) async {
+        MessageSnackBarWidget.successSnackBarWidget(context: context, message: e);
+        isSubmit.value = false;
+        Get.off(()=>RiderHome(selectedIndex: 3,),duration: const Duration(milliseconds: 100),preventDuplicates: false);
+      },
+      onFail: (e,data) {
+        MessageSnackBarWidget.errorSnackBarWidget(context: context, message: e);
+        isSubmit.value = false;
+      },
+      onExceptionFail: (e,data) {
+        MessageSnackBarWidget.errorSnackBarWidget(context: context, message: e);
+        isSubmit.value = false;
+      },
+    );
   }
 
 
@@ -200,41 +174,6 @@ class RiderProfileEditController {
           "oldPassword": oldPassword,
           "newPassword": newPassword
         },
-        options: dio.Options(headers: <String, String>{
-          'Accept': 'application/json',
-          'Content-Type': 'application/json',
-          'Authorization': 'Bearer, ${accessToken}'
-        }),
-      );
-      print(jsonEncode(response.statusCode));
-      if (response.statusCode == 200 || response.statusCode == 201) {
-        onSuccess(response.data["message"]);
-      } else {
-        onFail(response.data["message"]);
-      }
-    } on dio.DioException catch (e) {
-      print(e.response?.data);
-      onExceptionFail(e.response?.data["message"]);
-    }
-  }
-
-
-  static Future<void> deleteAccountResponse({
-    required String riderId,
-    required Function onSuccess,
-    required Function onFail,
-    required Function onExceptionFail
-  }) async {
-    try {
-
-      String accessToken = "";
-      await AppLocalStorage.getString(key: "Login").then((value) {
-        accessToken = jsonDecode(value!)["data"]["accessToken"];
-      });
-      print(accessToken);
-
-      var response = await dio.Dio().delete(
-        "${AppApiUrl.serverLinkUrl()}riders/${riderId}",
         options: dio.Options(headers: <String, String>{
           'Accept': 'application/json',
           'Content-Type': 'application/json',

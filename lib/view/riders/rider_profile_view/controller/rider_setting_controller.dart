@@ -1,20 +1,20 @@
 import 'dart:convert';
-import 'dart:io';
-import 'package:flutter/material.dart';
-import 'package:discount_me_app/view/riders/rider_profile_view/model/rider_profile_response.dart';
-import 'package:get/get.dart';
-import 'package:discount_me_app/utils/utils.dart';
-import 'package:dio/dio.dart' as dio;
-import '../../../../res/res.dart';
-import '../../home_view/view/rider_home.dart';
 
-class RiderProfileController extends GetxController {
+import 'package:discount_me_app/view/riders/rider_profile_view/model/rider_profile_response.dart';
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+
+import '../../../../res/res.dart';
+import '../../../../utils/utils.dart';
+
+class RiderSettingController extends GetxController {
 
   RxBool isLoading = false.obs;
+  RxBool isSubmit = false.obs;
+
   Rx<RiderProfileResponse> riderProfileResponse = RiderProfileResponse().obs;
   BuildContext context;
-  Rx<TextEditingController> nameControllerText = TextEditingController().obs;
-  RiderProfileController({required this.context});
+  RiderSettingController({required this.context});
 
 
   @override
@@ -23,12 +23,11 @@ class RiderProfileController extends GetxController {
     super.onInit();
     isLoading.value = true;
     Future.delayed(Duration(seconds: 1),() async {
-      await getRiderProfileApiService(context: context);
+      await getRiderProfileController(context: context);
     });
   }
 
-
-  Future<void> getRiderProfileApiService({
+  Future<void> getRiderProfileController({
     required BuildContext context,
   }) async {
 
@@ -44,7 +43,6 @@ class RiderProfileController extends GetxController {
       onSuccess: (e,data) async {
         isLoading.value = false;
         riderProfileResponse.value = RiderProfileResponse.fromJson(data);
-        nameControllerText.value.text = riderProfileResponse.value.data?.name ?? "";
       },
       onFail: (e,data) {
         MessageSnackBarWidget.errorSnackBarWidget(context: context, message: e);
@@ -59,13 +57,12 @@ class RiderProfileController extends GetxController {
   }
 
 
-  Future<void> updateRiderImageNameController({
+  Future<void> deleteRiderProfileController({
     required BuildContext context,
     required String riderId,
-    required String name,
-    required File pickedImage,
   }) async {
-    isLoading.value = true;
+
+    isSubmit.value = true;
 
     String accessToken = "";
     await AppLocalStorage.getString(key: "Login").then((value) {
@@ -73,42 +70,24 @@ class RiderProfileController extends GetxController {
     });
     print(accessToken);
 
-    final Map<String, dynamic> jsonData = {
-      "name": name,
-    };
-
-    print(jsonEncode(jsonData));
-    print(pickedImage.path);
-
-    dio.FormData formData = dio.FormData.fromMap({
-      if(pickedImage.path != "")
-        "image": await dio.MultipartFile.fromFile(
-          pickedImage.path,
-          filename: pickedImage.path.split('/').last,
-          contentType: dio.DioMediaType(
-            MimeTypeUtils.getMimeType(pickedImage.path).split('/').first,
-            MimeTypeUtils.getMimeType(pickedImage.path).split('/').last,
-          ),
-        ),
-      "data": jsonEncode(jsonData),  // important → JSON encoded string!
-    });
-
-    await BaseApiUtils.put(
-      url: ApiUtils.riderProfileUpdate(riderId),
-      formData: formData,
+    BaseApiUtils.delete(
+      url: ApiUtils.riderProfileDelete(riderId),
       authorization: accessToken,
       onSuccess: (e,data) async {
-        await getRiderProfileApiService(context: context);
+        isSubmit.value = false;
+        riderProfileResponse.value = RiderProfileResponse.fromJson(data);
       },
       onFail: (e,data) {
         MessageSnackBarWidget.errorSnackBarWidget(context: context, message: e);
-        isLoading.value = false;
+        isSubmit.value = false;
       },
       onExceptionFail: (e,data) {
         MessageSnackBarWidget.errorSnackBarWidget(context: context, message: e);
-        isLoading.value = false;
+        isSubmit.value = false;
       },
     );
+
   }
+
 
 }

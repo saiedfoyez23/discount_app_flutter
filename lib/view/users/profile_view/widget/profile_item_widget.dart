@@ -45,14 +45,15 @@ class ProfileItemWidget extends StatelessWidget {
 
             CustomSpaceWidget.spacerWidget(spaceHeight: 10.h(context)),
 
+
             widget ?? Container(
-              margin: EdgeInsets.symmetric(horizontal: 10.hpm(context)),
+              margin: EdgeInsets.symmetric(horizontal: 4.hpm(context)),
               height: 0.5,
               color: Colors.grey,
             ),
 
 
-            CustomSpaceWidget.spacerWidget(spaceHeight: 15.h(context)),
+            CustomSpaceWidget.spacerWidget(spaceHeight: 10.h(context)),
           ],
         ),
       ),

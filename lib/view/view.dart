@@ -74,8 +74,6 @@ export 'riders/rider_profile_view/view/rider_profile_home.dart';
 export 'riders/rider_profile_view/model/rider_profile_response.dart';
 export 'riders/rider_profile_view/controller/rider_profile_controller.dart';
 export 'riders/rider_profile_view/controller/rider_profile_edit_controller.dart';
-export 'riders/rider_profile_view/widget/rider_profile_home_screen_widget.dart';
-export 'riders/rider_profile_view/widget/rider_setting_screen_widget.dart';
 export 'riders/rider_profile_view/view/rider_setting_screen.dart';
 export 'riders/rider_profile_view/view/rider_change_password_screen.dart';
 export 'riders/rider_profile_view/widget/rider_change_password_screen_widget.dart';

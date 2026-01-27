@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+
+
 class ColorUtils {
 
   static const Color black36 = Color.fromRGBO(29, 36, 45, .53);
@@ -16,6 +18,7 @@ class ColorUtils {
   static const Color white202 = Color(0xffCACACA);
   static const Color white246 = Color(0xffFFF6E6);
   static const Color red191 = Color(0xffBF0000);
+  static const Color green139 = Color.fromRGBO(4, 139, 61, 1);
 
 
   static const Color primaryColor = Color(0xff00B047);

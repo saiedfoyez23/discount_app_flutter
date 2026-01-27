@@ -5,8 +5,6 @@ export 'package:discount_me_app/res/common_widget/snack_message.dart';
 export 'package:discount_me_app/res/common_widget/custom_app_bar_with_body.dart';
 export 'package:discount_me_app/res/common_widget/custom_text.dart';
 export 'package:dotted_border/dotted_border.dart';
-export 'package:image_picker/image_picker.dart';
-export 'package:file_picker/file_picker.dart';
 export 'package:flutter/foundation.dart';
 export 'package:flutter/services.dart';
 export 'package:discount_me_app/res/custom_style/custom_size.dart';

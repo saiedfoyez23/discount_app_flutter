@@ -1,17 +1,18 @@
-// ignore_for_file: prefer_const_constructors
+import 'dart:io';
 
-import 'package:discount_me_app/res/app_const/import_list.dart';
-import 'package:discount_me_app/view/users/profile_view/controller/nameController.dart';
-import 'package:file_picker/file_picker.dart';
+import 'package:discount_me_app/view/riders/rider_profile_view/controller/rider_profile_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 
+class RiderProfileDialogBox {
 
-class PickerDialog {
-  final NameController nameController = Get.put(NameController());
-
-  void showImagePickerDialog(BuildContext context) {
+  void imageUpdateDialogBox({
+    required BuildContext context,
+    required RiderProfileController riderProfileController,
+    required String name,
+    required String riderId,
+  }) {
     showDialog(
       context: context,
       builder: (BuildContext context) {
@@ -24,11 +25,17 @@ class PickerDialog {
                 leading: Icon(Icons.photo_library),
                 title: Text('Gallery'),
                 onTap: () async {
-                  final pickedFile = await ImagePicker().pickImage(
-                      source: ImageSource.gallery);
+                  final pickedFile = await ImagePicker().pickImage(source: ImageSource.gallery);
                   if (pickedFile != null) {
                     // Handle the picked image (e.g., update profile)
                     print('Image selected: ${pickedFile.path}');
+                    Get.back();
+                    await riderProfileController.updateRiderImageNameController(
+                      context: context,
+                      riderId: riderId,
+                      name: name,
+                      pickedImage: File(pickedFile.path),
+                    );
                   } else {
                     // Show a SnackBar if no image is selected before popping the dialog
                     ScaffoldMessenger.of(context).showSnackBar(
@@ -38,7 +45,7 @@ class PickerDialog {
                       ),
                     );
                   }
-                  Navigator.of(context).pop(); // Now safely pop the dialog after showing the SnackBar
+                  Get.back(); // Now safely pop the dialog after showing the SnackBar
                 },
               ),
               ListTile(
@@ -50,6 +57,13 @@ class PickerDialog {
                   if (pickedFile != null) {
                     // Handle the picked image (e.g., update profile)
                     print('Image selected: ${pickedFile.path}');
+                    Get.back();
+                    await riderProfileController.updateRiderImageNameController(
+                      context: context,
+                      riderId: riderId,
+                      name: name,
+                      pickedImage: File(pickedFile.path),
+                    );
                   } else {
                     // Show a SnackBar if no image is selected before popping the dialog
                     ScaffoldMessenger.of(context).showSnackBar(
@@ -59,7 +73,7 @@ class PickerDialog {
                       ),
                     );
                   }
-                  Navigator.of(context).pop(); // Now safely pop the dialog after showing the SnackBar
+                  Get.back(); // Now safely pop the dialog after showing the SnackBar
                 },
               ),
             ],
@@ -69,39 +83,14 @@ class PickerDialog {
     );
   }
 
-  void showDocumentPickerDialog(BuildContext context) async {
-    FilePickerResult? result = await FilePicker.platform.pickFiles(
-      type: FileType.custom,
-      allowedExtensions: ['pdf', 'doc', 'docx', 'xls', 'xlsx'],
-    );
 
-    if (result != null) {
-      // The user has selected a file
-      PlatformFile file = result.files.first;
-      // Do something with the file (e.g., upload it)
-      print('File selected: ${file.name}');
-    } else {
-      // The user canceled the picker
-      // Show a SnackBar when no file is selected
-      showSnackDialog(context);
-    }
-  }
-
-  showSnackDialog(context){
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Text('No file selected'),
-        duration: Duration(seconds: 2),
-      ),
-    );
-  }
-
-
-  // Function to show name change dialog
-  void showNameChangeDialog(BuildContext context) {
-    TextEditingController nameControllerText = TextEditingController();
-    nameControllerText.text = nameController.name.value;
-
+  void nameUpdateDialogBox({
+    required BuildContext context,
+    required RiderProfileController riderProfileController,
+    required String name,
+    required TextEditingController nameControllerText,
+    required String riderId,
+  }) {
     Get.dialog(
       AlertDialog(
         title: Text('Change Name'),
@@ -119,10 +108,14 @@ class PickerDialog {
             child: Text('Cancel'),
           ),
           TextButton(
-            onPressed: () {
-
-              nameController.updateName(nameControllerText.text);
-              Get.back(); // Close the dialog
+            onPressed: () async {
+              Get.back();
+              await riderProfileController.updateRiderImageNameController(
+                context: context,
+                riderId: riderId,
+                name: nameControllerText.text,
+                pickedImage: File(""),
+              );
             },
             child: Text('OK'),
           ),
@@ -130,5 +123,7 @@ class PickerDialog {
       ),
     );
   }
+
+
 
 }

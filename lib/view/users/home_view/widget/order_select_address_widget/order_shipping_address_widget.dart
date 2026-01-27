@@ -241,7 +241,7 @@ class OrderShippingAddressWidget {
         TextFormFieldWidget.build(
           context: context,
           hintText: "Enter Email",
-          controller: orderSelectAddressController.shippingHouseNoController.value,
+          controller: orderSelectAddressController.shippingEmailController.value,
           keyboardType: TextInputType.text,
           borderColor: Color.fromRGBO(29, 36, 45, 1),
           enableBorderColor: Color.fromRGBO(29, 36, 45, 1),
