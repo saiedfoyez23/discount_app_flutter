@@ -28,6 +28,7 @@ class ImageUtils {
 
   static const String welcomeBg = "assets/images/welcome_bg.png";
   static const String welcomeBgMain = "assets/images/welcome_bg_main.png";
+  static const String locationSmallIcon = "assets/icons/location.png";
 
   static const String authBg = "assets/images/sign_up_bg.png";
   static const String signUpPreviewImg = "assets/images/sign_up_preview_img.png";

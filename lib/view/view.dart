@@ -76,7 +76,6 @@ export 'riders/rider_profile_view/controller/rider_profile_controller.dart';
 export 'riders/rider_profile_view/controller/rider_profile_edit_controller.dart';
 export 'riders/rider_profile_view/view/rider_setting_screen.dart';
 export 'riders/rider_profile_view/view/rider_change_password_screen.dart';
-export 'riders/rider_profile_view/widget/rider_change_password_screen_widget.dart';
 export 'vendors/vendor_home_view/view/vendor_home.dart';
 export 'vendors/vendor_home_view/view/vendor_home_screen.dart';
 export 'vendors/vendor_home_view/view/vendor_add_item_screen.dart';

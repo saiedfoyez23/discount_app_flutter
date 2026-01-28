@@ -17,7 +17,7 @@ class _RiderHomeState extends State<RiderHome> {
   int _selectedIndex = 0;
   // List of body views based on selected index
   final List<Widget> _bodyOptions = <Widget>[
-    RiderHomeScreen(),
+    RiderHomeView(),
     SubscriptionHomeScreen(),
     RiderOrderHomeScreen(),
     RiderProfileHome(),

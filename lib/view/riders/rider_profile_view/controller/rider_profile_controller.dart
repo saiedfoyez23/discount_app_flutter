@@ -6,7 +6,6 @@ import 'package:get/get.dart';
 import 'package:discount_me_app/utils/utils.dart';
 import 'package:dio/dio.dart' as dio;
 import '../../../../res/res.dart';
-import '../../home_view/view/rider_home.dart';
 
 class RiderProfileController extends GetxController {
 

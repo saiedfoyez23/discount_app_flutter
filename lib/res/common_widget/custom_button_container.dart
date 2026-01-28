@@ -34,7 +34,7 @@ class CustomButtonContainer {
         color: plainButtonColor,
       ),
       child: TextButton(
-        style: TextButton.styleFrom(padding: EdgeInsets.zero),
+        style: TextButton.styleFrom(padding: EdgeInsets.zero,overlayColor: Colors.transparent),
         onPressed: plainButtonOnPress,
         child: Align(
           alignment: plainButtonHintAlign,

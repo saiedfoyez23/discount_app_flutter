@@ -34,8 +34,5 @@ class AppRoutes {
     GetPage(name: RouteNames.userChangePasswordScreen, page: () => UserChangePasswordScreen()),
     GetPage(name: RouteNames.userNotificationScreen, page: () => UserNotificationScreen()),
     GetPage(name: RouteNames.userProfileOrderStatusScreen, page: () => UserProfileOrderStatusScreen()),
-
-    // Rider screens
-    GetPage(name: RouteNames.riderHomeScreen, page: () => RiderHomeScreen()),
   ];
 }
