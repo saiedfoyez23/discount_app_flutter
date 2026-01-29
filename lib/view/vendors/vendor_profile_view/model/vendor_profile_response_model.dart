@@ -1,32 +1,32 @@
-class VendorProfileResponse {
+class VendorProfileResponseModel {
   var success;
   var message;
-  VendorProfile? vendorProfile;
+  VendorProfileResponse? data;
 
-  VendorProfileResponse({this.success, this.message, this.vendorProfile});
+  VendorProfileResponseModel({this.success, this.message, this.data});
 
-  VendorProfileResponse.fromJson(Map<String, dynamic> json) {
+  VendorProfileResponseModel.fromJson(Map<String, dynamic> json) {
     success = json['success'];
     message = json['message'];
-    vendorProfile = json['data'] != null ? new VendorProfile.fromJson(json['data']) : null;
+    data = json['data'] != null ? new VendorProfileResponse.fromJson(json['data']) : null;
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['success'] = this.success;
     data['message'] = this.message;
-    if (this.vendorProfile != null) {
-      data['data'] = this.vendorProfile!.toJson();
+    if (this.data != null) {
+      data['data'] = this.data!.toJson();
     }
     return data;
   }
 }
 
-class VendorProfile {
+class VendorProfileResponse {
   var sId;
   var email;
   var contact;
-  var store;
+  VendorProfileStore? store;
   var taxDocument;
   var balance;
   var brokerReferral;
@@ -37,7 +37,7 @@ class VendorProfile {
   var updatedAt;
   var iV;
 
-  VendorProfile({
+  VendorProfileResponse({
     this.sId,
     this.email,
     this.contact,
@@ -50,14 +50,14 @@ class VendorProfile {
     this.isDeleted,
     this.createdAt,
     this.updatedAt,
-    this.iV
+    this.iV,
   });
 
-  VendorProfile.fromJson(Map<String, dynamic> json) {
+  VendorProfileResponse.fromJson(Map<String, dynamic> json) {
     sId = json['_id'];
     email = json['email'];
     contact = json['contact'];
-    store = json['store'];
+    store = json['store'] != null ? new VendorProfileStore.fromJson(json['store']) : null;
     taxDocument = json['tax_document'];
     balance = json['balance'];
     brokerReferral = json['broker_referral'];
@@ -74,7 +74,9 @@ class VendorProfile {
     data['_id'] = this.sId;
     data['email'] = this.email;
     data['contact'] = this.contact;
-    data['store'] = this.store;
+    if (this.store != null) {
+      data['store'] = this.store!.toJson();
+    }
     data['tax_document'] = this.taxDocument;
     data['balance'] = this.balance;
     data['broker_referral'] = this.brokerReferral;
@@ -84,6 +86,28 @@ class VendorProfile {
     data['createdAt'] = this.createdAt;
     data['updatedAt'] = this.updatedAt;
     data['__v'] = this.iV;
+    return data;
+  }
+}
+
+class VendorProfileStore {
+  var sId;
+  var name;
+  List<String>? coverImages;
+
+  VendorProfileStore({this.sId, this.name, this.coverImages});
+
+  VendorProfileStore.fromJson(Map<String, dynamic> json) {
+    sId = json['_id'];
+    name = json['name'];
+    coverImages = json['cover_images'].cast<String>();
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['_id'] = this.sId;
+    data['name'] = this.name;
+    data['cover_images'] = this.coverImages;
     return data;
   }
 }

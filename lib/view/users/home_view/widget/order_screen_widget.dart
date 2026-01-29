@@ -1,4 +1,5 @@
 import 'package:discount_me_app/res/common_widget/custom_text.dart';
+import 'package:discount_me_app/view/users/home_view/view/order_pick_location_view.dart';
 import 'package:discount_me_app/view/users/home_view/view/order_select_address_view.dart';
 import 'package:discount_me_app/view/view.dart';
 import 'package:flutter/material.dart';
@@ -702,7 +703,7 @@ class OrderScreenWidget extends GetxController {
                                 if(getAllProductCartResponse.value.data?.carts?.isEmpty == true) {
                                   CustomSnackBar().errorCustomSnackBar(context: context, message: "Please Add At least 1 Product to Cart");
                                 } else {
-                                  Get.off(()=>OrderSelectAddressView(),duration: const Duration(milliseconds: 100),preventDuplicates: false);
+                                  Get.off(()=>OrderPickLocationView(),duration: const Duration(milliseconds: 100),preventDuplicates: false);
                                 }
                                 //Get.to(OrderCompleteScreen());
                               },

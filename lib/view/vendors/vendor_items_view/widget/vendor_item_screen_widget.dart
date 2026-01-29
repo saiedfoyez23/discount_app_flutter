@@ -1,4 +1,4 @@
-import 'package:flutter/cupertino.dart';
+import 'package:discount_me_app/view/vendors/vendor_profile_view/model/vendor_profile_response_model.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:skeletonizer/skeletonizer.dart';
@@ -17,7 +17,7 @@ class VendorItemScreenWidget extends GetxController {
   Rx<CategoriesResponseModel> categoriesResponseModel = CategoriesResponseModel().obs;
   Rx<ProductsResponseModel> productsResponseModel = ProductsResponseModel().obs;
   RxList<Products> products = <Products>[].obs;
-  Rx<VendorProfileResponse> vendorProfileResponse = VendorProfileResponse().obs;
+  Rx<VendorProfileResponseModel> vendorProfileResponseModel = VendorProfileResponseModel().obs;
   RxString updatedCategoryId = "".obs;
 
 
@@ -43,9 +43,9 @@ class VendorItemScreenWidget extends GetxController {
       );
       await VendorProfileDetailsController.getVendorProfileApiService(
         onSuccess: (e) async {
-          vendorProfileResponse.value = VendorProfileResponse.fromJson(e);
+          vendorProfileResponseModel.value = VendorProfileResponseModel.fromJson(e);
           await VendorProductCategoryDetailsController.getProductsByStoreApiService(
-            storeId: vendorProfileResponse.value.vendorProfile?.store,
+            storeId: vendorProfileResponseModel.value.data?.store?.sId ?? "",
             onSuccess: (e) {
               isLoading.value = false;
               productsResponseModel.value = ProductsResponseModel.fromJson(e);
@@ -127,9 +127,9 @@ class VendorItemScreenWidget extends GetxController {
                             updatedCategoryId.value = "";
                             await VendorProfileDetailsController.getVendorProfileApiService(
                               onSuccess: (e) async {
-                                vendorProfileResponse.value = VendorProfileResponse.fromJson(e);
+                                vendorProfileResponseModel.value = VendorProfileResponseModel.fromJson(e);
                                 await VendorProductCategoryDetailsController.getProductsByStoreApiService(
-                                  storeId: vendorProfileResponse.value.vendorProfile?.store,
+                                  storeId:  vendorProfileResponseModel.value.data?.store?.sId,
                                   onSuccess: (e) {
                                     isLoading.value = false;
                                     productsResponseModel.value = ProductsResponseModel.fromJson(e);
@@ -223,10 +223,10 @@ class VendorItemScreenWidget extends GetxController {
                                   isLoading.value = true;
                                   await VendorProfileDetailsController.getVendorProfileApiService(
                                     onSuccess: (e) async {
-                                      vendorProfileResponse.value = VendorProfileResponse.fromJson(e);
+                                      vendorProfileResponseModel.value = VendorProfileResponseModel.fromJson(e);
                                       await VendorProductCategoryDetailsController.getProductsByCategoryApiService(
-                                        storeId: vendorProfileResponse.value.vendorProfile?.store,
-                                        categoryId: categoriesResponseModel.value.categories![index].sId,
+                                        storeId: vendorProfileResponseModel.value.data?.store?.sId ?? "",
+                                        categoryId: categoriesResponseModel.value.categories?[index].sId ?? "",
                                         onSuccess: (e) {
                                           isLoading.value = false;
                                           productsResponseModel.value = ProductsResponseModel.fromJson(e);

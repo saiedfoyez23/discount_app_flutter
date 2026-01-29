@@ -84,7 +84,6 @@ export 'vendors/vendor_home_view/widget/vendor_home_screen_widget.dart';
 export 'vendors/vendor_home_view/controller/add_product_controller.dart';
 export 'vendors/vendor_items_view/controller/vendor_product_category_details_controller.dart';
 export 'vendors/vendor_items_view/controller/vendor_profile_details_controller.dart';
-export 'vendors/vendor_items_view/model/vendor_profile_response.dart';
 export 'vendors/vendor_items_view/view/vendor_item_screen.dart';
 export 'vendors/vendor_items_view/widget/vendor_item_screen_widget.dart';
 export 'vendors/vendor_items_view/widget/vendor_item_details_view_screen_widget.dart';

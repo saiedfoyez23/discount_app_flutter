@@ -51,32 +51,7 @@ class OrderShippingAddressWidget {
 
 
         CustomTextContainer.plainTextContainerWidgetWithoutHeightWidth(
-          plainTextString: "Company Name",
-          plainTextStringFontSize: 20.sp(context),
-          plainTextStringFontWeight: FontWeight.w600,
-          plainTextContainerAlignment: Alignment.centerLeft,
-          plainTextStringColor: ColorUtils.black29,
-        ),
-
-        CustomSpaceWidget.spacerWidget(spaceHeight: 8.h(context)),
-
-        TextFormFieldWidget.build(
-          context: context,
-          hintText: "Enter Company Name",
-          controller: orderSelectAddressController.shippingCompanyNameController.value,
-          keyboardType: TextInputType.text,
-          borderColor: Color.fromRGBO(29, 36, 45, 1),
-          enableBorderColor: Color.fromRGBO(29, 36, 45, 1),
-          focusedBorderColor: ColorUtils.orange125,
-          contentPadding: EdgeInsets.symmetric(vertical: 8.vpm(context),horizontal: 16.hpm(context)),
-        ),
-
-
-        CustomSpaceWidget.spacerWidget(spaceHeight: 10.h(context)),
-
-
-        CustomTextContainer.plainTextContainerWidgetWithoutHeightWidth(
-          plainTextString: "Street Address",
+          plainTextString: "Address",
           plainTextStringFontSize: 20.sp(context),
           plainTextStringFontWeight: FontWeight.w600,
           plainTextContainerAlignment: Alignment.centerLeft,
@@ -87,8 +62,8 @@ class OrderShippingAddressWidget {
 
         TextFormFieldWidget.textFiledWithMaxLineBuild(
           context: context,
-          hintText: "Enter Street Address...",
-          controller: orderSelectAddressController.shippingStreetAddressController.value,
+          hintText: "Enter Address...",
+          controller: orderSelectAddressController.shippingAddressController.value,
           keyboardType: TextInputType.text,
           maxLines: 5,
           borderColor: Color.fromRGBO(29, 36, 45, 1),
@@ -96,134 +71,6 @@ class OrderShippingAddressWidget {
           focusedBorderColor: ColorUtils.orange125,
           contentPadding: EdgeInsets.symmetric(vertical: 8.vpm(context),horizontal: 16.hpm(context)),
         ),
-
-
-        CustomSpaceWidget.spacerWidget(spaceHeight: 10.h(context)),
-
-
-        CustomTextContainer.plainTextContainerWidgetWithoutHeightWidth(
-          plainTextString: "Country",
-          plainTextStringFontSize: 20.sp(context),
-          plainTextStringFontWeight: FontWeight.w600,
-          plainTextContainerAlignment: Alignment.centerLeft,
-          plainTextStringColor: ColorUtils.black29,
-        ),
-
-        CustomSpaceWidget.spacerWidget(spaceHeight: 8.h(context)),
-
-        TextFormFieldWidget.build(
-          context: context,
-          hintText: "Enter Country",
-          controller: orderSelectAddressController.shippingCountryController.value,
-          keyboardType: TextInputType.text,
-          borderColor: Color.fromRGBO(29, 36, 45, 1),
-          enableBorderColor: Color.fromRGBO(29, 36, 45, 1),
-          focusedBorderColor: ColorUtils.orange125,
-          contentPadding: EdgeInsets.symmetric(vertical: 8.vpm(context),horizontal: 16.hpm(context)),
-        ),
-
-
-        CustomSpaceWidget.spacerWidget(spaceHeight: 10.h(context)),
-
-
-        CustomTextContainer.plainTextContainerWidgetWithoutHeightWidth(
-          plainTextString: "State",
-          plainTextStringFontSize: 20.sp(context),
-          plainTextStringFontWeight: FontWeight.w600,
-          plainTextContainerAlignment: Alignment.centerLeft,
-          plainTextStringColor: ColorUtils.black29,
-        ),
-
-        CustomSpaceWidget.spacerWidget(spaceHeight: 8.h(context)),
-
-        TextFormFieldWidget.build(
-          context: context,
-          hintText: "Enter State",
-          controller: orderSelectAddressController.shippingStateController.value,
-          keyboardType: TextInputType.text,
-          borderColor: Color.fromRGBO(29, 36, 45, 1),
-          enableBorderColor: Color.fromRGBO(29, 36, 45, 1),
-          focusedBorderColor: ColorUtils.orange125,
-          contentPadding: EdgeInsets.symmetric(vertical: 8.vpm(context),horizontal: 16.hpm(context)),
-        ),
-
-
-        CustomSpaceWidget.spacerWidget(spaceHeight: 10.h(context)),
-
-
-        CustomTextContainer.plainTextContainerWidgetWithoutHeightWidth(
-          plainTextString: "City",
-          plainTextStringFontSize: 20.sp(context),
-          plainTextStringFontWeight: FontWeight.w600,
-          plainTextContainerAlignment: Alignment.centerLeft,
-          plainTextStringColor: ColorUtils.black29,
-        ),
-
-        CustomSpaceWidget.spacerWidget(spaceHeight: 8.h(context)),
-
-        TextFormFieldWidget.build(
-          context: context,
-          hintText: "Enter City",
-          controller: orderSelectAddressController.shippingCityController.value,
-          keyboardType: TextInputType.text,
-          borderColor: Color.fromRGBO(29, 36, 45, 1),
-          enableBorderColor: Color.fromRGBO(29, 36, 45, 1),
-          focusedBorderColor: ColorUtils.orange125,
-          contentPadding: EdgeInsets.symmetric(vertical: 8.vpm(context),horizontal: 16.hpm(context)),
-        ),
-
-
-
-        CustomSpaceWidget.spacerWidget(spaceHeight: 10.h(context)),
-
-
-        CustomTextContainer.plainTextContainerWidgetWithoutHeightWidth(
-          plainTextString: "Zip Code",
-          plainTextStringFontSize: 20.sp(context),
-          plainTextStringFontWeight: FontWeight.w600,
-          plainTextContainerAlignment: Alignment.centerLeft,
-          plainTextStringColor: ColorUtils.black29,
-        ),
-
-        CustomSpaceWidget.spacerWidget(spaceHeight: 8.h(context)),
-
-        TextFormFieldWidget.build(
-          context: context,
-          hintText: "Enter Zip Code",
-          controller: orderSelectAddressController.shippingZipCodeController.value,
-          keyboardType: TextInputType.text,
-          borderColor: Color.fromRGBO(29, 36, 45, 1),
-          enableBorderColor: Color.fromRGBO(29, 36, 45, 1),
-          focusedBorderColor: ColorUtils.orange125,
-          contentPadding: EdgeInsets.symmetric(vertical: 8.vpm(context),horizontal: 16.hpm(context)),
-        ),
-
-
-        CustomSpaceWidget.spacerWidget(spaceHeight: 10.h(context)),
-
-
-        CustomTextContainer.plainTextContainerWidgetWithoutHeightWidth(
-          plainTextString: "House No",
-          plainTextStringFontSize: 20.sp(context),
-          plainTextStringFontWeight: FontWeight.w600,
-          plainTextContainerAlignment: Alignment.centerLeft,
-          plainTextStringColor: ColorUtils.black29,
-        ),
-
-        CustomSpaceWidget.spacerWidget(spaceHeight: 8.h(context)),
-
-        TextFormFieldWidget.build(
-          context: context,
-          hintText: "Enter House No",
-          controller: orderSelectAddressController.shippingHouseNoController.value,
-          keyboardType: TextInputType.text,
-          borderColor: Color.fromRGBO(29, 36, 45, 1),
-          enableBorderColor: Color.fromRGBO(29, 36, 45, 1),
-          focusedBorderColor: ColorUtils.orange125,
-          contentPadding: EdgeInsets.symmetric(vertical: 8.vpm(context),horizontal: 16.hpm(context)),
-        ),
-
-
 
         CustomSpaceWidget.spacerWidget(spaceHeight: 10.h(context)),
 

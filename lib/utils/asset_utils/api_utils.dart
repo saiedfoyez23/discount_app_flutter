@@ -17,6 +17,10 @@ class ApiUtils {
     return "$baseUrl/riders/$riderId";
   }
   static const String riderChangePassword = "$baseUrl/auth/change-password";
+  static const String billingAddress = "$baseUrl/billing-address";
+  static const String shippingAddress = "$baseUrl/shipping-address";
+
+  static const String vendorsProfile = "$baseUrl/vendors/profile";//done
 
 
 }

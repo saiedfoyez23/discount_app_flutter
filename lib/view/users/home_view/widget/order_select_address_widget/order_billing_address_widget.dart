@@ -23,8 +23,6 @@ class OrderBillingAddressWidget {
         CustomSpaceWidget.spacerWidget(spaceHeight: 20.h(context)),
 
 
-
-
         CustomTextContainer.plainTextContainerWidgetWithoutHeightWidth(
           plainTextString: "Name",
           plainTextStringFontSize: 20.sp(context),

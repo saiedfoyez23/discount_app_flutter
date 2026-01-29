@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:discount_me_app/utils/utils.dart';
 import 'package:intl_phone_number_input/intl_phone_number_input.dart';
 
+
 class VendorProfileEditScreen extends StatelessWidget {
   const VendorProfileEditScreen({super.key});
 

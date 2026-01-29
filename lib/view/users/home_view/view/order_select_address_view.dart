@@ -11,11 +11,13 @@ import 'package:skeletonizer/skeletonizer.dart';
 import '../../../../res/res.dart';
 
 class OrderSelectAddressView extends StatelessWidget {
-  OrderSelectAddressView({super.key});
+  OrderSelectAddressView({super.key,required this.pickAddress});
+
+  final String pickAddress;
 
   @override
   Widget build(BuildContext context) {
-    final OrderSelectAddressController orderSelectAddressController = Get.put(OrderSelectAddressController(context: context));
+    final OrderSelectAddressController orderSelectAddressController = Get.put(OrderSelectAddressController(context: context, pickAddress: pickAddress,));
     return PopScope(
       canPop: false,
       onPopInvokedWithResult: (canPop,onOpoInvoked) {
@@ -53,37 +55,37 @@ class OrderSelectAddressView extends StatelessWidget {
                           },
                         ),
 
-                        CustomSpaceWidget.spacerWidget(spaceHeight: 50.h(context)),
-
-                        CustomTextContainer.plainTextContainerWidgetWithoutHeightWidth(
-                          plainTextString: "Payment Type",
-                          plainTextStringFontSize: 20.sp(context),
-                          plainTextStringFontWeight: FontWeight.w600,
-                          plainTextContainerAlignment: Alignment.centerLeft,
-                          plainTextStringColor: ColorUtils.black29,
-                        ),
-
-                        CustomSpaceWidget.spacerWidget(spaceHeight: 8.h(context)),
-
-                        Column(
-                          children: orderSelectAddressController.paymentType.map((option) {
-                            return RadioListTileHelperWidget<RadioValueClass>(
-                              title: option.name!,
-                              value: option,
-                              groupValue: orderSelectAddressController.selectPaymentType.value,
-                              onChanged: (value) {
-                                orderSelectAddressController.selectPaymentType.value = value!;
-                              },
-                              activeColor: Color.fromRGBO(0, 176, 71, 1),
-                              dense: true,
-                              materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                              visualDensity: VisualDensity.compact,
-                              contentPadding: EdgeInsets.zero,
-                            );
-                          }).toList(),
-                        ),
-
                         CustomSpaceWidget.spacerWidget(spaceHeight: 20.h(context)),
+
+                        // CustomTextContainer.plainTextContainerWidgetWithoutHeightWidth(
+                        //   plainTextString: "Payment Type",
+                        //   plainTextStringFontSize: 20.sp(context),
+                        //   plainTextStringFontWeight: FontWeight.w600,
+                        //   plainTextContainerAlignment: Alignment.centerLeft,
+                        //   plainTextStringColor: ColorUtils.black29,
+                        // ),
+                        //
+                        // CustomSpaceWidget.spacerWidget(spaceHeight: 8.h(context)),
+                        //
+                        // Column(
+                        //   children: orderSelectAddressController.paymentType.map((option) {
+                        //     return RadioListTileHelperWidget<RadioValueClass>(
+                        //       title: option.name!,
+                        //       value: option,
+                        //       groupValue: orderSelectAddressController.selectPaymentType.value,
+                        //       onChanged: (value) {
+                        //         orderSelectAddressController.selectPaymentType.value = value!;
+                        //       },
+                        //       activeColor: Color.fromRGBO(0, 176, 71, 1),
+                        //       dense: true,
+                        //       materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                        //       visualDensity: VisualDensity.compact,
+                        //       contentPadding: EdgeInsets.zero,
+                        //     );
+                        //   }).toList(),
+                        // ),
+
+                        //CustomSpaceWidget.spacerWidget(spaceHeight: 20.h(context)),
 
 
                         OrderBillingAddressWidget().orderBillingAddressWidget(

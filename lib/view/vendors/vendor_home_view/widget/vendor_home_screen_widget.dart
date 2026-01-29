@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:discount_me_app/utils/utils.dart';
 import 'package:discount_me_app/res/res.dart';
+import 'package:discount_me_app/view/vendors/vendor_profile_view/model/vendor_profile_response_model.dart';
 import 'package:discount_me_app/view/view.dart';
 import 'package:flutter/material.dart';
 import 'package:geocoding/geocoding.dart';
@@ -18,7 +19,7 @@ class VendorHomeScreenWidget extends GetxController {
 
   Rx<ProductsResponseModel> productsResponseModel = ProductsResponseModel().obs;
   Rx<SingleStoreResponseModel> singleStoreResponseModel = SingleStoreResponseModel().obs;
-  Rx<VendorProfileResponse> vendorProfileResponse = VendorProfileResponse().obs;
+  Rx<VendorProfileResponseModel> vendorProfileResponseModel = VendorProfileResponseModel().obs;
   RxBool isLoading = false.obs;
 
   final BuildContext context;
@@ -96,9 +97,9 @@ class VendorHomeScreenWidget extends GetxController {
     Future.delayed(Duration(seconds: 1),() async {
       await VendorProfileDetailsController.getVendorProfileApiService(
         onSuccess: (e) async {
-          vendorProfileResponse.value = VendorProfileResponse.fromJson(e);
+          vendorProfileResponseModel.value = VendorProfileResponseModel.fromJson(e);
           await SingleStoreViewController.getSingleStoreViewApiService(
-            storeId: vendorProfileResponse.value.vendorProfile?.store,
+            storeId: vendorProfileResponseModel.value.data?.store?.sId ?? "",
             onSuccess: (e) async {
               isLoading.value = false;
               singleStoreResponseModel.value = SingleStoreResponseModel.fromJson(e);

@@ -29,9 +29,7 @@ class OrderButtonWidget {
       plainButtonWidth: 428.w(context),
       plainButtonRadius: 8.r(context),
       plainButtonOnPress:  () async {
-        if(orderSelectAddressController.selectPaymentType.value.name == null) {
-          CustomSnackBar().errorCustomSnackBar(context: context, message: "Please select payment option");
-        } else if(orderSelectAddressController.billingNameController.value.text == "") {
+       if(orderSelectAddressController.billingNameController.value.text == "") {
           CustomSnackBar().errorCustomSnackBar(context: context, message: "Please enter billing name");
         } else if(orderSelectAddressController.billingCompanyNameController.value.text == "") {
           CustomSnackBar().errorCustomSnackBar(context: context, message: "Please enter billing company name");
@@ -53,30 +51,14 @@ class OrderButtonWidget {
           CustomSnackBar().errorCustomSnackBar(context: context, message: "Please enter billing phone");
         } else if(orderSelectAddressController.shippingNameController.value.text == "") {
           CustomSnackBar().errorCustomSnackBar(context: context, message: "Please enter shipping name");
-        } else if(orderSelectAddressController.shippingCompanyNameController.value.text == "") {
-          CustomSnackBar().errorCustomSnackBar(context: context, message: "Please enter shipping company name");
-        } else if(orderSelectAddressController.shippingStreetAddressController.value.text == "") {
-          CustomSnackBar().errorCustomSnackBar(context: context, message: "Please enter shipping address");
-        } else if(orderSelectAddressController.shippingCountryController.value.text == "") {
-          CustomSnackBar().errorCustomSnackBar(context: context, message: "Please enter shipping country");
-        } else if(orderSelectAddressController.shippingStateController.value.text == "") {
-          CustomSnackBar().errorCustomSnackBar(context: context, message: "Please enter shipping state");
-        } else if(orderSelectAddressController.shippingCityController.value.text == "") {
-          CustomSnackBar().errorCustomSnackBar(context: context, message: "Please enter shipping city");
-        } else if(orderSelectAddressController.shippingZipCodeController.value.text == "") {
-          CustomSnackBar().errorCustomSnackBar(context: context, message: "Please enter shipping zip code");
-        } else if(orderSelectAddressController.shippingHouseNoController.value.text == "") {
-          CustomSnackBar().errorCustomSnackBar(context: context, message: "Please enter shipping house no");
+        } else if(orderSelectAddressController.shippingAddressController.value.text == "") {
+          CustomSnackBar().errorCustomSnackBar(context: context, message: "Please enter address name");
         } else if(orderSelectAddressController.shippingEmailController.value.text == "") {
           CustomSnackBar().errorCustomSnackBar(context: context, message: "Please enter shipping email");
         } else if(orderSelectAddressController.shippingPhoneController.value.text == "") {
           CustomSnackBar().errorCustomSnackBar(context: context, message: "Please enter shipping phone");
         } else {
-          if(orderSelectAddressController.selectPaymentType.value.value == "cash") {
-            await orderSelectAddressController.createOrderController(context: context);
-          } else {
-            await orderSelectAddressController.createPaymentController(context: context);
-          }
+          await orderSelectAddressController.createPaymentController(context: context);
         }
       },
       plainButtonHint: "Complete Order",
