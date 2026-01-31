@@ -228,33 +228,28 @@ class VendorHomeScreenWidget extends GetxController {
 
 
                       Container(
-                        height: 250.h(context),
+                        height: 220.h(context),
                         width: 428.w(context),
+                        decoration: BoxDecoration(
+                          color: Colors.transparent
+                        ),
                         child: singleStoreResponseModel.value.data?.coverImages != null ?
                         Column(
                           children: [
                             Expanded(
-                              child: PageView.builder(
-                                onPageChanged: (value) {
-                                  onPageChanged(value);
-                                },
-                                controller: pageController.value,
-                                scrollDirection: Axis.horizontal,
-                                itemCount: singleStoreResponseModel.value.data!.coverImages!.length,
-                                itemBuilder: (context, index) {
-                                  return _buildScalingTransition(singleStoreResponseModel.value.data!.coverImages![index], index);
-                                },
-                              ),
-                            ),
-                            CustomSpaceWidget.spacerWidget(spaceHeight: 10.h(context)),
-                            SmoothPageIndicator(
-                              controller: pageController.value,
-                              count: singleStoreResponseModel.value.data!.coverImages!.length,
-                              effect: ExpandingDotsEffect(
-                                activeDotColor: Colors.deepPurple,
-                                dotColor: Colors.deepPurple.shade100,
-                                dotHeight: 10,
-                                dotWidth: 10,
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(10.r(context)),
+                                child: PageView.builder(
+                                  onPageChanged: (value) {
+                                    onPageChanged(value);
+                                  },
+                                  controller: pageController.value,
+                                  scrollDirection: Axis.horizontal,
+                                  itemCount: singleStoreResponseModel.value.data!.coverImages!.length,
+                                  itemBuilder: (context, index) {
+                                    return _buildScalingTransition(singleStoreResponseModel.value.data!.coverImages![index], index);
+                                  },
+                                ),
                               ),
                             ),
                           ],
@@ -263,8 +258,6 @@ class VendorHomeScreenWidget extends GetxController {
                       ),
 
                       CustomSpaceWidget.spacerWidget(spaceHeight: 30.h(context)),
-
-
 
 
                       Row(

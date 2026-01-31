@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 import 'package:dio/dio.dart' as dio;
 import 'package:discount_me_app/view/vendors/vendor_profile_view/model/vendor_profile_response_model.dart';
+import 'package:file_picker/file_picker.dart';
 import 'package:get/get.dart';
 import 'package:discount_me_app/utils/utils.dart';
 import 'package:flutter/material.dart';
@@ -17,18 +18,28 @@ class VendorProfileController extends GetxController {
   VendorProfileController({required this.context});
 
 
+  RxInt currentPage = 0.obs;
+  Rx<File> imageFile = File("").obs;
+
+  void onPageChanged(int page) {
+    currentPage.value = page;
+  }
+
+  Rx<PageController> pageController = PageController(initialPage: 0).obs;
+
+
   @override
   void onInit() {
     // TODO: implement onInit
     super.onInit();
     isLoading.value = true;
     Future.delayed(Duration(seconds: 1),() async {
-      await getVendorProfileApiService(context: context);
+      await getVendorProfileController(context: context);
     });
   }
 
 
-  Future<void> getVendorProfileApiService({
+  Future<void> getVendorProfileController({
     required BuildContext context,
   }) async {
 
@@ -45,6 +56,7 @@ class VendorProfileController extends GetxController {
         isLoading.value = false;
         vendorProfileResponseModel.value = VendorProfileResponseModel.fromJson(data);
         nameControllerText.value.text = vendorProfileResponseModel.value.data?.store?.name ?? "";
+        imageFile.value = File("");
       },
       onFail: (e,data) {
         MessageSnackBarWidget.errorSnackBarWidget(context: context, message: e);
@@ -58,11 +70,36 @@ class VendorProfileController extends GetxController {
 
   }
 
+  Future<void> updateCoverPhoto({
+    required String vendorId,
+    required String storeName,
+  }) async {
+    FilePickerResult? result = await FilePicker.platform.pickFiles(
+      type: FileType.custom,
+      allowedExtensions: ['pdf', 'jpg', 'jpeg', 'png', 'svg'],
+    );
+    if (result != null) {
+      // The user has selected a file
+      PlatformFile file = result.files.first;
+      // Do something with the file (e.g., upload it)
+      print('File selected: ${file.name}');
+      imageFile.value = File(file.path!);
+      await updateVendorImageNameController(
+        context: context,
+        vendorId: vendorId,
+        storeName: storeName,
+        pickedImage: File(file.path!),
+      );
+    } else {
+      CustomSnackBar().normalCustomSnackBar(context: context, message: "No file selected");
+    }
+  }
+
 
   Future<void> updateVendorImageNameController({
     required BuildContext context,
-    required String riderId,
-    required String name,
+    required String vendorId,
+    required String storeName,
     required File pickedImage,
   }) async {
     isLoading.value = true;
@@ -74,7 +111,7 @@ class VendorProfileController extends GetxController {
     print(accessToken);
 
     final Map<String, dynamic> jsonData = {
-      "name": name,
+      "store_name": storeName,
     };
 
     print(jsonEncode(jsonData));
@@ -82,7 +119,7 @@ class VendorProfileController extends GetxController {
 
     dio.FormData formData = dio.FormData.fromMap({
       if(pickedImage.path != "")
-        "image": await dio.MultipartFile.fromFile(
+        "images": await dio.MultipartFile.fromFile(
           pickedImage.path,
           filename: pickedImage.path.split('/').last,
           contentType: dio.DioMediaType(
@@ -94,11 +131,11 @@ class VendorProfileController extends GetxController {
     });
 
     await BaseApiUtils.put(
-      url: ApiUtils.riderProfileUpdate(riderId),
+      url: ApiUtils.vendorProfileUpdate(vendorId),
       formData: formData,
       authorization: accessToken,
       onSuccess: (e,data) async {
-        await getVendorProfileApiService(context: context);
+        await getVendorProfileController(context: context);
       },
       onFail: (e,data) {
         MessageSnackBarWidget.errorSnackBarWidget(context: context, message: e);

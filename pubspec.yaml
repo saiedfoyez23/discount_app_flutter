@@ -38,6 +38,7 @@ dependencies:
   dio:
   google_fonts:
   get:
+  webview_flutter: ^4.13.1
   readmore:
   url_launcher:
   shared_preferences:

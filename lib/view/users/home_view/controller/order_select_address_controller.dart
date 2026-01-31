@@ -4,10 +4,13 @@ import 'package:discount_me_app/view/authenticaion/view/sign_in_screen.dart';
 import 'package:discount_me_app/view/users/home_view/model/get_all_product_cart_response.dart';
 import 'package:discount_me_app/view/users/home_view/model/user_billing_address_response_model.dart';
 import 'package:discount_me_app/view/users/home_view/model/user_shipping_address_response_model.dart';
+import 'package:discount_me_app/view/users/home_view/view/order_payment_view.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../../res/res.dart';
 import '../../../../utils/utils.dart';
+
+
 class OrderSelectAddressController extends GetxController {
 
   Rx<GetAllProductCartResponse> getAllProductCartResponse = GetAllProductCartResponse().obs;
@@ -251,6 +254,7 @@ class OrderSelectAddressController extends GetxController {
       onSuccess: (e,data) async {
         MessageSnackBarWidget.successSnackBarWidget(context: context, message: e);
         isSubmit.value = false;
+        Get.off(()=>OrderPaymentView(paymentUrl: data["data"]["url"]),duration: const Duration(milliseconds: 100),preventDuplicates: false);
       },
       onFail: (e,data) {
         MessageSnackBarWidget.errorSnackBarWidget(context: context, message: e);

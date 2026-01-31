@@ -47,8 +47,7 @@ class CustomDottedWidget extends StatelessWidget {
             width: 428.w(context),
             height: 200.h(context),
             decoration: const BoxDecoration(
-              color:
-                  Colors.transparent, // Background color inside dotted border
+              color: Colors.transparent, // Background color inside dotted border
             ),
             padding: EdgeInsets.symmetric(horizontal: 10.hpm(context)),
             child: TextButton(

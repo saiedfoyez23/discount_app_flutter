@@ -27,6 +27,8 @@ class ImageUtils {
   static const String vendorSplashBg = "assets/images/vendor_splash_bg.png";
 
   static const String welcomeBg = "assets/images/welcome_bg.png";
+  static const String smallEmailForm = "assets/icons/email_form.png";
+  static const String smallLocationForm = "assets/icons/location_form.png";
   static const String welcomeBgMain = "assets/images/welcome_bg_main.png";
   static const String locationSmallIcon = "assets/icons/location.png";
 

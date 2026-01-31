@@ -6,6 +6,21 @@ import 'package:discount_me_app/utils/utils.dart';
 import 'package:intl_phone_number_input/intl_phone_number_input.dart';
 
 
+class VendorProfileEditView extends StatelessWidget {
+  const VendorProfileEditView({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Container(
+
+      ),
+    );
+  }
+}
+
+
+
 class VendorProfileEditScreen extends StatelessWidget {
   const VendorProfileEditScreen({super.key});
 

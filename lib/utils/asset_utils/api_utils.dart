@@ -16,6 +16,10 @@ class ApiUtils {
   static String riderProfileDelete(String riderId) {
     return "$baseUrl/riders/$riderId";
   }
+  static String vendorProfileUpdate(String vendorId) {
+    print("$baseUrl/vendors/$vendorId");
+    return "$baseUrl/vendors/$vendorId";
+  }
   static const String riderChangePassword = "$baseUrl/auth/change-password";
   static const String billingAddress = "$baseUrl/billing-address";
   static const String shippingAddress = "$baseUrl/shipping-address";

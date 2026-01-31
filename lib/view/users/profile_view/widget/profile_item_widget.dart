@@ -24,7 +24,7 @@ class ProfileItemWidget extends StatelessWidget {
                 Row(
                   children: [
                     icon,
-      
+
                     CustomSpaceWidget.spacerWidget(spaceWidth: 20.w(context)),
 
                     CustomTextContainer.plainTextContainerWidgetWithoutHeightWidth(
@@ -35,25 +35,33 @@ class ProfileItemWidget extends StatelessWidget {
                       plainTextStringTextAlign: TextAlign.start,
                       plainTextStringColor: ColorUtils.black29,
                     ),
-      
+
                   ],
                 ),
-      
+
                 Container(child: navigateIcon,)
               ],
             ),
 
             CustomSpaceWidget.spacerWidget(spaceHeight: 10.h(context)),
 
+            title == "Logout" ?
+            SizedBox.shrink() :
+            Column(
+              children: [
 
-            widget ?? Container(
-              margin: EdgeInsets.symmetric(horizontal: 4.hpm(context)),
-              height: 0.5,
-              color: Colors.grey,
-            ),
+                widget ?? Container(
+                  margin: EdgeInsets.symmetric(horizontal: 4.hpm(context)),
+                  height: 0.5,
+                  color: Colors.grey,
+                ),
 
 
-            CustomSpaceWidget.spacerWidget(spaceHeight: 10.h(context)),
+                CustomSpaceWidget.spacerWidget(spaceHeight: 10.h(context)),
+
+              ],
+            )
+
           ],
         ),
       ),
