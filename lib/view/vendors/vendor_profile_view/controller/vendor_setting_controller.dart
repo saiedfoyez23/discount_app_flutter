@@ -1,21 +1,20 @@
 import 'dart:convert';
 
 import 'package:discount_me_app/view/authenticaion/view/sign_in_screen.dart';
-import 'package:discount_me_app/view/riders/rider_profile_view/model/rider_profile_response.dart';
-import 'package:flutter/material.dart';
+import 'package:discount_me_app/view/vendors/vendor_profile_view/model/vendor_profile_response_model.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
 import '../../../../res/res.dart';
 import '../../../../utils/utils.dart';
 
-class RiderSettingController extends GetxController {
+class VendorSettingController extends GetxController {
 
   RxBool isLoading = false.obs;
   RxBool isSubmit = false.obs;
-
-  Rx<RiderProfileResponse> riderProfileResponse = RiderProfileResponse().obs;
   BuildContext context;
-  RiderSettingController({required this.context});
+  VendorSettingController({required this.context});
+  Rx<VendorProfileResponseModel> vendorProfileResponseModel = VendorProfileResponseModel().obs;
 
 
   @override
@@ -24,11 +23,12 @@ class RiderSettingController extends GetxController {
     super.onInit();
     isLoading.value = true;
     Future.delayed(Duration(seconds: 1),() async {
-      await getRiderProfileController(context: context);
+      await getVendorProfileController(context: context);
     });
   }
 
-  Future<void> getRiderProfileController({
+
+  Future<void> getVendorProfileController({
     required BuildContext context,
   }) async {
 
@@ -39,11 +39,11 @@ class RiderSettingController extends GetxController {
     print(accessToken);
 
     BaseApiUtils.get(
-      url: ApiUtils.riderProfile,
+      url: ApiUtils.vendorsProfile,
       authorization: accessToken,
       onSuccess: (e,data) async {
         isLoading.value = false;
-        riderProfileResponse.value = RiderProfileResponse.fromJson(data);
+        vendorProfileResponseModel.value = VendorProfileResponseModel.fromJson(data);
       },
       onFail: (e,data) {
         MessageSnackBarWidget.errorSnackBarWidget(context: context, message: e);
@@ -72,7 +72,7 @@ class RiderSettingController extends GetxController {
     print(accessToken);
 
     BaseApiUtils.delete(
-      url: ApiUtils.riderProfileDelete(riderId),
+      url: ApiUtils.vendorProfileDelete(riderId),
       authorization: accessToken,
       onSuccess: (e,data) async {
         isSubmit.value = false;
@@ -90,6 +90,9 @@ class RiderSettingController extends GetxController {
     );
 
   }
+
+
+
 
 
 }

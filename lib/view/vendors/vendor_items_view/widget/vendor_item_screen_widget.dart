@@ -160,7 +160,7 @@ class VendorItemScreenWidget extends GetxController {
                             );
                           },
                           onChanged: (search) async {
-                            products.value = productsResponseModel.value.data!.data!.where((e)=>e.name.toString().contains(search)).toList();
+                            products.value = productsResponseModel.value.data!.data!.where((e)=>e.name.toString().toLowerCase().contains(search.toLowerCase())).toList();
                           },
                           decoration: InputDecoration(
                             hintText: "Search",

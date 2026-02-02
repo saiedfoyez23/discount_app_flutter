@@ -1,17 +1,13 @@
-import 'dart:io';
-
 import 'package:discount_me_app/res/app_const/import_list.dart';
 import 'package:discount_me_app/view/users/profile_view/widget/profile_item_widget.dart';
 import 'package:discount_me_app/view/vendors/vendor_coupon_management/view/vendor_created_coupon_screen.dart';
 import 'package:discount_me_app/view/vendors/vendor_profile_view/controller/vendor_profile_controller.dart';
 import 'package:discount_me_app/view/vendors/vendor_profile_view/widget/vendor_profile_dialog_box.dart';
 import 'package:discount_me_app/view/vendors/vendor_suppor_chat_view/view/vendor_chat_user_list_screen.dart';
-import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:discount_me_app/utils/utils.dart';
 import 'package:get/get.dart';
 import 'package:skeletonizer/skeletonizer.dart';
-import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import '../../../../res/res.dart';
 
 class VendorProfileHomeView extends StatelessWidget {
@@ -167,7 +163,7 @@ class VendorProfileHomeView extends StatelessWidget {
                           color: Colors.black54,
                         ),
                         onTap: () {
-                          Get.off(()=>VendorProfileEditScreen(),preventDuplicates: false,duration: Duration(milliseconds: 100));
+                          Get.off(()=>VendorProfileEditView(),preventDuplicates: false,duration: Duration(milliseconds: 100));
                         },
                       ),
 
@@ -239,7 +235,7 @@ class VendorProfileHomeView extends StatelessWidget {
                           color: Colors.black54,
                         ),
                         onTap: () {
-                          Get.off(()=>VendorSettingScreen(),preventDuplicates: false,duration: Duration(milliseconds: 100));
+                          Get.off(()=>VendorSettingView(),preventDuplicates: false,duration: Duration(milliseconds: 100));
                         },
                       ),
 

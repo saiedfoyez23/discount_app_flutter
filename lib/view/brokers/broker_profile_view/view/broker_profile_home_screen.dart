@@ -141,7 +141,7 @@ class _BrokerProfileHomeScreenState extends State<BrokerProfileHomeScreen> {
                 icon: Image.asset(ImageUtils.settingIcon, scale: 4,),
                 navigateIcon: Icon(Icons.navigate_next),
                 onTap: () {
-                  Get.to(VendorSettingScreen());
+                  //Get.to(VendorSettingScreen());
                 },
               ),
               Divider(),
