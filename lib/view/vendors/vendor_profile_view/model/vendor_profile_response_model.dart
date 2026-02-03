@@ -26,7 +26,7 @@ class VendorProfileResponse {
   var sId;
   var email;
   var contact;
-  VendorProfileStore? store;
+  Store? store;
   var taxDocument;
   var balance;
   var brokerReferral;
@@ -57,7 +57,7 @@ class VendorProfileResponse {
     sId = json['_id'];
     email = json['email'];
     contact = json['contact'];
-    store = json['store'] != null ? new VendorProfileStore.fromJson(json['store']) : null;
+    store = json['store'] != null ? new Store.fromJson(json['store']) : null;
     taxDocument = json['tax_document'];
     balance = json['balance'];
     brokerReferral = json['broker_referral'];
@@ -90,17 +90,19 @@ class VendorProfileResponse {
   }
 }
 
-class VendorProfileStore {
+class Store {
   var sId;
   var name;
   List<String>? coverImages;
+  var description;
 
-  VendorProfileStore({this.sId, this.name, this.coverImages});
+  Store({this.sId, this.name, this.coverImages, this.description});
 
-  VendorProfileStore.fromJson(Map<String, dynamic> json) {
+  Store.fromJson(Map<String, dynamic> json) {
     sId = json['_id'];
     name = json['name'];
     coverImages = json['cover_images'].cast<String>();
+    description = json['description'];
   }
 
   Map<String, dynamic> toJson() {
@@ -108,6 +110,7 @@ class VendorProfileStore {
     data['_id'] = this.sId;
     data['name'] = this.name;
     data['cover_images'] = this.coverImages;
+    data['description'] = this.description;
     return data;
   }
 }

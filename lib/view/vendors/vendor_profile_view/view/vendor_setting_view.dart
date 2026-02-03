@@ -1,7 +1,7 @@
 import 'package:discount_me_app/res/app_const/import_list.dart';
 import 'package:discount_me_app/view/vendors/vendor_home_view/view/vendor_home.dart';
 import 'package:discount_me_app/view/vendors/vendor_profile_view/controller/vendor_setting_controller.dart';
-import 'package:discount_me_app/view/vendors/vendor_profile_view/view/vendor_change_password_screen.dart';
+import 'package:discount_me_app/view/vendors/vendor_profile_view/view/vendor_change_password_view.dart';
 import 'package:discount_me_app/view/vendors/vendor_profile_view/widget/vendor_account_delete_dialog_box.dart';
 import 'package:flutter/material.dart';
 import 'package:discount_me_app/utils/utils.dart';
@@ -73,7 +73,7 @@ class VendorSettingView extends StatelessWidget {
                           ),
                           child: TextButton(
                             onPressed: () async {
-                              Get.off(()=>VendorChangePasswordScreen(),preventDuplicates: false,duration: Duration(milliseconds: 100));
+                              Get.off(()=>VendorChangePasswordView(),preventDuplicates: false,duration: Duration(milliseconds: 100));
                             },
                             style: TextButton.styleFrom(padding: EdgeInsets.zero),
                             child: Row(

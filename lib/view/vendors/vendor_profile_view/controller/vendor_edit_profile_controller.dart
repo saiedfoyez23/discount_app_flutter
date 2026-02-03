@@ -1,5 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
+import 'package:dio/dio.dart' as dio;
+import 'package:discount_me_app/view/vendors/vendor_home_view/view/vendor_home.dart';
 import 'package:discount_me_app/view/vendors/vendor_profile_view/model/vendor_profile_response_model.dart';
 import 'package:flutter/material.dart';
 import 'package:geocoding/geocoding.dart';
@@ -99,12 +101,13 @@ class VendorEditProfileController extends GetxController {
         isLoading.value = false;
         vendorProfileResponseModel.value = VendorProfileResponseModel.fromJson(data);
         restaurantName.value.text = vendorProfileResponseModel.value.data?.store?.name ?? "";
-        restaurantDescription.value.text = vendorProfileResponseModel.value.data?.balance.toString() ?? "";
+        restaurantDescription.value.text = vendorProfileResponseModel.value.data?.store?.description ?? "";
         emailAddress.value.text = vendorProfileResponseModel.value.data?.email ?? "";
         restaurantContact.value = vendorProfileResponseModel.value.data?.contact ?? "";
         textDocument.value = vendorProfileResponseModel.value.data?.taxDocument ?? "";
         coverDocument.value = vendorProfileResponseModel.value.data?.store?.coverImages?.isEmpty == true ?
         "" : vendorProfileResponseModel.value.data!.store!.coverImages!.first;
+        print(restaurantContact.value);
       },
       onFail: (e,data) {
         MessageSnackBarWidget.errorSnackBarWidget(context: context, message: e);
@@ -116,6 +119,85 @@ class VendorEditProfileController extends GetxController {
       },
     );
 
+  }
+
+
+  Future<void> updateVendorProfileController({
+    required BuildContext context,
+    required String vendorId,
+    required String email,
+    required String restaurantName,
+    required String restaurantDescription,
+    required String contact,
+    required File image,
+    required File document,
+  }) async {
+    isSubmit.value = true;
+
+    String accessToken = "";
+    await AppLocalStorage.getString(key: "Login").then((value) {
+      accessToken = jsonDecode(value!)["data"]["accessToken"];
+    });
+    print(accessToken);
+
+    Map<String,dynamic> jsonData = {
+      "email": email,
+      "store_name": restaurantName,
+      "store_description": restaurantDescription,
+      "contact": contact,
+      "location": {
+        "coordinates": [
+          longitude.value,
+          latitude.value
+        ]
+      }
+    };
+
+    print(jsonData);
+    print(image.path);
+    print(document.path);
+
+    dio.FormData formData = dio.FormData.fromMap({
+      if(image.path != "")
+        "images": await dio.MultipartFile.fromFile(
+          image.path,
+          filename: image.path.split('/').last,
+          contentType: dio.DioMediaType(
+            MimeTypeUtils.getMimeType(image.path).split('/').first,
+            MimeTypeUtils.getMimeType(image.path).split('/').last,
+          ),
+        ),
+      if(document.path != "")
+        "document": await dio.MultipartFile.fromFile(
+          document.path,
+          filename: document.path.split('/').last,
+          contentType: dio.DioMediaType(
+            MimeTypeUtils.getMimeType(document.path).split('/').first,
+            MimeTypeUtils.getMimeType(document.path).split('/').last,
+          ),
+        ),
+      "data": jsonEncode(jsonData),  // important → JSON encoded string!
+    });
+
+    await BaseApiUtils.put(
+      url: ApiUtils.vendorProfileUpdate(vendorId),
+      formData: formData,
+      authorization: accessToken,
+      onSuccess: (e,data) async {
+        MessageSnackBarWidget.successSnackBarWidget(context: context, message: e);
+        isSubmit.value = false;
+        Get.off(()=>VendorHome(selectedIndex: 3,),duration: const Duration(milliseconds: 100),preventDuplicates: false);
+      },
+      onFail: (e,data) {
+        MessageSnackBarWidget.errorSnackBarWidget(context: context, message: e);
+        isSubmit.value = false;
+      },
+      onExceptionFail: (e,data) {
+        print(data);
+        MessageSnackBarWidget.errorSnackBarWidget(context: context, message: e);
+        isSubmit.value = false;
+      },
+    );
   }
 
 

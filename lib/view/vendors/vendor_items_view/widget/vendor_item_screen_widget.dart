@@ -8,19 +8,14 @@ import '../../../view.dart';
 
 class VendorItemScreenWidget extends GetxController {
 
-
   BuildContext context;
   VendorItemScreenWidget({required this.context});
-
   RxBool isLoading = false.obs;
-
   Rx<CategoriesResponseModel> categoriesResponseModel = CategoriesResponseModel().obs;
   Rx<ProductsResponseModel> productsResponseModel = ProductsResponseModel().obs;
   RxList<Products> products = <Products>[].obs;
   Rx<VendorProfileResponseModel> vendorProfileResponseModel = VendorProfileResponseModel().obs;
   RxString updatedCategoryId = "".obs;
-
-
 
   @override
   void onInit() {
@@ -76,8 +71,6 @@ class VendorItemScreenWidget extends GetxController {
       );
     });
   }
-
-
 
   Widget vendorItemScreenWidget({required BuildContext context}) {
     return Obx(()=>Container(
@@ -367,8 +360,8 @@ class VendorItemScreenWidget extends GetxController {
                                         // Description
                                         CustomTextContainer.plainTextContainerWidgetWithoutHeightWidth(
                                           plainTextString: products[index].description != null ?
-                                          "${products[index].description.toString().length > 50 ?
-                                          products[index].description.toString().substring(0,50) :
+                                          "${products[index].description.toString().length > 100 ?
+                                          products[index].description.toString().substring(0,100) :
                                           products[index].description.toString()}...." : "N/A",
                                           plainTextStringFontSize: 14.sp(context),
                                           plainTextStringFontWeight: FontWeight.w700,
@@ -415,7 +408,9 @@ class VendorItemScreenWidget extends GetxController {
                                                     child: IconButton(
                                                       padding:EdgeInsets.zero,
                                                       color: Colors.orange,
-                                                      onPressed: () {  },
+                                                      onPressed: () {
+
+                                                      },
                                                       icon: Icon(Icons.delete,size: 20.r(context),
                                                       ),
                                                     ),

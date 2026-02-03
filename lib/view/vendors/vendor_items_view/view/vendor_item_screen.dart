@@ -1,11 +1,9 @@
-
 import 'package:discount_me_app/view/view.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class VendorItemScreen extends StatelessWidget {
-  const VendorItemScreen({super.key});
+class VendorItemView extends StatelessWidget {
+  const VendorItemView({super.key});
 
   @override
   Widget build(BuildContext context) {

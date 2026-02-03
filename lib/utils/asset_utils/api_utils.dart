@@ -22,6 +22,9 @@ class ApiUtils {
   static String vendorProfileDelete(String vendorId) {
     return "$baseUrl/vendors/$vendorId";
   }
+  static String productDetails(String productId) {
+    return "$baseUrl/products/$productId";
+  }
   static const String riderChangePassword = "$baseUrl/auth/change-password";
   static const String billingAddress = "$baseUrl/billing-address";
   static const String shippingAddress = "$baseUrl/shipping-address";

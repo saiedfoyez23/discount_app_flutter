@@ -401,7 +401,16 @@ class VendorProfileEditView extends StatelessWidget {
                           plainButtonWidth: 428.w(context),
                           plainButtonRadius: 8.r(context),
                           plainButtonOnPress:  () async {
-
+                            vendorEditProfileController.updateVendorProfileController(
+                              context: context,
+                              vendorId: vendorEditProfileController.vendorProfileResponseModel.value.data?.sId ?? "",
+                              email: vendorEditProfileController.emailAddress.value.text,
+                              restaurantName: vendorEditProfileController.restaurantName.value.text,
+                              restaurantDescription: vendorEditProfileController.restaurantDescription.value.text,
+                              contact: vendorEditProfileController.restaurantContact.value,
+                              image: vendorEditProfileController.coverFile.value,
+                              document: vendorEditProfileController.textDocumentFile.value,
+                            );
                           },
                           plainButtonHint: "Update",
                           plainButtonHintFontSize: 22.sp(context),

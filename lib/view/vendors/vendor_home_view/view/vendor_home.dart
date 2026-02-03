@@ -20,7 +20,7 @@ class _VendorHomeState extends State<VendorHome> {
   static List<Widget> _bodyOptions = <Widget>[
     VendorHomeScreen(),
     VendorSubscriptionHomeScreen(),
-    VendorItemScreen(),
+    VendorItemView(),
     VendorProfileHomeView(),
   ];
 
