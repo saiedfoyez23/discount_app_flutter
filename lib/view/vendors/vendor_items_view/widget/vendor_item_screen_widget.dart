@@ -300,7 +300,7 @@ class VendorItemScreenWidget extends GetxController {
                           return TextButton(
                             style: TextButton.styleFrom(padding: EdgeInsets.zero),
                             onPressed: () async {
-                              Get.off(VendorItemDetailsViewScreen(productId: products[index].sId,),duration: Duration(milliseconds: 100),preventDuplicates: false);
+                              Get.off(()=>VendorItemDetailsView(productId: products[index].sId,),duration: Duration(milliseconds: 100),preventDuplicates: false);
                             },
                             child: Container(
                               margin: EdgeInsets.only(bottom: 10.bpm(context)),
@@ -344,8 +344,8 @@ class VendorItemScreenWidget extends GetxController {
 
                                         CustomTextContainer.plainTextContainerWidgetWithoutHeightWidth(
                                           plainTextString:products[index].name != null ?
-                                          "${products[index].name.toString().length > 50 ?
-                                          products[index].name.toString().substring(0,50) :
+                                          "${products[index].name.toString().length > 80 ?
+                                          products[index].name.toString().substring(0,80) :
                                           products[index].name.toString()}...." : "N/A",
                                           plainTextStringFontSize: 22.sp(context),
                                           plainTextStringFontWeight: FontWeight.w700,
@@ -356,12 +356,11 @@ class VendorItemScreenWidget extends GetxController {
 
                                         CustomSpaceWidget.spacerWidget(spaceHeight: 5.h(context)),
 
-
                                         // Description
                                         CustomTextContainer.plainTextContainerWidgetWithoutHeightWidth(
                                           plainTextString: products[index].description != null ?
-                                          "${products[index].description.toString().length > 100 ?
-                                          products[index].description.toString().substring(0,100) :
+                                          "${products[index].description.toString().length > 80 ?
+                                          products[index].description.toString().substring(0,80) :
                                           products[index].description.toString()}...." : "N/A",
                                           plainTextStringFontSize: 14.sp(context),
                                           plainTextStringFontWeight: FontWeight.w700,
@@ -408,11 +407,8 @@ class VendorItemScreenWidget extends GetxController {
                                                     child: IconButton(
                                                       padding:EdgeInsets.zero,
                                                       color: Colors.orange,
-                                                      onPressed: () {
-
-                                                      },
-                                                      icon: Icon(Icons.delete,size: 20.r(context),
-                                                      ),
+                                                      onPressed: () {},
+                                                      icon: Icon(Icons.delete,size: 20.r(context),),
                                                     ),
                                                   ),
                                                 ],

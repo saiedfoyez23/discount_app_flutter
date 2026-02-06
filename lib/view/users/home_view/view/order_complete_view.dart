@@ -1,10 +1,14 @@
+import 'package:discount_me_app/view/users/home_view/controller/order_complete_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
 import 'package:discount_me_app/utils/utils.dart';
 
-class OrderCompleteScreen extends StatelessWidget {
-  const OrderCompleteScreen({super.key});
+class OrderCompleteView extends StatelessWidget {
+  OrderCompleteView({super.key});
+
+  final OrderCompleteController orderCompleteController = Get.put(OrderCompleteController());
 
   @override
   Widget build(BuildContext context) {

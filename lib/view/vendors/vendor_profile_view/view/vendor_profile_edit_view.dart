@@ -142,32 +142,32 @@ class VendorProfileEditView extends StatelessWidget {
 
                         CustomSpaceWidget.spacerWidget(spaceHeight: 20.h(context)),
 
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            CustomTextContainer.plainTextContainerWidgetWithoutHeightWidth(
-                              plainTextString: "Location",
-                              plainTextStringFontSize: 20.sp(context),
-                              plainTextStringFontWeight: FontWeight.w600,
-                              plainTextContainerAlignment: Alignment.centerLeft,
-                              plainTextStringColor: ColorUtils.black29,
-                            ),
-
-                            CustomSpaceWidget.spacerWidget(spaceHeight: 10.h(context)),
-
-                            TextFormFieldWidget.build(
-                              context: context,
-                              hintText: "Enter your location",
-                              controller: vendorEditProfileController.locationAddress.value,
-                              keyboardType: TextInputType.text,
-                              prefixIcon: Icon(Icons.location_on_outlined, color: Colors.black54),
-                              borderColor: Color.fromRGBO(29, 36, 45, 1),
-                              enableBorderColor: Color.fromRGBO(29, 36, 45, 1),
-                              focusedBorderColor: ColorUtils.orange125,
-                              contentPadding: EdgeInsets.symmetric(vertical: 8.vpm(context),horizontal: 16.hpm(context)),
-                            ),
-                          ],
-                        ),
+                        // Column(
+                        //   crossAxisAlignment: CrossAxisAlignment.start,
+                        //   children: [
+                        //     CustomTextContainer.plainTextContainerWidgetWithoutHeightWidth(
+                        //       plainTextString: "Location",
+                        //       plainTextStringFontSize: 20.sp(context),
+                        //       plainTextStringFontWeight: FontWeight.w600,
+                        //       plainTextContainerAlignment: Alignment.centerLeft,
+                        //       plainTextStringColor: ColorUtils.black29,
+                        //     ),
+                        //
+                        //     CustomSpaceWidget.spacerWidget(spaceHeight: 10.h(context)),
+                        //
+                        //     TextFormFieldWidget.build(
+                        //       context: context,
+                        //       hintText: "Enter your location",
+                        //       controller: vendorEditProfileController.locationAddress.value,
+                        //       keyboardType: TextInputType.text,
+                        //       prefixIcon: Icon(Icons.location_on_outlined, color: Colors.black54),
+                        //       borderColor: Color.fromRGBO(29, 36, 45, 1),
+                        //       enableBorderColor: Color.fromRGBO(29, 36, 45, 1),
+                        //       focusedBorderColor: ColorUtils.orange125,
+                        //       contentPadding: EdgeInsets.symmetric(vertical: 8.vpm(context),horizontal: 16.hpm(context)),
+                        //     ),
+                        //   ],
+                        // ),
 
 
                         CustomSpaceWidget.spacerWidget(spaceHeight: 20.h(context)),

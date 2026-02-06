@@ -19,7 +19,6 @@ class AppRoutes {
     // User screens
     GetPage(name: RouteNames.userHomeScreen, page: () => UserHomeScreen()),
     GetPage(name: RouteNames.orderScreen, page: () => OrderScreen()),
-    GetPage(name: RouteNames.orderCompleteScreen, page: () => OrderCompleteScreen()),
 
     GetPage(name: RouteNames.couponHomeScreen, page: () => CouponHomeScreen()),
     GetPage(name: RouteNames.paymentMethodScreen, page: () => PaymentMethodScreen()),

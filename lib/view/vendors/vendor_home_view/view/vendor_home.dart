@@ -1,7 +1,7 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, prefer_final_fields
 
 import 'package:discount_me_app/view/vendors/vendor_home_view/view/vendor_home_screen.dart';
-import 'package:discount_me_app/view/vendors/vendor_items_view/view/vendor_item_screen.dart';
+import 'package:discount_me_app/view/vendors/vendor_items_view/view/vendor_item_view.dart';
 import 'package:discount_me_app/view/vendors/vendor_profile_view/view/vendor_profile_home_view.dart';
 import 'package:discount_me_app/view/vendors/vendor_subscription_view/view/vendor_subscription_home_screen.dart';
 import 'package:flutter/material.dart';

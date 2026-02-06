@@ -16,7 +16,7 @@ class PaymentController extends GetxController {
     BaseApiUtils.get(
       url: paymentUrl,
       onSuccess: (e,data) async {
-        Get.off(()=>OrderCompleteScreen(),duration: const Duration(milliseconds: 100),preventDuplicates: false);
+        Get.off(()=>OrderCompleteView(),duration: const Duration(milliseconds: 100),preventDuplicates: false);
         MessageSnackBarWidget.successSnackBarWidget(context: context, message: e);
       },
       onFail: (e,data) {

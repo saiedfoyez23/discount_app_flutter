@@ -294,7 +294,6 @@ class VendorItemDetailsViewScreenWidget extends GetxController {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Container(
-                          height: 90.h(context),
                           width: 90.w(context),
                           padding: EdgeInsets.symmetric(
                             horizontal: 10.hpm(context),

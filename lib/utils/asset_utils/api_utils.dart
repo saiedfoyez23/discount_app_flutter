@@ -25,10 +25,20 @@ class ApiUtils {
   static String productDetails(String productId) {
     return "$baseUrl/products/$productId";
   }
+  static String productDelete(String productId) {
+    return "$baseUrl/products/$productId";
+  }
+  static String storeWiseProduct(String storeId) {
+    return "$baseUrl/products?sort=-ratings&store=${storeId}";
+  }
+  static String categoryWiseProduct(String storeId,String categoryId) {
+    return "$baseUrl/products?sort=-ratings&store=${storeId}&category=${categoryId}";
+  }
+
   static const String riderChangePassword = "$baseUrl/auth/change-password";
   static const String billingAddress = "$baseUrl/billing-address";
   static const String shippingAddress = "$baseUrl/shipping-address";
-
+  static const String categoriesResponse = "$baseUrl/categories";
   static const String vendorsProfile = "$baseUrl/vendors/profile";//done
 
 

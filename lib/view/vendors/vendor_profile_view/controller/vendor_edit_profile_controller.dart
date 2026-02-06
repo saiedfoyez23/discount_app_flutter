@@ -40,7 +40,7 @@ class VendorEditProfileController extends GetxController {
     super.onInit();
     isLoading.value = true;
     Future.delayed(Duration(seconds: 1),() async {
-      await vendorPickLocationPlaceLatLng();
+      //await vendorPickLocationPlaceLatLng();
       await getVendorProfileController(context: context);
     });
   }
@@ -145,12 +145,12 @@ class VendorEditProfileController extends GetxController {
       "store_name": restaurantName,
       "store_description": restaurantDescription,
       "contact": contact,
-      "location": {
-        "coordinates": [
-          longitude.value,
-          latitude.value
-        ]
-      }
+      // "location": {
+      //   "coordinates": [
+      //     longitude.value,
+      //     latitude.value
+      //   ]
+      // }
     };
 
     print(jsonData);
