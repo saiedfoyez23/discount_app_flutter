@@ -1,7 +1,6 @@
 import 'package:discount_me_app/res/app_const/import_list.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
 import '../../../../utils/utils.dart';
 
 class PaymentController extends GetxController {
@@ -11,7 +10,6 @@ class PaymentController extends GetxController {
     required BuildContext context,
     required String paymentUrl
   }) async {
-
 
     BaseApiUtils.get(
       url: paymentUrl,
@@ -30,7 +28,6 @@ class PaymentController extends GetxController {
     );
 
   }
-
 
 
 }
