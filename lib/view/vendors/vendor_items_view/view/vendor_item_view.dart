@@ -1,5 +1,6 @@
 import 'package:discount_me_app/utils/asset_utils/responsive_utils.dart';
 import 'package:discount_me_app/view/vendors/vendor_items_view/controller/vendor_items_controller.dart';
+import 'package:discount_me_app/view/vendors/vendor_items_view/view/vendor_product_edit_view.dart';
 import 'package:discount_me_app/view/vendors/vendor_items_view/widget/vendor_product_delete_dialog_box.dart';
 import 'package:discount_me_app/view/view.dart';
 import 'package:flutter/material.dart';
@@ -269,7 +270,9 @@ class VendorItemView extends StatelessWidget {
                                                       child: IconButton(
                                                         padding:EdgeInsets.zero,
                                                         color: Colors.orange,
-                                                        onPressed: () {  },
+                                                        onPressed: () {
+                                                          Get.off(()=>VendorProductEditView(productId: vendorItemsController.products[index].sId),duration: Duration(milliseconds: 100),preventDuplicates: false);
+                                                        },
                                                         icon: Icon(Icons.edit,size: 20.r(context),
                                                         ),
                                                       ),
