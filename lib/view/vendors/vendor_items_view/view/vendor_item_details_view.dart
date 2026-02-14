@@ -1,5 +1,6 @@
 import 'package:discount_me_app/utils/utils.dart';
 import 'package:discount_me_app/view/vendors/vendor_items_view/controller/vendor_product_details_controller.dart';
+import 'package:discount_me_app/view/vendors/vendor_items_view/view/vendor_product_edit_view.dart';
 import 'package:discount_me_app/view/vendors/vendor_items_view/widget/vendor_product_delete_dialog_box.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -300,7 +301,13 @@ class VendorItemDetailsView extends StatelessWidget {
                             borderRadius: BorderRadius.circular(12.r(context)),
                           ),
                           child: TextButton(
-                            onPressed: () async {},
+                            onPressed: () async {
+                              Get.off(()=>VendorProductEditView(
+                                  productId: vendorProductDetailsController.singleProductResponseModel.value.data?.sId ?? ""),
+                                  duration: Duration(milliseconds: 100),
+                                  preventDuplicates: false,
+                              );
+                            },
                             child: CustomTextContainer.plainTextContainerWidgetWithoutHeightWidth(
                               plainTextString: "Edit item",
                               plainTextStringFontSize: 18.sp(context),

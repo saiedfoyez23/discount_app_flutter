@@ -74,7 +74,7 @@ class SignUpScreenWidget {
                   child: Container(
                     width: 428.w(context),
                     padding: EdgeInsets.symmetric(
-                      horizontal: 21.hpm(context),
+                      horizontal: 16.hpm(context),
                     ),
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -86,17 +86,17 @@ class SignUpScreenWidget {
 
                         AnimatedContainer(
                           duration: Duration(seconds: 1),
-                          height: signUpController.selectedRole.value == "User" || signUpController.selectedRole.value == "Rider" ?
+                          height: signUpController.selectedRole.value == "User" || signUpController.selectedRole.value == "Rider" || signUpController.selectedRole.value == "Broker" ?
                           160.h(context) : 0.h(context),
                           width: 428.w(context),
                           curve: Curves.easeIn,
                           child: Visibility(
-                            visible: signUpController.selectedRole.value == "User" || signUpController.selectedRole.value == "Rider",
+                            visible: signUpController.selectedRole.value == "User" || signUpController.selectedRole.value == "Rider" || signUpController.selectedRole.value == "Broker",
                             child: Center(
                               child: Stack(
                                 children: [
                                   Container(
-                                    height:signUpController.selectedRole.value == "User" || signUpController.selectedRole.value == "Rider" ?
+                                    height:signUpController.selectedRole.value == "User" || signUpController.selectedRole.value == "Rider" || signUpController.selectedRole.value == "Broker"?
                                     120.h(context) : 0.h(context),
                                     width: 120.w(context),
                                     decoration: const BoxDecoration(
@@ -205,7 +205,9 @@ class SignUpScreenWidget {
                           ),
                         ),
 
+
                         CustomSpaceWidget.spacerWidget(spaceHeight: 20.h(context)),
+
 
                         Container(
                           height: 60.h(context),
@@ -250,7 +252,6 @@ class SignUpScreenWidget {
                                     ],
                                   ),
 
-                                  CustomSpaceWidget.spacerWidget(spaceWidth: 20.w(context)),
 
                                   Row(
                                     children: [
@@ -281,7 +282,6 @@ class SignUpScreenWidget {
                                     ],
                                   ),
 
-                                  CustomSpaceWidget.spacerWidget(spaceWidth: 20.w(context)),
 
 
                                   Row(
@@ -314,7 +314,35 @@ class SignUpScreenWidget {
                                     ],
                                   ),
 
-                                  CustomSpaceWidget.spacerWidget(spaceWidth: 20.w(context)),
+
+                                  Row(
+                                    children: [
+                                      Radio<String>(
+                                        value: "Broker",
+                                        groupValue: signUpController.selectedRole.value,
+                                        onChanged: (value) async {
+                                          signUpController.changeRole(value!);
+                                          await signUpController.resetFunction();
+                                        },
+                                        fillColor: WidgetStateProperty.resolveWith<Color>(
+                                              (Set<WidgetState> states) {
+                                            return  signUpController.selectedRole.value == "Broker"
+                                                ? ColorUtils.orange41
+                                                : ColorUtils.white253;
+                                          },
+                                        ),
+                                      ),
+                                      CustomTextContainer.plainTextContainerWidgetWithoutHeightWidth(
+                                          plainTextString: "Broker",
+                                          plainTextStringFontSize: 16.sp(context),
+                                          plainTextStringFontWeight: FontWeight.w600,
+                                          plainTextContainerAlignment: Alignment.centerLeft,
+                                          plainTextStringColor: signUpController.selectedRole.value == "Broker"
+                                              ? ColorUtils.orange41
+                                              : ColorUtils.white253
+                                      ),
+                                    ],
+                                  ),
 
 
                                 ],
@@ -364,7 +392,9 @@ class SignUpScreenWidget {
 
 
                         Visibility(
-                          visible: signUpController.selectedRole.value == "User" || signUpController.selectedRole.value == "Rider",
+                          visible: signUpController.selectedRole.value == "User" ||
+                              signUpController.selectedRole.value == "Rider" ||
+                              signUpController.selectedRole.value == "Broker",
                           child: Row(
                             children: [
                               Expanded(
@@ -447,7 +477,8 @@ class SignUpScreenWidget {
 
 
                         Visibility(
-                            visible: signUpController.selectedRole.value == "Vendor" || signUpController.selectedRole.value == "User" || signUpController.selectedRole.value == "Rider",
+                            visible: signUpController.selectedRole.value == "Vendor" || signUpController.selectedRole.value == "User"
+                                || signUpController.selectedRole.value == "Rider" || signUpController.selectedRole.value == "Broker",
                             child:  CustomSpaceWidget.spacerWidget(spaceHeight: 20.h(context)),
                         ),
 
@@ -455,7 +486,7 @@ class SignUpScreenWidget {
                         /// contact for user, rider and vendor
                         Visibility(
                           visible: signUpController.selectedRole.value == "User" || signUpController.selectedRole.value == "Rider"
-                              || signUpController.selectedRole.value == "Vendor",
+                              || signUpController.selectedRole.value == "Vendor" || signUpController.selectedRole.value == "Broker",
                           child: Column(
                             children: [
 
@@ -484,7 +515,7 @@ class SignUpScreenWidget {
 
                         /// contact for user, rider and vendor
                         Visibility(
-                            visible: signUpController.selectedRole.value == "User" || signUpController.selectedRole.value == "Rider",
+                            visible: signUpController.selectedRole.value == "User" || signUpController.selectedRole.value == "Rider" || signUpController.selectedRole.value == "Broker",
                             child: Column(
                               children: [
 
@@ -543,7 +574,8 @@ class SignUpScreenWidget {
                         Visibility(
                           visible: signUpController.selectedRole.value == "User" ||
                               signUpController.selectedRole.value == "Rider" ||
-                              signUpController.selectedRole.value == "Vendor",
+                              signUpController.selectedRole.value == "Vendor" ||
+                              signUpController.selectedRole.value == "Broker",
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
@@ -892,7 +924,8 @@ class SignUpScreenWidget {
                         Visibility(
                           visible: signUpController.selectedRole.value == "User" ||
                               signUpController.selectedRole.value == "Rider" ||
-                              signUpController.selectedRole.value == "Vendor",
+                              signUpController.selectedRole.value == "Vendor" ||
+                              signUpController.selectedRole.value == "Broker",
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.start,
                             crossAxisAlignment: CrossAxisAlignment.start,
@@ -1025,7 +1058,7 @@ class SignUpScreenWidget {
                                   },
                                 );
                               }
-                            }else if(signUpController.selectedRole.value == "Rider") {
+                            } else if(signUpController.selectedRole.value == "Rider") {
                               if(signUpController.emailController.value.text == "") {
                                 CustomSnackBar().errorCustomSnackBar(context: context, message: "Please Enter Your Email");
                               }else if(signUpController.contact.value == "") {
@@ -1069,7 +1102,7 @@ class SignUpScreenWidget {
                                   },
                                 );
                               }
-                            }else if(signUpController.selectedRole.value == "Vendor") {
+                            } else if(signUpController.selectedRole.value == "Vendor") {
                               if(signUpController.restaurantNameController.value.text == "") {
                                 CustomSnackBar().errorCustomSnackBar(context: context, message: "Please Enter Your Restaurant Name");
                               }else if(signUpController.restaurantDescriptionController.value.text == "") {
@@ -1093,6 +1126,49 @@ class SignUpScreenWidget {
                                   taxFile: signUpController.taxFile.value,
                                   restaurantName: signUpController.restaurantNameController.value.text,
                                   restaurantDescription: signUpController.restaurantDescriptionController.value.text,
+                                  password: signUpController.passwordController.value.text,
+                                  email: signUpController.emailController.value.text,
+                                  location: signUpController.locationController.value.text,
+                                  contact: signUpController.contact.value,
+                                  onSuccess: (e) {
+                                    signUpController.isSubmit.value = false;
+                                    CustomSnackBar().successCustomSnackBar(context: context, message: "${e}");
+                                    Get.off(()=>OtpVerifyScreen(email: signUpController.emailController.value.text, isSignUp: true),duration: const Duration(milliseconds: 100),preventDuplicates: false);
+                                  },
+                                  onFail: (e) {
+                                    signUpController.isSubmit.value = false;
+                                    CustomSnackBar().errorCustomSnackBar(context: context, message: "${e}");
+                                  },
+                                  onExceptionFail: (e) {
+                                    signUpController.isSubmit.value = false;
+                                    CustomSnackBar().errorCustomSnackBar(context: context, message: "${e}");
+                                  },
+                                );
+                              }
+                            } else {
+                              if(signUpController.imageFile.value.path == "") {
+                                CustomSnackBar().errorCustomSnackBar(context: context, message: "Please Pick A Profile Image");
+                              } if(signUpController.emailController.value.text == "") {
+                                CustomSnackBar().errorCustomSnackBar(context: context, message: "Please Enter Your Email");
+                              } else if(signUpController.firstNameController.value.text == "") {
+                                CustomSnackBar().errorCustomSnackBar(context: context, message: "Please Enter Your First Name");
+                              } else if(signUpController.contact.value == "") {
+                                CustomSnackBar().errorCustomSnackBar(context: context, message: "Please Enter Your Contact Number");
+                              } else if(signUpController.lastNameController.value.text == "") {
+                                CustomSnackBar().errorCustomSnackBar(context: context, message: "Please Enter Your Last Name");
+                              } else if(signUpController.locationController.value.text == "") {
+                                CustomSnackBar().errorCustomSnackBar(context: context, message: "Please Enter Your Location");
+                              } else if(signUpController.passwordController.value.text == "") {
+                                CustomSnackBar().errorCustomSnackBar(context: context, message: "Please Enter Your Password");
+                              } else if(signUpController.confirmPasswordController.value.text == "") {
+                                CustomSnackBar().errorCustomSnackBar(context: context, message: "Please Enter Your Confirm Password");
+                              } else if(signUpController.confirmPasswordController.value.text != signUpController.passwordController.value.text) {
+                                CustomSnackBar().errorCustomSnackBar(context: context, message: "Password is Not Matching");
+                              } else {
+                                signUpController.isSubmit.value = true;
+                                await signUpController.getBrokerSignUpResponse(
+                                  image: signUpController.imageFile.value,
+                                  name: "${signUpController.firstNameController.value.text} ${signUpController.lastNameController.value.text}",
                                   password: signUpController.passwordController.value.text,
                                   email: signUpController.emailController.value.text,
                                   location: signUpController.locationController.value.text,

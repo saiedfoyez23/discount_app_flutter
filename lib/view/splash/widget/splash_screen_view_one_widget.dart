@@ -58,25 +58,25 @@ class SplashScreenViewOneWidget {
             
                 CustomSpaceWidget.spacerWidget(spaceHeight: 16.h(context)),
                 
-                CustomTextContainer.plainTextContainerWidgetWithoutHeightWidth(
-                  plainTextString: "No Worry, Handle Your Hunger with",
-                  plainTextStringFontSize: 24.sp(context),
-                  plainTextStringFontWeight: FontWeight.w400,
-                  plainTextContainerAlignment: Alignment.center,
-                  plainTextStringColor: ColorUtils.black114,
-                ),
+                // CustomTextContainer.plainTextContainerWidgetWithoutHeightWidth(
+                //   plainTextString: "No Worry, Handle Your Hunger with",
+                //   plainTextStringFontSize: 24.sp(context),
+                //   plainTextStringFontWeight: FontWeight.w400,
+                //   plainTextContainerAlignment: Alignment.center,
+                //   plainTextStringColor: ColorUtils.black114,
+                // ),
+                //
+                // CustomSpaceWidget.spacerWidget(spaceHeight: 5.h(context)),
+                //
+                // CustomTextContainer.plainTextContainerWidgetWithoutHeightWidth(
+                //   plainTextString: "Discount Me",
+                //   plainTextStringFontSize: 24.sp(context),
+                //   plainTextStringFontWeight: FontWeight.w700,
+                //   plainTextContainerAlignment: Alignment.center,
+                //   plainTextStringColor: ColorUtils.black114,
+                // ),
             
-                CustomSpaceWidget.spacerWidget(spaceHeight: 5.h(context)),
-            
-                CustomTextContainer.plainTextContainerWidgetWithoutHeightWidth(
-                  plainTextString: "Discount Me",
-                  plainTextStringFontSize: 24.sp(context),
-                  plainTextStringFontWeight: FontWeight.w700,
-                  plainTextContainerAlignment: Alignment.center,
-                  plainTextStringColor: ColorUtils.black114,
-                ),
-            
-                CustomSpaceWidget.spacerWidget(spaceHeight: 162.h(context)),
+                CustomSpaceWidget.spacerWidget(spaceHeight: 210.h(context)),
             
             
                 CustomTextContainer.plainTextContainerWidgetWithoutHeightWidth(

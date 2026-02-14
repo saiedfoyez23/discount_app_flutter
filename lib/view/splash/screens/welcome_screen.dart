@@ -1,6 +1,5 @@
 import 'package:discount_me_app/res/res.dart';
 import 'package:discount_me_app/view/view.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:discount_me_app/utils/utils.dart';
@@ -137,28 +136,28 @@ class _WelcomeScreenState extends State<WelcomeScreen> with SingleTickerProvider
 
                       CustomSpaceWidget.spacerWidget(spaceHeight: 15.h(context)),
 
-                      CustomRichTextContainer.plainRichTextContainerWidgetWithoutWidthHeight(
-                          context: context,
-                          plainPrimaryTextStringAlign: TextAlign.center,
-                          plainPrimaryTextString: "If you want to work with us ",
-                          plainRichTextStringFontSize: 20.sp(context),
-                          plainRichTextStringColor: ColorUtils.black29,
-                          plainRichTextStringFontWeight: FontWeight.w500,
-                          textSpanList: [
-                            TextSpan(
-                              text: "Click Here",
-                              style: CustomRichTextContainer.plainRichTextStringStyleWithDecoration(
-                                  context: context,
-                                  plainRichTextStringFontSize: 20.sp(context),
-                                  plainRichTextStringColor: ColorUtils.orange125,
-                                  plainRichTextStringFontWeight: FontWeight.w600
-                              ),
-                              recognizer: TapGestureRecognizer()..onTap = () {
-                                Get.off(()=>BrokerSignUpScreen(), duration: const Duration(milliseconds: 100),preventDuplicates: false);
-                              },
-                            ),
-                          ]
-                      ),
+                      // CustomRichTextContainer.plainRichTextContainerWidgetWithoutWidthHeight(
+                      //     context: context,
+                      //     plainPrimaryTextStringAlign: TextAlign.center,
+                      //     plainPrimaryTextString: "If you want to work with us ",
+                      //     plainRichTextStringFontSize: 20.sp(context),
+                      //     plainRichTextStringColor: ColorUtils.black29,
+                      //     plainRichTextStringFontWeight: FontWeight.w500,
+                      //     textSpanList: [
+                      //       TextSpan(
+                      //         text: "Click Here",
+                      //         style: CustomRichTextContainer.plainRichTextStringStyleWithDecoration(
+                      //             context: context,
+                      //             plainRichTextStringFontSize: 20.sp(context),
+                      //             plainRichTextStringColor: ColorUtils.orange125,
+                      //             plainRichTextStringFontWeight: FontWeight.w600
+                      //         ),
+                      //         recognizer: TapGestureRecognizer()..onTap = () {
+                      //           Get.off(()=>BrokerSignUpScreen(), duration: const Duration(milliseconds: 100),preventDuplicates: false);
+                      //         },
+                      //       ),
+                      //     ]
+                      // ),
 
                       CustomSpaceWidget.spacerWidget(spaceHeight: 34.h(context)),
                     ],

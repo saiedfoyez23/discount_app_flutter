@@ -201,6 +201,8 @@ class VendorItemView extends StatelessWidget {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     //Top Image with rounded corners
+                                    vendorItemsController.products[index].images?.isNotEmpty == false ?
+                                    SizedBox.shrink() :
                                     ClipRRect(
                                       borderRadius: BorderRadius.vertical(top: Radius.circular(15.r(context))),
                                       child: Image.network(

@@ -98,7 +98,6 @@ class VendorProductEditView extends StatelessWidget {
                                       // Do something with the file (e.g., upload it)
                                       print('File selected: ${file.name}');
                                       vendorProductEditController.coverScreenSorts.clear();
-                                      vendorProductEditController.coverScreenSorts.refresh();
                                       result.files.forEach((value) {
                                         vendorProductEditController.coverImages.add(File(value.path!));
                                       });
@@ -317,7 +316,6 @@ class VendorProductEditView extends StatelessWidget {
 
 
 
-
                         vendorProductEditController.isSubmit.value == true ?
                         Container(
                           height: 64.h(context),
@@ -334,7 +332,33 @@ class VendorProductEditView extends StatelessWidget {
                           plainButtonWidth: 428.w(context),
                           plainButtonRadius: 8.r(context),
                           plainButtonOnPress:  () async {
-
+                            if(vendorProductEditController.coverImages.isEmpty == true && vendorProductEditController.coverScreenSorts.isEmpty == true) {
+                              CustomSnackBar().errorCustomSnackBar(context: context, message: "Please Pick Some Item Cover Screen ");
+                            } else if(vendorProductEditController.singleCategory.value.name == null) {
+                              CustomSnackBar().errorCustomSnackBar(context: context, message: "Please Enter Item Category");
+                            } else if(vendorProductEditController.itemNameController.value.text == "") {
+                              CustomSnackBar().errorCustomSnackBar(context: context, message: "Please Enter Item Name");
+                            } else if(vendorProductEditController.itemQuantityController.value.text == "") {
+                              CustomSnackBar().errorCustomSnackBar(context: context, message: "Please Enter Item Quantity");
+                            } else if(vendorProductEditController.itemPriceController.value.text == "") {
+                              CustomSnackBar().errorCustomSnackBar(context: context, message: "Please Enter Item Price");
+                            } else {
+                              print(vendorProductEditController.coverScreenSorts.length);
+                              await vendorProductEditController.editProductController(
+                                context: context,
+                                productId: productId,
+                                name: vendorProductEditController.itemNameController.value.text,
+                                category: vendorProductEditController.singleCategory.value.sId,
+                                price: vendorProductEditController.itemPriceController.value.text,
+                                description: vendorProductEditController.itemDetailsController.value.text,
+                                quantity: vendorProductEditController.itemQuantityController.value.text,
+                                oldImgsToKeep: vendorProductEditController.coverScreenSorts.isEmpty == true ? [] :
+                                vendorProductEditController.singleProductResponseModel.value.data?.images ?? [],
+                                imagesToDelete: vendorProductEditController.coverImages.isNotEmpty == true ?
+                                vendorProductEditController.singleProductResponseModel.value.data?.images ?? [] : [],
+                                pickedImage: vendorProductEditController.coverImages,
+                              );
+                            }
                           },
                           plainButtonHint: "Product Edit",
                           plainButtonHintFontSize: 22.sp(context),

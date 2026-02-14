@@ -4,6 +4,7 @@ import 'dart:io';
 import 'package:dio/dio.dart' as dio;
 import 'package:discount_me_app/view/users/home_view/model/categories_response_model.dart';
 import 'package:discount_me_app/view/users/home_view/model/single_product_response_model.dart';
+import 'package:discount_me_app/view/vendors/vendor_home_view/view/vendor_home.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../../res/res.dart';
@@ -23,6 +24,7 @@ class VendorProductEditController extends GetxController {
   Rx<TextEditingController> itemQuantityController = TextEditingController().obs;
   Rx<CategoriesResponseModel> categoriesResponseModel = CategoriesResponseModel().obs;
   RxList<File> coverImages = <File>[].obs;
+  RxList<dio.MultipartFile> filesList = <dio.MultipartFile>[].obs;
   RxList<String> coverScreenSorts = <String>[].obs;
   Rx<Categories> singleCategory = Categories().obs;
 
@@ -142,13 +144,19 @@ class VendorProductEditController extends GetxController {
   }
 
 
-  Future<void> updateRiderImageNameController({
+  Future<void> editProductController({
     required BuildContext context,
-    required String riderId,
+    required String productId,
     required String name,
-    required File pickedImage,
+    required String category,
+    required String price,
+    required String description,
+    required String quantity,
+    required List<String> oldImgsToKeep,
+    required List<String> imagesToDelete,
+    required List<File> pickedImage,
   }) async {
-    isLoading.value = true;
+    isSubmit.value = true;
 
     String accessToken = "";
     await AppLocalStorage.getString(key: "Login").then((value) {
@@ -156,46 +164,62 @@ class VendorProductEditController extends GetxController {
     });
     print(accessToken);
 
+    // Clear old files
+    filesList.clear();
+
+    // Convert selected files to MultipartFile list
+    for (final file in pickedImage) {
+      final mimeType = MimeTypeUtils.getMimeType(file.path);
+
+      filesList.add(
+        await dio.MultipartFile.fromFile(
+          file.path,
+          filename: file.path.split('/').last,
+          contentType: dio.DioMediaType(
+            mimeType.split('/')[0],
+            mimeType.split('/')[1],
+          ),
+        ),
+      );
+    }
+
     final Map<String, dynamic> jsonData = {
       "name": name,
+      "category": category,
+      "price": double.parse(price),
+      "description": description,
+      "quantity": double.parse(quantity),
+      "oldImgsToKeep": oldImgsToKeep,
+      "imagesToDelete": imagesToDelete,
     };
 
     print(jsonEncode(jsonData));
-    print(pickedImage.path);
 
     dio.FormData formData = dio.FormData.fromMap({
-      if(pickedImage.path != "")
-        "image": await dio.MultipartFile.fromFile(
-          pickedImage.path,
-          filename: pickedImage.path.split('/').last,
-          contentType: dio.DioMediaType(
-            MimeTypeUtils.getMimeType(pickedImage.path).split('/').first,
-            MimeTypeUtils.getMimeType(pickedImage.path).split('/').last,
-          ),
-        ),
+      if(filesList.isNotEmpty == true)
+        "images": filesList,
       "data": jsonEncode(jsonData),  // important → JSON encoded string!
     });
 
     await BaseApiUtils.put(
-      url: ApiUtils.riderProfileUpdate(riderId),
+      url: ApiUtils.productEdit(productId),
       formData: formData,
       authorization: accessToken,
       onSuccess: (e,data) async {
-        //await getRiderProfileApiService(context: context);
+        isSubmit.value = false;
+        Get.off(()=>VendorHome(selectedIndex: 2,),duration: const Duration(milliseconds: 100),preventDuplicates: false);
       },
       onFail: (e,data) {
         MessageSnackBarWidget.errorSnackBarWidget(context: context, message: e);
-        isLoading.value = false;
+        isSubmit.value = false;
       },
       onExceptionFail: (e,data) {
         MessageSnackBarWidget.errorSnackBarWidget(context: context, message: e);
-        isLoading.value = false;
+        isSubmit.value = false;
+        print(data);
       },
     );
   }
-
-
-
 
 
 }

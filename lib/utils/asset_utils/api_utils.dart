@@ -25,6 +25,9 @@ class ApiUtils {
   static String productDetails(String productId) {
     return "$baseUrl/products/$productId";
   }
+  static String productEdit(String productId) {
+    return "$baseUrl/products/$productId";
+  }
   static String productDelete(String productId) {
     return "$baseUrl/products/$productId";
   }
