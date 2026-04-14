@@ -76,7 +76,7 @@ class BrokerTransactionTableWidget extends StatelessWidget {
                 );
               },
             ).toList(),
-          ),git add
+          ),
         ),
       ),
     );
