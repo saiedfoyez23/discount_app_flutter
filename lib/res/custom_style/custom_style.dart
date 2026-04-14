@@ -1,7 +1,9 @@
-import 'package:discount_me_app/res/app_const/import_list.dart';
+import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+
 
 TextStyle hintStyle = GoogleFonts.urbanist(
   color: Color(0xffAFAFAF),
-  fontSize: 16.sp,
+  fontSize: 16,
   fontWeight: FontWeight.w400
 );

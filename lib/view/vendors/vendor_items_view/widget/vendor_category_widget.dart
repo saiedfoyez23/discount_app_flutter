@@ -1,6 +1,6 @@
-// ignore_for_file: prefer_const_constructors
-
 import 'package:discount_me_app/res/app_const/import_list.dart';
+import 'package:flutter/material.dart';
+import 'package:discount_me_app/utils/utils.dart';
 
 class VendorCategoryWidget extends StatelessWidget {
   const VendorCategoryWidget({super.key});
@@ -31,16 +31,16 @@ class VendorCategoryWidget extends StatelessWidget {
                     offset: Offset(0, 2), // Offset of the shadow (x, y)
                   ),
                 ],
-                borderRadius: BorderRadius.circular(8.r)
+                borderRadius: BorderRadius.circular(8.r(context))
             ),
             margin: EdgeInsets.only(right: 10),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Image.asset(AppImages.catMilk, scale: 4,),
+                Image.asset(ImageUtils.catMilk, scale: 4,),
                 6.heightBox,
-                CustomText(title: "Milk",color: Colors.black, fontSize: 14.sp, fontWeight: FontWeight.w500,),
+                CustomText(title: "Milk",color: Colors.black, fontSize: 14.sp(context), fontWeight: FontWeight.w500,),
               ],
             ),
           );

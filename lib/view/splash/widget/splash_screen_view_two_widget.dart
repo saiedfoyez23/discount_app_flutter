@@ -1,8 +1,8 @@
 import 'package:discount_me_app/res/res.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:get/get.dart';
+import 'package:discount_me_app/utils/utils.dart';
 import 'package:discount_me_app/view/view.dart';
 
 class SplashScreenViewTwoWidget {
@@ -13,7 +13,7 @@ class SplashScreenViewTwoWidget {
       height: 926.h(context),
       width: 428.w(context),
       decoration: const BoxDecoration(
-        color: AppColors.white253,
+        color: ColorUtils.white253,
       ),
       padding: EdgeInsets.symmetric(
         horizontal: 21.hpm(context),
@@ -35,7 +35,7 @@ class SplashScreenViewTwoWidget {
                 CustomImageContainer.assetImageContainer(
                   height: 93.h(context),
                   width: 428.w(context),
-                  assetImage: AppImages.discountMeLogo,
+                  assetImage: ImageUtils.discountMeLogo,
                   boxFit: BoxFit.contain,
                 ),
 
@@ -44,7 +44,7 @@ class SplashScreenViewTwoWidget {
                 CustomImageContainer.assetImageContainer(
                   height: 428.h(context),
                   width: 428.w(context),
-                  assetImage: AppImages.eatingDonutBro,
+                  assetImage: ImageUtils.eatingDonutBro,
                   boxFit: BoxFit.contain,
                 ),
 
@@ -61,8 +61,8 @@ class SplashScreenViewTwoWidget {
                   },
                   plainButtonHint: "Let's Go",
                   plainButtonHintFontSize: 22.sp(context),
-                  plainButtonColor: AppColors.orange41,
-                  plainButtonHintFontColor: AppColors.white255,
+                  plainButtonColor: ColorUtils.orange41,
+                  plainButtonHintFontColor: ColorUtils.white255,
                 ),
 
 

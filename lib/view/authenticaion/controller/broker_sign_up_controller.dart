@@ -6,7 +6,7 @@ import 'package:get/get.dart';
 import 'package:dio/dio.dart' as dio;
 import '../../../res/res.dart';
 
-class BrokerSignUpController extends GetxController{
+class BrokerSignUpController extends GetxController {
 
   Rx<File> imageFile = File("").obs;
   RxBool isSubmit = false.obs;

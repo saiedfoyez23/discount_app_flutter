@@ -2,7 +2,7 @@ import 'package:discount_me_app/res/res.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
+import 'package:discount_me_app/utils/utils.dart';
 import '../../view.dart';
 
 
@@ -17,7 +17,7 @@ class SignUpPreviewScreenWidget {
       width: 428.w(context),
       decoration: BoxDecoration(
         image: DecorationImage(
-          image: AssetImage(AppImages.authBg),
+          image: AssetImage(ImageUtils.authBg),
           fit: BoxFit.fill,
           opacity: 0.3,
           colorFilter: const ColorFilter.mode(Colors.black, BlendMode.dstATop),
@@ -45,7 +45,7 @@ class SignUpPreviewScreenWidget {
                   CustomImageContainer.assetImageContainer(
                     height: 376.h(context),
                     width: 376.w(context),
-                    assetImage: AppImages.signUpPreviewImg,
+                    assetImage: ImageUtils.signUpPreviewImg,
                     boxFit: BoxFit.fitWidth,
                   ),
 
@@ -58,7 +58,7 @@ class SignUpPreviewScreenWidget {
                     plainTextStringFontSize: 22.sp(context),
                     plainTextStringFontWeight: FontWeight.w700,
                     plainTextContainerAlignment: Alignment.center,
-                    plainTextStringColor: AppColors.orange125,
+                    plainTextStringColor: ColorUtils.orange125,
                     plainTextStringTextAlign: TextAlign.center,
                   ),
 
@@ -70,7 +70,7 @@ class SignUpPreviewScreenWidget {
                     plainTextStringFontSize: 18.sp(context),
                     plainTextStringFontWeight: FontWeight.w400,
                     plainTextContainerAlignment: Alignment.centerLeft,
-                    plainTextStringColor: AppColors.white253,
+                    plainTextStringColor: ColorUtils.white253,
                     plainTextStringTextAlign: TextAlign.center,
                   ),
 

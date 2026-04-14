@@ -1,4 +1,8 @@
 import 'package:discount_me_app/res/app_const/import_list.dart';
+import 'package:discount_me_app/utils/utils.dart';
+import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+
 
 class HomePopulerRecipesWidget extends StatelessWidget {
   const HomePopulerRecipesWidget({super.key});
@@ -8,11 +12,11 @@ class HomePopulerRecipesWidget extends StatelessWidget {
     var width = MediaQuery.of(context).size.width;
     var height = MediaQuery.of(context).size.height;
     return Container(
-      width: 280.w, // Adjust width based on your requirement
-      margin: EdgeInsets.symmetric(vertical: 10, horizontal: 5),
+      width: 280.w(context), // Adjust width based on your requirement
+      margin: EdgeInsets.symmetric(vertical: 5.vpm(context), horizontal: 5.hpm(context)),
       decoration: BoxDecoration(
         color: Colors.white,
-        borderRadius: BorderRadius.circular(15),
+        borderRadius: BorderRadius.circular(15.r(context)),
         boxShadow: [
           BoxShadow(
             color: Colors.black.withOpacity(0.1), // Subtle shadow for elevation
@@ -29,8 +33,8 @@ class HomePopulerRecipesWidget extends StatelessWidget {
           ClipRRect(
             borderRadius: BorderRadius.vertical(top: Radius.circular(15)),
             child: Image.asset(
-              AppImages.poRecipeImg, // Replace with your image path
-              height: 120,
+              ImageUtils.poRecipeImg, // Replace with your image path
+              height: 120.h(context),
               width: double.infinity,
               fit: BoxFit.cover,
             ),
@@ -38,7 +42,7 @@ class HomePopulerRecipesWidget extends StatelessWidget {
 
           // Padding around the text and details
           Padding(
-            padding: EdgeInsets.symmetric(horizontal: 10, vertical: 8),
+            padding: EdgeInsets.symmetric(horizontal: 10.hpm(context), vertical: 8.vpm(context)),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -46,26 +50,26 @@ class HomePopulerRecipesWidget extends StatelessWidget {
                 Text(
                   'Crazy Taco', // Replace with dynamic data if necessary
                   style: GoogleFonts.urbanist(
-                    fontSize: 18.sp,
+                    fontSize: 18.sp(context),
                     fontWeight: FontWeight.bold,
                     color: Colors.black,
                   ),
                 ),
 
-                SizedBox(height: 5.h),
+                SizedBox(height: 5.h(context)),
 
                 // Description
                 Text(
                   'Delicious tacos, appetizing...', // Short description
                   style: GoogleFonts.urbanist(
-                    fontSize: 14.sp,
+                    fontSize: 14.sp(context),
                     color: Colors.grey[600],
                   ),
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
                 ),
 
-                SizedBox(height: 10.h),
+                SizedBox(height: 10.h(context)),
 
                 // Bottom section with icons, labels, and price
                 Row(
@@ -75,24 +79,24 @@ class HomePopulerRecipesWidget extends StatelessWidget {
                     Row(
                       children: [
                         // Time icon and label
-                        Icon(Icons.access_time, size: 16.sp, color: Colors.orange),
+                        Icon(Icons.access_time, size: 16.sp(context), color: Colors.orange),
                         SizedBox(width: 4),
                         Text(
                           '40-50min', // Time estimate
                           style: GoogleFonts.urbanist(
-                            fontSize: 14.sp,
+                            fontSize: 14.sp(context),
                             color: Colors.grey[700],
                           ),
                         ),
                         SizedBox(width: 10),
 
                         // Rating icon and label
-                        Icon(Icons.star, size: 16.sp, color: Colors.orange),
-                        SizedBox(width: 4),
+                        Icon(Icons.star, size: 16.sp(context), color: Colors.orange),
+                          SizedBox(width: 4),
                         Text(
                           '9.5', // Rating
                           style: GoogleFonts.urbanist(
-                            fontSize: 14.sp,
+                            fontSize: 14.sp(context),
                             color: Colors.grey[700],
                           ),
                         ),
@@ -103,7 +107,7 @@ class HomePopulerRecipesWidget extends StatelessWidget {
                     Text(
                       '\$45.5', // Replace with dynamic price
                       style: GoogleFonts.urbanist(
-                        fontSize: 18.sp,
+                        fontSize: 18.sp(context),
                         fontWeight: FontWeight.bold,
                         color: Colors.black,
                       ),

@@ -1,6 +1,7 @@
-// ignore_for_file: prefer_const_constructors
-
 import 'package:discount_me_app/res/app_const/import_list.dart';
+import 'package:discount_me_app/utils/utils.dart';
+import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class OrderCanceledWidget extends StatelessWidget {
   const OrderCanceledWidget({super.key});
@@ -13,8 +14,8 @@ class OrderCanceledWidget extends StatelessWidget {
     return Container(
       width: width,
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(8.r),
-        color: AppColors.greyLightHover,
+        borderRadius: BorderRadius.circular(8.r(context)),
+        color: ColorUtils.greyLightHover,
       ),
       child: Padding(
         padding: const EdgeInsets.all(8.0),
@@ -22,7 +23,7 @@ class OrderCanceledWidget extends StatelessWidget {
           children: [
             // Image of the food item
             Image.asset(
-              AppImages.orderItemBg, scale: 4,
+              ImageUtils.orderItemBg, scale: 4,
               fit: BoxFit.cover,
             ),
             SizedBox(width: 12),
@@ -34,8 +35,8 @@ class OrderCanceledWidget extends StatelessWidget {
                   Text('Best Burger',
                     style: GoogleFonts.urbanist(
                       fontWeight: FontWeight.w700,
-                      color: AppColors.blackColor,
-                      fontSize: 20.sp,
+                      color: ColorUtils.blackColor,
+                      fontSize: 20.sp(context),
                     ),
                   ),
                   SizedBox(height: 6),
@@ -43,9 +44,9 @@ class OrderCanceledWidget extends StatelessWidget {
                   Text(
                     'Amount: \$34',
                     style: GoogleFonts.urbanist(
-                      fontSize: 18.sp,
+                      fontSize: 18.sp(context),
                       fontWeight: FontWeight.w400,
-                      color: AppColors.blackColor,
+                      color: ColorUtils.blackColor,
                     ),
                   ),
                   SizedBox(height: 4),
@@ -56,17 +57,17 @@ class OrderCanceledWidget extends StatelessWidget {
                             TextSpan(
                               text: 'Date: ',
                               style: GoogleFonts.urbanist(
-                                fontSize: 14.sp,
+                                fontSize: 14.sp(context),
                                 fontWeight: FontWeight.w600,
-                                color: AppColors.primaryColor,
+                                color: ColorUtils.primaryColor,
                               ),
                             ),
                             TextSpan(
                               text: '07/02/24 - 09/02/24',
                               style: GoogleFonts.urbanist(
-                                fontSize: 14.sp,
+                                fontSize: 14.sp(context),
                                 fontWeight: FontWeight.w600,
-                                color: AppColors.blackColor,
+                                color: ColorUtils.blackColor,
                               ),
                             )
                           ]
@@ -83,14 +84,14 @@ class OrderCanceledWidget extends StatelessWidget {
                   padding: EdgeInsets.symmetric(horizontal: 4, vertical: 4),
                   decoration: BoxDecoration(
                     color: Color(0xffFFE5E5),
-                    borderRadius: BorderRadius.circular(5.r),
+                    borderRadius: BorderRadius.circular(5.r(context)),
                   ),
                   child: Text(
                     'Canceled',
                     style: TextStyle(
                       color: Color(0xffff0000),
                       fontWeight: FontWeight.w700,
-                      fontSize: 14.sp,
+                      fontSize: 14.sp(context),
                     ),
                   ),
                 ),
@@ -99,7 +100,7 @@ class OrderCanceledWidget extends StatelessWidget {
                 // Arrow icon for navigation
                 Icon(
                   Icons.arrow_forward_ios,
-                  size: 16.sp,
+                  size: 16.sp(context),
                   color: Colors.black,
                 ),
               ],

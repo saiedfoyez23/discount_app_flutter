@@ -1,186 +1,243 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
-
-import 'package:discount_me_app/res/app_const/import_list.dart';
-import 'package:discount_me_app/res/common_widget/custom_alert_dialog.dart';
-import 'package:discount_me_app/res/common_widget/picker_dialog.dart';
+import 'dart:io';
+import 'package:discount_me_app/utils/utils.dart';
 import 'package:discount_me_app/view/riders/rider_earning_view/view/rider_profile_earing_home_screen.dart';
 import 'package:discount_me_app/view/riders/rider_profile_view/view/rider_profile_edit_screen.dart';
-import 'package:discount_me_app/view/riders/rider_profile_view/view/rider_setting_screen.dart';
-import 'package:discount_me_app/view/users/profile_view/controller/nameController.dart';
-import 'package:discount_me_app/view/users/profile_view/widget/profile_item_widget.dart';
+import 'package:discount_me_app/view/riders/rider_profile_view/widget/rider_profile_dialog_box.dart';
+import 'package:discount_me_app/view/view.dart';
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:skeletonizer/skeletonizer.dart';
+import '../../../../res/app_const/import_list.dart';
+import '../../../../res/res.dart';
 
 class RiderProfileHome extends StatelessWidget {
-  RiderProfileHome({super.key});
-  final NameController nameController = Get.put(NameController());
+  const RiderProfileHome({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final RiderProfileController riderProfileController = Get.put(RiderProfileController(context: context));
     return Scaffold(
-      appBar: AppBar(
-        automaticallyImplyLeading: false,
-        title: CustomText(
-          title: "Profile",
-          color: AppColors.blackColor,
-          fontSize: 24.sp,
-          fontWeight: FontWeight.w700,
+      body: Container(
+        height: 926.h(context),
+        width: 428.w(context),
+        decoration: BoxDecoration(
+          color: Colors.white,
         ),
-        centerTitle: true,
-      ),
-      body: Padding(
-        padding: EdgeInsets.all(16),
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              // Profile image
-              20.heightBox,
-              Center(
-                child: Stack(
-                  children: [
-                    ClipRRect(
-                      borderRadius: BorderRadius.circular(100),
-                      child: Image.asset(
-                        AppImages.profileImage,
-                        fit: BoxFit.cover,
-                        width: 202.w,
-                        height: 202.h,
-                      ),
-                    ),
-                    Positioned(
-                      bottom: 10,
-                      right: 17,
-                      child: GestureDetector(
-                        onTap: () {
-                          PickerDialog().showImagePickerDialog(context);
-                        },
-                        child: Container(
-                          alignment: Alignment.center,
-                          width: 34.w,
-                          height: 34.h,
-                          decoration: BoxDecoration(
-                            color: Color(0xff40C4FF),
-                            borderRadius: BorderRadius.only(
-                              topLeft: Radius.circular(10),
-                              topRight: Radius.circular(10),
-                              bottomRight: Radius.circular(10),
-                            ),
-                          ),
-                          child: Icon(
-                            Icons.edit,
-                            color: AppColors.whiteColor,
+        child: Obx(()=>Skeletonizer(
+          effect: PulseEffect(),
+          enabled: riderProfileController.isLoading.value,
+          child: RefreshIndicator(
+            onRefresh: () async {
+              Get.off(()=>RiderHome(selectedIndex: 3,),duration: const Duration(milliseconds: 100),preventDuplicates: false);
+            },
+            child: CustomScrollView(
+              slivers: [
+
+
+                SliverToBoxAdapter(
+                  child: Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 16.hpm(context), vertical: 16.vpm(context)),
+                    child: Column(
+                      children: [
+
+                        // appBar
+                        CustomSpaceWidget.spacerWidget(spaceHeight: 40.h(context)),
+
+                        UserProfileAppbarWidget(title: " Profile", widget: SizedBox(),),
+
+                        // Profile image
+
+                        CustomSpaceWidget.spacerWidget(spaceHeight: 20.h(context)),
+
+
+                        Center(
+                          child: Stack(
+                            children: [
+                              riderProfileController.riderProfileResponse.value.data?.image != null ?
+                              CustomImageContainer.networkImageContainer(
+                                height: 220.h(context),
+                                width: 220.w(context),
+                                networkImage: riderProfileController.riderProfileResponse.value.data?.image,
+                                boxFit: BoxFit.fitWidth,
+                                boxShape: BoxShape.circle,
+                              ) :
+                              CustomImageContainer.assetImageContainer(
+                                height: 220.h(context),
+                                width: 220.w(context),
+                                assetImage: ImageUtils.profileImage,
+                                boxFit: BoxFit.fitWidth,
+                                boxShape: BoxShape.circle,
+                              ),
+                              Positioned(
+                                bottom: 24.h(context),
+                                right: 17.w(context),
+                                child: Container(
+                                  alignment: Alignment.center,
+                                  width: 34.w(context),
+                                  height: 34.h(context),
+                                  decoration: BoxDecoration(
+                                    color: ColorUtils.secondaryColor,
+                                    borderRadius: BorderRadius.only(
+                                      topLeft: Radius.circular(10.r(context)),
+                                      topRight: Radius.circular(10.r(context)),
+                                      bottomRight: Radius.circular(10.r(context)),
+                                    ),
+                                  ),
+                                  child: TextButton(
+                                    style: TextButton.styleFrom(padding: EdgeInsets.zero),
+                                    onPressed: () async {
+                                      RiderProfileDialogBox().imageUpdateDialogBox(
+                                        context: context,
+                                        riderProfileController: riderProfileController,
+                                        name: riderProfileController.riderProfileResponse.value.data?.name,
+                                        riderId: riderProfileController.riderProfileResponse.value.data?.sId,
+                                      );
+                                    },
+                                    child: Icon(
+                                      Icons.edit,
+                                      size: 16.r(context),
+                                      color: ColorUtils.whiteColor,
+                                    ),
+                                  ),
+                                ),
+                              )
+                            ],
                           ),
                         ),
-                      ),
-                    )
-                  ],
-                ),
-              ),
 
-              // name section
-              20.heightBox,
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Obx(() => CustomText(
-                        title: nameController.name.value,
-                        fontSize: 18.sp,
-                        fontWeight: FontWeight.w700,
-                        color: AppColors.blackColor,
-                      )),
-                  10.widthBox,
-                  GestureDetector(
-                    onTap: () {
-                      PickerDialog().showNameChangeDialog(context);
-                    },
-                    child: Container(
-                      padding: EdgeInsets.all(5),
-                      decoration: BoxDecoration(
-                          color: Colors.black, shape: BoxShape.circle),
-                      child: Icon(
-                        Icons.edit,
-                        color: Colors.white,
-                        size: 18.sp,
-                      )
+                        // name section
+
+                        CustomSpaceWidget.spacerWidget(spaceHeight: 20.h(context)),
+
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            CustomTextContainer.plainTextContainerWidgetWithoutHeightWidth(
+                              plainTextString: riderProfileController.riderProfileResponse.value.data?.name ?? "",
+                              plainTextStringFontSize: 20.sp(context),
+                              plainTextStringFontWeight: FontWeight.w700,
+                              plainTextContainerAlignment: Alignment.center,
+                              plainTextStringTextAlign: TextAlign.center,
+                              plainTextStringColor: ColorUtils.black29,
+                            ),
+
+
+                            TextButton(
+                              onPressed: () {
+                                RiderProfileDialogBox().nameUpdateDialogBox(
+                                  context: context,
+                                  riderProfileController: riderProfileController,
+                                  name: riderProfileController.riderProfileResponse.value.data?.name ?? "",
+                                  nameControllerText: riderProfileController.nameControllerText.value,
+                                  riderId: riderProfileController.riderProfileResponse.value.data?.sId,
+                                );
+                              },
+                              child: Container(
+                                padding: EdgeInsets.all(7.r(context)),
+                                decoration: BoxDecoration(
+                                    color: Colors.black,
+                                    shape: BoxShape.circle
+                                ),
+                                child: Icon(Icons.edit, color: Colors.white, size: 18.r(context),),
+                              ),
+                            )
+                          ],
+                        ),
+
+                        // profile item
+
+                        CustomSpaceWidget.spacerWidget(spaceHeight: 15.h(context)),
+
+                        // profile item
+                        ProfileItemWidget(
+                          title: "Edit Profile",
+                          icon: Image.asset(
+                            ImageUtils.userEdite,
+                            scale: 5,
+                          ),
+                          navigateIcon: Icon(
+                            Icons.navigate_next,
+                            size: 24.r(context),
+                            color: Colors.black54,
+                          ),
+                          onTap: () {
+                            Get.off(()=>RiderProfileEditScreen(),preventDuplicates: false,duration: Duration(milliseconds: 100));
+                          },
+                        ),
+
+                        //CustomSpaceWidget.spacerWidget(spaceHeight: 10.h(context)),
+
+                        ProfileItemWidget(
+                          title: "Earnings",
+                          icon: Image.asset(
+                            ImageUtils.earnIcon,
+                            scale: 5,
+                          ),
+                          navigateIcon: Icon(
+                            Icons.navigate_next,
+                            size: 24.r(context),
+                            color: Colors.black54,
+                          ),
+                          onTap: () {
+                            Get.to(RiderProfileEarningHomeScreen());
+                          },
+                        ),
+
+                        //CustomSpaceWidget.spacerWidget(spaceHeight: 15.h(context)),
+
+                        ProfileItemWidget(
+                          title: "Settings",
+                          icon: Image.asset(
+                            ImageUtils.settingIcon,
+                            scale: 5,
+                          ),
+                          navigateIcon: Icon(
+                            Icons.navigate_next,
+                            size: 24.r(context),
+                            color: Colors.black54,
+                          ),
+                          onTap: () {
+                            Get.off(()=>RiderSettingScreen(),preventDuplicates: false,duration: Duration(milliseconds: 100));
+                          },
+                        ),
+
+                        //CustomSpaceWidget.spacerWidget(spaceHeight: 15.h(context)),
+
+
+                        ProfileItemWidget(
+                          widget: CustomSpaceWidget.spacerWidget(),
+                          title: "Logout",
+                          icon: Image.asset(
+                            ImageUtils.logout,
+                            scale: 5,
+                          ),
+                          onTap: () {
+                            CustomAlertDialog().customAlert(
+                              context: context, title: 'Logout',
+                              message: 'Are you sure you want to logout?',
+                              NegativebuttonText: 'Cancel',
+                              PositivvebuttonText: 'Logout',
+                              onPositiveButtonPressed: () async {
+                                await AppLocalStorage.removeKey(key: "Login");
+                                await Get.offAll(()=>SignInScreen(),duration: Duration(milliseconds: 100));
+                              },
+                              onNegativeButtonPressed: () => Navigator.of(context).pop(),
+                            );
+                          },
+                        ),
+
+
+                      ],
                     ),
-                  )
-                ],
-              ),
+                  ),
+                )
 
-              // profile item
-              20.heightBox,
-              ProfileItemWidget(
-                title: "Edit Profile",
-                icon: Image.asset(
-                  AppImages.userEdite,
-                  scale: 4,
-                ),
-                navigateIcon: Icon(
-                  Icons.navigate_next,
-                  size: 24,
-                  color: Colors.black54,
-                ),
-                onTap: () {
-                  Get.to(RiderProfileEditScreen());
-                },
-              ),
 
-              10.heightBox,
-              ProfileItemWidget(
-                title: "Earnings",
-                icon: Image.asset(
-                  AppImages.earnIcon,
-                  scale: 4,
-                ),
-                navigateIcon: Icon(
-                  Icons.navigate_next,
-                  size: 24,
-                  color: Colors.black54,
-                ),
-                onTap: () {
-                  Get.to(RiderProfileEarningHomeScreen());
-                },
-              ),
-
-              10.heightBox,
-              ProfileItemWidget(
-                title: "Settings",
-                icon: Image.asset(
-                  AppImages.settingIcon,
-                  scale: 4,
-                ),
-                navigateIcon: Icon(
-                  Icons.navigate_next,
-                  size: 24,
-                  color: Colors.black54,
-                ),
-                onTap: () {
-                  Get.to(RiderSettingScreen());
-                },
-              ),
-              10.heightBox,
-              ProfileItemWidget(
-                title: "Logout",
-                icon: Image.asset(
-                  AppImages.logout,
-                  scale: 4,
-                ),
-                onTap: () {
-                  CustomAlertDialog().customAlert(
-                    context: context, title: 'Logout',
-                    message: 'Are you sure you want to logout?',
-                    NegativebuttonText: 'Cancel',
-                    PositivvebuttonText: 'Logout',
-                    onPositiveButtonPressed: () {
-                      Navigator.of(context).pop();
-                      Get.to(()=>SignInScreen());
-                    },
-                    onNegativeButtonPressed: () => Navigator.of(context).pop(),
-                  );
-                },
-              ),
-            ],
+              ],
+            ),
           ),
-        ),
+        )),
       ),
     );
   }

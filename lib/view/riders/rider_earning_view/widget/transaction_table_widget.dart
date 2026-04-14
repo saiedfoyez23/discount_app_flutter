@@ -3,6 +3,8 @@
 import 'package:discount_me_app/res/app_const/import_list.dart';
 import 'package:discount_me_app/view/riders/rider_earning_view/view/rider_transaction_details_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:discount_me_app/utils/utils.dart';
+import 'package:get/get.dart';
 
 class TransactionTableWidget extends StatelessWidget {
   TransactionTableWidget({super.key});
@@ -26,7 +28,7 @@ class TransactionTableWidget extends StatelessWidget {
         child: SingleChildScrollView(
           scrollDirection: Axis.vertical,
           child: DataTable(
-            headingRowColor: MaterialStateProperty.all(AppColors.secondaryColor),
+            headingRowColor: MaterialStateProperty.all(ColorUtils.secondaryColor),
             headingTextStyle: TextStyle(color: Colors.white),
             columns: <DataColumn>[
               DataColumn(label: Text('#SI')),
@@ -59,7 +61,7 @@ class TransactionTableWidget extends StatelessWidget {
                       Row(
                         children: [
                           CircleAvatar(
-                            backgroundImage: AssetImage(AppImages.homeProfileAvatar),
+                            backgroundImage: AssetImage(ImageUtils.homeProfileAvatar),
                             radius: 15,
                           ),
                           SizedBox(width: 10),

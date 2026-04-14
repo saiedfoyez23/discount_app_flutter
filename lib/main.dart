@@ -1,11 +1,11 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'dart:io';
-
 import 'package:device_preview/device_preview.dart';
 import 'package:discount_me_app/res/app_const/appRoutes.dart';
 import 'package:discount_me_app/res/app_const/import_list.dart';
-import 'package:discount_me_app/res/res.dart';
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'res/app_const/appNames.dart';
 
 
@@ -20,6 +20,16 @@ class MyHttpOverrides extends HttpOverrides{
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   HttpOverrides.global = MyHttpOverrides();
+  await SystemChrome.setEnabledSystemUIMode(
+    SystemUiMode.manual,
+    overlays: SystemUiOverlay.values,
+  );
+  SystemChrome.setSystemUIOverlayStyle(
+    SystemUiOverlayStyle(
+      statusBarColor: Colors.transparent, // Set the status bar color
+      statusBarIconBrightness: Brightness.dark, // Use Hello
+    ),
+  );
   runApp(MyApp());
 }
 
@@ -28,28 +38,19 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ScreenUtilInit(
-      designSize: const Size(428, 926),  // Your design size
-      minTextAdapt: true,
-      splitScreenMode: true,
-      builder: (context, child) {
-        return GetMaterialApp(
-          debugShowCheckedModeBanner: false,
-          useInheritedMediaQuery: true,
-          locale: DevicePreview.locale(context),
-          builder: DevicePreview.appBuilder,
+    return GetMaterialApp(
+      debugShowCheckedModeBanner: false,
+      useInheritedMediaQuery: true,
+      locale: DevicePreview.locale(context),
+      builder: DevicePreview.appBuilder,
 
-          theme: ThemeData(
-            colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-            useMaterial3: true,
-          ),
-
-          // home: BrokerHome(),
-
-          initialRoute: RouteNames.splashViewOne,
-          getPages: AppRoutes.routes,
-        );
-      },
+      theme: ThemeData(
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.transparent),
+        useMaterial3: true,
+      ),
+      // home: BrokerHome(),
+      initialRoute: RouteNames.splashViewOne,
+      getPages: AppRoutes.routes,
     );
   }
 }

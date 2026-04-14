@@ -1,8 +1,10 @@
-// ignore_for_file: prefer_const_constructors
-
 import 'package:discount_me_app/res/app_const/import_list.dart';
+import 'package:discount_me_app/utils/utils.dart';
 import 'package:discount_me_app/view/users/coupon_view/controller/peyment_method_controller.dart';
 import 'package:discount_me_app/view/users/coupon_view/view/payment_information_screen.dart';
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class PaymentMethodScreen extends StatelessWidget {
   PaymentMethodScreen({super.key});
@@ -19,7 +21,7 @@ class PaymentMethodScreen extends StatelessWidget {
       decoration: BoxDecoration(
         color: Colors.white,
         image: DecorationImage(
-          image: AssetImage(AppImages.homeBg),
+          image: AssetImage(ImageUtils.homeBg),
           alignment: Alignment.topRight,
           opacity: 0.5,
         ),
@@ -65,15 +67,15 @@ class PaymentMethodScreen extends StatelessWidget {
                               title: Text(
                                 'Credit Card',
                                 style: GoogleFonts.urbanist(
-                                  fontSize: 16.sp,
+                                  fontSize: 16.sp(context),
                                   fontWeight: FontWeight.w600,
                                 ),
                               ),
                               subtitle: Text(
                                 '1234 **** **** 1234',
                                 style: GoogleFonts.urbanist(
-                                  fontSize: 14.sp,
-                                  color: AppColors.whiteDarkActive,
+                                  fontSize: 14.sp(context),
+                                  color: ColorUtils.whiteDarkActive,
                                 ),
                               ),
                             )),
@@ -90,15 +92,15 @@ class PaymentMethodScreen extends StatelessWidget {
                               title: Text(
                                 'Paypal',
                                 style: GoogleFonts.urbanist(
-                                  fontSize: 18.sp,
+                                  fontSize: 18.sp(context),
                                   fontWeight: FontWeight.bold,
                                 ),
                               ),
                               subtitle: Text(
                                 'email@website.com',
                                 style: GoogleFonts.urbanist(
-                                  fontSize: 14.sp,
-                                  color: AppColors.whiteDarkActive,
+                                  fontSize: 14.sp(context),
+                                  color: ColorUtils.whiteDarkActive,
                                 ),
                               ),
                             )),
@@ -115,15 +117,15 @@ class PaymentMethodScreen extends StatelessWidget {
                               title: Text(
                                 'Apple Pay',
                                 style: GoogleFonts.urbanist(
-                                  fontSize: 18.sp,
+                                  fontSize: 18.sp(context),
                                   fontWeight: FontWeight.bold,
                                 ),
                               ),
                               subtitle: Text(
                                 'email@website.com',
                                 style: GoogleFonts.urbanist(
-                                  fontSize: 14.sp,
-                                  color: AppColors.whiteDarkActive,
+                                  fontSize: 14.sp(context),
+                                  color: ColorUtils.whiteDarkActive,
                                 ),
                               ),
                             )),
@@ -137,7 +139,7 @@ class PaymentMethodScreen extends StatelessWidget {
               Padding(
                   padding: EdgeInsets.symmetric(horizontal: 10),
                 child: Roundbutton(
-                  buttonColor: AppColors.primaryColor,
+                  buttonColor: ColorUtils.primaryColor,
                   padding_vertical: 15,
                   borderRadius: 8,
                   title: "Continue",

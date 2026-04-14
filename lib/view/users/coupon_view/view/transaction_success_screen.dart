@@ -1,7 +1,9 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
-
 import 'package:discount_me_app/res/app_const/import_list.dart';
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
+import 'package:discount_me_app/utils/utils.dart';
 
 class TransactionSuccessScreen extends StatelessWidget {
   const TransactionSuccessScreen({super.key});
@@ -16,7 +18,7 @@ class TransactionSuccessScreen extends StatelessWidget {
       decoration: BoxDecoration(
         color: Colors.white,
         image: DecorationImage(
-            image: AssetImage(AppImages.homeBg),
+            image: AssetImage(ImageUtils.homeBg),
             alignment: Alignment.topRight,
             opacity: 0.5),
       ),
@@ -24,37 +26,33 @@ class TransactionSuccessScreen extends StatelessWidget {
         backgroundColor: Colors.transparent,
         body: SafeArea(
           child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+            padding: EdgeInsets.symmetric(horizontal: 16.hpm(context), vertical: 16.vpm(context)),
             child: SingleChildScrollView(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   10.heightBox,
                   HomeResturantAppBar(),
-
-
-
                   40.heightBox,
-                Stack(
-                  children: [
-                    // Background Image
-                    Image.asset(
-                      AppImages.transactionSucBg, // Your background image
-                      fit: BoxFit.fill,
-                    ),
+                  Stack(
+                    children: [
+                      Image.asset(
+                        ImageUtils.transactionSucBg,
+                        fit: BoxFit.fill,
+                      ),
 
-                    Positioned.fill(
+                      Positioned.fill(
                         child: Padding(
-                          padding: const EdgeInsets.all(16.0),
+                          padding: EdgeInsets.all(16.r(context)),
                           child: Column(
                             mainAxisSize: MainAxisSize.min,
                             children: [
-                              // Success Icon
+
                               Container(
-                                padding: EdgeInsets.all(12),
-                                width: 150.w,
-                                height: 150.h,
-                                child: Lottie.asset(AppImages.successAnim, repeat: false, fit: BoxFit.cover),
+                                padding: EdgeInsets.all(12.r(context)),
+                                width: 150.w(context),
+                                height: 150.h(context),
+                                child: Lottie.asset(ImageUtils.successAnim, repeat: false, fit: BoxFit.cover),
                               ),
                               SizedBox(height: 10),
 
@@ -62,7 +60,7 @@ class TransactionSuccessScreen extends StatelessWidget {
                               Text(
                                 'Transaction Successful',
                                 style: GoogleFonts.urbanist(
-                                  fontSize: 24.sp,
+                                  fontSize: 24.sp(context),
                                   fontWeight: FontWeight.w700,
                                 ),
                               ),
@@ -70,8 +68,8 @@ class TransactionSuccessScreen extends StatelessWidget {
                               Text(
                                 'Your top up has been successfully done',
                                 style: GoogleFonts.urbanist(
-                                    fontSize: 18.sp,
-                                    color: AppColors.blackColor,
+                                    fontSize: 18.sp(context),
+                                    color: ColorUtils.blackColor,
                                     fontWeight: FontWeight.w400
                                 ),
                               ),
@@ -81,16 +79,16 @@ class TransactionSuccessScreen extends StatelessWidget {
                               Text(
                                 'Total Pay',
                                 style: GoogleFonts.urbanist(
-                                    fontSize: 16.sp,
-                                    color: AppColors.blackColor
+                                    fontSize: 16.sp(context),
+                                    color: ColorUtils.blackColor
                                 ),
                               ),
                               Text(
                                 '\$200.00',
                                 style: GoogleFonts.urbanist(
-                                  fontSize: 24.sp,
+                                  fontSize: 24.sp(context),
                                   fontWeight: FontWeight.w700,
-                                  color: AppColors.blackColor,
+                                  color: ColorUtils.blackColor,
                                 ),
                               ),
 
@@ -100,7 +98,7 @@ class TransactionSuccessScreen extends StatelessWidget {
                                 child: CustomText(
                                     title: "Total Top Up",
                                   fontWeight: FontWeight.w600,
-                                  fontSize: 16.sp,
+                                  fontSize: 16.sp(context),
                                 )
                               ),
 
@@ -163,9 +161,9 @@ class TransactionSuccessScreen extends StatelessWidget {
                               // Close Button
                               Roundbutton(
                                 title: "Close",
-                                buttonColor: AppColors.primaryColor,
+                                buttonColor: ColorUtils.primaryColor,
                                 onTap: () {
-                                  Get.to(UserHome());
+                                  Get.to(UserHome(selectedIndex: 2,));
                                 },
                               ),
                             ],

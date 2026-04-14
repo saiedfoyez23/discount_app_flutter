@@ -1,10 +1,11 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
-
 import 'package:discount_me_app/res/app_const/import_list.dart';
 import 'package:discount_me_app/view/vendors/vendor_home_view/view/vendor_order_ongoing_status_screen.dart';
 import 'package:discount_me_app/view/vendors/vendor_home_view/widget/order_order_going_widget.dart';
 import 'package:discount_me_app/view/vendors/vendor_home_view/widget/vendor_order_canceled_widget.dart';
 import 'package:discount_me_app/view/vendors/vendor_home_view/widget/vendor_order_delivered_widget.dart';
+import 'package:flutter/material.dart';
+import 'package:discount_me_app/utils/utils.dart';
+import 'package:get/get.dart';
 
 class VendorOrderManageScreen extends StatefulWidget {
   const VendorOrderManageScreen({super.key});
@@ -21,13 +22,13 @@ class _VendorOrderManageScreenState extends State<VendorOrderManageScreen> {
   Color getTabColor(int index) {
     switch (index) {
       case 0:
-        return AppColors.secondaryColor; // Ongoing
+        return ColorUtils.secondaryColor; // Ongoing
       case 1:
         return Colors.green; // Delivered
       case 2:
         return Colors.red; // Canceled
       default:
-        return AppColors.primaryColor; // Default color
+        return ColorUtils.primaryColor; // Default color
     }
   }
 
@@ -40,7 +41,7 @@ class _VendorOrderManageScreenState extends State<VendorOrderManageScreen> {
       decoration: BoxDecoration(
         color: Colors.white,
         image: DecorationImage(
-            image: AssetImage(AppImages.homeBg),
+            image: AssetImage(ImageUtils.homeBg),
             alignment: Alignment.topRight,
             opacity: 0.5),
       ),

@@ -1,14 +1,13 @@
-// ignore_for_file: prefer_final_fields, prefer_const_constructors, prefer_const_literals_to_create_immutables
-
 import 'package:discount_me_app/res/app_const/import_list.dart';
 import 'package:discount_me_app/view/riders/rider_order_view/view/rider_order_home_screen.dart';
 import 'package:discount_me_app/view/riders/rider_profile_view/view/rider_profile_home.dart';
 import 'package:discount_me_app/view/riders/subscription_view/view/subscription_home_screen.dart';
-import 'package:water_drop_nav_bar/water_drop_nav_bar.dart';
+import 'package:flutter/material.dart';
+import 'package:discount_me_app/utils/utils.dart';
 
 class RiderHome extends StatefulWidget {
-  const RiderHome({super.key});
-
+  const RiderHome({super.key,required this.selectedIndex});
+  final int selectedIndex;
   @override
   State<RiderHome> createState() => _RiderHomeState();
 }
@@ -17,8 +16,8 @@ class _RiderHomeState extends State<RiderHome> {
 
   int _selectedIndex = 0;
   // List of body views based on selected index
-  static List<Widget> _bodyOptions = <Widget>[
-    RiderHomeScreen(),
+  final List<Widget> _bodyOptions = <Widget>[
+    RiderHomeView(),
     SubscriptionHomeScreen(),
     RiderOrderHomeScreen(),
     RiderProfileHome(),
@@ -31,6 +30,13 @@ class _RiderHomeState extends State<RiderHome> {
   }
 
   @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    _selectedIndex = widget.selectedIndex;
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
 
@@ -38,14 +44,14 @@ class _RiderHomeState extends State<RiderHome> {
 
         bottomNavigationBar: Container(
           decoration: BoxDecoration(
-              color: AppColors.primaryColor,
+              color: ColorUtils.primaryColor,
               borderRadius: BorderRadius.only(
                 topLeft: Radius.circular(30),
                 topRight: Radius.circular(30),
               ),
               boxShadow: [
                 BoxShadow(
-                    color: AppColors.primaryColor,
+                    color: ColorUtils.primaryColor,
                     offset: Offset(0, 1),blurRadius: 5
                 )
               ]
@@ -67,23 +73,23 @@ class _RiderHomeState extends State<RiderHome> {
               enableFeedback: false,
               items: [
                 BottomNavigationBarItem(
-                  icon: Icon(Icons.home_outlined, size: 28.sp),
-                  activeIcon: Icon(Icons.home, size: 28.sp),
+                  icon: Icon(Icons.home_outlined, size: 28.sp(context)),
+                  activeIcon: Icon(Icons.home, size: 28.sp(context)),
                   label: 'Home',
                 ),
                 BottomNavigationBarItem(
-                  icon: Image.asset(AppImages.subscription, scale: 4,),
-                  activeIcon: Image.asset(AppImages.subscriptionOutline, scale: 4,),
+                  icon: Image.asset(ImageUtils.subscription, scale: 4,),
+                  activeIcon: Image.asset(ImageUtils.subscriptionOutline, scale: 4,),
                   label: 'Subscription',
                 ),
                 BottomNavigationBarItem(
-                  icon: Image.asset(AppImages.navOrderIcon, scale: 4,),
-                  activeIcon: Image.asset(AppImages.navOrderOutlineIcon, scale: 4,),
+                  icon: Image.asset(ImageUtils.navOrderIcon, scale: 4,),
+                  activeIcon: Image.asset(ImageUtils.navOrderOutlineIcon, scale: 4,),
                   label: 'Orders',
                 ),
                 BottomNavigationBarItem(
-                  icon: Icon(Icons.person_outline, size: 28.sp),
-                  activeIcon: Icon(Icons.person, size: 28.sp),
+                  icon: Icon(Icons.person_outline, size: 28.sp(context)),
+                  activeIcon: Icon(Icons.person, size: 28.sp(context)),
                   label: 'Profile',
                 ),
               ],

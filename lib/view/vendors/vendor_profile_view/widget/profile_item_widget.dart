@@ -1,6 +1,8 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_constructors_in_immutables
 
 import 'package:discount_me_app/res/app_const/import_list.dart';
+import 'package:flutter/material.dart';
+import 'package:discount_me_app/utils/utils.dart';
 
 class CustomProfileItemWidget extends StatelessWidget {
   final String title;
@@ -26,9 +28,9 @@ class CustomProfileItemWidget extends StatelessWidget {
                     20.widthBox,
                     CustomText(
                         title: title,
-                        fontSize: 18.sp,
+                        fontSize: 18.sp(context),
                         fontWeight: FontWeight.w400,
-                        color: AppColors.blackColor
+                        color: ColorUtils.blackColor
                     ),
                   ],
                 ),

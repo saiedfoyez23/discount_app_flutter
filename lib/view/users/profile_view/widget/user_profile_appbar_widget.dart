@@ -1,36 +1,41 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_constructors_in_immutables
-
-import 'package:discount_me_app/res/app_const/import_list.dart';
+import 'package:discount_me_app/res/res.dart';
+import 'package:discount_me_app/utils/utils.dart';
+import 'package:flutter/material.dart';
 
 class UserProfileAppbarWidget extends StatelessWidget {
   final String title;
   final Widget? widget;
   final VoidCallback? onTap;
-  UserProfileAppbarWidget({super.key, required this.title, this.onTap,
-    this.widget,
-  });
+  UserProfileAppbarWidget({super.key, required this.title, this.onTap, this.widget});
 
   @override
   Widget build(BuildContext context) {
     return Row(
       children: [
-        GestureDetector(
-          onTap: onTap,
-          child: widget??Icon(Icons.arrow_back, color: Colors.black, size: 28,),
+        Container(
+          height: 28.h(context),
+          width: 28.h(context),
+          decoration: BoxDecoration(
+            color: Colors.transparent,
+          ),
+          child: widget ?? TextButton(
+            style: TextButton.styleFrom(padding: EdgeInsets.zero),
+            onPressed: onTap,
+            child: Icon(Icons.arrow_back, color: Colors.black, size: 28.r(context),),
+          ),
         ),
 
         Expanded(
-            child: Center(
-              child: Text(
-                title,
-                style: GoogleFonts.urbanist(
-                  color: AppColors.blackColor,
-                  fontWeight: FontWeight.w700,
-                  fontSize: 24.sp,
-                ),
-              ),
-            )
-        )
+          child: CustomTextContainer.plainTextContainerWidgetWithoutHeightWidth(
+            plainTextString: "${title}",
+            plainTextStringFontSize: 28.sp(context),
+            plainTextStringFontWeight: FontWeight.w700,
+            plainTextContainerAlignment: Alignment.center,
+            plainTextStringTextAlign: TextAlign.center,
+            plainTextStringColor: ColorUtils.black29,
+          ),
+        ),
+
       ],
     );
   }

@@ -1,8 +1,8 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
-
 import 'package:discount_me_app/res/app_const/import_list.dart';
-import 'package:discount_me_app/view/users/home_view/widget/home_appbar_widget.dart';
-import 'package:material_color_utilities/material_color_utilities.dart';
+import 'package:discount_me_app/utils/utils.dart';
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+
 
 class UserNotificationScreen extends StatelessWidget {
   const UserNotificationScreen({super.key});
@@ -17,7 +17,7 @@ class UserNotificationScreen extends StatelessWidget {
       decoration: BoxDecoration(
         color: Colors.white,
         image: DecorationImage(
-            image: AssetImage(AppImages.homeBg),
+            image: AssetImage(ImageUtils.homeBg),
             alignment: Alignment.topRight,
             opacity: 0.5),
       ),
@@ -43,8 +43,8 @@ class UserNotificationScreen extends StatelessWidget {
                     itemBuilder: (context, index) {
                     return GestureDetector(
                       child: Container(
-                        margin: EdgeInsets.only(bottom: 20.h),
-                        child: _notificationWidget(),
+                        margin: EdgeInsets.only(bottom: 20.h(context)),
+                        child: _notificationWidget(context: context),
                       ),
                       );
                     },
@@ -58,14 +58,14 @@ class UserNotificationScreen extends StatelessWidget {
     );
   }
 
-  Widget _notificationWidget(){
+  Widget _notificationWidget({required BuildContext context}){
     return Row(
       children: [
 
         Row(
           children: [
             Container(
-              width: 16.w, height: 16.h,
+              width: 16.w(context), height: 16.h(context),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(50),
                 color: Colors.black
@@ -75,10 +75,10 @@ class UserNotificationScreen extends StatelessWidget {
             Container(
               padding: EdgeInsets.all(10),
               decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(50.r),
-                  color: AppColors.greenLight
+                  borderRadius: BorderRadius.circular(50.r(context)),
+                  color: ColorUtils.greenLight
               ),
-              child: Image.asset(AppImages.userNotification, scale: 4,),
+              child: Image.asset(ImageUtils.userNotification, scale: 4,),
             )
           ],
         ),
@@ -86,8 +86,8 @@ class UserNotificationScreen extends StatelessWidget {
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            CustomText(title: "Welcome to Discount Me", color: AppColors.blackColor, fontWeight: FontWeight.w400, fontSize: 23.sp,),
-            CustomText(title: "1 day ago", color: AppColors.whiteDarkActive, fontWeight: FontWeight.w400, fontSize: 16.sp,)
+            CustomText(title: "Welcome to Discount Me", color: ColorUtils.blackColor, fontWeight: FontWeight.w400, fontSize: 23.sp(context),),
+            CustomText(title: "1 day ago", color: ColorUtils.whiteDarkActive, fontWeight: FontWeight.w400, fontSize: 16.sp(context),)
           ],
         )
       ],

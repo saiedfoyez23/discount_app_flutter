@@ -3,6 +3,8 @@
 import 'dart:async';
 import 'package:discount_me_app/res/app_const/import_list.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:discount_me_app/utils/utils.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class ViewHomeMapRouteScreen extends StatefulWidget {
@@ -53,7 +55,7 @@ class _ViewHomeMapRouteScreenState extends State<ViewHomeMapRouteScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("View Map Route", style: GoogleFonts.urbanist(fontWeight: FontWeight.w700, fontSize: 24.sp)),
+        title: Text("View Map Route", style: GoogleFonts.urbanist(fontWeight: FontWeight.w700, fontSize: 24.sp(context))),
         centerTitle: true,
       ),
       body: GoogleMap(

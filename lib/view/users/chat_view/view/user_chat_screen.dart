@@ -1,6 +1,8 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, sized_box_for_whitespace
-
 import 'package:discount_me_app/res/app_const/import_list.dart';
+import 'package:discount_me_app/utils/utils.dart';
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class UserChatScreen extends StatefulWidget {
   const UserChatScreen({super.key});
@@ -55,7 +57,7 @@ class _UserChatScreenState extends State<UserChatScreen> {
       decoration: BoxDecoration(
         color: Colors.white,
         image: DecorationImage(
-          image: AssetImage(AppImages.homeBg),
+          image: AssetImage(ImageUtils.homeBg),
           alignment: Alignment.topRight,
           opacity: 0.5,
         ),
@@ -78,11 +80,11 @@ class _UserChatScreenState extends State<UserChatScreen> {
                     Row(
                       children: [
                         ClipRRect(
-                          borderRadius: BorderRadius.circular(50.r),
+                          borderRadius: BorderRadius.circular(50.r(context)),
                           child: Image.asset(
-                            AppImages.profileImage,
-                            width: 50.w,
-                            height: 50.h,
+                            ImageUtils.profileImage,
+                            width: 50.w(context),
+                            height: 50.h(context),
                             fit: BoxFit.cover,
                           ),
                         ),
@@ -92,15 +94,15 @@ class _UserChatScreenState extends State<UserChatScreen> {
                           children: [
                             CustomText(
                               title: "Katryn Murphy",
-                              fontSize: 18.sp,
+                              fontSize: 18.sp(context),
                               fontWeight: FontWeight.w600,
                               color: Colors.black,
                             ),
                             CustomText(
                               title: "Restaurant owner",
-                              fontSize: 16.sp,
+                              fontSize: 16.sp(context),
                               fontWeight: FontWeight.w400,
-                              color: AppColors.darkShadeBlue,
+                              color: ColorUtils.darkShadeBlue,
                             ),
                           ],
                         ),
@@ -131,8 +133,8 @@ class _UserChatScreenState extends State<UserChatScreen> {
                           width: width * 0.70,
                           decoration: BoxDecoration(
                             color: isSentByMe
-                                ? AppColors.secondaryColor
-                                : AppColors.greenLightHover,
+                                ? ColorUtils.secondaryColor
+                                : ColorUtils.greenLightHover,
                             borderRadius: BorderRadius.only(
                                 topRight: Radius.circular(10),
                                 bottomLeft: Radius.circular(10),
@@ -150,7 +152,7 @@ class _UserChatScreenState extends State<UserChatScreen> {
                                 message['message'],
                                 style: GoogleFonts.roboto(
                                     fontWeight: FontWeight.w400,
-                                    fontSize: 15.sp,
+                                    fontSize: 15.sp(context),
                                     color: isSentByMe
                                         ? Colors.white
                                         : Color(0xff1D242D)),
@@ -161,12 +163,12 @@ class _UserChatScreenState extends State<UserChatScreen> {
                                     ? Alignment.bottomRight
                                     : Alignment.bottomLeft,
                                 child: Container(
-                                  width: 60.w,
+                                  width: 60.w(context),
                                   child: Row(
                                     children: [
                                       isSentByMe
                                           ? Image.asset(
-                                        AppImages.sendIcon,
+                                        ImageUtils.sendIcon,
                                         scale: 4,
                                       )
                                           : SizedBox(),
@@ -174,9 +176,9 @@ class _UserChatScreenState extends State<UserChatScreen> {
                                       Text(
                                         message['time'],
                                         style: GoogleFonts.roboto(
-                                            fontSize: 12.sp,
+                                            fontSize: 12.sp(context),
                                             fontWeight: FontWeight.w500,
-                                            color: isSentByMe? Colors.white : AppColors.primaryColor),
+                                            color: isSentByMe? Colors.white : ColorUtils.primaryColor),
                                       )
                                     ],
                                   ),
@@ -197,17 +199,17 @@ class _UserChatScreenState extends State<UserChatScreen> {
                 child: Row(
                   children: [
                     Container(
-                      width: 50.w,
-                      height: 55.h,
+                      width: 50.w(context),
+                      height: 55.h(context),
                       decoration: BoxDecoration(
                           border: Border.all(color: Colors.grey, width: 0.5),
-                          borderRadius: BorderRadius.circular(8.r)),
+                          borderRadius: BorderRadius.circular(8.r(context))),
                       child: IconButton(
                         onPressed: () {
                           PickerDialog().showImagePickerDialog(context);
                         },
                         icon: Image.asset(
-                          AppImages.fileAttachmentIcon,
+                          ImageUtils.fileAttachmentIcon,
                           scale: 4,
                         ),
                       ),
@@ -220,16 +222,16 @@ class _UserChatScreenState extends State<UserChatScreen> {
                           suffixIcon: Padding(
                             padding: EdgeInsets.only(right: 5),
                             child: Image.asset(
-                              AppImages.msgSendIcon,
+                              ImageUtils.msgSendIcon,
                               scale: 3.5,
                             ),
                           ),
                           border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(8.r),
+                            borderRadius: BorderRadius.circular(8.r(context)),
                           ),
                           focusedBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(8.r),
-                            borderSide: BorderSide(width: 1.5, color: AppColors.secondaryColor)
+                            borderRadius: BorderRadius.circular(8.r(context)),
+                            borderSide: BorderSide(width: 1.5, color: ColorUtils.secondaryColor)
                           )
                         ),
                       ),

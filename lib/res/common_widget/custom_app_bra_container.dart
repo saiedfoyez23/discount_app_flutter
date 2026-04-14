@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-
-import '../res.dart';
+import 'package:discount_me_app/utils/utils.dart';
+import 'package:discount_me_app/res/res.dart';
 
 class CustomAppBarContainer {
 
@@ -14,6 +14,7 @@ class CustomAppBarContainer {
       pinned: false,
       primary: true,
       floating: true,
+      automaticallyImplyLeading: false,
       backgroundColor: Colors.transparent,
       collapsedHeight: 115.h(context),
       expandedHeight: 115.h(context),
@@ -36,7 +37,7 @@ class CustomAppBarContainer {
                   onPressed: onPress,
                   icon: Icon(Icons.arrow_back),
                   iconSize: 24,
-                  color: AppColors.white255,
+                  color: ColorUtils.white255,
                 ),
 
 
@@ -48,7 +49,7 @@ class CustomAppBarContainer {
                     plainTextStringFontSize: 27.sp(context),
                     plainTextStringFontWeight: FontWeight.w700,
                     plainTextContainerAlignment: Alignment.center,
-                    plainTextStringColor: AppColors.white253,
+                    plainTextStringColor: ColorUtils.white253,
                   ),
                 ),
 

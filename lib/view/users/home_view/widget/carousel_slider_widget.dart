@@ -3,6 +3,7 @@ import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import '../../../../res/app_const/import_list.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:discount_me_app/utils/utils.dart';
 
 class SliderView extends StatefulWidget {
   SliderView({super.key});
@@ -11,14 +12,14 @@ class SliderView extends StatefulWidget {
   _SliderViewState createState() => _SliderViewState();
 }
 
-class _SliderViewState extends State<SliderView> with SingleTickerProviderStateMixin {
+class _SliderViewState extends State<SliderView> {
   final CarouselSliderController controller = Get.put(CarouselSliderController());
 
   // List of image assets (you can replace these with URLs if using network images)
   final List<String> imageList = [
-    AppImages.sliderImg, // Replace with actual asset paths or URLs
-    AppImages.sliderImg,
-    AppImages.sliderImg,
+    ImageUtils.sliderImg, // Replace with actual asset paths or URLs
+    ImageUtils.sliderImg,
+    ImageUtils.sliderImg,
   ];
 
   @override

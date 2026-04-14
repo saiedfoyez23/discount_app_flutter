@@ -2,7 +2,11 @@
 
 import 'package:discount_me_app/res/app_const/import_list.dart';
 import 'package:discount_me_app/view/riders/home_view/view/rider_home.dart';
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
+import 'package:discount_me_app/utils/utils.dart';
 
 class WithdrawSuccessScreen extends StatelessWidget {
   const WithdrawSuccessScreen({super.key});
@@ -17,7 +21,7 @@ class WithdrawSuccessScreen extends StatelessWidget {
       decoration: BoxDecoration(
         color: Colors.white,
         image: DecorationImage(
-            image: AssetImage(AppImages.homeBg),
+            image: AssetImage(ImageUtils.homeBg),
             alignment: Alignment.topRight,
             opacity: 0.5),
       ),
@@ -40,7 +44,7 @@ class WithdrawSuccessScreen extends StatelessWidget {
                     children: [
                       // Background Image
                       Image.asset(
-                        AppImages.transactionSucBg, // Your background image
+                        ImageUtils.transactionSucBg, // Your background image
                         fit: BoxFit.fill,
                       ),
 
@@ -53,9 +57,9 @@ class WithdrawSuccessScreen extends StatelessWidget {
                               // Success Icon
                               Container(
                                 padding: EdgeInsets.all(12),
-                                width: 150.w,
-                                height: 150.h,
-                                child: Lottie.asset(AppImages.successAnim, repeat: false, fit: BoxFit.cover),
+                                width: 150.w(context),
+                                height: 150.h(context),
+                                child: Lottie.asset(ImageUtils.successAnim, repeat: false, fit: BoxFit.cover),
                               ),
                               SizedBox(height: 10),
 
@@ -63,7 +67,7 @@ class WithdrawSuccessScreen extends StatelessWidget {
                               Text(
                                 'Withdraw Successful',
                                 style: GoogleFonts.urbanist(
-                                  fontSize: 24.sp,
+                                  fontSize: 24.sp(context),
                                   fontWeight: FontWeight.w700,
                                 ),
                               ),
@@ -71,8 +75,8 @@ class WithdrawSuccessScreen extends StatelessWidget {
                               Text(
                                 'Your top up has been successfully done',
                                 style: GoogleFonts.urbanist(
-                                    fontSize: 18.sp,
-                                    color: AppColors.blackColor,
+                                    fontSize: 18.sp(context),
+                                    color: ColorUtils.blackColor,
                                     fontWeight: FontWeight.w400
                                 ),
                               ),
@@ -82,16 +86,16 @@ class WithdrawSuccessScreen extends StatelessWidget {
                               Text(
                                 'Total Pay',
                                 style: GoogleFonts.urbanist(
-                                    fontSize: 16.sp,
-                                    color: AppColors.blackColor
+                                    fontSize: 16.sp(context),
+                                    color: ColorUtils.blackColor
                                 ),
                               ),
                               Text(
                                 '\$200.00',
                                 style: GoogleFonts.urbanist(
-                                  fontSize: 24.sp,
+                                  fontSize: 24.sp(context),
                                   fontWeight: FontWeight.w700,
-                                  color: AppColors.blackColor,
+                                  color: ColorUtils.blackColor,
                                 ),
                               ),
 
@@ -101,7 +105,7 @@ class WithdrawSuccessScreen extends StatelessWidget {
                                   child: CustomText(
                                     title: "Total Top Up",
                                     fontWeight: FontWeight.w600,
-                                    fontSize: 16.sp,
+                                    fontSize: 16.sp(context),
                                   )
                               ),
 
@@ -164,9 +168,9 @@ class WithdrawSuccessScreen extends StatelessWidget {
                               // Close Button
                               Roundbutton(
                                 title: "Close",
-                                buttonColor: AppColors.primaryColor,
+                                buttonColor: ColorUtils.primaryColor,
                                 onTap: () {
-                                  Get.to(RiderHome());
+                                  Get.to(RiderHome(selectedIndex: 0,));
                                 },
                               ),
                             ],

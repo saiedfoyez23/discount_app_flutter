@@ -1,7 +1,8 @@
-// ignore_for_file: prefer_const_constructors
-
 import 'package:discount_me_app/res/app_const/import_list.dart';
 import 'package:discount_me_app/view/vendors/vendor_subscription_view/view/vendor_card_information_screen.dart';
+import 'package:flutter/material.dart';
+import 'package:discount_me_app/utils/utils.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class VendorPaymentMethodScreen extends StatefulWidget {
   const VendorPaymentMethodScreen({super.key});
@@ -24,7 +25,7 @@ class _VendorPaymentMethodScreenState extends State<VendorPaymentMethodScreen> {
       decoration: BoxDecoration(
         color: Colors.white,
         image: DecorationImage(
-          image: AssetImage(AppImages.homeBg),
+          image: AssetImage(ImageUtils.homeBg),
           alignment: Alignment.topRight,
           opacity: 0.5,
         ),
@@ -72,15 +73,15 @@ class _VendorPaymentMethodScreenState extends State<VendorPaymentMethodScreen> {
                               title: Text(
                                 'Credit Card',
                                 style: GoogleFonts.urbanist(
-                                  fontSize: 16.sp,
+                                  fontSize: 16.sp(context),
                                   fontWeight: FontWeight.w600,
                                 ),
                               ),
                               subtitle: Text(
                                 '1234 **** **** 1234',
                                 style: GoogleFonts.urbanist(
-                                  fontSize: 14.sp,
-                                  color: AppColors.whiteDarkActive,
+                                  fontSize: 14.sp(context),
+                                  color: ColorUtils.whiteDarkActive,
                                 ),
                               ),
                             ),
@@ -99,15 +100,15 @@ class _VendorPaymentMethodScreenState extends State<VendorPaymentMethodScreen> {
                               title: Text(
                                 'Paypal',
                                 style: GoogleFonts.urbanist(
-                                  fontSize: 18.sp,
+                                  fontSize: 18.sp(context),
                                   fontWeight: FontWeight.bold,
                                 ),
                               ),
                               subtitle: Text(
                                 'email@website.com',
                                 style: GoogleFonts.urbanist(
-                                  fontSize: 14.sp,
-                                  color: AppColors.whiteDarkActive,
+                                  fontSize: 14.sp(context),
+                                  color: ColorUtils.whiteDarkActive,
                                 ),
                               ),
                             ),
@@ -126,15 +127,15 @@ class _VendorPaymentMethodScreenState extends State<VendorPaymentMethodScreen> {
                               title: Text(
                                 'Apple Pay',
                                 style: GoogleFonts.urbanist(
-                                  fontSize: 18.sp,
+                                  fontSize: 18.sp(context),
                                   fontWeight: FontWeight.bold,
                                 ),
                               ),
                               subtitle: Text(
                                 'email@website.com',
                                 style: GoogleFonts.urbanist(
-                                  fontSize: 14.sp,
-                                  color: AppColors.whiteDarkActive,
+                                  fontSize: 14.sp(context),
+                                  color: ColorUtils.whiteDarkActive,
                                 ),
                               ),
                             ),
@@ -148,7 +149,7 @@ class _VendorPaymentMethodScreenState extends State<VendorPaymentMethodScreen> {
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 10),
                 child: Roundbutton(
-                  buttonColor: AppColors.primaryColor,
+                  buttonColor: ColorUtils.primaryColor,
                   padding_vertical: 15,
                   borderRadius: 8,
                   title: "Continue",

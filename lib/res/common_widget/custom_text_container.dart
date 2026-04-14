@@ -84,4 +84,42 @@ class CustomTextContainer {
 
 
 
+  static Widget plainTextContainerWidgetWithoutHeightWidthInconsolata({
+    Color plainTextContainerColor = Colors.transparent,
+    double plainTextContainerBorderRadius = 0.0,
+    BoxShape plainTextContainerBoxShape = BoxShape.rectangle,
+    Alignment plainTextContainerAlignment = Alignment.center,
+    required String plainTextString,
+    Color plainTextStringColor = Colors.transparent,
+    TextAlign plainTextStringTextAlign = TextAlign.center,
+    required double plainTextStringFontSize,
+    FontWeight plainTextStringFontWeight = FontWeight.w400,
+  }) {
+    return Container(
+      decoration: plainTextContainerBorderRadius == 0.0 ?
+      BoxDecoration(
+        color: plainTextContainerColor,
+        shape: plainTextContainerBoxShape,
+      ) :
+      BoxDecoration(
+          color: plainTextContainerColor,
+          shape: plainTextContainerBoxShape,
+          borderRadius: BorderRadius.circular(plainTextContainerBorderRadius)
+      ),
+      alignment: plainTextContainerAlignment,
+      child: Text(
+        plainTextString,
+        textAlign: plainTextStringTextAlign,
+        style: GoogleFonts.inconsolata(
+          fontSize: plainTextStringFontSize,
+          fontStyle: FontStyle.normal,
+          color: plainTextStringColor,
+          fontWeight: plainTextStringFontWeight,
+        ),
+      ),
+    );
+  }
+
+
+
 }

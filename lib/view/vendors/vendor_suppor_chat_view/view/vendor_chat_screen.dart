@@ -1,6 +1,9 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, sized_box_for_whitespace
-
 import 'package:discount_me_app/res/app_const/import_list.dart';
+import 'package:flutter/material.dart';
+import 'package:discount_me_app/utils/utils.dart';
+import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
+
 
 class VendorChatScreen extends StatefulWidget {
   const VendorChatScreen({super.key});
@@ -55,7 +58,7 @@ class _VendorChatScreenState extends State<VendorChatScreen> {
       decoration: BoxDecoration(
         color: Colors.white,
         image: DecorationImage(
-          image: AssetImage(AppImages.homeBg),
+          image: AssetImage(ImageUtils.homeBg),
           alignment: Alignment.topRight,
           opacity: 0.5,
         ),
@@ -78,11 +81,11 @@ class _VendorChatScreenState extends State<VendorChatScreen> {
                     Row(
                       children: [
                         ClipRRect(
-                          borderRadius: BorderRadius.circular(50.r),
+                          borderRadius: BorderRadius.circular(50.r(context)),
                           child: Image.asset(
-                            AppImages.profileImage,
-                            width: 40.w,
-                            height: 40.h,
+                            ImageUtils.profileImage,
+                            width: 40.w(context),
+                            height: 40.h(context),
                             fit: BoxFit.cover,
                           ),
                         ),
@@ -92,7 +95,7 @@ class _VendorChatScreenState extends State<VendorChatScreen> {
                           children: [
                             CustomText(
                               title: "Katryn Murphy",
-                              fontSize: 18.sp,
+                              fontSize: 18.sp(context),
                               fontWeight: FontWeight.w600,
                               color: Colors.black,
                             ),
@@ -125,8 +128,8 @@ class _VendorChatScreenState extends State<VendorChatScreen> {
                           width: width * 0.70,
                           decoration: BoxDecoration(
                             color: isSentByMe
-                                ? AppColors.secondaryColor
-                                : AppColors.greenLightHover,
+                                ? ColorUtils.secondaryColor
+                                : ColorUtils.greenLightHover,
                             borderRadius: BorderRadius.only(
                                 topRight: Radius.circular(10),
                                 bottomLeft: Radius.circular(10),
@@ -144,7 +147,7 @@ class _VendorChatScreenState extends State<VendorChatScreen> {
                                 message['message'],
                                 style: GoogleFonts.roboto(
                                     fontWeight: FontWeight.w400,
-                                    fontSize: 15.sp,
+                                    fontSize: 15.sp(context),
                                     color: isSentByMe
                                         ? Colors.white
                                         : Color(0xff1D242D)),
@@ -155,22 +158,21 @@ class _VendorChatScreenState extends State<VendorChatScreen> {
                                     ? Alignment.bottomRight
                                     : Alignment.bottomLeft,
                                 child: Container(
-                                  width: 60.w,
+                                  width: 60.w(context),
                                   child: Row(
                                     children: [
-                                      isSentByMe
-                                          ? Image.asset(
-                                        AppImages.sendIcon,
+                                      isSentByMe ?
+                                      Image.asset(
+                                        ImageUtils.sendIcon,
                                         scale: 4,
-                                      )
-                                          : SizedBox(),
+                                      ) : SizedBox(),
                                       isSentByMe ? 6.widthBox : 0.widthBox,
                                       Text(
                                         message['time'],
                                         style: GoogleFonts.roboto(
-                                            fontSize: 12.sp,
+                                            fontSize: 12.sp(context),
                                             fontWeight: FontWeight.w500,
-                                            color: isSentByMe? Colors.white : AppColors.primaryColor),
+                                            color: isSentByMe? Colors.white : ColorUtils.primaryColor),
                                       )
                                     ],
                                   ),
@@ -191,17 +193,17 @@ class _VendorChatScreenState extends State<VendorChatScreen> {
                 child: Row(
                   children: [
                     Container(
-                      width: 50.w,
-                      height: 55.h,
+                      width: 50.w(context),
+                      height: 55.h(context),
                       decoration: BoxDecoration(
                           border: Border.all(color: Colors.grey, width: 0.5),
-                          borderRadius: BorderRadius.circular(8.r)),
+                          borderRadius: BorderRadius.circular(8.r(context))),
                       child: IconButton(
                         onPressed: () {
                           PickerDialog().showImagePickerDialog(context);
                         },
                         icon: Image.asset(
-                          AppImages.fileAttachmentIcon,
+                          ImageUtils.fileAttachmentIcon,
                           scale: 4,
                         ),
                       ),
@@ -214,16 +216,16 @@ class _VendorChatScreenState extends State<VendorChatScreen> {
                           suffixIcon: Padding(
                             padding: EdgeInsets.only(right: 5),
                             child: Image.asset(
-                              AppImages.msgSendIcon,
+                              ImageUtils.msgSendIcon,
                               scale: 3.5,
                             ),
                           ),
                           border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(8.r),
+                            borderRadius: BorderRadius.circular(8.r(context)),
                           ),
                           focusedBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(8.r),
-                            borderSide: BorderSide(width: 1.5, color: AppColors.secondaryColor)
+                            borderRadius: BorderRadius.circular(8.r(context)),
+                            borderSide: BorderSide(width: 1.5, color: ColorUtils.secondaryColor)
                           )
                         ),
                       ),

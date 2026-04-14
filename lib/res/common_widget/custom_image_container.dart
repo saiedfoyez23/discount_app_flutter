@@ -1,7 +1,4 @@
-
-
 import 'dart:io';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -24,7 +21,7 @@ class CustomImageContainer{
         shape: boxShape,
         image: DecorationImage(
           image: AssetImage(assetImage),
-          fit: boxFit
+          fit: boxFit,
         )
       ) : BoxDecoration(
           border: Border.all(color: borderColors,width: borderWidth),
@@ -36,6 +33,37 @@ class CustomImageContainer{
       ),
     );
   }
+
+
+  static Widget networkImageContainer({
+    required double height,
+    required double width,
+    required String networkImage,
+    double borderWidth = 0.0,
+    Color borderColors = Colors.transparent,
+    BoxFit boxFit = BoxFit.contain,
+    BoxShape boxShape = BoxShape.rectangle
+  }) {
+    return Container(
+      height: height,
+      width: width,
+      decoration: borderWidth == 0.0 ? BoxDecoration(
+          shape: boxShape,
+          image: DecorationImage(
+              image: NetworkImage(networkImage),
+              fit: boxFit
+          )
+      ) : BoxDecoration(
+          border: Border.all(color: borderColors,width: borderWidth),
+          shape: boxShape,
+          image: DecorationImage(
+              image: NetworkImage(networkImage),
+              fit: boxFit
+          )
+      ),
+    );
+  }
+
 
 
   static Widget fileImageContainer({

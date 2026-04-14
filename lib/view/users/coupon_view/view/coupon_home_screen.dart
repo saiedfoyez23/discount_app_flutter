@@ -1,7 +1,8 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
-
 import 'package:discount_me_app/res/app_const/import_list.dart';
-import 'package:discount_me_app/view/users/coupon_view/view/payment_method_screen.dart';
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:discount_me_app/utils/utils.dart';
 
 class CouponHomeScreen extends StatelessWidget {
   const CouponHomeScreen({super.key});
@@ -16,7 +17,7 @@ class CouponHomeScreen extends StatelessWidget {
       decoration: BoxDecoration(
         color: Colors.white,
         image: DecorationImage(
-            image: AssetImage(AppImages.homeBg),
+            image: AssetImage(ImageUtils.homeBg),
             alignment: Alignment.topRight,
             opacity: 0.5),
       ),
@@ -32,7 +33,7 @@ class CouponHomeScreen extends StatelessWidget {
                   10.heightBox,
                   HomeResturantAppBar(),
 
-                  SizedBox(height: 20.h),
+                  SizedBox(height: 20.h(context)),
                   ListView.builder(
                     itemCount: 3,
                     shrinkWrap: true,
@@ -46,7 +47,7 @@ class CouponHomeScreen extends StatelessWidget {
                         child: Stack(
                           children: [
                             Image.asset(
-                              AppImages.couponBg, // Replace with your image path
+                              ImageUtils.couponBg, // Replace with your image path
                               scale: 4,
                             ),
                             Positioned.fill(
@@ -55,7 +56,7 @@ class CouponHomeScreen extends StatelessWidget {
                                 children: [
                                   // Price Section
                                   Padding(
-                                    padding: EdgeInsets.only(left: 40.w), // Responsive padding using ScreenUtil
+                                    padding: EdgeInsets.only(left: 40.w(context)), // Responsive padding using ScreenUtil
                                     child: Column(
                                       mainAxisAlignment: MainAxisAlignment.center,
                                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -64,7 +65,7 @@ class CouponHomeScreen extends StatelessWidget {
                                           'Price',
                                           style: GoogleFonts.urbanist(
                                             color: Colors.green,
-                                            fontSize: 24.sp,
+                                            fontSize: 24.sp(context),
                                             fontWeight: FontWeight.w700,
                                           ),
                                         ),
@@ -72,7 +73,7 @@ class CouponHomeScreen extends StatelessWidget {
                                           '\$10.99',
                                           style: GoogleFonts.urbanist(
                                             color: Colors.orange,
-                                            fontSize: 24.sp,
+                                            fontSize: 24.sp(context),
                                             fontWeight: FontWeight.w700,
                                           ),
                                         ),
@@ -82,7 +83,7 @@ class CouponHomeScreen extends StatelessWidget {
 
                                   // Discount Info Section
                                   Padding(
-                                    padding: EdgeInsets.only(right: 40.w), // Responsive padding using ScreenUtil
+                                    padding: EdgeInsets.only(right: 40.w(context)), // Responsive padding using ScreenUtil
                                     child: Column(
                                       mainAxisAlignment: MainAxisAlignment.center,
                                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -91,7 +92,7 @@ class CouponHomeScreen extends StatelessWidget {
                                           'Single Discount',
                                           style: GoogleFonts.urbanist(
                                             color: Colors.black,
-                                            fontSize: 20.sp, // Responsive font size using ScreenUtil
+                                            fontSize: 20.sp(context), // Responsive font size using ScreenUtil
                                             fontWeight: FontWeight.w700,
                                           ),
                                         ),
@@ -99,9 +100,9 @@ class CouponHomeScreen extends StatelessWidget {
                                         Text(
                                           'Customer takes 6 discount',
                                           style: GoogleFonts.urbanist(
-                                            color: AppColors.whiteNormalActive,
+                                            color: ColorUtils.whiteNormalActive,
                                             fontWeight: FontWeight.w400,
-                                            fontSize: 12.sp, // Responsive font size using ScreenUtil
+                                            fontSize: 12.sp(context), // Responsive font size using ScreenUtil
                                           ),
                                         ),
                                       ],

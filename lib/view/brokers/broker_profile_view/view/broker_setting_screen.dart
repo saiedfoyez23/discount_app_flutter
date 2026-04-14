@@ -1,6 +1,8 @@
 import 'package:discount_me_app/res/app_const/import_list.dart';
-import 'package:discount_me_app/res/custom_style/custom_size.dart';
+import 'package:discount_me_app/utils/utils.dart';
 import 'package:discount_me_app/view/brokers/broker_profile_view/view/broker_change_password_screen.dart';
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class BrokerSettingScreen extends StatelessWidget {
   const BrokerSettingScreen({super.key});
@@ -15,7 +17,7 @@ class BrokerSettingScreen extends StatelessWidget {
       decoration: BoxDecoration(
         color: Colors.white,
         image: DecorationImage(
-            image: AssetImage(AppImages.homeBg),
+            image: AssetImage(ImageUtils.homeBg),
             alignment: Alignment.topRight,
             opacity: 0.5),
       ),
@@ -37,7 +39,7 @@ class BrokerSettingScreen extends StatelessWidget {
                     onTap: () {
                       Get.to(const BrokerChangePasswordScreen());
                     },
-                    child: changePasswordItem(),
+                    child: changePasswordItem(context: context),
                   ),
 
 
@@ -46,7 +48,7 @@ class BrokerSettingScreen extends StatelessWidget {
                     onTap: () {
                       CustomAlertDialog().showDeleteAccountDialog(context);
                     },
-                    child: deleteAccountItem(),
+                    child: deleteAccountItem(context: context),
                   )
 
 
@@ -59,12 +61,12 @@ class BrokerSettingScreen extends StatelessWidget {
     );
   }
 
-  Widget changePasswordItem(){
+  Widget changePasswordItem({required BuildContext context}){
     return Container(
       width: Get.width,
       padding: EdgeInsets.symmetric(vertical: 15, horizontal: 10),
       decoration: BoxDecoration(
-          color: AppColors.greenLight,
+          color: ColorUtils.greenLight,
           borderRadius: BorderRadius.circular(4)
       ),
       child: Row(
@@ -78,7 +80,7 @@ class BrokerSettingScreen extends StatelessWidget {
               15.widthBox,
 
               CustomText(title: "Change Password",
-                fontSize: 16.sp, fontWeight: FontWeight.w500,
+                fontSize: 16.sp(context), fontWeight: FontWeight.w500,
                 color: Color(0xff727272),
               )
             ],
@@ -90,12 +92,12 @@ class BrokerSettingScreen extends StatelessWidget {
       ),
     );
   }
-  Widget deleteAccountItem(){
+  Widget deleteAccountItem({required BuildContext context}){
     return Container(
       width: Get.width,
       padding: EdgeInsets.symmetric(vertical: 15, horizontal: 10),
       decoration: BoxDecoration(
-          color: AppColors.greenLight,
+          color: ColorUtils.greenLight,
           borderRadius: BorderRadius.circular(4)
       ),
       child: Row(
@@ -105,7 +107,7 @@ class BrokerSettingScreen extends StatelessWidget {
           15.widthBox,
 
           CustomText(title: "Delete Account",
-            fontSize: 16.sp, fontWeight: FontWeight.w500,
+            fontSize: 16.sp(context), fontWeight: FontWeight.w500,
             color: Color(0xff727272),
           )
         ],

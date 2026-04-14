@@ -1,10 +1,13 @@
 // ignore_for_file: prefer_const_constructors, prefer_final_fields, prefer_const_literals_to_create_immutables
 
 import 'package:discount_me_app/res/app_const/import_list.dart';
+import 'package:discount_me_app/view/view.dart';
+import 'package:discount_me_app/utils/utils.dart';
+import 'package:flutter/material.dart';
 
 class UserHome extends StatefulWidget {
-  const UserHome({super.key});
-
+  const UserHome({super.key,required this.selectedIndex});
+  final int selectedIndex;
   @override
   State<UserHome> createState() => _UserHomeState();
 }
@@ -16,7 +19,7 @@ class _UserHomeState extends State<UserHome> {
   static List<Widget> _bodyOptions = <Widget>[
     UserHomeScreen(),
     CouponHomeScreen(),
-    ExploreRecipesScreen(),
+    ExploreProductListScreen(),
     UserProfileHomeScreen(),
   ];
 
@@ -26,23 +29,28 @@ class _UserHomeState extends State<UserHome> {
     });
   }
 
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    _selectedIndex = widget.selectedIndex;
+  }
+
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-
       body: _bodyOptions[_selectedIndex],
-
       bottomNavigationBar: Container(
         decoration: BoxDecoration(
-          color: AppColors.primaryColor,
+          color: ColorUtils.primaryColor,
           borderRadius: BorderRadius.only(
             topLeft: Radius.circular(30),
             topRight: Radius.circular(30),
           ),
           boxShadow: [
             BoxShadow(
-              color: AppColors.primaryColor,
+              color: ColorUtils.primaryColor,
               offset: Offset(0, 1),blurRadius: 5
             )
           ]
@@ -64,8 +72,8 @@ class _UserHomeState extends State<UserHome> {
             enableFeedback: false,
             items: [
               BottomNavigationBarItem(
-                icon: Icon(Icons.home_outlined, size: 28.sp),
-                activeIcon: Icon(Icons.home, size: 28.sp),
+                icon: Icon(Icons.home_outlined, size: 28.r(context)),
+                activeIcon: Icon(Icons.home, size: 28.r(context)),
                 label: 'Home',
               ),
               BottomNavigationBarItem(
@@ -79,8 +87,8 @@ class _UserHomeState extends State<UserHome> {
                 label: 'Explore',
               ),
               BottomNavigationBarItem(
-                icon: Icon(Icons.person_outline, size: 28.sp),
-                activeIcon: Icon(Icons.person, size: 28.sp),
+                icon: Icon(Icons.person_outline, size: 28.r(context)),
+                activeIcon: Icon(Icons.person, size: 28.r(context)),
                 label: 'Profile',
               ),
             ],

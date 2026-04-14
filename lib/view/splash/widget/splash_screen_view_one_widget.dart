@@ -1,4 +1,5 @@
 import 'package:discount_me_app/res/res.dart';
+import 'package:discount_me_app/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:discount_me_app/view/view.dart';
 import 'package:get/get.dart';
@@ -19,9 +20,9 @@ class SplashScreenViewOneWidget {
       decoration: const BoxDecoration(
         gradient: LinearGradient(
           colors: [
-            AppColors.whiteColor,
-            AppColors.green247,
-            AppColors.green106,
+            ColorUtils.whiteColor,
+            ColorUtils.green247,
+            ColorUtils.green106,
           ],
           begin: Alignment.topCenter,
           end: Alignment.bottomCenter,
@@ -41,7 +42,7 @@ class SplashScreenViewOneWidget {
                 CustomImageContainer.assetImageContainer(
                   height: 246.5.h(context),
                   width: 428.w(context),
-                  assetImage: AppImages.deliciousVitaminFood,
+                  assetImage: ImageUtils.deliciousVitaminFood,
                   boxFit: BoxFit.contain,
                 ),
             
@@ -51,31 +52,31 @@ class SplashScreenViewOneWidget {
                 CustomImageContainer.assetImageContainer(
                   height: 93.h(context),
                   width: 428.w(context),
-                  assetImage: AppImages.discountMeLogo,
+                  assetImage: ImageUtils.discountMeLogo,
                   boxFit: BoxFit.contain,
                 ),
             
                 CustomSpaceWidget.spacerWidget(spaceHeight: 16.h(context)),
                 
-                CustomTextContainer.plainTextContainerWidgetWithoutHeightWidth(
-                  plainTextString: "No Worry, Handle Your Hunger with",
-                  plainTextStringFontSize: 24.sp(context),
-                  plainTextStringFontWeight: FontWeight.w400,
-                  plainTextContainerAlignment: Alignment.center,
-                  plainTextStringColor: AppColors.black114,
-                ),
+                // CustomTextContainer.plainTextContainerWidgetWithoutHeightWidth(
+                //   plainTextString: "No Worry, Handle Your Hunger with",
+                //   plainTextStringFontSize: 24.sp(context),
+                //   plainTextStringFontWeight: FontWeight.w400,
+                //   plainTextContainerAlignment: Alignment.center,
+                //   plainTextStringColor: ColorUtils.black114,
+                // ),
+                //
+                // CustomSpaceWidget.spacerWidget(spaceHeight: 5.h(context)),
+                //
+                // CustomTextContainer.plainTextContainerWidgetWithoutHeightWidth(
+                //   plainTextString: "Discount Me",
+                //   plainTextStringFontSize: 24.sp(context),
+                //   plainTextStringFontWeight: FontWeight.w700,
+                //   plainTextContainerAlignment: Alignment.center,
+                //   plainTextStringColor: ColorUtils.black114,
+                // ),
             
-                CustomSpaceWidget.spacerWidget(spaceHeight: 5.h(context)),
-            
-                CustomTextContainer.plainTextContainerWidgetWithoutHeightWidth(
-                  plainTextString: "Discount Me",
-                  plainTextStringFontSize: 24.sp(context),
-                  plainTextStringFontWeight: FontWeight.w700,
-                  plainTextContainerAlignment: Alignment.center,
-                  plainTextStringColor: AppColors.black114,
-                ),
-            
-                CustomSpaceWidget.spacerWidget(spaceHeight: 162.h(context)),
+                CustomSpaceWidget.spacerWidget(spaceHeight: 210.h(context)),
             
             
                 CustomTextContainer.plainTextContainerWidgetWithoutHeightWidth(
@@ -83,45 +84,12 @@ class SplashScreenViewOneWidget {
                   plainTextStringFontSize: 12.sp(context),
                   plainTextStringFontWeight: FontWeight.w700,
                   plainTextContainerAlignment: Alignment.center,
-                  plainTextStringColor: AppColors.white255,
+                  plainTextStringColor: ColorUtils.white255,
                 ),
             
                 CustomSpaceWidget.spacerWidget(spaceHeight: 19.2.h(context)),
-            
-            
-                Container(
-                  height: 64.h(context),
-                  width: 64.w(context),
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    image: DecorationImage(
-                      image: AssetImage(AppImages.splashScreenRoundImage),
-                      fit: BoxFit.contain,
-                    )
-                  ),
-                  alignment: Alignment.center,
-                  child: TextButton(
-                    onPressed: () async {
-                      Get.off(()=> SplashViewTwo(),preventDuplicates: false,duration: const Duration(milliseconds: 100));
-                    },
-                    style: TextButton.styleFrom(padding: EdgeInsets.zero),
-                    child: Container(
-                      height: 54.94.h(context),
-                      width: 54.94.w(context),
-                      decoration: const BoxDecoration(
-                        color: AppColors.orange41,
-                        shape: BoxShape.circle,
-                      ),
-                      alignment: Alignment.center,
-                      child: CustomImageContainer.assetImageContainer(
-                          height: 30.47.h(context),
-                          width: 30.47.w(context),
-                          assetImage: AppImages.splashScreenArrowImage,
-                          boxFit: BoxFit.contain
-                      ),
-                    ),
-                  ),
-                ),
+
+                ButtonWidget(),
 
                 CustomSpaceWidget.spacerWidget(spaceHeight: 20.h(context)),
             

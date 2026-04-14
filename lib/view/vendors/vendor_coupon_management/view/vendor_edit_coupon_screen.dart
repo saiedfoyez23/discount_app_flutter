@@ -1,8 +1,8 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
-
 import 'package:discount_me_app/res/app_const/import_list.dart';
 import 'package:discount_me_app/res/common_widget/RoundTextField.dart';
-import 'package:discount_me_app/view/users/coupon_view/view/payment_method_screen.dart';
+import 'package:flutter/material.dart';
+import 'package:discount_me_app/utils/utils.dart';
+import 'package:get/get.dart';
 
 class VendorEditCouponScreen extends StatelessWidget {
   const VendorEditCouponScreen({super.key});
@@ -17,7 +17,7 @@ class VendorEditCouponScreen extends StatelessWidget {
       decoration: BoxDecoration(
         color: Colors.white,
         image: DecorationImage(
-            image: AssetImage(AppImages.homeBg),
+            image: AssetImage(ImageUtils.homeBg),
             alignment: Alignment.topRight,
             opacity: 0.5),
       ),
@@ -48,7 +48,7 @@ class VendorEditCouponScreen extends StatelessWidget {
                               child: Align(
                                 alignment: Alignment.center,
                                 child: Image.asset(
-                                  AppImages.discountMeLogo,
+                                  ImageUtils.discountMeLogo,
                                   scale: 10,
                                 ),
                               ),
@@ -63,14 +63,14 @@ class VendorEditCouponScreen extends StatelessWidget {
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      SizedBox(height: 20.h),
+                      SizedBox(height: 20.h(context)),
                       CustomText(
                           title: "Coupon Card Name",
-                          color: AppColors.blackColor,
+                          color: ColorUtils.blackColor,
                           fontSize: 16,
                           fontWeight: FontWeight.w600
                       ),
-                      SizedBox(height: 10.h),
+                      SizedBox(height: 10.h(context)),
                       RoundTextField(
                           hint: "Food King Restaurant",
                       ),
@@ -81,14 +81,14 @@ class VendorEditCouponScreen extends StatelessWidget {
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      SizedBox(height: 20.h),
+                      SizedBox(height: 20.h(context)),
                       CustomText(
                           title: "Coupon Card Name Short Descriptions",
-                          color: AppColors.blackColor,
+                          color: ColorUtils.blackColor,
                           fontSize: 16,
                           fontWeight: FontWeight.w600
                       ),
-                      SizedBox(height: 10.h),
+                      SizedBox(height: 10.h(context)),
                       RoundTextField(
                         hint: "description",
                       ),
@@ -99,14 +99,14 @@ class VendorEditCouponScreen extends StatelessWidget {
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      SizedBox(height: 20.h),
+                      SizedBox(height: 20.h(context)),
                       CustomText(
                           title: "Item Price",
-                          color: AppColors.blackColor,
+                          color: ColorUtils.blackColor,
                           fontSize: 16,
                           fontWeight: FontWeight.w600
                       ),
-                      SizedBox(height: 10.h),
+                      SizedBox(height: 10.h(context)),
                       RoundTextField(
                         hint: "\$50",
                       ),
@@ -114,12 +114,12 @@ class VendorEditCouponScreen extends StatelessWidget {
                   ),
 
 
-                  SizedBox(height: 20.h),
+                  SizedBox(height: 20.h(context)),
                   Roundbutton(
                     title: "Update",
-                    buttonColor: AppColors.secondaryColor,
+                    buttonColor: ColorUtils.secondaryColor,
                     titleColor: Colors.white,
-                    borderRadius: 8.r,
+                    borderRadius: 8.r(context),
                     onTap: () {
                     // functionality
                     },

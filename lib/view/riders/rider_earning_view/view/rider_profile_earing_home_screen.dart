@@ -4,6 +4,9 @@ import 'package:discount_me_app/res/app_const/import_list.dart';
 import 'package:discount_me_app/view/riders/rider_earning_view/view/rider_payment_withdraw_screen.dart';
 import 'package:discount_me_app/view/riders/rider_earning_view/widget/recent_transactions_widget.dart';
 import 'package:discount_me_app/view/riders/rider_earning_view/widget/transaction_table_widget.dart';
+import 'package:flutter/material.dart';
+import 'package:discount_me_app/utils/utils.dart';
+import 'package:get/get.dart';
 
 class RiderProfileEarningHomeScreen extends StatelessWidget {
   const RiderProfileEarningHomeScreen({super.key});
@@ -18,8 +21,8 @@ class RiderProfileEarningHomeScreen extends StatelessWidget {
       appBar: AppBar(
         title: CustomText(
           title: "Earnings",
-          color: AppColors.blackColor,
-          fontSize: 24.sp,
+          color: ColorUtils.blackColor,
+          fontSize: 24.sp(context),
           fontWeight: FontWeight.w700,
         ),
         centerTitle: true,
@@ -34,11 +37,11 @@ class RiderProfileEarningHomeScreen extends StatelessWidget {
               Container(
                 padding: EdgeInsets.all(15),
                 width: width,
-                height: 200.h,
+                height: 200.h(context),
                 decoration: BoxDecoration(
-                  color: AppColors.greenLightHover,
+                  color: ColorUtils.greenLightHover,
                   image: DecorationImage(
-                      image: AssetImage(AppImages.walletBg),
+                      image: AssetImage(ImageUtils.walletBg),
                       alignment: Alignment.centerRight),
                 ),
                 child: Column(
@@ -49,22 +52,22 @@ class RiderProfileEarningHomeScreen extends StatelessWidget {
                       children: [
                         CustomText(
                           title: "Your Balance",
-                          color: AppColors.blackColor,
-                          fontSize: 14.sp,
+                          color: ColorUtils.blackColor,
+                          fontSize: 14.sp(context),
                           fontWeight: FontWeight.w400,
                         ),
                         CustomText(
                           title: "\$1000",
-                          color: AppColors.blackColor,
-                          fontSize: 40.sp,
+                          color: ColorUtils.blackColor,
+                          fontSize: 40.sp(context),
                           fontWeight: FontWeight.w700,
                         ),
                       ],
                     ),
                     Roundbutton(
                       title: "Withdraw",
-                      buttonColor: AppColors.primaryColor,
-                      borderRadius: 8.r,
+                      buttonColor: ColorUtils.primaryColor,
+                      borderRadius: 8.r(context),
                       onTap: () {
                         Get.to(RiderPaymentWithdrawScreen());
                       },

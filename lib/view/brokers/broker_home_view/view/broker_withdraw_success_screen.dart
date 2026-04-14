@@ -1,11 +1,12 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
 import 'package:discount_me_app/res/app_const/import_list.dart';
-import 'package:discount_me_app/res/custom_style/custom_size.dart';
-import 'package:discount_me_app/view/brokers/broker_home_view/view/broker_home.dart';
-import 'package:discount_me_app/view/riders/home_view/view/rider_home.dart';
-import 'package:discount_me_app/view/vendors/vendor_home_view/view/vendor_home.dart';
+import 'package:discount_me_app/view/brokers/broker_home_view/view/broker_dashboard_view.dart';
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
+import 'package:discount_me_app/utils/utils.dart';
 
 class BrokerWithdrawSuccessScreen extends StatelessWidget {
   const BrokerWithdrawSuccessScreen({super.key});
@@ -17,12 +18,12 @@ class BrokerWithdrawSuccessScreen extends StatelessWidget {
     double height = MediaQuery.of(context).size.height;
 
     return Scaffold(
-      backgroundColor: AppColors.whiteColor,
+      backgroundColor: ColorUtils.whiteColor,
       appBar: AppBar(
         title: CustomText(
           title: "Earnings",
-          color: AppColors.blackColor,
-          fontSize: 24.sp,
+          color: ColorUtils.blackColor,
+          fontSize: 24.sp(context),
           fontWeight: FontWeight.w700,
         ),
         centerTitle: true,
@@ -44,7 +45,7 @@ class BrokerWithdrawSuccessScreen extends StatelessWidget {
                   children: [
                     // Background Image
                     Image.asset(
-                      AppImages.transactionSucBg, // Your background image
+                      ImageUtils.transactionSucBg, // Your background image
                       fit: BoxFit.fill,
                     ),
 
@@ -57,9 +58,9 @@ class BrokerWithdrawSuccessScreen extends StatelessWidget {
                             // Success Icon
                             Container(
                               padding: EdgeInsets.all(12),
-                              width: 150.w,
-                              height: 150.h,
-                              child: Lottie.asset(AppImages.successAnim,
+                              width: 150.w(context),
+                              height: 150.h(context),
+                              child: Lottie.asset(ImageUtils.successAnim,
                                   repeat: false, fit: BoxFit.cover),
                             ),
                             SizedBox(height: 10),
@@ -68,7 +69,7 @@ class BrokerWithdrawSuccessScreen extends StatelessWidget {
                             Text(
                               'Withdraw Successful',
                               style: GoogleFonts.urbanist(
-                                fontSize: 24.sp,
+                                fontSize: 24.sp(context),
                                 fontWeight: FontWeight.w700,
                               ),
                             ),
@@ -76,8 +77,8 @@ class BrokerWithdrawSuccessScreen extends StatelessWidget {
                             Text(
                               'Your top up has been successfully done',
                               style: GoogleFonts.urbanist(
-                                  fontSize: 18.sp,
-                                  color: AppColors.blackColor,
+                                  fontSize: 18.sp(context),
+                                  color: ColorUtils.blackColor,
                                   fontWeight: FontWeight.w400),
                             ),
 
@@ -86,14 +87,14 @@ class BrokerWithdrawSuccessScreen extends StatelessWidget {
                             Text(
                               'Total Pay',
                               style: GoogleFonts.urbanist(
-                                  fontSize: 16.sp, color: AppColors.blackColor),
+                                  fontSize: 16.sp(context), color: ColorUtils.blackColor),
                             ),
                             Text(
                               '\$200.00',
                               style: GoogleFonts.urbanist(
-                                fontSize: 24.sp,
+                                fontSize: 24.sp(context),
                                 fontWeight: FontWeight.w700,
-                                color: AppColors.blackColor,
+                                color: ColorUtils.blackColor,
                               ),
                             ),
 
@@ -103,7 +104,7 @@ class BrokerWithdrawSuccessScreen extends StatelessWidget {
                                 child: CustomText(
                                   title: "Total Top Up",
                                   fontWeight: FontWeight.w600,
-                                  fontSize: 16.sp,
+                                  fontSize: 16.sp(context),
                                 )),
 
                             // Top Up Card Info
@@ -167,9 +168,9 @@ class BrokerWithdrawSuccessScreen extends StatelessWidget {
                             // Close Button
                             Roundbutton(
                               title: "Close",
-                              buttonColor: AppColors.primaryColor,
+                              buttonColor: ColorUtils.primaryColor,
                               onTap: () {
-                                Get.to(BrokerHome());
+                                Get.off(()=>BrokerDashboardView(index: 0),preventDuplicates: false);
                               },
                             ),
                           ],
