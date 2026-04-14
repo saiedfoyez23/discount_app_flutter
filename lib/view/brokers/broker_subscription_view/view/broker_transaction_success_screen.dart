@@ -2,7 +2,7 @@
 
 import 'package:discount_me_app/res/app_const/import_list.dart';
 import 'package:discount_me_app/utils/utils.dart';
-import 'package:discount_me_app/view/brokers/broker_home_view/view/broker_home.dart';
+import 'package:discount_me_app/view/brokers/broker_home_view/view/broker_dashboard_view.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -168,7 +168,7 @@ class BrokerTransactionSuccessScreen extends StatelessWidget {
                                 title: "Close",
                                 buttonColor: ColorUtils.primaryColor,
                                 onTap: () {
-                                  Get.to(BrokerHome());
+                                  Get.off(()=>BrokerDashboardView(index: 0),preventDuplicates: false);
                                 },
                               ),
                             ],

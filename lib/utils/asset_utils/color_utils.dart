@@ -20,6 +20,8 @@ class ColorUtils {
   static const Color red191 = Color(0xffBF0000);
   static const Color red255 = Color.fromRGBO(255, 0, 0, 1);
   static const Color green139 = Color.fromRGBO(4, 139, 61, 1);
+  static const Color white217 = Color.fromRGBO(217, 217, 217, 1);
+  static const Color orange213 = Color.fromRGBO(254, 213, 203, 1);
 
 
   static const Color primaryColor = Color(0xff00B047);

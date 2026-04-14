@@ -88,4 +88,6 @@ export 'vendors/vendor_items_view/view/vendor_item_view.dart';
 export 'vendors/vendor_items_view/widget/vendor_item_screen_widget.dart';
 export 'vendors/vendor_items_view/widget/vendor_item_details_view_screen_widget.dart';
 export 'vendors/vendor_items_view/view/vendor_item_details_view.dart';
-export 'brokers/broker_home_view/view/broker_home.dart';
+export 'brokers/broker_home_view/controller/dashboard_broker_controller.dart';
+export 'brokers/broker_home_view/view/broker_dashboard_view.dart';
+export 'brokers/broker_home_view/view/broker_home_view.dart';

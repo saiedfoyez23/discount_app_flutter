@@ -103,5 +103,16 @@ class ImageUtils {
   static String transactionSuccessAnim = "assets/lottie/tran_suc_anim.json";
 
 
+  // broker bottom navigation bar image
+  static String selectedHome = "assets/images/broker_bottom_navagation_bar_image/selected_home.png";
+  static String selectedProfile = "assets/images/broker_bottom_navagation_bar_image/selected_profile.png";
+  static String selectedReferral = "assets/images/broker_bottom_navagation_bar_image/selected_referral.png";
+  static String selectedSubscription = "assets/images/broker_bottom_navagation_bar_image/selected_subscription.png";
+  static String unselectedHome = "assets/images/broker_bottom_navagation_bar_image/unselected_home.png";
+  static String unselectedProfile = "assets/images/broker_bottom_navagation_bar_image/unselected_profile.png";
+  static String unselectedReferral = "assets/images/broker_bottom_navagation_bar_image/unselected_referral.png";
+  static String unselectedSubscription = "assets/images/broker_bottom_navagation_bar_image/unselected_subscription.png";
+
+
 
 }

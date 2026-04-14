@@ -44,11 +44,9 @@ class BrokerTransactionTableWidget extends StatelessWidget {
             rows: transactions.asMap().entries.map(
                   (entry) {
                 return DataRow(
-
                   onSelectChanged: (isSelected) {
                     debugPrint(isSelected.toString());
                   },
-
                   cells: [
                     DataCell(Text((entry.key + 1).toString().padLeft(2, '0'))),
 
@@ -78,7 +76,7 @@ class BrokerTransactionTableWidget extends StatelessWidget {
                 );
               },
             ).toList(),
-          ),
+          ),git add
         ),
       ),
     );

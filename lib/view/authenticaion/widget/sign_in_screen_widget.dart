@@ -215,7 +215,7 @@ class SignInScreenWidget {
                                     Get.off(()=>VendorHome(selectedIndex: 0,),duration: const Duration(milliseconds: 100),preventDuplicates: false);
                                     signInController.isSubmit.value = false;
                                   } else if (role == "broker") {
-                                    Get.off(()=>BrokerHome(),duration: const Duration(milliseconds: 100),preventDuplicates: false);
+                                    Get.off(()=>BrokerDashboardView(index: 0),duration: const Duration(milliseconds: 100),preventDuplicates: false);
                                     signInController.isSubmit.value = false;
                                   }
                                 },

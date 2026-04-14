@@ -20,6 +20,10 @@ class MyHttpOverrides extends HttpOverrides{
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   HttpOverrides.global = MyHttpOverrides();
+  await SystemChrome.setEnabledSystemUIMode(
+    SystemUiMode.manual,
+    overlays: SystemUiOverlay.values,
+  );
   SystemChrome.setSystemUIOverlayStyle(
     SystemUiOverlayStyle(
       statusBarColor: Colors.transparent, // Set the status bar color
@@ -44,9 +48,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.transparent),
         useMaterial3: true,
       ),
-
       // home: BrokerHome(),
-
       initialRoute: RouteNames.splashViewOne,
       getPages: AppRoutes.routes,
     );

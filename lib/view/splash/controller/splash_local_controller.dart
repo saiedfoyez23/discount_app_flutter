@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import 'package:discount_me_app/res/res.dart';
 import 'package:discount_me_app/view/view.dart';
 import 'package:get/get.dart';
@@ -23,7 +22,7 @@ class SplashController extends GetxController{
               } else if (decodedToken['role'] == "vendor") {
                 Get.off(()=>VendorHome(selectedIndex: 0,),duration: const Duration(milliseconds: 100),preventDuplicates: false);
               }else if (decodedToken['role'] == "broker") {
-                Get.off(()=>BrokerHome(),duration: const Duration(milliseconds: 100),preventDuplicates: false);
+                Get.off(()=>BrokerDashboardView(index: 0),duration: const Duration(milliseconds: 100),preventDuplicates: false);
               }
             } else {
               Get.off(()=> WelcomeScreen(),duration: const Duration(milliseconds: 100),preventDuplicates: false);

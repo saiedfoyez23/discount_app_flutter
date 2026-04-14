@@ -367,7 +367,6 @@ class UserProfileHomeScreenWidget extends GetxController {
                       ProfileItemWidget(title: "Logout",
                         icon: Image.asset(ImageUtils.logout, scale: 5,),
                         onTap: () {
-
                           CustomAlertDialog().customAlert(
                             context: context, title: 'Logout',
                             message: 'Are you sure you want to logout?',
@@ -375,7 +374,7 @@ class UserProfileHomeScreenWidget extends GetxController {
                             PositivvebuttonText: 'Logout',
                             onPositiveButtonPressed: () async {
                               await AppLocalStorage.removeKey(key: "Login");
-                              await Get.off(()=>SignInScreen(),preventDuplicates: false,duration: Duration(milliseconds: 100));
+                              await Get.offAll(()=>SignInScreen(),duration: Duration(milliseconds: 100));
                             },
                             onNegativeButtonPressed: () => Navigator.of(context).pop(),
                           );
