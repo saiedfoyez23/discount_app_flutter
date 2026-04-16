@@ -92,6 +92,8 @@ class BrokerSettingScreen extends StatelessWidget {
       ),
     );
   }
+
+
   Widget deleteAccountItem({required BuildContext context}){
     return Container(
       width: Get.width,

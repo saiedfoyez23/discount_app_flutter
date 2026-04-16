@@ -18,7 +18,7 @@ class TextFormFieldWidget {
     Color? focusedBorderColor,
     Color fillColor = ColorUtils.white253,
     double borderRadius = 10,
-    double fontSize = 20,
+    double fontSize = 18,
     EdgeInsetsGeometry? contentPadding,
     void Function(String?)? onChanged,
     void Function(String?)? onSaved,

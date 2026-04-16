@@ -10,6 +10,7 @@ class ApiUtils {
   static const String createPaymentResponse = "$baseUrl/payments/create-payment-session"; //done
   static const String createOrderResponse = "$baseUrl/orders";//done
   static const String riderProfile = "$baseUrl/riders/profile";//done
+  static const String brokersProfile = "$baseUrl/brokers/profile";//done
   static String riderProfileUpdate(String riderId) {
     return "$baseUrl/riders/$riderId";
   }
@@ -36,6 +37,9 @@ class ApiUtils {
   }
   static String categoryWiseProduct(String storeId,String categoryId) {
     return "$baseUrl/products?sort=-ratings&store=${storeId}&category=${categoryId}";
+  }
+  static String editBrokerProfile(String brokersId) {
+    return "$baseUrl/brokers/${brokersId}";
   }
 
   static const String riderChangePassword = "$baseUrl/auth/change-password";

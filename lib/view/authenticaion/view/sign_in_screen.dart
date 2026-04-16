@@ -15,7 +15,9 @@ class SignInScreen extends StatelessWidget {
         Get.off(()=>const WelcomeScreen(),duration: const Duration(milliseconds: 100),preventDuplicates: false);
       },
       child: Scaffold(
-        body: SignInScreenWidget().signInScreenWidget(context: context),
+        body: SafeArea(
+          child: SignInScreenWidget().signInScreenWidget(context: context),
+        ),
       ),
     );
   }

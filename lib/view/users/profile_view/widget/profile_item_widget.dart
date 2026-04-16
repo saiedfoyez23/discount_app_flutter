@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import '../../../../res/res.dart';
 import 'package:discount_me_app/utils/utils.dart';
 
 class ProfileItemWidget extends StatelessWidget {
@@ -13,8 +12,14 @@ class ProfileItemWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      decoration: BoxDecoration(
+        color: Colors.transparent,
+      ),
       child: TextButton(
-        style: TextButton.styleFrom(padding: EdgeInsets.zero),
+        style: TextButton.styleFrom(
+          padding: EdgeInsets.zero,
+          overlayColor: Colors.transparent
+        ),
         onPressed: onTap,
         child: Column(
           children: [
@@ -25,15 +30,17 @@ class ProfileItemWidget extends StatelessWidget {
                   children: [
                     icon,
 
-                    CustomSpaceWidget.spacerWidget(spaceWidth: 20.w(context)),
+                    SpaceHelperWidget.h(20.w(context)),
 
-                    CustomTextContainer.plainTextContainerWidgetWithoutHeightWidth(
-                      plainTextString: title,
-                      plainTextStringFontSize: 18.sp(context),
-                      plainTextStringFontWeight: FontWeight.w400,
-                      plainTextContainerAlignment: Alignment.centerLeft,
-                      plainTextStringTextAlign: TextAlign.start,
-                      plainTextStringColor: ColorUtils.black29,
+
+                    TextHelperClass.headingTextWithoutWidth(
+                      context: context,
+                      text: title,
+                      fontWeight: FontWeight.w400,
+                      textAlign: TextAlign.start,
+                      alignment: Alignment.centerLeft,
+                      textColor: ColorUtils.black29,
+                      fontSize: 18
                     ),
 
                   ],
@@ -43,7 +50,8 @@ class ProfileItemWidget extends StatelessWidget {
               ],
             ),
 
-            CustomSpaceWidget.spacerWidget(spaceHeight: 10.h(context)),
+            SpaceHelperWidget.v(10.h(context)),
+
 
             title == "Logout" ?
             SizedBox.shrink() :
@@ -57,7 +65,8 @@ class ProfileItemWidget extends StatelessWidget {
                 ),
 
 
-                CustomSpaceWidget.spacerWidget(spaceHeight: 10.h(context)),
+                SpaceHelperWidget.v(10.h(context)),
+
 
               ],
             )

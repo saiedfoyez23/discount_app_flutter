@@ -1,36 +1,40 @@
 import 'dart:convert';
-import 'package:discount_me_app/res/res.dart';
 import 'package:discount_me_app/view/view.dart';
 import 'package:get/get.dart';
+import 'package:discount_me_app/utils/utils.dart';
 
 class SplashController extends GetxController{
+
+  RxBool getStart = LocalStorageUtils.getBool(AppConstantUtils.getStart) == null ? false.obs : LocalStorageUtils.getBool(AppConstantUtils.getStart)!.obs;
+  Rx<LoginResponseModel> loginResponseModel = LocalStorageUtils.getString(AppConstantUtils.loginResponse) == null ?
+  LoginResponseModel().obs : LoginResponseModel.fromJson(jsonDecode(LocalStorageUtils.getString(AppConstantUtils.loginResponse)!)).obs;
 
   @override
   void onInit() {
     // TODO: implement onInit
     super.onInit();
     Future.delayed(Duration(milliseconds: 100),() async {
-      AppLocalStorage.getBool(key: "getStart").then((gvalue) {
-        if(gvalue == true) {
-          AppLocalStorage.getString(key: "Login").then((value) {
-            if(value != null && value != "") {
-              Map<String, dynamic> decodedToken = parseJwt(jsonDecode(value)["data"]["accessToken"]);
-              if(decodedToken['role'] == "user") {
-                Get.off(()=>UserHome(selectedIndex: 0,),duration: const Duration(milliseconds: 100),preventDuplicates: false);
-              } else if (decodedToken['role'] == "rider") {
-                Get.off(()=>RiderHome(selectedIndex: 0),duration: const Duration(milliseconds: 100),preventDuplicates: false);
-              } else if (decodedToken['role'] == "vendor") {
-                Get.off(()=>VendorHome(selectedIndex: 0,),duration: const Duration(milliseconds: 100),preventDuplicates: false);
-              }else if (decodedToken['role'] == "broker") {
-                Get.off(()=>BrokerDashboardView(index: 0),duration: const Duration(milliseconds: 100),preventDuplicates: false);
-              }
-            } else {
-              Get.off(()=> WelcomeScreen(),duration: const Duration(milliseconds: 100),preventDuplicates: false);
-            }
-          });
-        }
-      });
+      await redirectionFunction();
     });
+  }
+
+  Future<void> redirectionFunction() async {
+    if(getStart.value == true) {
+      if(loginResponseModel.value.data != null) {
+        Map<String, dynamic> decodedToken = parseJwt(loginResponseModel.value.data!.accessToken);
+        if(decodedToken['role'] == "user") {
+          Get.off(()=>UserHome(selectedIndex: 0,),duration: const Duration(milliseconds: 100),preventDuplicates: false);
+        } else if (decodedToken['role'] == "rider") {
+          Get.off(()=>RiderHome(selectedIndex: 0),duration: const Duration(milliseconds: 100),preventDuplicates: false);
+        } else if (decodedToken['role'] == "vendor") {
+          Get.off(()=>VendorHome(selectedIndex: 0,),duration: const Duration(milliseconds: 100),preventDuplicates: false);
+        } else if (decodedToken['role'] == "broker") {
+          Get.off(()=>BrokerDashboardView(index: 0),duration: const Duration(milliseconds: 100),preventDuplicates: false);
+        }
+      } else {
+        Get.off(()=> WelcomeScreen(),duration: const Duration(milliseconds: 100),preventDuplicates: false);
+      }
+    }
   }
 
 
