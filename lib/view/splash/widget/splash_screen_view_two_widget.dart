@@ -29,7 +29,7 @@ class SplashScreenViewTwoWidget {
             child: Column(
               children: [
 
-                CustomSpaceWidget.spacerWidget(spaceHeight: 125.h(context)),
+                CustomSpaceWidget.spacerWidget(spaceHeight: 100.h(context)),
 
 
                 CustomImageContainer.assetImageContainer(
@@ -56,7 +56,7 @@ class SplashScreenViewTwoWidget {
                   plainButtonWidth: 428.w(context),
                   plainButtonRadius: 4.r(context),
                   plainButtonOnPress:  () async {
-                    await AppLocalStorage.setBool(key: "getStart", value: true);
+                    await LocalStorageUtils.setBool(AppConstantUtils.getStart, true);
                     Get.off(()=> WelcomeScreen(),duration: const Duration(milliseconds: 100),preventDuplicates: false);
                   },
                   plainButtonHint: "Let's Go",

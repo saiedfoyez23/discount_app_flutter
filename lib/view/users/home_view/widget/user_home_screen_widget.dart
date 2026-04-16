@@ -234,13 +234,15 @@ class UserHomeScreenWidget extends GetxController {
                                   Icon(Icons.location_on, size: 16.r(context),),
                                   CustomSpaceWidget.spacerWidget(spaceWidth: 5.w(context)),
 
-                                  CustomTextContainer.plainTextContainerWidgetWithoutHeightWidth(
-                                    plainTextString: userProfileResponseModel.value.data?.location ?? "N/A",
-                                    plainTextStringFontSize: 16.sp(context),
-                                    plainTextStringFontWeight: FontWeight.w400,
-                                    plainTextContainerAlignment: Alignment.centerLeft,
-                                    plainTextStringColor: ColorUtils.black29,
-                                    plainTextStringTextAlign: TextAlign.start,
+                                  Expanded(
+                                    child: CustomTextContainer.plainTextContainerWidgetWithoutHeightWidth(
+                                      plainTextString: userProfileResponseModel.value.data?.location ?? "N/A",
+                                      plainTextStringFontSize: 16.sp(context),
+                                      plainTextStringFontWeight: FontWeight.w400,
+                                      plainTextContainerAlignment: Alignment.centerLeft,
+                                      plainTextStringColor: ColorUtils.black29,
+                                      plainTextStringTextAlign: TextAlign.start,
+                                    ),
                                   ),
                                 ],
                               ),

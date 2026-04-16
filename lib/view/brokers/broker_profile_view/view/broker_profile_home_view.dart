@@ -1,0 +1,498 @@
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
+
+import 'package:discount_me_app/res/common_widget/custom_alert_dialog.dart';
+import 'package:discount_me_app/res/common_widget/picker_dialog.dart';
+import 'package:discount_me_app/utils/utils.dart';
+import 'package:discount_me_app/view/brokers/broker_profile_view/view/broker_edit_profile_screen.dart';
+import 'package:discount_me_app/view/view.dart';
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:skeletonizer/skeletonizer.dart';
+
+class BrokerProfileHomeView extends StatelessWidget {
+  BrokerProfileHomeView({super.key});
+
+
+  @override
+  Widget build(BuildContext context) {
+    BrokerProfileHomeController brokerProfileHomeController = Get.put(BrokerProfileHomeController(context: context));
+    return Scaffold(
+      body: SafeArea(
+        child: Obx(()=>Skeletonizer(
+          effect: PulseEffect(),
+          enabled: brokerProfileHomeController.isLoading.value,
+          child: Container(
+            height: 926.h(context),
+            width: 428.w(context),
+            decoration: BoxDecoration(
+                color: ColorUtils.whiteColor
+            ),
+            child: CustomScrollView(
+              physics: NeverScrollableScrollPhysics(),
+              slivers: [
+
+                SliverToBoxAdapter(
+                  child: Column(
+                    children: [
+
+                      SpaceHelperWidget.v(20.h(context)),
+
+                      UserProfileAppbarWidget(title: " Profile"),
+
+                    ],
+                  ),
+                ),
+
+
+
+
+
+                SliverFillRemaining(
+                  child: RefreshIndicator(
+                    onRefresh: () async {
+                      Get.delete<BrokerProfileHomeController>(force: true);
+                      Get.off(()=>BrokerDashboardView(index: 3),preventDuplicates: false);
+                    },
+                    child: CustomScrollView(
+                      slivers: [
+
+                        SliverToBoxAdapter(
+                          child: Padding(
+                            padding: EdgeInsets.symmetric(vertical: 16.vpm(context),horizontal: 16.hpm(context)),
+                            child: SingleChildScrollView(
+                              child: Column(
+                                children: [
+
+
+                                  SpaceHelperWidget.v(20.h(context)),
+
+                                  SizedBox(
+                                    width: 170.w(context),
+                                    height: 170.h(context),
+                                    child: Stack(
+                                      children: [
+
+                                        // Profile Picture
+                                        ImageHelperWidget.circleImageHelperWidget(
+                                          width: 170.w(context),
+                                          height: 170.h(context),
+                                          verticalPadding: 2.vpm(context),
+                                          horizontalPadding: 2.vpm(context),
+                                          backgroundColor: ColorUtils.primaryColor,
+                                          radius: 75.r(context),
+                                          imageFile: brokerProfileHomeController.getBrokerProfileResponseModel.value.data?.image != "" ?
+                                          brokerProfileHomeController.getBrokerProfileResponseModel.value.data?.image :  null,
+                                          imageUrl: brokerProfileHomeController.getBrokerProfileResponseModel.value.data?.image != null && brokerProfileHomeController.profileImageFile.value.path == "" ?
+                                          brokerProfileHomeController.getBrokerProfileResponseModel.value.data?.image :
+                                          null,
+                                          imageAsset: brokerProfileHomeController.profileImageFile.value.path == "" && brokerProfileHomeController.getBrokerProfileResponseModel.value.data?.image == null ?
+                                          ImageUtils.noImage : null,
+                                        ),
+
+
+                                        // Edit Icon Button
+                                        Positioned(
+                                          bottom: 12.h(context),
+                                          right: 12.w(context),
+                                          child: InkWell(
+                                            onTap: () async {
+                                              BrokerProfileDialogBox().chooseProfilePhotoEditDialogBox(
+                                                context: context,
+                                                galleryFunction: () async {
+                                                  Map<String,dynamic> data = {
+                                                    "name" : brokerProfileHomeController.getBrokerProfileResponseModel.value.data?.name ?? "",
+                                                    "location": brokerProfileHomeController.getBrokerProfileResponseModel.value.data?.location ?? "",
+                                                    "contact": brokerProfileHomeController.getBrokerProfileResponseModel.value.data?.contact ?? "",
+                                                  };
+                                                  await brokerProfileHomeController.pickProfileImage(
+                                                      source: ImageSource.gallery,
+                                                      context: context,
+                                                      data: data,
+                                                      brokerId: brokerProfileHomeController.getBrokerProfileResponseModel.value.data?.sId ?? ""
+                                                  );
+                                                },
+                                                cameraFunction: () async {
+                                                  Map<String,dynamic> data = {
+                                                    "name" : brokerProfileHomeController.getBrokerProfileResponseModel.value.data?.name ?? "",
+                                                    "location": brokerProfileHomeController.getBrokerProfileResponseModel.value.data?.location ?? "",
+                                                    "contact": brokerProfileHomeController.getBrokerProfileResponseModel.value.data?.contact ?? "",
+                                                  };
+                                                  await brokerProfileHomeController.pickProfileImage(
+                                                    source: ImageSource.camera,
+                                                    context: context,
+                                                    data: data,
+                                                    brokerId: brokerProfileHomeController.getBrokerProfileResponseModel.value.data?.sId ?? "",
+                                                  );
+                                                },
+                                              );
+                                            },
+                                            child: ImageHelperWidget.assetImageWidget(
+                                              context: context,
+                                              height: 32.h(context),
+                                              width: 32.w(context),
+                                              imageString: ImageUtils.editButtonImage,
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+
+
+                                  SpaceHelperWidget.v(20.h(context)),
+
+                                  Row(
+                                    crossAxisAlignment: CrossAxisAlignment.center,
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+
+                                      TextHelperClass.headingTextWithoutWidth(
+                                        context: context,
+                                        alignment: Alignment.center,
+                                        fontSize: 18,
+                                        textAlign: TextAlign.center,
+                                        fontWeight: FontWeight.w700,
+                                        textColor: ColorUtils.blackColor,
+                                        text: brokerProfileHomeController.getBrokerProfileResponseModel.value.data?.name ?? "",
+                                      ),
+
+                                      SpaceHelperWidget.h(10.w(context)),
+
+
+                                      InkWell(
+                                        onTap: () async {
+                                          BrokerProfileDialogBox().nameEditDialogBox(
+                                            context: context,
+                                            controller: brokerProfileHomeController.nameControllerText.value,
+                                            title: "Broker Name",
+                                            hintText: "Enter broker name",
+                                            cancelFunction: () async {
+                                              Navigator.pop(context);
+                                            },
+                                            editFunction: () async {
+                                              Navigator.pop(context);
+                                              brokerProfileHomeController.isLoading.value = true;
+                                              Map<String,dynamic> data = {
+                                                "name" : brokerProfileHomeController.nameControllerText.value.text,
+                                                "location": brokerProfileHomeController.getBrokerProfileResponseModel.value.data?.location ?? "",
+                                                "contact": brokerProfileHomeController.getBrokerProfileResponseModel.value.data?.contact ?? "",
+                                              };
+                                              print(data);
+                                              await brokerProfileHomeController.brokerUpdateAccountController(
+                                                context: context,
+                                                data: data,
+                                                brokerId: brokerProfileHomeController.getBrokerProfileResponseModel.value.data?.sId ?? "",
+                                              );
+                                            },
+                                          );
+                                        },
+                                        child: ImageHelperWidget.assetImageWidget(
+                                          context: context,
+                                          height: 32.h(context),
+                                          width: 32.w(context),
+                                          imageString: ImageUtils.nameEditButtonImage,
+                                        ),
+                                      ),
+
+
+                                    ],
+                                  ),
+
+
+                                  SpaceHelperWidget.v(20.h(context)),
+
+
+                                  ProfileItemWidget(
+                                    title: "Edit Profile",
+                                    icon: Image.asset(ImageUtils.userEdite, scale: 5,),
+                                    navigateIcon: Icon(Icons.navigate_next, size: 24.r(context), color: Colors.black54,),
+                                    onTap: () {
+                                      Get.to(BrokerEditProfileScreen());
+                                    },
+                                  ),
+
+
+                                  ProfileItemWidget(
+                                    title: "Settings",
+                                    icon: Image.asset(ImageUtils.settingIcon, scale: 4,),
+                                    navigateIcon: Icon(Icons.navigate_next, size: 24.r(context), color: Colors.black54,),
+                                    onTap: () {
+                                      //Get.to(VendorSettingScreen());
+                                    },
+                                  ),
+
+
+                                  ProfileItemWidget(
+                                    title: "Logout",
+                                    icon: Image.asset(ImageUtils.logout, scale: 4,),
+                                    navigateIcon: Icon(Icons.navigate_next, size: 24.r(context), color: Colors.black54,),
+                                    onTap: () {
+                                      BrokerProfileDialogBox().logOutDialogBox(
+                                        context: context,
+                                        cancelFunction: () async {
+                                          Navigator.pop(context);
+                                        },
+                                        logoutFunction: () async {
+                                          await LocalStorageUtils.remove(AppConstantUtils.loginResponse);
+                                          await Get.offAll(()=>SignInScreen(),duration: Duration(milliseconds: 100));
+                                        },
+                                      );
+                                    },
+                                  ),
+
+
+
+                                ],
+                              ),
+                            ),
+                          ),
+                        )
+
+
+                      ],
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        )),
+      ),
+    );
+  }
+  // Function to show name change dialog
+  // void showNameChangeDialog(BuildContext context) {
+  //   nameController.text = username;
+  //   Get.dialog(
+  //     AlertDialog(
+  //       title: Text('Change Name'),
+  //       content: TextField(
+  //         controller: nameController,
+  //         decoration: InputDecoration(
+  //           hintText: "Enter your name",
+  //         ),
+  //       ),
+  //       actions: <Widget>[
+  //         TextButton(
+  //           onPressed: () {
+  //             Get.back(); // Close the dialog
+  //           },
+  //           child: Text('Cancel'),
+  //         ),
+  //         TextButton(
+  //           onPressed: () {
+  //             username = nameController.text;
+  //             Get.back();
+  //           },
+  //           child: Text('OK'),
+  //         ),
+  //       ],
+  //     ),
+  //   );
+  // }
+}
+
+
+// class BrokerProfileHomeScreen extends StatefulWidget {
+//   const BrokerProfileHomeScreen({super.key});
+//
+//   @override
+//   State<BrokerProfileHomeScreen> createState() =>
+//       _BrokerProfileHomeScreenState();
+// }
+//
+// class _BrokerProfileHomeScreenState extends State<BrokerProfileHomeScreen> {
+//   String username = 'Foods King Resturant';
+//   final TextEditingController nameController = TextEditingController();
+//   @override
+//   Widget build(BuildContext context) {
+//     // Get the screen width and height
+//     double width = MediaQuery.of(context).size.width;
+//     double height = MediaQuery.of(context).size.height;
+//
+//     return Scaffold(
+//       backgroundColor: ColorUtils.whiteColor,
+//       appBar: AppBar(
+//         automaticallyImplyLeading: false,
+//         title: CustomText(
+//           title: "Profile",
+//           color: ColorUtils.blackColor,
+//           fontSize: 24.sp(context),
+//           fontWeight: FontWeight.w700,
+//         ),
+//         centerTitle: true,
+//         flexibleSpace: FlexibleSpaceBar(
+//           background: Container(
+//             color: Colors.white,
+//           ),
+//         ),
+//       ),
+//       body: Padding(
+//         padding: EdgeInsets.all(16),
+//         child: SingleChildScrollView(
+//           child: Column(
+//             children: [
+//
+//               // Profile image
+//               20.heightBox,
+//               Center(
+//                 child: Stack(
+//                   children: [
+//                     ClipRRect(
+//                       borderRadius: BorderRadius.circular(100),
+//                       child: Image.asset(
+//                         ImageUtils.homeResProImg,
+//                         fit: BoxFit.cover,
+//                         width: 202.w(context),
+//                         height: 202.h(context),
+//                       ),
+//                     ),
+//                     Positioned(
+//                       bottom: 10,
+//                       right: 17,
+//                       child: GestureDetector(
+//                         onTap: () {
+//                           PickerDialog().showImagePickerDialog(context);
+//                         },
+//                         child: Container(
+//                           alignment: Alignment.center,
+//                           width: 34.w(context),
+//                           height: 34.h(context),
+//                           decoration: BoxDecoration(
+//                             color: ColorUtils.secondaryColor,
+//                             borderRadius: BorderRadius.only(
+//                               topLeft: Radius.circular(10),
+//                               topRight: Radius.circular(10),
+//                               bottomRight: Radius.circular(10),
+//                             ),
+//                           ),
+//                           child: Icon(
+//                             Icons.edit,
+//                             color: ColorUtils.whiteColor,
+//                           ),
+//                         ),
+//                       ),
+//                     )
+//                   ],
+//                 ),
+//               ),
+//
+//               // name section
+//               20.heightBox,
+//               Row(
+//                 mainAxisAlignment: MainAxisAlignment.center,
+//                 crossAxisAlignment: CrossAxisAlignment.center,
+//                 children: [
+//                   CustomText(
+//                     title: "$username",
+//                     fontSize: 18.sp(context),
+//                     fontWeight: FontWeight.w700,
+//                     color: ColorUtils.blackColor,
+//                   ),
+//                   10.widthBox,
+//                   GestureDetector(
+//                     onTap: () =>  showNameChangeDialog(context),
+//                     child: Container(
+//                       padding: EdgeInsets.all(5),
+//                       decoration: BoxDecoration(
+//                           color: Colors.black, shape: BoxShape.circle),
+//                       child: Icon(
+//                         Icons.edit,
+//                         color: Colors.white,
+//                         size: 18.sp(context),
+//                       )
+//                     ),
+//                   )
+//                 ],
+//               ),
+//
+//
+//               40.heightBox,
+//               CustomProfileItemWidget(
+//                 title: "Edit Profile",
+//                 icon: Image.asset(
+//                   ImageUtils.userEdite,
+//                   scale: 4,
+//                 ),
+//                 navigateIcon: Icon(Icons.navigate_next),
+//                 onTap: () {
+//                   Get.to(BrokerEditProfileScreen());
+//                 },
+//               ),
+//
+//
+//               Divider(),
+//               5.heightBox,
+//               CustomProfileItemWidget(
+//                 title: "Settings",
+//                 icon: Image.asset(ImageUtils.settingIcon, scale: 4,),
+//                 navigateIcon: Icon(Icons.navigate_next),
+//                 onTap: () {
+//                   //Get.to(VendorSettingScreen());
+//                 },
+//               ),
+//               Divider(),
+//               5.heightBox,
+//               CustomProfileItemWidget(
+//                 title: "Logout",
+//                 icon: Image.asset(
+//                   ImageUtils.userEdite,
+//                   scale: 4,
+//                 ),
+//                 onTap: () {
+//                   CustomAlertDialog().customAlert(
+//                     context: context, title: 'Logout',
+//                     message: 'Are you sure you want to logout?',
+//                     NegativebuttonText: 'Cancel',
+//                     PositivvebuttonText: 'Logout',
+//                     onPositiveButtonPressed: () {
+//                       Navigator.of(context).pop();
+//                       Get.to(()=>SignInScreen());
+//                     },
+//                     onNegativeButtonPressed: () => Navigator.of(context).pop(),
+//                   );
+//                 },
+//               )
+//
+//
+//
+//             ],
+//           ),
+//         ),
+//       ),
+//     );
+//   }
+//   // Function to show name change dialog
+//   void showNameChangeDialog(BuildContext context) {
+//     nameController.text = username;
+//     Get.dialog(
+//       AlertDialog(
+//         title: Text('Change Name'),
+//         content: TextField(
+//           controller: nameController,
+//           decoration: InputDecoration(
+//             hintText: "Enter your name",
+//           ),
+//         ),
+//         actions: <Widget>[
+//           TextButton(
+//             onPressed: () {
+//               Get.back(); // Close the dialog
+//             },
+//             child: Text('Cancel'),
+//           ),
+//           TextButton(
+//             onPressed: () {
+//               setState(() {
+//                 username = nameController.text;
+//               });
+//               Get.back();
+//             },
+//             child: Text('OK'),
+//           ),
+//         ],
+//       ),
+//     );
+//   }
+// }

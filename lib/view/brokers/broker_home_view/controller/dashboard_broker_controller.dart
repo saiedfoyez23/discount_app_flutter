@@ -1,5 +1,5 @@
 import 'package:discount_me_app/view/view.dart';
-import 'package:discount_me_app/view/brokers/broker_profile_view/view/broker_profile_home_screen.dart';
+import 'package:discount_me_app/view/brokers/broker_profile_view/view/broker_profile_home_view.dart';
 import 'package:discount_me_app/view/brokers/broker_referral_view/view/broker_referral_home_screen.dart';
 import 'package:discount_me_app/view/brokers/broker_subscription_view/view/broker_subscription_home_screen.dart';
 import 'package:discount_me_app/utils/utils.dart';
@@ -35,7 +35,6 @@ class DashboardBrokerController extends GetxController {
     return (itemWidth * index) + itemWidth / 2;
   }
 
-
   RxList<Map<String, dynamic>> items = [
     {'unselected': ImageUtils.unselectedHome, 'select': ImageUtils.selectedHome, 'label': 'Home'},
     {'unselected': ImageUtils.unselectedSubscription, 'select': ImageUtils.selectedSubscription, 'label': 'Subscription'},
@@ -47,7 +46,7 @@ class DashboardBrokerController extends GetxController {
     BrokerHomeView(),
     BrokerSubscriptionHomeScreen(),
     BrokerReferralHomeScreen(),
-    BrokerProfileHomeScreen(),
+    BrokerProfileHomeView(),
   ].obs;
 
 

@@ -15,105 +15,109 @@ class BrokerDashboardView extends StatelessWidget {
       width: (MediaQuery.of(context).size.width / 1),
     ), permanent: true,);
     return Obx(()=> Scaffold(
-      extendBody: true,
       body: dashboardBrokerController.pages[dashboardBrokerController.selectedIndex.value],
-      bottomNavigationBar: LayoutBuilder(
-        builder: (context, constraints) {
-          final width = constraints.maxWidth;
-          return SizedBox(
-            height: 75.h(context),
-            child: Stack(
-              clipBehavior: Clip.none,
-              children: [
-                /// 🔥 Notch Background
-                ClipPath(
-                  clipper: NotchedNavBarClipper(
-                    notchCenter: dashboardBrokerController.notchX.value,
-                    context: context,
-                  ),
-                  child: Container(
-                    height: 75.h(context),
-                    color: const Color(0xFF16A34A),
-                  ),
-                ),
-
-                /// 🔵 Top Circle
-                AnimatedPositioned(
-                  duration: Duration(milliseconds: 180),
-                  curve: Curves.easeInOut,
-                  top: -6.h(context),
-                  left: dashboardBrokerController.notchX.value - (5.w(context)),
-                  child: Container(
-                    width: 10.w(context),
-                    height: 10.w(context),
-                    decoration: const BoxDecoration(
-                      color: Color(0xFF16A34A),
-                      shape: BoxShape.circle,
+      bottomNavigationBar: Container(
+        padding: EdgeInsets.only(
+          bottom: MediaQuery.of(context).viewPadding.bottom, // ✅ key fix
+        ),
+        child: LayoutBuilder(
+          builder: (context, constraints) {
+            final width = constraints.maxWidth;
+            return SizedBox(
+              height: 75.h(context),
+              child: Stack(
+                clipBehavior: Clip.none,
+                children: [
+                  /// 🔥 Notch Background
+                  ClipPath(
+                    clipper: NotchedNavBarClipper(
+                      notchCenter: dashboardBrokerController.notchX.value,
+                      context: context,
+                    ),
+                    child: Container(
+                      height: 75.h(context),
+                      color: const Color(0xFF16A34A),
                     ),
                   ),
-                ),
 
-                /// 🧭 Items
-
-                Row(
-                  children: List.generate(dashboardBrokerController.items.length, (index) {
-                    final item = dashboardBrokerController.items[index];
-                    final bool isSelected = dashboardBrokerController.selectedIndex.value == index;
-                    return Expanded(
-                      child: InkWell(
-                        onTap: () {
-                          dashboardBrokerController.changeIndex(index: index, width: width);
-                        },
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-
-                            isSelected ?
-                            SpaceHelperWidget.v(17.h(context)) :
-                            SizedBox.shrink(),
-
-                            isSelected ?
-                            ImageHelperWidget.assetImageWidget(
-                              context: context,
-                              height: 24.h(context),
-                              width: 24.w(context),
-                              imageString: item['select'] ?? "",
-                            ) :
-                            ImageHelperWidget.assetImageWidget(
-                              context: context,
-                              height: 24.h(context),
-                              width: 24.w(context),
-                              imageString: item['unselected'] ?? "",
-                            ),
-
-
-                            SpaceHelperWidget.v(6.h(context)),
-
-                            isSelected ?
-                            TextHelperClass.headingTextWithoutWidth(
-                              context: context,
-                              alignment: Alignment.center,
-                              fontSize: 16,
-                              fontWeight: FontWeight.w600,
-                              textColor: isSelected ? ColorUtils.white253 : ColorUtils.white253,
-                              text: item['label'] ?? "",
-                            ) :
-                            SizedBox.shrink(),
-
-                            SpaceHelperWidget.v(8.h(context)),
-
-
-                          ],
-                        ),
+                  /// 🔵 Top Circle
+                  AnimatedPositioned(
+                    duration: Duration(milliseconds: 180),
+                    curve: Curves.easeInOut,
+                    top: -6.h(context),
+                    left: dashboardBrokerController.notchX.value - (5.w(context)),
+                    child: Container(
+                      width: 10.w(context),
+                      height: 10.w(context),
+                      decoration: const BoxDecoration(
+                        color: Color(0xFF16A34A),
+                        shape: BoxShape.circle,
                       ),
-                    );
-                  }),
-                ),
-              ],
-            ),
-          );
-        },
+                    ),
+                  ),
+
+                  /// 🧭 Items
+
+                  Row(
+                    children: List.generate(dashboardBrokerController.items.length, (index) {
+                      final item = dashboardBrokerController.items[index];
+                      final bool isSelected = dashboardBrokerController.selectedIndex.value == index;
+                      return Expanded(
+                        child: InkWell(
+                          onTap: () {
+                            dashboardBrokerController.changeIndex(index: index, width: width);
+                          },
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+
+                              isSelected ?
+                              SpaceHelperWidget.v(17.h(context)) :
+                              SizedBox.shrink(),
+
+                              isSelected ?
+                              ImageHelperWidget.assetImageWidget(
+                                context: context,
+                                height: 24.h(context),
+                                width: 24.w(context),
+                                imageString: item['select'] ?? "",
+                              ) :
+                              ImageHelperWidget.assetImageWidget(
+                                context: context,
+                                height: 24.h(context),
+                                width: 24.w(context),
+                                imageString: item['unselected'] ?? "",
+                              ),
+
+
+                              SpaceHelperWidget.v(6.h(context)),
+
+                              isSelected ?
+                              TextHelperClass.headingTextWithoutWidth(
+                                context: context,
+                                alignment: Alignment.center,
+                                fontSize: 16,
+                                fontWeight: FontWeight.w600,
+                                textColor: isSelected ? ColorUtils.white253 : ColorUtils.white253,
+                                text: item['label'] ?? "",
+                              ) :
+                              SizedBox.shrink(),
+
+                              SpaceHelperWidget.v(8.h(context)),
+
+
+                            ],
+                          ),
+                        ),
+                      );
+                    }),
+                  ),
+                ],
+              ),
+            );
+          },
+        ),
       ),
     ));
   }

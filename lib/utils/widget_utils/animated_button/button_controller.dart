@@ -26,7 +26,6 @@ class ButtonController extends GetxController  with GetSingleTickerProviderState
 
   void onButtonTap() {
     if (isAnimating.value) return;
-
     isAnimating.value = true;
     rotationController.forward(from: 0); // start animation
   }

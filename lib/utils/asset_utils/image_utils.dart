@@ -99,6 +99,10 @@ class ImageUtils {
   static String shoppingCardIcon = "assets/icons/user_order.png";
 
 
+  static String noImage = "assets/images/no_image.png";
+  static String editButtonImage = "assets/images/edit_button_image.png";
+  static String nameEditButtonImage = "assets/images/name_edit_button_image.png";
+
   static String successAnim = "assets/lottie/success.json";
   static String transactionSuccessAnim = "assets/lottie/tran_suc_anim.json";
 

@@ -12,29 +12,35 @@ class UserProfileAppbarWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        Container(
-          height: 28.h(context),
-          width: 28.h(context),
-          decoration: BoxDecoration(
-            color: Colors.transparent,
+
+        if(widget != null || onTap != null)...[
+          Container(
+            height: 28.h(context),
+            width: 28.h(context),
+            decoration: BoxDecoration(
+              color: Colors.transparent,
+            ),
+            child: widget ?? TextButton(
+              style: TextButton.styleFrom(padding: EdgeInsets.zero),
+              onPressed: onTap,
+              child: Icon(Icons.arrow_back, color: Colors.black, size: 28.r(context),),
+            ),
           ),
-          child: widget ?? TextButton(
-            style: TextButton.styleFrom(padding: EdgeInsets.zero),
-            onPressed: onTap,
-            child: Icon(Icons.arrow_back, color: Colors.black, size: 28.r(context),),
+        ],
+
+
+        Expanded(
+          child: TextHelperClass.headingTextWithoutWidth(
+            context: context,
+            alignment: Alignment.center,
+            fontSize: 28,
+            textAlign: TextAlign.center,
+            fontWeight: FontWeight.w600,
+            textColor: ColorUtils.black29,
+            text: "${title}",
           ),
         ),
 
-        Expanded(
-          child: CustomTextContainer.plainTextContainerWidgetWithoutHeightWidth(
-            plainTextString: "${title}",
-            plainTextStringFontSize: 28.sp(context),
-            plainTextStringFontWeight: FontWeight.w700,
-            plainTextContainerAlignment: Alignment.center,
-            plainTextStringTextAlign: TextAlign.center,
-            plainTextStringColor: ColorUtils.black29,
-          ),
-        ),
 
       ],
     );

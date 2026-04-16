@@ -1,5 +1,5 @@
 import 'dart:convert';
-
+import 'package:discount_me_app/utils/utils.dart';
 import 'package:dio/dio.dart';
 import 'package:discount_me_app/res/res.dart';
 import 'package:flutter/cupertino.dart';
@@ -52,7 +52,7 @@ class SignInController extends GetxController {
       );
       print(response.data["data"]["accessToken"]);
       if(response.statusCode == 200 || response.statusCode == 201) {
-        await AppLocalStorage.setString(key: "Login", value: jsonEncode(response.data));
+        await LocalStorageUtils.setString(AppConstantUtils.loginResponse, jsonEncode(response.data));
         Map<String, dynamic> decodedToken = parseJwt(response.data["data"]["accessToken"]);
         print(decodedToken['role']);
         onSuccess(response.data["message"],decodedToken['role']);

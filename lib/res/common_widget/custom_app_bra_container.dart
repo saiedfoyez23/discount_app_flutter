@@ -8,18 +8,22 @@ class CustomAppBarContainer {
   Widget authScreenAppBar({
     required BuildContext context,
     required String title,
-    required Function() onPress
+    required Function() onPress,
+    bool pinned = false,
+    bool primary = true,
+    bool floating = true,
+    bool automaticallyImplyLeading = false,
   }) {
     return SliverAppBar(
-      pinned: false,
-      primary: true,
-      floating: true,
-      automaticallyImplyLeading: false,
+      pinned: pinned,
+      primary: primary,
+      floating: floating,
+      automaticallyImplyLeading: automaticallyImplyLeading,
       backgroundColor: Colors.transparent,
-      collapsedHeight: 115.h(context),
-      expandedHeight: 115.h(context),
+      collapsedHeight: 80.h(context),
+      expandedHeight: 80.h(context),
       flexibleSpace: Container(
-        height: 115.h(context),
+        height: 80.h(context),
         width: 428.w(context),
         decoration: const BoxDecoration(
             color: Colors.transparent
@@ -27,7 +31,7 @@ class CustomAppBarContainer {
         child: Column(
           children: [
 
-            CustomSpaceWidget.spacerWidget(spaceHeight: 50.h(context)),
+            //CustomSpaceWidget.spacerWidget(spaceHeight: 50.h(context)),
 
 
             Row(
