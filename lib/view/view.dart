@@ -96,3 +96,6 @@ export 'brokers/broker_profile_view/model/get_broker_profile_response_model.dart
 export 'brokers/broker_profile_view/model/login_response_model.dart';
 export 'brokers/broker_profile_view/widget/broker_profile_dialog_box.dart';
 export 'brokers/broker_home_view/controller/broker_home_controller.dart';
+export 'brokers/broker_profile_view/view/broker_profile_home_view.dart';
+export 'brokers/broker_profile_view/view/broker_edit_profile_view.dart';
+export 'brokers/broker_profile_view/controller/broker_edit_profile_controller.dart';
