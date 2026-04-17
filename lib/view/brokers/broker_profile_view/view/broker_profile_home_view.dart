@@ -1,9 +1,5 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
-
-import 'package:discount_me_app/res/common_widget/custom_alert_dialog.dart';
-import 'package:discount_me_app/res/common_widget/picker_dialog.dart';
 import 'package:discount_me_app/utils/utils.dart';
-import 'package:discount_me_app/view/brokers/broker_profile_view/view/broker_edit_profile_screen.dart';
+import 'package:discount_me_app/view/brokers/broker_profile_view/view/broker_edit_profile_view.dart';
 import 'package:discount_me_app/view/view.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -26,7 +22,7 @@ class BrokerProfileHomeView extends StatelessWidget {
             height: 926.h(context),
             width: 428.w(context),
             decoration: BoxDecoration(
-                color: ColorUtils.whiteColor
+              color: ColorUtils.whiteColor,
             ),
             child: CustomScrollView(
               physics: NeverScrollableScrollPhysics(),
@@ -208,7 +204,7 @@ class BrokerProfileHomeView extends StatelessWidget {
                                     icon: Image.asset(ImageUtils.userEdite, scale: 5,),
                                     navigateIcon: Icon(Icons.navigate_next, size: 24.r(context), color: Colors.black54,),
                                     onTap: () {
-                                      Get.to(BrokerEditProfileScreen());
+                                      Get.off(()=>BrokerEditProfileView(),preventDuplicates: false);
                                     },
                                   ),
 

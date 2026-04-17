@@ -17,3 +17,4 @@ export 'widget_utils/text_helper_widget.dart';
 export 'asset_utils/local_storage_utils.dart';
 export 'asset_utils/app_constant_utils.dart';
 export 'widget_utils/button_helper_widget.dart';
+export 'widget_utils/rich_text_helper_widget.dart';

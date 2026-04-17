@@ -102,6 +102,8 @@ class ImageUtils {
   static String noImage = "assets/images/no_image.png";
   static String editButtonImage = "assets/images/edit_button_image.png";
   static String nameEditButtonImage = "assets/images/name_edit_button_image.png";
+  static String emailImage = "assets/images/email_image.png";
+  static String locationImage = "assets/images/location_image.png";
 
   static String successAnim = "assets/lottie/success.json";
   static String transactionSuccessAnim = "assets/lottie/tran_suc_anim.json";

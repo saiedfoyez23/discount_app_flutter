@@ -1,5 +1,4 @@
 import 'package:discount_me_app/view/view.dart';
-import 'package:discount_me_app/view/brokers/broker_profile_view/view/broker_profile_home_view.dart';
 import 'package:discount_me_app/view/brokers/broker_referral_view/view/broker_referral_home_screen.dart';
 import 'package:discount_me_app/view/brokers/broker_subscription_view/view/broker_subscription_home_screen.dart';
 import 'package:discount_me_app/utils/utils.dart';
