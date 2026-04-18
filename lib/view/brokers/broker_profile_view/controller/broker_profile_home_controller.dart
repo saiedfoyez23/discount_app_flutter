@@ -9,7 +9,8 @@ import 'package:image_picker/image_picker.dart';
 import '';
 class BrokerProfileHomeController extends GetxController {
 
-  Rx<TextEditingController> nameControllerText = TextEditingController().obs;
+  Rx<TextEditingController> firstNameController = TextEditingController().obs;
+  Rx<TextEditingController> lastNameController = TextEditingController().obs;
   Rx<GetBrokerProfileResponseModel> getBrokerProfileResponseModel = GetBrokerProfileResponseModel().obs;
   RxBool isLoading = false.obs;
   Rx<LoginResponseModel> loginResponseModel = LoginResponseModel.fromJson(jsonDecode(LocalStorageUtils.getString(AppConstantUtils.loginResponse)!)).obs;
@@ -28,6 +29,13 @@ class BrokerProfileHomeController extends GetxController {
   }
 
   Rx<File> profileImageFile = File("").obs;
+
+  String formatBrokerName(String? name) {
+    if (name == null || name.isEmpty) return "";
+    return name.contains(',') ?
+    name.replaceFirst(',', '\t').replaceAllMapped(RegExp(r'\t\s+'), (match) => '\t') :
+    name;
+  }
 
   Future<void> pickProfileImage({
     required ImageSource source,
@@ -114,7 +122,15 @@ class BrokerProfileHomeController extends GetxController {
       onSuccess: (e,data) async {
         isLoading.value = false;
         getBrokerProfileResponseModel.value = GetBrokerProfileResponseModel.fromJson(data);
-        nameControllerText.value.text = getBrokerProfileResponseModel.value.data?.name ?? "";
+        firstNameController.value.text = getBrokerProfileResponseModel.value.data?.name == null ? "" :
+        getBrokerProfileResponseModel.value.data?.name.toString().split(",").isNotEmpty == true ?
+        getBrokerProfileResponseModel.value.data!.name.toString().split(",").first :
+        getBrokerProfileResponseModel.value.data!.name.toString();
+        lastNameController.value.text = getBrokerProfileResponseModel.value.data?.name == null ?
+        "" :
+        getBrokerProfileResponseModel.value.data?.name.toString().split(",").isNotEmpty == true ?
+        getBrokerProfileResponseModel.value.data!.name.toString().split(",").last :
+        "";
       },
       onFail: (e,data) {
         MessageSnackBarWidget.errorSnackBarWidget(context: context, message: e);

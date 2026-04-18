@@ -84,12 +84,11 @@ class BrokerProfileDialogBox {
     );
   }
 
-
   void nameEditDialogBox({
     required BuildContext context,
-    required TextEditingController controller,
+    required TextEditingController firstNameController,
+    required TextEditingController lastNameController,
     String? title,
-    String? hintText,
     required Function() cancelFunction,
     required Function() editFunction,
   }) {
@@ -131,13 +130,76 @@ class BrokerProfileDialogBox {
 
                   SpaceHelperWidget.v(10.h(context)),
 
-                  TextFormFieldWidget.build(
-                    context: context,
-                    hintText: hintText ?? "Enter title",
-                    controller: controller,
-                    keyboardType: TextInputType.text,
-                  ),
+                  Row(
+                    children: [
 
+                      Expanded(
+                        child: Column(
+                          children: [
+
+                            TextHelperClass.headingTextWithoutWidth(
+                              context: context,
+                              alignment: Alignment.centerLeft,
+                              fontSize: 18,
+                              fontWeight: FontWeight.w500,
+                              textColor: ColorUtils.black96,
+                              text: "First Name",
+                            ),
+
+                            SpaceHelperWidget.v(10.h(context)),
+
+
+                            TextFormFieldWidget.build(
+                              context: context,
+                              hintText: "First Name",
+                              controller: firstNameController,
+                              keyboardType: TextInputType.emailAddress,
+                              borderColor: ColorUtils.whiteNormalActive,
+                              enableBorderColor: ColorUtils.whiteNormalActive,
+                              focusedBorderColor: ColorUtils.secondaryColor,
+                            ),
+
+                          ],
+                        ),
+                      ),
+
+
+                      SpaceHelperWidget.h(10.w(context)),
+
+
+                      Expanded(
+                        child: Column(
+                          children: [
+
+                            TextHelperClass.headingTextWithoutWidth(
+                              context: context,
+                              alignment: Alignment.centerLeft,
+                              fontSize: 18,
+                              fontWeight: FontWeight.w500,
+                              textColor: ColorUtils.black96,
+                              text: "Last Name",
+                            ),
+
+                            SpaceHelperWidget.v(10.h(context)),
+
+
+                            TextFormFieldWidget.build(
+                              context: context,
+                              hintText: "Last Name",
+                              controller: lastNameController,
+                              keyboardType: TextInputType.emailAddress,
+                              borderColor: ColorUtils.whiteNormalActive,
+                              enableBorderColor: ColorUtils.whiteNormalActive,
+                              focusedBorderColor: ColorUtils.secondaryColor,
+                            ),
+
+                          ],
+                        ),
+                      ),
+
+
+                    ],
+                  ),
 
                   SpaceHelperWidget.v(15.h(context)),
 

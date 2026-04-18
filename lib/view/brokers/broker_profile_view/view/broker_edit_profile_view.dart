@@ -236,6 +236,7 @@ class BrokerEditProfileView extends StatelessWidget {
                                     TextFormFieldWidget.build(
                                       context: context,
                                       hintText: "Enter your email",
+                                      readOnly: true,
                                       controller: brokerEditProfileController.emailController.value,
                                       keyboardType: TextInputType.emailAddress,
                                       borderColor: ColorUtils.whiteNormalActive,
@@ -311,6 +312,7 @@ class BrokerEditProfileView extends StatelessWidget {
 
                                     TextFormFieldWidget.buildIntlPhoneField(
                                       context: context,
+                                      key: ValueKey(brokerEditProfileController.initialCountryCode.value),
                                       hintText: 'Enter your number',
                                       borderColor: ColorUtils.whiteNormalActive,
                                       enableBorderColor: ColorUtils.whiteNormalActive,
@@ -318,15 +320,42 @@ class BrokerEditProfileView extends StatelessWidget {
                                       controller: brokerEditProfileController.phoneNumberController.value,
                                       initialCountryCode: brokerEditProfileController.initialCountryCode.value,
                                       onChanged: (phone) {
-                                        brokerEditProfileController.phoneNumber.value = phone.completeNumber;
+                                        brokerEditProfileController.phoneNumber.value = phone.completeNumber.isNotEmpty ?
+                                        phone.completeNumber :
+                                        "${phone.countryCode}${phone.number}";
+                                      },
+                                      onCountryChanged: (country) {
+                                        brokerEditProfileController.initialCountryCode.value = country.code;
+                                        brokerEditProfileController.phoneNumber.value = "+${country.dialCode}${brokerEditProfileController.phoneNumberController.value.text}";
                                       },
                                     ),
 
                                     SpaceHelperWidget.v(20.h(context)),
 
+
+                                    brokerEditProfileController.isSubmit.value == true ?
+                                    LoadingHelperWidget.loadingHelperWidget(
+                                      context: context,
+                                    ) :
                                     ButtonHelperWidget.customButtonWidget(
                                       context: context,
-                                      onPressed: () async {},
+                                      onPressed: () async {
+                                        brokerEditProfileController.isSubmit.value = true;
+                                        Map<String,dynamic> data = {
+                                          "name" : "${brokerEditProfileController.firstNameController.value.text},${brokerEditProfileController.lastNameController.value.text}",
+                                          "location": brokerEditProfileController.locationController.value.text,
+                                          "contact": brokerEditProfileController.phoneNumber.value == "" ?
+                                          brokerEditProfileController.getBrokerProfileResponseModel.value.data?.contact :
+                                          brokerEditProfileController.phoneNumber.value,
+                                        };
+                                        print(data);
+                                        await brokerEditProfileController.brokerUpdateAccountController(
+                                          context: context,
+                                          data: data,
+                                          brokerId: brokerEditProfileController.getBrokerProfileResponseModel.value.data?.sId ?? "",
+                                          profileImageFile: brokerEditProfileController.profileImageFile.value,
+                                        );
+                                      },
                                       text: "Update",
                                       borderRadius: 8,
                                       backgroundColor:  ColorUtils.secondaryColor,
@@ -334,6 +363,8 @@ class BrokerEditProfileView extends StatelessWidget {
                                       textColor: ColorUtils.white255,
                                     ),
 
+
+                                    SpaceHelperWidget.v(20.h(context)),
 
 
 
