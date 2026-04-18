@@ -1,5 +1,6 @@
 import 'package:discount_me_app/utils/utils.dart';
 import 'package:discount_me_app/view/brokers/broker_profile_view/view/broker_edit_profile_view.dart';
+import 'package:discount_me_app/view/brokers/broker_profile_view/view/broker_setting_screen.dart';
 import 'package:discount_me_app/view/view.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -150,7 +151,7 @@ class BrokerProfileHomeView extends StatelessWidget {
                                         textAlign: TextAlign.center,
                                         fontWeight: FontWeight.w700,
                                         textColor: ColorUtils.blackColor,
-                                        text: brokerProfileHomeController.getBrokerProfileResponseModel.value.data?.name ?? "",
+                                        text: brokerProfileHomeController.formatBrokerName( brokerProfileHomeController.getBrokerProfileResponseModel.value.data?.name ?? ""),
                                       ),
 
                                       SpaceHelperWidget.h(10.w(context)),
@@ -160,9 +161,9 @@ class BrokerProfileHomeView extends StatelessWidget {
                                         onTap: () async {
                                           BrokerProfileDialogBox().nameEditDialogBox(
                                             context: context,
-                                            controller: brokerProfileHomeController.nameControllerText.value,
+                                            firstNameController: brokerProfileHomeController.firstNameController.value,
+                                            lastNameController: brokerProfileHomeController.lastNameController.value,
                                             title: "Broker Name",
-                                            hintText: "Enter broker name",
                                             cancelFunction: () async {
                                               Navigator.pop(context);
                                             },
@@ -170,7 +171,7 @@ class BrokerProfileHomeView extends StatelessWidget {
                                               Navigator.pop(context);
                                               brokerProfileHomeController.isLoading.value = true;
                                               Map<String,dynamic> data = {
-                                                "name" : brokerProfileHomeController.nameControllerText.value.text,
+                                                "name" : "${brokerProfileHomeController.firstNameController.value.text},${brokerProfileHomeController.lastNameController.value.text}",
                                                 "location": brokerProfileHomeController.getBrokerProfileResponseModel.value.data?.location ?? "",
                                                 "contact": brokerProfileHomeController.getBrokerProfileResponseModel.value.data?.contact ?? "",
                                               };
@@ -196,7 +197,7 @@ class BrokerProfileHomeView extends StatelessWidget {
                                   ),
 
 
-                                  SpaceHelperWidget.v(20.h(context)),
+                                  SpaceHelperWidget.v(40.h(context)),
 
 
                                   ProfileItemWidget(
@@ -214,7 +215,7 @@ class BrokerProfileHomeView extends StatelessWidget {
                                     icon: Image.asset(ImageUtils.settingIcon, scale: 4,),
                                     navigateIcon: Icon(Icons.navigate_next, size: 24.r(context), color: Colors.black54,),
                                     onTap: () {
-                                      //Get.to(VendorSettingScreen());
+                                      Get.off(()=>BrokerSettingScreen(),preventDuplicates: false);
                                     },
                                   ),
 

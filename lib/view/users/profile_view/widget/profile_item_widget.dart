@@ -50,6 +50,7 @@ class ProfileItemWidget extends StatelessWidget {
               ],
             ),
 
+
             SpaceHelperWidget.v(10.h(context)),
 
 

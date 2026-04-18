@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:dio/dio.dart' as dio;
 import 'package:flutter/material.dart';
 import 'package:flutter_intl_phone_field/countries.dart';
 import 'package:get/get.dart';
@@ -16,11 +17,21 @@ class BrokerEditProfileController extends GetxController {
   Rx<TextEditingController> emailController = TextEditingController().obs;
   Rx<TextEditingController> locationController = TextEditingController().obs;
   RxString phoneNumber = "".obs;
-  RxString initialCountryCode = "".obs;
+  RxString initialCountryCode = "BD".obs;
   Rx<GetBrokerProfileResponseModel> getBrokerProfileResponseModel = GetBrokerProfileResponseModel().obs;
   RxBool isLoading = false.obs;
+  RxBool isSubmit = false.obs;
   Rx<File> profileImageFile = File("").obs;
-  Rx<LoginResponseModel> loginResponseModel = LoginResponseModel.fromJson(jsonDecode(LocalStorageUtils.getString(AppConstantUtils.loginResponse)!)).obs;
+  Rx<Country> matchedCountry = Country(
+    name: '',
+    flag: '',
+    code: '',
+    dialCode: '',
+    nameTranslations: {},
+    maxLength: 0,
+    minLength: 0,
+  ).obs;
+  Rx<LoginResponseModel> loginResponseModel = LoginResponseModel.fromJson(jsonDecode(LocalStorageUtils.getString(AppConstantUtils.loginResponse)!),).obs;
   BuildContext context;
   BrokerEditProfileController({required this.context});
 
@@ -46,42 +57,55 @@ class BrokerEditProfileController extends GetxController {
     }
   }
 
+
+
   Map<String, String> parsePhoneNumber(String fullPhone) {
     if (fullPhone.trim().isEmpty) {
-      return {'countryCode': 'BD', 'nationalNumber': ''}; // Change default if needed
+      return {'countryCode': 'BD', 'nationalNumber': ''};
     }
 
-    // Clean the input: keep only digits and +
-    String cleaned = fullPhone.replaceAll(RegExp(r'[^0-9+]'), '').trim();
+    String cleaned = fullPhone.replaceAll(RegExp(r'[^0-9+]'), '');
 
-    Country? matchedCountry;
-    int maxLength = 0;
+    String nationalNumber = cleaned;
+    Country? foundCountry;
 
-    // Search for the longest matching dial code
     for (var country in countries) {
-      String dialCode = country.dialCode; // e.g. "+880", "+1", "+44"
-
-      if (cleaned.startsWith(dialCode) && dialCode.length > maxLength) {
-        maxLength = dialCode.length;
-        matchedCountry = country;
+      String dialCode = country.dialCode.replaceFirst('', '+');
+      if (cleaned.startsWith(dialCode)) {
+        foundCountry = country;
+        nationalNumber = cleaned.substring(dialCode.length);
+        break;
       }
     }
 
-    if (matchedCountry != null) {
-      // Extract national number (remove the dial code part)
-      String national = cleaned.substring(maxLength);
+    matchedCountry.value = foundCountry ??
+        Country(
+          name: '',
+          flag: '',
+          code: initialCountryCode.value,
+          dialCode: '',
+          nameTranslations: {},
+          maxLength: 0,
+          minLength: 0,
+        );
 
-      return {
-        'countryCode': matchedCountry.code,     // e.g. 'BD', 'US', 'GB', 'IN'
-        'nationalNumber': national,
-      };
-    }
-
-    // Fallback if no country matched
     return {
-      'countryCode': 'BD',   // or 'US' if you prefer
-      'nationalNumber': cleaned.replaceAll('+', ''),
+      'countryCode': matchedCountry.value.code,
+      'nationalNumber': nationalNumber,
     };
+  }
+
+
+  Future<void> parseIncomingPhone(String? fullPhone) async {
+    phoneNumber.value = "";
+    phoneNumberController.value = TextEditingController();
+    if (fullPhone == null || fullPhone.isEmpty) {
+      initialCountryCode.value = "BD";
+      return;
+    }
+    final result = parsePhoneNumber(fullPhone);
+    initialCountryCode.value = result['countryCode']!;
+    phoneNumberController.value.text = result['nationalNumber']!;
   }
 
 
@@ -91,24 +115,82 @@ class BrokerEditProfileController extends GetxController {
     BaseApiUtils.get(
       url: ApiUtils.brokersProfile,
       authorization: loginResponseModel.value.data?.accessToken,
-      onSuccess: (e,data) async {
+      onSuccess: (e, data) async {
         isLoading.value = false;
         getBrokerProfileResponseModel.value = GetBrokerProfileResponseModel.fromJson(data);
-        firstNameController.value.text = getBrokerProfileResponseModel.value.data?.name ?? "";
+        final name = getBrokerProfileResponseModel.value.data?.name ?? "";
+        if (name.contains(",")) {
+          final parts = name.split(",");
+          firstNameController.value.text = parts.first;
+          lastNameController.value.text =
+          parts.length > 1 ? parts.last : "";
+        } else {
+          firstNameController.value.text = name;
+          lastNameController.value.text = "";
+        }
         emailController.value.text = getBrokerProfileResponseModel.value.data?.email ?? "";
         locationController.value.text = getBrokerProfileResponseModel.value.data?.location ?? "";
-        final parsed = parsePhoneNumber(getBrokerProfileResponseModel.value.data?.contact ?? "");
-        initialCountryCode.value = parsed['countryCode']!;
-        phoneNumberController.value.text = parsed['nationalNumber']!;
+        await parseIncomingPhone(getBrokerProfileResponseModel.value.data?.contact ?? "",
+        );
+      },
+      onFail: (e, data) {
+        isLoading.value = false;
+      },
+      onExceptionFail: (e, data) {
+        isLoading.value = false;
+      },
+    );
+  }
+
+
+  Future<void> brokerUpdateAccountController({
+    required BuildContext context,
+    required Map<String,dynamic> data,
+    required String brokerId,
+    File? profileImageFile,
+    File? documentImageFile,
+  }) async {
+
+    dio.FormData formData = dio.FormData.fromMap({
+      if(profileImageFile != null && profileImageFile.path != "")
+        "image": await dio.MultipartFile.fromFile(
+          profileImageFile.path,
+          filename: profileImageFile.path.split('/').last,
+          contentType: dio.DioMediaType(
+            MimeTypeUtils.getMimeType(profileImageFile.path).split('/').first,
+            MimeTypeUtils.getMimeType(profileImageFile.path).split('/').last,
+          ),
+        ),
+      if(documentImageFile != null && documentImageFile.path != "")
+        "document": await dio.MultipartFile.fromFile(
+          documentImageFile.path,
+          filename: documentImageFile.path.split('/').last,
+          contentType: dio.DioMediaType(
+            MimeTypeUtils.getMimeType(documentImageFile.path).split('/').first,
+            MimeTypeUtils.getMimeType(documentImageFile.path).split('/').last,
+          ),
+        ),
+      "data": jsonEncode(data),  // important → JSON encoded string!
+    });
+
+
+    await BaseApiUtils.put(
+      url: ApiUtils.editBrokerProfile(brokerId),
+      formData: formData,
+      authorization: loginResponseModel.value.data?.accessToken,
+      onSuccess: (e,data) async {
+        isLoading.value = false;
+        isSubmit.value = false;
+        MessageSnackBarWidget.successSnackBarWidget(context: context, message: e);
+        await getVendorProfileController(context: context);
       },
       onFail: (e,data) {
         MessageSnackBarWidget.errorSnackBarWidget(context: context, message: e);
-        isLoading.value = false;
+        isSubmit.value = false;
       },
       onExceptionFail: (e,data) {
-        print(data);
         MessageSnackBarWidget.errorSnackBarWidget(context: context, message: e);
-        isLoading.value = false;
+        isSubmit.value = false;
       },
     );
   }
