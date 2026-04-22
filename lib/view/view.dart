@@ -99,3 +99,6 @@ export 'brokers/broker_home_view/controller/broker_home_controller.dart';
 export 'brokers/broker_profile_view/view/broker_profile_home_view.dart';
 export 'brokers/broker_profile_view/view/broker_edit_profile_view.dart';
 export 'brokers/broker_profile_view/controller/broker_edit_profile_controller.dart';
+export 'brokers/broker_profile_view/view/broker_setting_view.dart';
+export 'brokers/broker_profile_view/controller/broker_change_password_controller.dart';
+export 'brokers/broker_profile_view/controller/broker_setting_controller.dart';

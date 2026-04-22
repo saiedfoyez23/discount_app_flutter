@@ -18,7 +18,7 @@ class BaseApiUtils {
     return {
       "Content-Type": "application/json",
       "Accept": "application/json",
-      if (authorization != "") "Authorization": "Bearer, ${authorization}",
+      if (authorization != "") "Authorization": "Bearer ${authorization}",
     };
   }
 
@@ -27,7 +27,7 @@ class BaseApiUtils {
   }) {
     return {
       "Content-Type": "multipart/form-data",
-      if (authorization != "") "Authorization": "Bearer, ${authorization}",
+      if (authorization != "") "Authorization": "Bearer ${authorization}",
     };
   }
 
@@ -61,7 +61,7 @@ class BaseApiUtils {
         onFail(response.data?["message"], response.data);
       }
     } on dio.DioException catch (e) {
-      if(e.response?.data?["message"] == "jwt expired") {
+      if(e.response?.data?["message"] == "jwt expired" || e.response?.data?["message"] == "invalid token") {
         onExceptionFail(
           e.response?.data?["message"] ?? "Something went wrong",
           e.response?.data,
