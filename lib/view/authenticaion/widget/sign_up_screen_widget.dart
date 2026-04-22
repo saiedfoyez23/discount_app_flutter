@@ -1168,7 +1168,7 @@ class SignUpScreenWidget {
                                 signUpController.isSubmit.value = true;
                                 await signUpController.getBrokerSignUpResponse(
                                   image: signUpController.imageFile.value,
-                                  name: "${signUpController.firstNameController.value.text} ${signUpController.lastNameController.value.text}",
+                                  name: "${signUpController.firstNameController.value.text},${signUpController.lastNameController.value.text}",
                                   password: signUpController.passwordController.value.text,
                                   email: signUpController.emailController.value.text,
                                   location: signUpController.locationController.value.text,

@@ -41,8 +41,12 @@ class ApiUtils {
   static String editBrokerProfile(String brokersId) {
     return "$baseUrl/brokers/${brokersId}";
   }
+  static String deleteBrokerProfile(String brokersId) {
+    return "$baseUrl/brokers/${brokersId}";
+  }
 
   static const String riderChangePassword = "$baseUrl/auth/change-password";
+  static const String changePassword = "$baseUrl/auth/change-password";
   static const String billingAddress = "$baseUrl/billing-address";
   static const String shippingAddress = "$baseUrl/shipping-address";
   static const String categoriesResponse = "$baseUrl/categories";

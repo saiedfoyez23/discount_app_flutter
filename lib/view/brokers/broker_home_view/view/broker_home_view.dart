@@ -33,7 +33,9 @@ class BrokerHomeView extends StatelessWidget {
                   child: Column(
                     children: [
 
-                      CustomBrokerAppBar(),
+                      SpaceHelperWidget.v(10.h(context)),
+
+                      CustomBrokerAppBar(brokerHomeController: brokerHomeController,),
 
                       // wallet
 

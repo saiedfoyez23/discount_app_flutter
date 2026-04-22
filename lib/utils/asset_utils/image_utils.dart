@@ -104,6 +104,16 @@ class ImageUtils {
   static String nameEditButtonImage = "assets/images/name_edit_button_image.png";
   static String emailImage = "assets/images/email_image.png";
   static String locationImage = "assets/images/location_image.png";
+  static String deleteImage = "assets/images/delete_image.png";
+  static String blackLockImage = "assets/images/black_lock_image.png";
+  static String lockImage = "assets/images/lock_image.png";
+  static String arrowRight = "assets/images/arrow-right.png";
+
+  static String blackUnvisibleImage = "assets/images/password_image/black_unvisible_image.png";
+  static String blackVisibleImage = "assets/images/password_image/black_visible_image.png";
+  static String whiteUnvisibleImage = "assets/images/password_image/white_unvisible_image.png";
+  static String whiteVisibleImage = "assets/images/password_image/white_visible_image.png";
+
 
   static String successAnim = "assets/lottie/success.json";
   static String transactionSuccessAnim = "assets/lottie/tran_suc_anim.json";

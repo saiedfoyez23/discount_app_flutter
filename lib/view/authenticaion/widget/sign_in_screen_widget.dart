@@ -190,9 +190,9 @@ class SignInScreenWidget {
                           plainButtonOnPress:  () async {
                             if(signInController.emailController.value.text == "") {
                               CustomSnackBar().errorCustomSnackBar(context: context, message: "Please Enter Your Email");
-                            }else if(signInController.passwordController.value.text == "") {
+                            } else if(signInController.passwordController.value.text == "") {
                               CustomSnackBar().errorCustomSnackBar(context: context, message: "Please Enter Your Password");
-                            }else{
+                            } else {
                               signInController.isSubmit.value = true;
                               print(signInController.emailController.value.text);
                               print(signInController.passwordController.value.text);
