@@ -12,7 +12,7 @@ class ForgotPasswordScreen extends StatelessWidget {
     return PopScope(
       canPop: false,
       onPopInvokedWithResult: (didPop, result) async {
-        Get.off(()=>const SignInScreen(),duration: const Duration(milliseconds: 100),preventDuplicates: false);
+        Get.off(()=>SignInScreen(),duration: const Duration(milliseconds: 100),preventDuplicates: false);
       },
       child: Scaffold(
         body: ForgotPasswordWidget().forgotPasswordWidget(context: context),

@@ -7,6 +7,7 @@ class ApiUtils {
 
 
   //user
+  static const String loginResponse = "$baseUrl/auth/login";
   static const String createPaymentResponse = "$baseUrl/payments/create-payment-session"; //done
   static const String createOrderResponse = "$baseUrl/orders";//done
   static const String riderProfile = "$baseUrl/riders/profile";//done

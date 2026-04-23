@@ -235,7 +235,7 @@ class UserProfileSettingScreenWidget extends GetxController {
                                                 onSuccess: (e) async {
                                                   CustomSnackBar().successCustomSnackBar(context: context, message: "${e}");
                                                   await AppLocalStorage.removeKey(key: "Login");
-                                                  Get.off(()=>const SignInScreen(),duration: const Duration(milliseconds: 100),preventDuplicates: false);
+                                                  Get.off(()=>SignInScreen(),duration: const Duration(milliseconds: 100),preventDuplicates: false);
                                                   isSubmit.value = false;
                                                 },
                                                 onFail: (e) {

@@ -26,12 +26,12 @@ class CustomAppBarContainer {
         height: 80.h(context),
         width: 428.w(context),
         decoration: const BoxDecoration(
-            color: Colors.transparent
+          color: Colors.transparent,
         ),
         child: Column(
           children: [
 
-            //CustomSpaceWidget.spacerWidget(spaceHeight: 50.h(context)),
+            SpaceHelperWidget.v(10.h(context)),
 
 
             Row(
@@ -40,22 +40,26 @@ class CustomAppBarContainer {
                 IconButton(
                   onPressed: onPress,
                   icon: Icon(Icons.arrow_back),
-                  iconSize: 24,
+                  iconSize: 30.r(context),
                   color: ColorUtils.white255,
                 ),
+                
+                
+                SpaceHelperWidget.h(5.w(context)),
 
-
-                CustomSpaceWidget.spacerWidget(spaceHeight: 5.w(context)),
-
+                
                 Expanded(
-                  child: CustomTextContainer.plainTextContainerWidgetWithoutHeightWidth(
-                    plainTextString: "${title}",
-                    plainTextStringFontSize: 27.sp(context),
-                    plainTextStringFontWeight: FontWeight.w700,
-                    plainTextContainerAlignment: Alignment.center,
-                    plainTextStringColor: ColorUtils.white253,
+                  child: TextHelperClass.headingTextWithoutWidth(
+                    context: context,
+                    alignment: Alignment.center,
+                    fontSize: 27,
+                    textAlign: TextAlign.center,
+                    fontWeight: FontWeight.w700,
+                    textColor: ColorUtils.white253,
+                    text: "${title}",
                   ),
                 ),
+                
 
               ],
             ),
