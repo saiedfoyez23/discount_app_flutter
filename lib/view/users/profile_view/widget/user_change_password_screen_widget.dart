@@ -251,7 +251,7 @@ class UserChangePasswordScreenWidget extends GetxController {
                             newPassword: newPasswordController.value.text,
                             onSuccess: (e) async {
                               await AppLocalStorage.removeKey(key: "Login");
-                              await Get.off(()=>const SignInScreen(),duration: const Duration(milliseconds: 100),preventDuplicates: false);
+                              await Get.off(()=>SignInScreen(),duration: const Duration(milliseconds: 100),preventDuplicates: false);
                               CustomSnackBar().successCustomSnackBar(context: context, message: "${e}");
                               isSubmit.value = false;
                             },

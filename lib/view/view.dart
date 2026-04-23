@@ -5,7 +5,6 @@ export 'splash/widget/splash_screen_view_two_widget.dart';
 export 'splash/screens/welcome_screen.dart';
 export 'splash/controller/splash_local_controller.dart';
 export 'authenticaion/view/sign_in_screen.dart';
-export 'authenticaion/widget/sign_in_screen_widget.dart';
 export 'authenticaion/view/sign_up_screen.dart';
 export 'authenticaion/model/user_sing_up_response.dart';
 export 'authenticaion/controller/sign_up_controller.dart';

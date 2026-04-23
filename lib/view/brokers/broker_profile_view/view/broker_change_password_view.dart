@@ -5,8 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
-import '../../../../res/res.dart';
-
 
 class BrokerChangePasswordView extends StatelessWidget {
   const BrokerChangePasswordView({super.key});
@@ -246,20 +244,20 @@ class BrokerChangePasswordView extends StatelessWidget {
                                   SpaceHelperWidget.v(20.h(context)),
 
 
-                                  CustomButtonContainer.plainButtonContainer(
-                                      plainButtonHeight: 44.h(context),
-                                      plainButtonWidth: 428.w(context),
-                                      plainButtonRadius: 8.r(context),
-                                      plainButtonOnPress:  () async {
-                                        await LocalStorageUtils.remove(AppConstantUtils.loginResponse);
-                                        Get.off(()=>const ForgotPasswordScreen(),duration: const Duration(milliseconds: 100),preventDuplicates: false);
-                                      },
-                                      plainButtonHint: "Forgot the password?",
-                                      plainButtonHintAlign: Alignment.centerLeft,
-                                      plainButtonHintTextAlign: TextAlign.start,
-                                      plainButtonHintFontSize: 18.sp(context),
-                                      plainButtonColor: Colors.transparent,
-                                      plainButtonHintFontColor: ColorUtils.orange125
+                                  ButtonHelperWidget.customButtonWidget(
+                                    context: context,
+                                    height: 44,
+                                    onPressed: () async {
+                                      await LocalStorageUtils.remove(AppConstantUtils.loginResponse);
+                                      Get.off(()=>const ForgotPasswordScreen(),duration: const Duration(milliseconds: 100),preventDuplicates: false);
+                                    },
+                                    text: "Forgot the password?",
+                                    padding: EdgeInsets.symmetric(vertical: 14.5.vpm(context)),
+                                    alignment: Alignment.centerLeft,
+                                    fontSize: 18,
+                                    textColor: ColorUtils.orange125,
+                                    fontWeight: FontWeight.w700,
+                                    backgroundColor: Colors.transparent,
                                   ),
 
 

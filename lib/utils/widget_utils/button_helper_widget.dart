@@ -82,7 +82,7 @@ class ButtonHelperWidget {
         child: TextHelperClass.headingTextWithoutWidth(
           context: context,
           alignment: alignment ?? Alignment.center,
-          fontSize: fontSize ?? 18,
+          fontSize: fontSize ?? 20,
           fontWeight: fontWeight ?? FontWeight.w700,
           textColor: textColor ?? Colors.transparent,
           text: text,
