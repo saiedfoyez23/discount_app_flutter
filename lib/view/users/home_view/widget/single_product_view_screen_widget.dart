@@ -79,7 +79,7 @@ class SingleProductViewScreenWidget extends GetxController {
           onExceptionFail: (e) async {
             if(e == "jwt expired") {
               await AppLocalStorage.removeKey(key: "Login");
-              Get.off(()=>SignInScreen(),preventDuplicates: false,duration: Duration(milliseconds: 100));
+              Get.off(()=>SignInView(),preventDuplicates: false,duration: Duration(milliseconds: 100));
             }
             isLoading.value = false;
             CustomSnackBar().errorCustomSnackBar(context: context, message: "${e}");

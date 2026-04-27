@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:discount_me_app/view/authenticaion/view/sign_in_screen.dart';
+import 'package:discount_me_app/view/authenticaion/view/sign_in_view.dart';
 import 'package:discount_me_app/view/vendors/vendor_profile_view/model/vendor_profile_response_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
@@ -77,7 +77,7 @@ class VendorSettingController extends GetxController {
       onSuccess: (e,data) async {
         isSubmit.value = false;
         await AppLocalStorage.removeKey(key: "Login");
-        await Get.off(()=>SignInScreen(),preventDuplicates: false,duration: Duration(milliseconds: 100));
+        await Get.off(()=>SignInView(),preventDuplicates: false,duration: Duration(milliseconds: 100));
       },
       onFail: (e,data) {
         MessageSnackBarWidget.errorSnackBarWidget(context: context, message: e);

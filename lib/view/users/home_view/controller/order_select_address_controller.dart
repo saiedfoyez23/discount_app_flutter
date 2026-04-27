@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'package:dio/dio.dart';
-import 'package:discount_me_app/view/authenticaion/view/sign_in_screen.dart';
+import 'package:discount_me_app/view/authenticaion/view/sign_in_view.dart';
 import 'package:discount_me_app/view/users/home_view/model/get_all_product_cart_response.dart';
 import 'package:discount_me_app/view/users/home_view/model/user_billing_address_response_model.dart';
 import 'package:discount_me_app/view/users/home_view/model/user_shipping_address_response_model.dart';
@@ -77,7 +77,7 @@ class OrderSelectAddressController extends GetxController {
           CustomSnackBar().errorCustomSnackBar(context: context, message: "${e}");
           if(e == "jwt expired") {
             await AppLocalStorage.removeKey(key: "Login");
-            Get.off(()=>SignInScreen(),preventDuplicates: false,duration: Duration(milliseconds: 100));
+            Get.off(()=>SignInView(),preventDuplicates: false,duration: Duration(milliseconds: 100));
           }
         },
       );

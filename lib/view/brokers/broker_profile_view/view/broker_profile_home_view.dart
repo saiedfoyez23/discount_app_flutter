@@ -232,7 +232,7 @@ class BrokerProfileHomeView extends StatelessWidget {
                                         },
                                         logoutFunction: () async {
                                           await LocalStorageUtils.remove(AppConstantUtils.loginResponse);
-                                          await Get.offAll(()=>SignInScreen(),duration: Duration(milliseconds: 100));
+                                          await Get.offAll(()=>SignInView(),duration: Duration(milliseconds: 100));
                                         },
                                       );
                                     },

@@ -54,7 +54,7 @@ class UserChangePasswordScreenWidget extends GetxController {
           onExceptionFail: (e) async {
             if(e == "jwt expired") {
               await AppLocalStorage.removeKey(key: "Login");
-              await Get.off(()=>SignInScreen(),preventDuplicates: false,duration: Duration(milliseconds: 100));
+              await Get.off(()=>SignInView(),preventDuplicates: false,duration: Duration(milliseconds: 100));
             }
             isLoading.value = false;
             CustomSnackBar().errorCustomSnackBar(context: context, message: "${e}");
@@ -251,7 +251,7 @@ class UserChangePasswordScreenWidget extends GetxController {
                             newPassword: newPasswordController.value.text,
                             onSuccess: (e) async {
                               await AppLocalStorage.removeKey(key: "Login");
-                              await Get.off(()=>SignInScreen(),duration: const Duration(milliseconds: 100),preventDuplicates: false);
+                              await Get.off(()=>SignInView(),duration: const Duration(milliseconds: 100),preventDuplicates: false);
                               CustomSnackBar().successCustomSnackBar(context: context, message: "${e}");
                               isSubmit.value = false;
                             },
@@ -262,7 +262,7 @@ class UserChangePasswordScreenWidget extends GetxController {
                             onExceptionFail: (e) async {
                               if(e == "jwt expired") {
                                 await AppLocalStorage.removeKey(key: "Login");
-                                await Get.off(()=>SignInScreen(),preventDuplicates: false,duration: Duration(milliseconds: 100));
+                                await Get.off(()=>SignInView(),preventDuplicates: false,duration: Duration(milliseconds: 100));
                               }
                               isSubmit.value = false;
                               CustomSnackBar().errorCustomSnackBar(context: context, message: "${e}");

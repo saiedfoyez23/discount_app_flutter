@@ -11,9 +11,6 @@ class AppRoutes {
     GetPage(name: RouteNames.splashViewTwo, page: () => SplashViewTwo()),
 
     // Authentication screens
-    GetPage(name: RouteNames.welcomeScreen, page: () => WelcomeScreen()),
-    GetPage(name: RouteNames.signUpScreen, page: () => SignUpScreen()),
-    GetPage(name: RouteNames.signInScreen, page: () => SignInScreen()),
     GetPage(name: RouteNames.forgotPasswordScreen, page: () => ForgotPasswordScreen()),
 
     // User screens

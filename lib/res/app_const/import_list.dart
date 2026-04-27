@@ -13,13 +13,13 @@ export 'package:discount_me_app/res/custom_style/custom_size.dart';
 /*================screen list========================*/
 export 'package:discount_me_app/view/splash/screens/splash_view_one.dart';
 export 'package:discount_me_app/res/common_widget/RoundButton.dart';
-export 'package:discount_me_app/view/authenticaion/view/sign_up_screen.dart';
-export 'package:discount_me_app/view/authenticaion/view/sign_in_screen.dart';
+export 'package:discount_me_app/view/authenticaion/view/sign_up_view.dart';
+export 'package:discount_me_app/view/authenticaion/view/sign_in_view.dart';
 
 export 'package:discount_me_app/view/authenticaion/view/create_new_password_screen.dart';
 export 'package:discount_me_app/view/authenticaion/view/forgot_pasword_screen.dart';
 export 'package:discount_me_app/view/authenticaion/view/otp_verify_screen.dart';
-export 'package:discount_me_app/view/splash/screens/welcome_screen.dart';
+export 'package:discount_me_app/view/splash/screens/welcome_view.dart';
 export 'package:discount_me_app/view/users/home_view/view/user_home.dart';
 
 export 'package:discount_me_app/view/riders/home_view/view/rider_home_view.dart';

@@ -1,115 +1,109 @@
 import 'package:flutter/material.dart';
 
 class ResponsiveUtils {
-  // Generalized method to calculate scaled dimension
-  static double _getScaledDimension({
+  static const double designWidth = 428;
+  static const double designHeight = 926;
+
+  static Size _screenSize({required BuildContext context}) {
+    return MediaQuery.sizeOf(context);
+  }
+
+  /// Width ratio
+  static double widthRatio({required BuildContext context}) {
+    final screenWidth = _screenSize(context: context).width;
+    return screenWidth / designWidth;
+  }
+
+  /// Height ratio
+  static double heightRatio({required BuildContext context}) {
+    final screenHeight = _screenSize(context: context).height;
+    return screenHeight / designHeight;
+  }
+
+  /// Width scaling
+  static double scaleWidth({
     required BuildContext context,
-    required num value,
-    required bool isHeight,
-    required num portraitRef,
-    required num landscapeRef,
+    required num width,
   }) {
-    final isPortrait = MediaQuery.of(context).orientation == Orientation.portrait;
-    final deviceSize = isHeight ? MediaQuery.sizeOf(context).height : MediaQuery.sizeOf(context).width;
-    final designSize = isHeight ? DesignUtils.designHeight(context: context) : DesignUtils.designWidth(context: context);
-
-    if (isPortrait && value == portraitRef) {
-      return portraitRef * (deviceSize / designSize);
-    } else if (!isPortrait && value == portraitRef) {
-      return landscapeRef * (deviceSize / designSize);
-    } else {
-      return value * (deviceSize / designSize);
-    }
+    return width * widthRatio(context: context);
   }
 
-  static double getHeight({required BuildContext context, required num height}) {
-    return _getScaledDimension(
-      context: context,
-      value: height,
-      isHeight: true,
-      portraitRef: 926,
-      landscapeRef: 428,
-    );
-  }
-
-  static double getWidth({required BuildContext context, required num width}) {
-    return _getScaledDimension(
-      context: context,
-      value: width,
-      isHeight: false,
-      portraitRef: 428,
-      landscapeRef: 926,
-    );
+  /// Height scaling
+  static double scaleHeight({
+    required BuildContext context,
+    required num height,
+  }) {
+    return height * heightRatio(context: context);
   }
 
   static double getLeftMarginPadding({
     required BuildContext context,
     required num width,
   }) {
-    return getWidth(context: context, width: width);
+    return scaleWidth(context: context, width: width);
   }
 
   static double getRightMarginPadding({
     required BuildContext context,
     required num width,
   }) {
-    return getWidth(context: context, width: width);
+    return scaleWidth(context: context, width: width);
   }
 
   static double getTopMarginPadding({
     required BuildContext context,
     required num height,
   }) {
-    return getHeight(context: context, height: height);
+    return scaleHeight(context: context, height: height);
   }
 
   static double getBottomMarginPadding({
     required BuildContext context,
     required num height,
   }) {
-    return getHeight(context: context, height: height);
+    return scaleHeight(context: context, height: height);
   }
 
   static double getHorizontalMarginPadding({
     required BuildContext context,
     required num width,
   }) {
-    return getWidth(context: context, width: width);
+    return scaleWidth(context: context, width: width);
   }
 
   static double getVerticalMarginPadding({
     required BuildContext context,
     required num height,
   }) {
-    return getHeight(context: context, height: height);
+    return scaleHeight(context: context, height: height);
   }
 
   static double getFontWidth({
     required BuildContext context,
     required num fontSize,
   }) {
-    return getWidth(context: context, width: fontSize);
+    return scaleWidth(context: context, width: fontSize);
   }
 
   static double getFontHeight({
     required BuildContext context,
     required num fontSize,
   }) {
-    return getHeight(context: context, height: fontSize);
+    return scaleHeight(context: context, height: fontSize);
   }
 
   static double getRadiusWidth({
     required BuildContext context,
     required num radius,
   }) {
-    return getWidth(context: context, width: radius);
+    return scaleWidth(context: context, width: radius);
   }
 
   static double getRadiusHeight({
     required BuildContext context,
     required num radius,
   }) {
-    return getHeight(context: context, height: radius);
+    return scaleHeight(context: context, height: radius);
   }
 
   static double getFontSize({
@@ -143,11 +137,11 @@ class DesignUtils {
 
 extension ScreenUtils on num {
   double h(BuildContext context) {
-    return ResponsiveUtils.getHeight(context: context, height: this);
+    return ResponsiveUtils.scaleHeight(context: context, height: this);
   }
 
   double w(BuildContext context) {
-    return ResponsiveUtils.getWidth(context: context, width: this);
+    return ResponsiveUtils.scaleWidth(context: context, width: this);
   }
 
   double rpm(BuildContext context) {

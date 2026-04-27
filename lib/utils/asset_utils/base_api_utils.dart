@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:dio/dio.dart' as dio;
-import 'package:discount_me_app/view/authenticaion/view/sign_in_screen.dart';
+import 'package:discount_me_app/view/authenticaion/view/sign_in_view.dart';
 import 'package:get/get.dart';
 
 import '../../res/res.dart';
@@ -67,7 +67,7 @@ class BaseApiUtils {
           e.response?.data,
         );
         await AppLocalStorage.removeKey(key: "Login");
-        Get.off(()=>SignInScreen(),preventDuplicates: false,duration: Duration(milliseconds: 100));
+        Get.off(()=>SignInView(),preventDuplicates: false,duration: Duration(milliseconds: 100));
       } else {
         onExceptionFail(
           e.response?.data?["message"] ?? "Something went wrong",
