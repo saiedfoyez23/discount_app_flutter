@@ -7,8 +7,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:discount_me_app/view/view.dart';
 
-class SignInScreen extends StatelessWidget {
-  SignInScreen({super.key});
+class SignInView extends StatelessWidget {
+  SignInView({super.key});
 
   final SignInController signInController = Get.put(SignInController());
 
@@ -17,7 +17,7 @@ class SignInScreen extends StatelessWidget {
     return PopScope(
       canPop: false,
       onPopInvokedWithResult: (didPop, result) async {
-        Get.off(()=>const WelcomeScreen(),duration: const Duration(milliseconds: 100),preventDuplicates: false);
+        Get.off(()=> WelcomeView(),duration: const Duration(milliseconds: 100),preventDuplicates: false);
       },
       child: Scaffold(
         body: Obx(()=>Container(
@@ -69,7 +69,7 @@ class SignInScreen extends StatelessWidget {
                           context: context,
                           title: "Login Account",
                           onPress: () async {
-                            Get.off(()=>const WelcomeScreen(),duration: const Duration(milliseconds: 100),preventDuplicates: false);
+                            Get.off(()=> WelcomeView(),duration: const Duration(milliseconds: 100),preventDuplicates: false);
                           }
                       ),
                   
@@ -273,7 +273,7 @@ class SignInScreen extends StatelessWidget {
                                     fontWeight: FontWeight.w700,
                                     color: ColorUtils.orange125,
                                     recognizer: TapGestureRecognizer()..onTap = () {
-                                      Get.off(()=>SignUpScreen(), duration: const Duration(milliseconds: 100),preventDuplicates: false);
+                                      Get.off(()=>SignUpView(), duration: const Duration(milliseconds: 100),preventDuplicates: false);
                                     },
                                   ).toTextSpan(),
                                 ],

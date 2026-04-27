@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 
 class ImageHelperWidget {
 
+
   static Widget assetImageWidget({
     required BuildContext context,
     required double height,
@@ -17,8 +18,8 @@ class ImageHelperWidget {
       width: width.w(context),
       child: FittedBox(
         fit: fit,
-        child: Image(
-          image: AssetImage(imageString),
+        child: Image.asset(
+          imageString,
         ),
       ),
     );

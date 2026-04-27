@@ -36,7 +36,7 @@ class UserProfileSettingScreenWidget extends GetxController {
         onExceptionFail: (e) async {
           if(e == "jwt expired") {
             await AppLocalStorage.removeKey(key: "Login");
-            await Get.off(()=>SignInScreen(),preventDuplicates: false,duration: Duration(milliseconds: 100));
+            await Get.off(()=>SignInView(),preventDuplicates: false,duration: Duration(milliseconds: 100));
           }
           isLoading.value = false;
           CustomSnackBar().errorCustomSnackBar(context: context, message: "${e}");
@@ -235,7 +235,7 @@ class UserProfileSettingScreenWidget extends GetxController {
                                                 onSuccess: (e) async {
                                                   CustomSnackBar().successCustomSnackBar(context: context, message: "${e}");
                                                   await AppLocalStorage.removeKey(key: "Login");
-                                                  Get.off(()=>SignInScreen(),duration: const Duration(milliseconds: 100),preventDuplicates: false);
+                                                  Get.off(()=>SignInView(),duration: const Duration(milliseconds: 100),preventDuplicates: false);
                                                   isSubmit.value = false;
                                                 },
                                                 onFail: (e) {
@@ -245,7 +245,7 @@ class UserProfileSettingScreenWidget extends GetxController {
                                                 onExceptionFail: (e) async {
                                                   if(e == "jwt expired") {
                                                     await AppLocalStorage.removeKey(key: "Login");
-                                                    await Get.off(()=>SignInScreen(),preventDuplicates: false,duration: Duration(milliseconds: 100));
+                                                    await Get.off(()=>SignInView(),preventDuplicates: false,duration: Duration(milliseconds: 100));
                                                   }
                                                   isSubmit.value = false;
                                                   CustomSnackBar().errorCustomSnackBar(context: context, message: "${e}");

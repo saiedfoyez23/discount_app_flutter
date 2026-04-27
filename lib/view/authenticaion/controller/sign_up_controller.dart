@@ -2,8 +2,10 @@ import 'dart:convert';
 import 'dart:io';
 import 'package:dio/dio.dart' as dio;
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_intl_phone_field/countries.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
+import 'package:image_picker/image_picker.dart';
 
 import '../../../res/res.dart';
 
@@ -51,9 +53,9 @@ class SignUpController extends GetxController {
   Rx<TextEditingController> restaurantDescriptionController = TextEditingController().obs;
   Rx<TextEditingController> emailController = TextEditingController().obs;
   Rx<TextEditingController> locationController = TextEditingController().obs;
-  RxString contact = "".obs;
   Rx<TextEditingController> passwordController = TextEditingController().obs;
   Rx<TextEditingController> confirmPasswordController = TextEditingController().obs;
+  Rx<TextEditingController> phoneNumberController = TextEditingController().obs;
   Rx<String> lat = "".obs;
   Rx<String> long = "".obs;
   Rx<File> documentFile = File("").obs;
@@ -81,8 +83,8 @@ class SignUpController extends GetxController {
     selectedRole.value = value;
   }
 
-  RxBool isPasswordVisible = false.obs;   // For first password field
-  RxBool isConfirmPasswordVisible = false.obs; // For confirm password field
+  RxBool isPasswordVisible = true.obs;   // For first password field
+  RxBool isConfirmPasswordVisible = true.obs; // For confirm password field
 
   Future<void> togglePasswordVisibility() async {
     isPasswordVisible.value = !isPasswordVisible.value;
@@ -101,17 +103,70 @@ class SignUpController extends GetxController {
     restaurantDescriptionController = TextEditingController().obs;
     emailController = TextEditingController().obs;
     locationController = TextEditingController().obs;
-    contact = "".obs;
+    phoneNumberController = TextEditingController().obs;
     selectedPosition = "".obs;
     passwordController = TextEditingController().obs;
     confirmPasswordController = TextEditingController().obs;
     documentFile = File("").obs;
+    phoneNumber.value = "";
+    initialCountryCode.value = "BD";
     drivingLicenceFile = File("").obs;
     coverFile = File("").obs;
     taxFile = File("").obs;
-    isPasswordVisible = false.obs;
-    isConfirmPasswordVisible = false.obs;
+    isPasswordVisible = true.obs;
+    isConfirmPasswordVisible = true.obs;
     isSubmit = false.obs;
+    matchedCountry.value = Country(
+      name: '',
+      flag: '',
+      code: '',
+      dialCode: '',
+      nameTranslations: {},
+      maxLength: 0,
+      minLength: 0,
+    );
+  }
+
+
+  RxString phoneNumber = "".obs;
+  RxString initialCountryCode = "BD".obs;
+
+  Rx<Country> matchedCountry = Country(
+    name: '',
+    flag: '',
+    code: '',
+    dialCode: '',
+    nameTranslations: {},
+    maxLength: 0,
+    minLength: 0,
+  ).obs;
+
+
+  Future<void> pickProfileImage({
+    required ImageSource source,
+    required BuildContext context,
+  }) async {
+    ImagePicker picker = ImagePicker();
+    final XFile? pickedFile = await picker.pickImage(source: source);
+
+    if (pickedFile != null) {
+      Navigator.pop(context); // close dialog after selection
+      imageFile.value = File(pickedFile.path);
+    }
+  }
+
+
+  Future<void> pickCoverImage({
+    required ImageSource source,
+    required BuildContext context,
+  }) async {
+    ImagePicker picker = ImagePicker();
+    final XFile? pickedFile = await picker.pickImage(source: source);
+
+    if (pickedFile != null) {
+      Navigator.pop(context); // close dialog after selection
+      coverFile.value = File(pickedFile.path);
+    }
   }
 
 

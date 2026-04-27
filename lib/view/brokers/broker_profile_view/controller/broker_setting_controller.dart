@@ -61,7 +61,7 @@ class BrokerSettingController extends GetxController {
         isDelete.value = false;
         getBrokerProfileResponseModel.value = GetBrokerProfileResponseModel.fromJson(data);
         await LocalStorageUtils.remove(AppConstantUtils.loginResponse);
-        await Get.offAll(()=>SignInScreen(),duration: Duration(milliseconds: 100));
+        await Get.offAll(()=>SignInView(),duration: Duration(milliseconds: 100));
       },
       onFail: (e,data) {
         isDelete.value = false;

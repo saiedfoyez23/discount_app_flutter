@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:discount_me_app/view/authenticaion/view/sign_in_screen.dart';
+import 'package:discount_me_app/view/authenticaion/view/sign_in_view.dart';
 import 'package:discount_me_app/view/riders/rider_profile_view/model/rider_profile_response.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -111,7 +111,7 @@ class RiderProfileChangePasswordController extends GetxController {
         isSubmit.value = false;
         MessageSnackBarWidget.successSnackBarWidget(context: context, message: e);
         await AppLocalStorage.removeKey(key: "Login");
-        await Get.off(()=>SignInScreen(),preventDuplicates: false,duration: Duration(milliseconds: 100));
+        await Get.off(()=>SignInView(),preventDuplicates: false,duration: Duration(milliseconds: 100));
       },
       onFail: (e,data) {
         MessageSnackBarWidget.errorSnackBarWidget(context: context, message: e);

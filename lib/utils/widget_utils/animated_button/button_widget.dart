@@ -1,5 +1,4 @@
 import 'dart:math' as math;
-import 'package:discount_me_app/res/res.dart';
 import 'package:discount_me_app/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -42,11 +41,11 @@ class ButtonWidget extends StatelessWidget {
               shape: BoxShape.circle,
             ),
             alignment: Alignment.center,
-            child: CustomImageContainer.assetImageContainer(
+            child: ImageHelperWidget.assetImageWidget(
+              context: context,
               height: 39.47.h(context),
               width: 39.47.w(context),
-              assetImage: ImageUtils.splashScreenArrowImage,
-              boxFit: BoxFit.contain,
+              imageString: ImageUtils.splashScreenArrowImage,
             ),
           ),
         ],

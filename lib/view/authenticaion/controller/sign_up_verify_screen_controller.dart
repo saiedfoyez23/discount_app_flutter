@@ -9,7 +9,7 @@ class SignUpVerifyScreenController extends GetxController {
     // TODO: implement onInit
     super.onInit();
     Future.delayed(Duration(seconds: 1),() async {
-      Get.off(()=> SignInScreen(), duration: const Duration(milliseconds: 100),preventDuplicates: false);
+      Get.off(()=> SignInView(), duration: const Duration(milliseconds: 100),preventDuplicates: false);
     });
   }
 

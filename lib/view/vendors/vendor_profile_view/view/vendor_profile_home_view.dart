@@ -259,7 +259,7 @@ class VendorProfileHomeView extends StatelessWidget {
                             PositivvebuttonText: 'Logout',
                             onPositiveButtonPressed: () async {
                               await AppLocalStorage.removeKey(key: "Login");
-                              await Get.offAll(()=>SignInScreen(),duration: Duration(milliseconds: 100));
+                              await Get.offAll(()=>SignInView(),duration: Duration(milliseconds: 100));
                             },
                             onNegativeButtonPressed: () => Navigator.of(context).pop(),
                           );

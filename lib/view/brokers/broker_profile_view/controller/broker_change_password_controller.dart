@@ -66,7 +66,7 @@ class BrokerChangePasswordController extends GetxController {
         isSubmit.value = false;
         MessageSnackBarWidget.successSnackBarWidget(context: context, message: e);
         await LocalStorageUtils.remove(AppConstantUtils.loginResponse);
-        await Get.offAll(()=>SignInScreen(),duration: Duration(milliseconds: 100));
+        await Get.offAll(()=>SignInView(),duration: Duration(milliseconds: 100));
       },
       onFail: (e,data) {
         MessageSnackBarWidget.errorSnackBarWidget(context: context, message: e);

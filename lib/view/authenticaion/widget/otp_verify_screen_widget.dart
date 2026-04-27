@@ -68,7 +68,7 @@ class OtpVerifyScreenWidget {
                   title: isSignUp == true ? "Sign Up Otp Verify" : "Otp Verify",
                   onPress: () async {
                     if(isSignUp == true) {
-                      Get.off(()=>const SignUpScreen(),duration: const Duration(milliseconds: 100),preventDuplicates: false);
+                      Get.off(()=>SignUpView(),duration: const Duration(milliseconds: 100),preventDuplicates: false);
                     } else {
                       Get.off(()=>const ForgotPasswordScreen(),duration: const Duration(milliseconds: 100),preventDuplicates: false);
                     }
