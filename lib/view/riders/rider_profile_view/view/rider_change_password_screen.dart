@@ -164,7 +164,7 @@ class RiderChangePasswordScreen extends StatelessWidget {
                             plainButtonRadius: 8.r(context),
                             plainButtonOnPress:  () async {
                               await AppLocalStorage.removeKey(key: "Login");
-                              Get.off(()=>const ForgotPasswordScreen(),duration: const Duration(milliseconds: 100),preventDuplicates: false);
+                              Get.off(()=>ForgotPasswordScreen(),duration: const Duration(milliseconds: 100),preventDuplicates: false);
                             },
                             plainButtonHint: "Forgot the password?",
                             plainButtonHintAlign: Alignment.centerLeft,

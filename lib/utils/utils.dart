@@ -19,3 +19,4 @@ export 'asset_utils/app_constant_utils.dart';
 export 'widget_utils/button_helper_widget.dart';
 export 'widget_utils/rich_text_helper_widget.dart';
 export 'widget_utils/loading_helper_widget.dart';
+export 'widget_utils/location_permission_denied_box.dart';

@@ -1,22 +1,18 @@
 import 'dart:convert';
-
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
+import 'package:discount_me_app/view/view.dart';
 import '../../../res/res.dart';
+import '../../../utils/utils.dart';
 
 class OtpVerifyController extends GetxController {
 
   RxInt timeCounter = 120.obs;
   RxBool isReset = false.obs;
   RxBool isSubmit = false.obs;
-  Rx<TextEditingController> otp1 = TextEditingController().obs;
-  Rx<TextEditingController> otp2 = TextEditingController().obs;
-  Rx<TextEditingController> otp3 = TextEditingController().obs;
-  Rx<TextEditingController> otp4 = TextEditingController().obs;
-  Rx<TextEditingController> otp5 = TextEditingController().obs;
-  Rx<TextEditingController> otp6 = TextEditingController().obs;
+
+  Rx<TextEditingController> pinController = TextEditingController().obs;
 
   Future<void> otpTimer() async {
     Future.delayed(Duration(seconds: 1), () async {
@@ -39,87 +35,82 @@ class OtpVerifyController extends GetxController {
     });
   }
 
-  static Future<void> getResetOtpResponse({
-    required Map<String,dynamic> data,
-    required Function onSuccess,
-    required Function onFail,
-    required Function onExceptionFail
-  }) async {
-    try{
-      var response = await Dio().post(
-        "${AppApiUrl.serverLinkUrl()}auth/send-otp",
-        options: Options(headers: <String, String>{
-          'Accept': 'application/json',
-          'Content-Type': 'application/json',
-        }),
-        data: jsonEncode(data),
-      );
-      print(response.data["message"]);
-      if(response.statusCode == 200 || response.statusCode == 201) {
-        onSuccess(response.data["message"]);
-      }else {
-        onFail(response.data["message"]);
-      }
-    } on DioException catch (e) {
-      onExceptionFail(e.response?.data["message"]);
-    }
 
+  Future<void> getResetOtpResponse({
+    required BuildContext context,
+    required Map<String,dynamic> data,
+    required String email,
+    required bool isSignUp,
+  }) async {
+    await BaseApiUtils.post(
+      url: ApiUtils.sendOtp,
+      data: data,
+      onSuccess: (e,data) async {
+        CustomSnackBar().successCustomSnackBar(context: context, message: "${e}");
+        isReset.value = false;
+        Get.off(()=>OtpVerifyScreen(email: email,isSignUp: isSignUp,),duration: const Duration(milliseconds: 100),preventDuplicates: false);
+      },
+      onFail: (e,data) {
+        MessageSnackBarWidget.errorSnackBarWidget(context: context, message: e);
+        isSubmit.value = false;
+      },
+      onExceptionFail: (e,data) {
+        MessageSnackBarWidget.errorSnackBarWidget(context: context, message: e);
+        isSubmit.value = false;
+      },
+    );
   }
 
 
-  static Future<void> getVerifyOtpResponse({
+  Future<void> getVerifyOtpResponse({
+    required BuildContext context,
     required Map<String,dynamic> data,
-    required Function onSuccess,
-    required Function onFail,
-    required Function onExceptionFail
+    required String email
   }) async {
-    try{
-      var response = await Dio().post(
-        "${AppApiUrl.serverLinkUrl()}auth/verify-otp",
-        options: Options(headers: <String, String>{
-          'Accept': 'application/json',
-          'Content-Type': 'application/json',
-        }),
-        data: jsonEncode(data),
-      );
-      print(response.data["message"]);
-      if(response.statusCode == 200 || response.statusCode == 201) {
-        onSuccess(response.data["message"]);
-      }else {
-        onFail(response.data["message"]);
-      }
-    } on DioException catch (e) {
-      onExceptionFail(e.response?.data["message"]);
-    }
-
+    await BaseApiUtils.post(
+      url: ApiUtils.verifyOtp,
+      data: data,
+      onSuccess: (e,data) async {
+        MessageSnackBarWidget.successSnackBarWidget(context: context, message: e);
+        isSubmit.value = false;
+        Get.off(()=>CreateNewPasswordScreen(email: email,),duration: const Duration(milliseconds: 100),preventDuplicates: false);
+      },
+      onFail: (e,data) {
+        MessageSnackBarWidget.errorSnackBarWidget(context: context, message: e);
+        isSubmit.value = false;
+      },
+      onExceptionFail: (e,data) {
+        MessageSnackBarWidget.errorSnackBarWidget(context: context, message: e);
+        isSubmit.value = false;
+      },
+    );
   }
 
 
-  static Future<void> getVerifyOtpEmailResponse({
-    required Map<String,dynamic> data,
-    required Function onSuccess,
-    required Function onFail,
-    required Function onExceptionFail
-  }) async {
-    try{
-      var response = await Dio().post(
-        "${AppApiUrl.serverLinkUrl()}auth/verify-otp",
-        options: Options(headers: <String, String>{
-          'Accept': 'application/json',
-          'Content-Type': 'application/json',
-        }),
-        data: jsonEncode(data),
-      );
-      print(response.data["message"]);
-      if(response.statusCode == 200 || response.statusCode == 201) {
-        onSuccess(response.data["message"]);
-      }else {
-        onFail(response.data["message"]);
-      }
-    } on DioException catch (e) {
-      onExceptionFail(e.response?.data["message"]);
-    }
 
+  Future<void> getVerifyOtpEmailResponse({
+    required BuildContext context,
+    required Map<String,dynamic> data,
+    required String email
+  }) async {
+    await BaseApiUtils.post(
+      url: ApiUtils.verifyOtp,
+      data: data,
+      onSuccess: (e,data) async {
+        CustomSnackBar().successCustomSnackBar(context: context, message: "${e}");
+        isSubmit.value = false;
+        Get.off(()=>SignUpPreviewScreen(),duration: const Duration(milliseconds: 100),preventDuplicates: false);
+      },
+      onFail: (e,data) {
+        MessageSnackBarWidget.errorSnackBarWidget(context: context, message: e);
+        isSubmit.value = false;
+      },
+      onExceptionFail: (e,data) {
+        MessageSnackBarWidget.errorSnackBarWidget(context: context, message: e);
+        isSubmit.value = false;
+      },
+    );
   }
+
 
 }

@@ -249,7 +249,7 @@ class BrokerChangePasswordView extends StatelessWidget {
                                     height: 44,
                                     onPressed: () async {
                                       await LocalStorageUtils.remove(AppConstantUtils.loginResponse);
-                                      Get.off(()=>const ForgotPasswordScreen(),duration: const Duration(milliseconds: 100),preventDuplicates: false);
+                                      Get.off(()=> ForgotPasswordScreen(),duration: const Duration(milliseconds: 100),preventDuplicates: false);
                                     },
                                     text: "Forgot the password?",
                                     padding: EdgeInsets.symmetric(vertical: 14.5.vpm(context)),

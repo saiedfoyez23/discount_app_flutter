@@ -1,10 +1,7 @@
-import 'dart:convert';
-
-import 'package:dio/dio.dart';
+import 'package:discount_me_app/view/view.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
-
-import '../../../res/res.dart';
+import '../../../utils/utils.dart';
 
 class ForgotPasswordController extends GetxController{
 
@@ -26,31 +23,28 @@ class ForgotPasswordController extends GetxController{
   }
 
 
-  static Future<void> getForgotPasswordResponse({
+  Future<void> getForgotPasswordResponse({
+    required BuildContext context,
     required Map<String,dynamic> data,
-    required Function onSuccess,
-    required Function onFail,
-    required Function onExceptionFail
+    required String email,
   }) async {
-    try{
-      var response = await Dio().post(
-        "${AppApiUrl.serverLinkUrl()}auth/send-otp",
-        options: Options(headers: <String, String>{
-          'Accept': 'application/json',
-          'Content-Type': 'application/json',
-        }),
-        data: jsonEncode(data),
-      );
-      print(response.data["message"]);
-      if(response.statusCode == 200 || response.statusCode == 201) {
-        onSuccess(response.data["message"]);
-      }else {
-        onFail(response.data["message"]);
-      }
-    } on DioException catch (e) {
-      onExceptionFail(e.response?.data["message"]);
-    }
-
+    await BaseApiUtils.post(
+      url: ApiUtils.forgotEmailOtp,
+      data: data,
+      onSuccess: (e,data) async {
+        MessageSnackBarWidget.successSnackBarWidget(context: context, message: e);
+        isSubmit.value = false;
+        Get.off(()=>OtpVerifyScreen(email: email,isSignUp: false,),duration: const Duration(milliseconds: 100),preventDuplicates: false);
+      },
+      onFail: (e,data) {
+        MessageSnackBarWidget.errorSnackBarWidget(context: context, message: e);
+        isSubmit.value = false;
+      },
+      onExceptionFail: (e,data) {
+        MessageSnackBarWidget.errorSnackBarWidget(context: context, message: e);
+        isSubmit.value = false;
+      },
+    );
   }
 
 

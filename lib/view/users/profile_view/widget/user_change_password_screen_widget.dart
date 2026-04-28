@@ -208,7 +208,7 @@ class UserChangePasswordScreenWidget extends GetxController {
                         plainButtonWidth: 428.w(context),
                         plainButtonRadius: 8.r(context),
                         plainButtonOnPress:  () async {
-                          Get.off(()=>const ForgotPasswordScreen(),duration: const Duration(milliseconds: 100),preventDuplicates: false);
+                          Get.off(()=>ForgotPasswordScreen(),duration: const Duration(milliseconds: 100),preventDuplicates: false);
                         },
                         plainButtonHint: "Forgot the password?",
                         plainButtonHintAlign: Alignment.centerLeft,

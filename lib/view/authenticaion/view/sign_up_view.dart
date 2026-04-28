@@ -116,7 +116,7 @@ class SignUpView extends StatelessWidget {
                                   await signUpController.resetFunction();
 
                                   if (value == "Vendor") {
-                                    await signUpController.checkLocationPermission();
+                                    await signUpController.checkLocationPermission(context: context);
                                   }
                                 },
                               ),
@@ -774,234 +774,99 @@ class SignUpView extends StatelessWidget {
                               // ),
                               //
 
+                              SpaceHelperWidget.v(20.h(context)),
 
-                              CustomSpaceWidget.spacerWidget(spaceHeight: 20.h(context)),
-                            
-                            
-                            
                               signUpController.isSubmit.value == true ?
-                              Container(
-                                height: 64.h(context),
-                                width: 428.h(context),
-                                decoration: const BoxDecoration(
-                                    color: Colors.transparent
-                                ),
-                                child: const Center(
-                                  child: CircularProgressIndicator(color: ColorUtils.white253,),
-                                ),
+                              LoadingHelperWidget.loadingHelperWidget(
+                                context: context,
                               ) :
-                              CustomButtonContainer.plainButtonContainer(
-                                plainButtonHeight: 64.h(context),
-                                plainButtonWidth: 428.w(context),
-                                plainButtonRadius: 8.r(context),
-                                plainButtonOnPress:  () async {
-                                  if(signUpController.selectedRole.value == "User") {
-                                    if(signUpController.emailController.value.text == "") {
-                                      CustomSnackBar().errorCustomSnackBar(context: context, message: "Please Enter Your Email");
-                                    }else if(signUpController.phoneNumber.value == "") {
-                                      CustomSnackBar().errorCustomSnackBar(context: context, message: "Please Enter Your Contact Number");
-                                    }else if(signUpController.firstNameController.value.text == "") {
-                                      CustomSnackBar().errorCustomSnackBar(context: context, message: "Please Enter Your First Name");
-                                    }else if(signUpController.lastNameController.value.text == "") {
-                                      CustomSnackBar().errorCustomSnackBar(context: context, message: "Please Enter Your Last Name");
-                                    }else if(signUpController.locationController.value.text == "") {
-                                      CustomSnackBar().errorCustomSnackBar(context: context, message: "Please Enter Your Location");
-                                    }else if(signUpController.passwordController.value.text == "") {
-                                      CustomSnackBar().errorCustomSnackBar(context: context, message: "Please Enter Your Password");
-                                    }else if(signUpController.confirmPasswordController.value.text == "") {
-                                      CustomSnackBar().errorCustomSnackBar(context: context, message: "Please Enter Your Confirm Password");
-                                    }else if(signUpController.confirmPasswordController.value.text != signUpController.passwordController.value.text) {
-                                      CustomSnackBar().errorCustomSnackBar(context: context, message: "Password is Not Matching");
-                                    } else {
-                                      signUpController.isSubmit.value = true;
-                                      await signUpController.getUserSignUpResponse(
-                                        image: signUpController.imageFile.value,
-                                        document: signUpController.documentFile.value,
-                                        name: "${signUpController.firstNameController.value.text} ${signUpController.lastNameController.value.text}",
-                                        password: signUpController.passwordController.value.text,
-                                        email: signUpController.emailController.value.text,
-                                        location: signUpController.locationController.value.text,
-                                        contact: signUpController.phoneNumber.value,
-                                        onSuccess: (e) {
-                                          signUpController.isSubmit.value = false;
-                                          CustomSnackBar().successCustomSnackBar(context: context, message: "${e}");
-                                          Get.off(()=>OtpVerifyScreen(email: signUpController.emailController.value.text, isSignUp: true),duration: const Duration(milliseconds: 100),preventDuplicates: false);
-                                        },
-                                        onFail: (e) {
-                                          signUpController.isSubmit.value = false;
-                                          CustomSnackBar().errorCustomSnackBar(context: context, message: "${e}");
-                                        },
-                                        onExceptionFail: (e) {
-                                          signUpController.isSubmit.value = false;
-                                          CustomSnackBar().errorCustomSnackBar(context: context, message: "${e}");
-                                        },
-                                      );
+                              ButtonHelperWidget.customButtonWidget(
+                                context: context,
+                                onPressed: () async {
+                                  final role = signUpController.selectedRole.value;
+
+                                  String? error = _validateForm(role);
+
+                                  if (error != null) {
+                                    MessageSnackBarWidget.errorSnackBarWidget(context: context, message: error);
+                                    return;
+                                  }
+
+                                  signUpController.isSubmit.value = true;
+
+                                  try {
+                                    switch (role) {
+                                      case "User":
+                                        await signUpController.getUserSignUpResponse(
+                                          image: signUpController.imageFile.value,
+                                          document: signUpController.documentFile.value,
+                                          data: _commonUserData(),
+                                          context: context,
+                                        );
+                                        break;
+
+                                      case "Rider":
+                                        await signUpController.getRiderSignUpResponse(
+                                          image: signUpController.imageFile.value,
+                                          document: signUpController.drivingLicenceFile.value,
+                                          data: _commonUserData(),
+                                          context: context,
+                                        );
+                                        break;
+
+                                      case "Vendor":
+                                        await signUpController.getVendorSignUpResponse(
+                                          coverImage: signUpController.coverFile.value,
+                                          taxFile: signUpController.taxFile.value,
+                                          data: _vendorData(),
+                                          context: context,
+                                        );
+                                        break;
+                                      default:
+                                        await signUpController.getBrokerSignUpResponse(
+                                          data: _brokerData(),
+                                          profileImageFile: signUpController.imageFile.value,
+                                          context: context,
+                                        );
                                     }
-                                  } else if(signUpController.selectedRole.value == "Rider") {
-                                    if(signUpController.emailController.value.text == "") {
-                                      CustomSnackBar().errorCustomSnackBar(context: context, message: "Please Enter Your Email");
-                                    }else if(signUpController.phoneNumber.value == "") {
-                                      CustomSnackBar().errorCustomSnackBar(context: context, message: "Please Enter Your Contact Number");
-                                    }else if(signUpController.drivingLicenceFile.value.path == "") {
-                                      CustomSnackBar().errorCustomSnackBar(context: context, message: "Please upload your driving Licence Document");
-                                    }else if(signUpController.firstNameController.value.text == "") {
-                                      CustomSnackBar().errorCustomSnackBar(context: context, message: "Please Enter Your First Name");
-                                    }else if(signUpController.lastNameController.value.text == "") {
-                                      CustomSnackBar().errorCustomSnackBar(context: context, message: "Please Enter Your Last Name");
-                                    }else if(signUpController.locationController.value.text == "") {
-                                      CustomSnackBar().errorCustomSnackBar(context: context, message: "Please Enter Your Location");
-                                    }else if(signUpController.passwordController.value.text == "") {
-                                      CustomSnackBar().errorCustomSnackBar(context: context, message: "Please Enter Your Password");
-                                    }else if(signUpController.confirmPasswordController.value.text == "") {
-                                      CustomSnackBar().errorCustomSnackBar(context: context, message: "Please Enter Your Confirm Password");
-                                    }else if(signUpController.confirmPasswordController.value.text != signUpController.passwordController.value.text) {
-                                      CustomSnackBar().errorCustomSnackBar(context: context, message: "Password is Not Matching");
-                                    } else {
-                                      signUpController.isSubmit.value = true;
-                                      await signUpController.getRiderSignUpResponse(
-                                        image: signUpController.imageFile.value,
-                                        document: signUpController.drivingLicenceFile.value,
-                                        name: "${signUpController.firstNameController.value.text} ${signUpController.lastNameController.value.text}",
-                                        password: signUpController.passwordController.value.text,
-                                        email: signUpController.emailController.value.text,
-                                        location: signUpController.locationController.value.text,
-                                        contact: signUpController.phoneNumber.value,
-                                        onSuccess: (e) {
-                                          signUpController.isSubmit.value = false;
-                                          CustomSnackBar().successCustomSnackBar(context: context, message: "${e}");
-                                          Get.off(()=>OtpVerifyScreen(email: signUpController.emailController.value.text, isSignUp: true),duration: const Duration(milliseconds: 100),preventDuplicates: false);
-                                        },
-                                        onFail: (e) {
-                                          signUpController.isSubmit.value = false;
-                                          CustomSnackBar().errorCustomSnackBar(context: context, message: "${e}");
-                                        },
-                                        onExceptionFail: (e) {
-                                          signUpController.isSubmit.value = false;
-                                          CustomSnackBar().errorCustomSnackBar(context: context, message: "${e}");
-                                        },
-                                      );
-                                    }
-                                  } else if(signUpController.selectedRole.value == "Vendor") {
-                                    if(signUpController.restaurantNameController.value.text == "") {
-                                      CustomSnackBar().errorCustomSnackBar(context: context, message: "Please Enter Your Restaurant Name");
-                                    }else if(signUpController.restaurantDescriptionController.value.text == "") {
-                                      CustomSnackBar().errorCustomSnackBar(context: context, message: "Please Enter Your Restaurant Description");
-                                    }else if(signUpController.phoneNumber.value == "") {
-                                      CustomSnackBar().errorCustomSnackBar(context: context, message: "Please Enter Your Contact Number");
-                                    }else if(signUpController.taxFile.value.path == "") {
-                                      CustomSnackBar().errorCustomSnackBar(context: context, message: "Please upload your tax Document");
-                                    }else if(signUpController.locationController.value.text == "") {
-                                      CustomSnackBar().errorCustomSnackBar(context: context, message: "Please Enter Your Location");
-                                    }else if(signUpController.passwordController.value.text == "") {
-                                      CustomSnackBar().errorCustomSnackBar(context: context, message: "Please Enter Your Password");
-                                    }else if(signUpController.confirmPasswordController.value.text == "") {
-                                      CustomSnackBar().errorCustomSnackBar(context: context, message: "Please Enter Your Confirm Password");
-                                    }else if(signUpController.confirmPasswordController.value.text != signUpController.passwordController.value.text) {
-                                      CustomSnackBar().errorCustomSnackBar(context: context, message: "Password is Not Matching");
-                                    } else {
-                                      signUpController.isSubmit.value = true;
-                                      await signUpController.getVendorSignUpResponse(
-                                        coverImage: signUpController.coverFile.value,
-                                        taxFile: signUpController.taxFile.value,
-                                        restaurantName: signUpController.restaurantNameController.value.text,
-                                        restaurantDescription: signUpController.restaurantDescriptionController.value.text,
-                                        password: signUpController.passwordController.value.text,
-                                        email: signUpController.emailController.value.text,
-                                        location: signUpController.locationController.value.text,
-                                        contact: signUpController.phoneNumber.value,
-                                        onSuccess: (e) {
-                                          signUpController.isSubmit.value = false;
-                                          CustomSnackBar().successCustomSnackBar(context: context, message: "${e}");
-                                          Get.off(()=>OtpVerifyScreen(email: signUpController.emailController.value.text, isSignUp: true),duration: const Duration(milliseconds: 100),preventDuplicates: false);
-                                        },
-                                        onFail: (e) {
-                                          signUpController.isSubmit.value = false;
-                                          CustomSnackBar().errorCustomSnackBar(context: context, message: "${e}");
-                                        },
-                                        onExceptionFail: (e) {
-                                          signUpController.isSubmit.value = false;
-                                          CustomSnackBar().errorCustomSnackBar(context: context, message: "${e}");
-                                        },
-                                      );
-                                    }
-                                  } else {
-                                    if(signUpController.imageFile.value.path == "") {
-                                      CustomSnackBar().errorCustomSnackBar(context: context, message: "Please Pick A Profile Image");
-                                    } if(signUpController.emailController.value.text == "") {
-                                      CustomSnackBar().errorCustomSnackBar(context: context, message: "Please Enter Your Email");
-                                    } else if(signUpController.firstNameController.value.text == "") {
-                                      CustomSnackBar().errorCustomSnackBar(context: context, message: "Please Enter Your First Name");
-                                    } else if(signUpController.phoneNumber.value == "") {
-                                      CustomSnackBar().errorCustomSnackBar(context: context, message: "Please Enter Your Contact Number");
-                                    } else if(signUpController.lastNameController.value.text == "") {
-                                      CustomSnackBar().errorCustomSnackBar(context: context, message: "Please Enter Your Last Name");
-                                    } else if(signUpController.locationController.value.text == "") {
-                                      CustomSnackBar().errorCustomSnackBar(context: context, message: "Please Enter Your Location");
-                                    } else if(signUpController.passwordController.value.text == "") {
-                                      CustomSnackBar().errorCustomSnackBar(context: context, message: "Please Enter Your Password");
-                                    } else if(signUpController.confirmPasswordController.value.text == "") {
-                                      CustomSnackBar().errorCustomSnackBar(context: context, message: "Please Enter Your Confirm Password");
-                                    } else if(signUpController.confirmPasswordController.value.text != signUpController.passwordController.value.text) {
-                                      CustomSnackBar().errorCustomSnackBar(context: context, message: "Password is Not Matching");
-                                    } else {
-                                      signUpController.isSubmit.value = true;
-                                      await signUpController.getBrokerSignUpResponse(
-                                        image: signUpController.imageFile.value,
-                                        name: "${signUpController.firstNameController.value.text},${signUpController.lastNameController.value.text}",
-                                        password: signUpController.passwordController.value.text,
-                                        email: signUpController.emailController.value.text,
-                                        location: signUpController.locationController.value.text,
-                                        contact: signUpController.phoneNumber.value,
-                                        onSuccess: (e) {
-                                          signUpController.isSubmit.value = false;
-                                          CustomSnackBar().successCustomSnackBar(context: context, message: "${e}");
-                                          Get.off(()=>OtpVerifyScreen(email: signUpController.emailController.value.text, isSignUp: true),duration: const Duration(milliseconds: 100),preventDuplicates: false);
-                                        },
-                                        onFail: (e) {
-                                          signUpController.isSubmit.value = false;
-                                          CustomSnackBar().errorCustomSnackBar(context: context, message: "${e}");
-                                        },
-                                        onExceptionFail: (e) {
-                                          signUpController.isSubmit.value = false;
-                                          CustomSnackBar().errorCustomSnackBar(context: context, message: "${e}");
-                                        },
-                                      );
-                                    }
+                                  } catch (e) {
+                                    signUpController.isSubmit.value = false;
                                   }
                                 },
-                                plainButtonHint: "Sign Up",
-                                plainButtonHintFontSize: 22.sp(context),
-                                plainButtonColor: ColorUtils.green176,
-                                plainButtonHintFontColor: ColorUtils.white255,
+                                text: "Sign Up",
+                                borderRadius: 8,
+                                backgroundColor: ColorUtils.primaryColor,
+                                fontWeight: FontWeight.w700,
+                                textColor: ColorUtils.white255,
                               ),
-                            
-                              CustomSpaceWidget.spacerWidget(spaceHeight: 20.h(context)),
-                            
-                            
-                              CustomRichTextContainer.plainRichTextContainerWidgetWithoutWidthHeight(
-                                  context: context,
-                                  plainPrimaryTextStringAlign: TextAlign.center,
-                                  plainPrimaryTextString: "Already have an account? ",
-                                  plainRichTextStringFontSize: 20.sp(context),
-                                  plainRichTextStringColor: ColorUtils.white253,
-                                  plainRichTextStringFontWeight: FontWeight.w500,
-                                  textSpanList: [
-                                    TextSpan(
-                                      text: "Log In",
-                                      style: CustomRichTextContainer.plainRichTextStringStyleWithDecoration(
-                                          context: context,
-                                          plainRichTextStringFontSize: 20.sp(context),
-                                          plainRichTextStringColor: ColorUtils.orange125,
-                                          plainRichTextStringFontWeight: FontWeight.w600
-                                      ),
-                                      recognizer: TapGestureRecognizer()..onTap = () {
-                                        Get.off(()=>SignInView(), duration: const Duration(milliseconds: 100),preventDuplicates: false);
-                                      },
-                                    ),
-                                  ]
+
+                              SpaceHelperWidget.v(20.h(context)),
+
+
+                              RichTextHelperWidget.headingRichText(
+                                context: context,
+                                alignment: Alignment.center,
+                                textAlign: TextAlign.center,
+                                textSpans: [
+                                  CustomTextSpan(
+                                    text: "Already have an account? ",
+                                    fontSize: 20,
+                                    color: ColorUtils.white253,
+                                    fontWeight: FontWeight.w500,
+                                  ).toTextSpan(),
+                                  CustomTextSpan(
+                                    text: "Log In",
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.w700,
+                                    color: ColorUtils.orange125,
+                                    recognizer: TapGestureRecognizer()..onTap = () {
+                                      Get.off(()=>SignInView(), duration: const Duration(milliseconds: 100),preventDuplicates: false);
+                                    },
+                                  ).toTextSpan(),
+                                ],
                               ),
-                            
-                              CustomSpaceWidget.spacerWidget(spaceHeight: 40.h(context)),
+
+                              SpaceHelperWidget.v(40.h(context)),
                             
                             
                             ],
@@ -1021,4 +886,101 @@ class SignUpView extends StatelessWidget {
       ),
     );
   }
+
+
+  String? _validateForm(String role) {
+    final c = signUpController;
+
+    // Common validations
+    if (c.emailController.value.text.isEmpty) return "Please Enter Your Email";
+    if (c.phoneNumber.value.isEmpty) return "Please Enter Your Contact Number";
+    if (c.locationController.value.text.isEmpty) return "Please Enter Your Location";
+    if (c.passwordController.value.text.isEmpty) return "Please Enter Your Password";
+    if (c.confirmPasswordController.value.text.isEmpty) return "Please Enter Your Confirm Password";
+    if (c.confirmPasswordController.value.text != c.passwordController.value.text) {
+      return "Password is Not Matching";
+    }
+
+    // Role-specific validations
+    switch (role) {
+      case "User":
+        if (c.firstNameController.value.text.isEmpty) return "Please Enter Your First Name";
+        if (c.lastNameController.value.text.isEmpty) return "Please Enter Your Last Name";
+        if (c.documentFile.value.path.isEmpty) {
+          return "Please upload your document file to verify";
+        }
+        break;
+
+      case "Rider":
+        if (c.drivingLicenceFile.value.path.isEmpty) {
+          return "Please upload your driving Licence Document";
+        }
+        if (c.firstNameController.value.text.isEmpty) return "Please Enter Your First Name";
+        if (c.lastNameController.value.text.isEmpty) return "Please Enter Your Last Name";
+        break;
+
+      case "Vendor":
+        if (c.restaurantNameController.value.text.isEmpty) return "Please Enter Your Restaurant Name";
+        if (c.restaurantDescriptionController.value.text.isEmpty) return "Please Enter Your Restaurant Description";
+        if (c.taxFile.value.path.isEmpty) return "Please upload your tax Document";
+        break;
+
+      default:
+        if (c.imageFile.value.path.isEmpty) return "Please Pick A Profile Image";
+        if (c.firstNameController.value.text.isEmpty) return "Please Enter Your First Name";
+        if (c.lastNameController.value.text.isEmpty) return "Please Enter Your Last Name";
+    }
+
+    return null;
+  }
+
+
+  Map<String, dynamic> _commonUserData() {
+    final c = signUpController;
+
+    return {
+      "name": "${c.firstNameController.value.text},${c.lastNameController.value.text}",
+      "password": c.passwordController.value.text,
+      "email": c.emailController.value.text,
+      "location": c.locationController.value.text,
+      "contact": c.phoneNumber.value,
+      "broker_referral": c.referralCodeController.value.text,
+    };
+  }
+
+
+  Map<String, dynamic> _brokerData() {
+    final c = signUpController;
+
+    return {
+      "name": "${c.firstNameController.value.text},${c.lastNameController.value.text}",
+      "password": c.passwordController.value.text,
+      "email": c.emailController.value.text,
+      "location": c.locationController.value.text,
+      "contact": c.phoneNumber.value,
+    };
+  }
+
+
+  Map<String, dynamic> _vendorData() {
+    final c = signUpController;
+
+    return {
+      "email": c.emailController.value.text,
+      "password": c.passwordController.value.text,
+      "store_name": c.restaurantNameController.value.text,
+      "store_description": c.restaurantDescriptionController.value.text,
+      "contact": c.phoneNumber.value,
+      "broker_referral": c.referralCodeController.value.text,
+      "location": {
+        "coordinates": [
+          double.parse(c.long.value),
+          double.parse(c.lat.value)
+        ]
+      }
+    };
+  }
+
+
+
 }
