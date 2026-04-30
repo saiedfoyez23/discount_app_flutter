@@ -1,36 +1,67 @@
 import 'dart:convert';
 import 'dart:io';
 import 'package:dio/dio.dart' as dio;
+import 'package:discount_me_app/view/authenticaion/view/otp_verify_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_intl_phone_field/countries.dart';
+import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
-
+import 'package:discount_me_app/utils/utils.dart';
 import '../../../res/res.dart';
 
 class SignUpController extends GetxController {
 
 
-  Future<void> determinePosition() async {
-    Position position = await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
-    lat.value = position.latitude.toString();
-    long.value = position.longitude.toString();
-    locationController.value.text = "${lat.value},${long.value}";
+  static Future<void> _handlePermission({required BuildContext context}) async {
+    bool serviceEnabled = await Geolocator.isLocationServiceEnabled();
+    if (!serviceEnabled) {
+      throw 'Location services are disabled.';
+    }
+
+    LocationPermission permission = await Geolocator.checkPermission();
+    if (permission == LocationPermission.denied) {
+      permission = await Geolocator.requestPermission();
+      if (permission == LocationPermission.denied) {
+        permission = await Geolocator.requestPermission();
+      }
+    }
+
+    if (permission == LocationPermission.deniedForever) {
+      LocationPermissionDeniedBox().locationPermissionDeniedBox(context: context);
+    }
+  }
+
+  /// Get current position
+  static Future<Position> getCurrentPosition({required BuildContext context}) async {
+    await _handlePermission(context: context);
+    return await Geolocator.getCurrentPosition(locationSettings: LocationSettings(accuracy: LocationAccuracy.best));
+  }
+
+  /// Get address from latitude & longitude
+  Future<void> userGetAddressFromLatLng({required BuildContext context}) async {
+    await getCurrentPosition(context: context).then((position) async {
+      lat.value = position.latitude.toString();
+      long.value = position.longitude.toString();
+      List<Placemark> placemarks = await placemarkFromCoordinates(position.latitude, position.longitude);
+      Placemark place = placemarks.first;
+      locationController.value.text = "${place.street} ${place.subLocality}, ${place.locality}, ${place.administrativeArea}, ${place.postalCode}, ${place.country}";
+    });
   }
 
 
 
-  Future<void> checkLocationPermission() async {
+  Future<void> checkLocationPermission({required BuildContext context}) async {
     Future.delayed(const Duration(milliseconds: 500),() async {
       LocationPermission permission;
       var checkPermission = await Geolocator.checkPermission();
       permission = await Geolocator.requestPermission();
       print(permission);
       if(permission == LocationPermission.denied){
-        await checkLocationPermission();
+        await checkLocationPermission(context: context);
       }else {
-        await determinePosition();
+        await userGetAddressFromLatLng(context: context);
       }
     });
   }
@@ -50,6 +81,7 @@ class SignUpController extends GetxController {
   Rx<TextEditingController> firstNameController = TextEditingController().obs;
   Rx<TextEditingController> lastNameController = TextEditingController().obs;
   Rx<TextEditingController> restaurantNameController = TextEditingController().obs;
+  Rx<TextEditingController> referralCodeController = TextEditingController().obs;
   Rx<TextEditingController> restaurantDescriptionController = TextEditingController().obs;
   Rx<TextEditingController> emailController = TextEditingController().obs;
   Rx<TextEditingController> locationController = TextEditingController().obs;
@@ -104,6 +136,7 @@ class SignUpController extends GetxController {
     emailController = TextEditingController().obs;
     locationController = TextEditingController().obs;
     phoneNumberController = TextEditingController().obs;
+    referralCodeController = TextEditingController().obs;
     selectedPosition = "".obs;
     passwordController = TextEditingController().obs;
     confirmPasswordController = TextEditingController().obs;
@@ -171,238 +204,191 @@ class SignUpController extends GetxController {
 
 
   Future<void> getUserSignUpResponse({
+    required BuildContext context,
+    required Map<String,dynamic> data,
     File? image,
     File? document,
-    required String name,
-    required String password,
-    required String email,
-    required String location,
-    required String contact,
-    required Function onSuccess,
-    required Function onFail,
-    required Function onExceptionFail
   }) async {
-    try {
 
-      String? mimeTypeImage = image?.path == "" ? "" : CustomMimeType.getMimeType(image!.path);
-      String? mimeTypeDocument = document?.path == "" ? "" : CustomMimeType.getMimeType(document!.path);
-      print(mimeTypeImage);
-      print(mimeTypeDocument);
+    print(data);
 
-      Map<String,dynamic> data = {
-        "name": name,
-        "password": password,
-        "email": email,
-        "location": location,
-        "contact": contact,
-      };
+    dio.FormData formData = dio.FormData.fromMap({
+      if(image != null && image.path != "")
+        "image": await dio.MultipartFile.fromFile(
+          image.path,
+          filename: image.path.split('/').last,
+          contentType: dio.DioMediaType(
+            MimeTypeUtils.getMimeType(image.path).split('/').first,
+            MimeTypeUtils.getMimeType(image.path).split('/').last,
+          ),
+        ),
+      if(document != null && document.path != "")
+        "document": await dio.MultipartFile.fromFile(
+          document.path,
+          filename: document.path.split('/').last,
+          contentType: dio.DioMediaType(
+            MimeTypeUtils.getMimeType(document.path).split('/').first,
+            MimeTypeUtils.getMimeType(document.path).split('/').last,
+          ),
+        ),
+      "data": jsonEncode(data),  // important → JSON encoded string!
+    });
 
-      print(jsonEncode(data));
-
-      dio.FormData formData = dio.FormData.fromMap({
-        "image": image?.path != "" ? await dio.MultipartFile.fromFile(image!.path,filename: image.path.split('/').last,contentType: dio.DioMediaType(mimeTypeImage.split('/').first,mimeTypeImage.split('/').last)) : "",
-        "data": jsonEncode(data),
-        "document": document?.path != "" ? await dio.MultipartFile.fromFile(document!.path,filename: document.path.split('/').last,contentType: dio.DioMediaType(mimeTypeDocument.split("/").first,mimeTypeDocument.split("/").last)) : "",
-      });
-
-
-
-
-      var response = await dio.Dio().post(
-        "${AppApiUrl.serverLinkUrl()}auth/user-sign-up",
-        data: formData,
-        options: dio.Options(headers: <String, String>{
-          'Content-Type': 'multipart/form-data',
-        }),
-      );
-      print(jsonEncode(response.data));
-      if (response.statusCode == 200 || response.statusCode == 201) {
-        onSuccess(response.data["message"]);
-      } else {
-        onFail(response.data["message"]);
-      }
-    } on dio.DioException catch (e) {
-      print(e.response?.data);
-      onExceptionFail(e.response?.data["message"]);
-    }
+    await BaseApiUtils.post(
+      url: ApiUtils.userSignUp,
+      formData: formData,
+      onSuccess: (e,data) async {
+        MessageSnackBarWidget.successSnackBarWidget(context: context, message: e);
+        Get.off(()=>OtpVerifyScreen(email: emailController.value.text, isSignUp: true),duration: const Duration(milliseconds: 100),preventDuplicates: false);
+        isSubmit.value = false;
+      },
+      onFail: (e,data) {
+        MessageSnackBarWidget.errorSnackBarWidget(context: context, message: e);
+        isSubmit.value = false;
+      },
+      onExceptionFail: (e,data) {
+        MessageSnackBarWidget.errorSnackBarWidget(context: context, message: e);
+        isSubmit.value = false;
+      },
+    );
   }
 
 
   Future<void> getRiderSignUpResponse({
+    required BuildContext context,
+    required Map<String,dynamic> data,
     File? image,
     File? document,
-    required String name,
-    required String password,
-    required String email,
-    required String location,
-    required String contact,
-    required Function onSuccess,
-    required Function onFail,
-    required Function onExceptionFail
   }) async {
-    try {
 
-      String? mimeTypeImage = image?.path == "" ? "" : CustomMimeType.getMimeType(image!.path);
-      String? mimeTypeDocument = document?.path == "" ? "" : CustomMimeType.getMimeType(document!.path);
-      print(mimeTypeImage);
-      print(mimeTypeDocument);
+    dio.FormData formData = dio.FormData.fromMap({
+      if(image != null && image.path != "")
+        "image": await dio.MultipartFile.fromFile(
+          image.path,
+          filename: image.path.split('/').last,
+          contentType: dio.DioMediaType(
+            MimeTypeUtils.getMimeType(image.path).split('/').first,
+            MimeTypeUtils.getMimeType(image.path).split('/').last,
+          ),
+        ),
+      if(document != null && document.path != "")
+        "document": await dio.MultipartFile.fromFile(
+          document.path,
+          filename: document.path.split('/').last,
+          contentType: dio.DioMediaType(
+            MimeTypeUtils.getMimeType(document.path).split('/').first,
+            MimeTypeUtils.getMimeType(document.path).split('/').last,
+          ),
+        ),
+      "data": jsonEncode(data),  // important → JSON encoded string!
+    });
 
-      Map<String,dynamic> data = {
-        "name": name,
-        "password": password,
-        "email": email,
-        "location": location,
-        "contact": contact,
-      };
-
-      print(jsonEncode(data));
-
-
-      dio.FormData formData = dio.FormData.fromMap({
-        "image": image?.path != "" ? await dio.MultipartFile.fromFile(image!.path,filename: image.path.split('/').last,contentType: dio.DioMediaType(mimeTypeImage.split('/').first,mimeTypeImage.split('/').last)) : "",
-        "data": jsonEncode(data),
-        "document": document?.path != "" ? await dio.MultipartFile.fromFile(document!.path,filename: document.path.split('/').last,contentType: dio.DioMediaType(mimeTypeDocument.split("/").first,mimeTypeDocument.split("/").last)) : "",
-      });
-
-
-
-
-      var response = await dio.Dio().post(
-        "${AppApiUrl.serverLinkUrl()}auth/rider-sign-up",
-        data: formData,
-        options: dio.Options(headers: <String, String>{
-          'Content-Type': 'multipart/form-data',
-        }),
-      );
-      print(jsonEncode(response.data));
-      if (response.statusCode == 200 || response.statusCode == 201) {
-        onSuccess(response.data["message"]);
-      } else {
-        onFail(response.data["message"]);
-      }
-    } on dio.DioException catch (e) {
-      print(e.response?.data);
-      onExceptionFail(e.response?.data["message"]);
-    }
+    await BaseApiUtils.post(
+      url: ApiUtils.riderSignUp,
+      formData: formData,
+      onSuccess: (e,data) async {
+        MessageSnackBarWidget.successSnackBarWidget(context: context, message: e);
+        isSubmit.value = false;
+        Get.off(()=>OtpVerifyScreen(email: emailController.value.text, isSignUp: true),duration: const Duration(milliseconds: 100),preventDuplicates: false);
+      },
+      onFail: (e,data) {
+        MessageSnackBarWidget.errorSnackBarWidget(context: context, message: e);
+        isSubmit.value = false;
+      },
+      onExceptionFail: (e,data) {
+        MessageSnackBarWidget.errorSnackBarWidget(context: context, message: e);
+        isSubmit.value = false;
+      },
+    );
   }
 
+
+
   Future<void> getVendorSignUpResponse({
+    required BuildContext context,
+    required Map<String,dynamic> data,
     File? coverImage,
     File? taxFile,
-    required String restaurantName,
-    required String restaurantDescription,
-    required String email,
-    required String password,
-    required String location,
-    required String contact,
-    required Function onSuccess,
-    required Function onFail,
-    required Function onExceptionFail
   }) async {
-    try {
 
-      String? mimeTypeImage = coverImage?.path == "" ? "" : CustomMimeType.getMimeType(coverImage!.path);
-      String? mimeTypeDocument = taxFile?.path == "" ? "" : CustomMimeType.getMimeType(taxFile!.path);
-      print(mimeTypeImage);
-      print(mimeTypeDocument);
+    dio.FormData formData = dio.FormData.fromMap({
+      if(coverImage != null && coverImage.path != "")
+        "images": await dio.MultipartFile.fromFile(
+          coverImage.path,
+          filename: coverImage.path.split('/').last,
+          contentType: dio.DioMediaType(
+            MimeTypeUtils.getMimeType(coverImage.path).split('/').first,
+            MimeTypeUtils.getMimeType(coverImage.path).split('/').last,
+          ),
+        ),
+      if(taxFile != null && taxFile.path != "")
+        "document": await dio.MultipartFile.fromFile(
+          taxFile.path,
+          filename: taxFile.path.split('/').last,
+          contentType: dio.DioMediaType(
+            MimeTypeUtils.getMimeType(taxFile.path).split('/').first,
+            MimeTypeUtils.getMimeType(taxFile.path).split('/').last,
+          ),
+        ),
+      "data": jsonEncode(data),  // important → JSON encoded string!
+    });
 
-      Map<String,dynamic> data = {
-        "email": email,
-        "password": password,
-        "store_name": restaurantName,
-        "store_description": restaurantDescription,
-        "contact": contact,
-        "location": {
-          "coordinates": [
-            double.parse(long.value),
-            double.parse(lat.value)
-          ]
-        }
-      };
-
-      print(jsonEncode(data));
-
-
-      dio.FormData formData = dio.FormData.fromMap({
-        "images": coverImage?.path != "" ? await dio.MultipartFile.fromFile(coverImage!.path,filename: coverImage.path.split('/').last,contentType: dio.DioMediaType(mimeTypeImage.split('/').first,mimeTypeImage.split('/').last)) : "",
-        "data": jsonEncode(data),
-        "document": taxFile?.path != "" ? await dio.MultipartFile.fromFile(taxFile!.path,filename: taxFile.path.split('/').last,contentType: dio.DioMediaType(mimeTypeDocument.split("/").first,mimeTypeDocument.split("/").last)) : "",
-      });
-
-
-
-
-      var response = await dio.Dio().post(
-        "${AppApiUrl.serverLinkUrl()}auth/vendor-sign-up",
-        data: formData,
-        options: dio.Options(headers: <String, String>{
-          'Content-Type': 'multipart/form-data',
-        }),
-      );
-      print(jsonEncode(response.data));
-      if (response.statusCode == 200 || response.statusCode == 201) {
-        onSuccess(response.data["message"]);
-      } else {
-        onFail(response.data["message"]);
-      }
-    } on dio.DioException catch (e) {
-      print(e.response?.data);
-      onExceptionFail(e.response?.data["message"]);
-    }
+    await BaseApiUtils.post(
+      url: ApiUtils.vendorSignUp,
+      formData: formData,
+      onSuccess: (e,data) async {
+        MessageSnackBarWidget.successSnackBarWidget(context: context, message: e);
+        isSubmit.value = false;
+        Get.off(()=>OtpVerifyScreen(email: emailController.value.text, isSignUp: true),duration: const Duration(milliseconds: 100),preventDuplicates: false);
+      },
+      onFail: (e,data) {
+        MessageSnackBarWidget.errorSnackBarWidget(context: context, message: e);
+        isSubmit.value = false;
+      },
+      onExceptionFail: (e,data) {
+        MessageSnackBarWidget.errorSnackBarWidget(context: context, message: e);
+        isSubmit.value = false;
+      },
+    );
   }
 
 
   Future<void> getBrokerSignUpResponse({
-    File? image,
-    required String name,
-    required String password,
-    required String email,
-    required String location,
-    required String contact,
-    required Function onSuccess,
-    required Function onFail,
-    required Function onExceptionFail
+    required BuildContext context,
+    required Map<String,dynamic> data,
+    File? profileImageFile,
   }) async {
-    try {
 
-      String? mimeTypeImage = image?.path == "" ? "" : CustomMimeType.getMimeType(image!.path);
-      print(mimeTypeImage);
+    dio.FormData formData = dio.FormData.fromMap({
+      if(profileImageFile != null && profileImageFile.path != "")
+        "image": await dio.MultipartFile.fromFile(
+          profileImageFile.path,
+          filename: profileImageFile.path.split('/').last,
+          contentType: dio.DioMediaType(
+            MimeTypeUtils.getMimeType(profileImageFile.path).split('/').first,
+            MimeTypeUtils.getMimeType(profileImageFile.path).split('/').last,
+          ),
+        ),
+      "data": jsonEncode(data),  // important → JSON encoded string!
+    });
 
-      Map<String,dynamic> data = {
-        "name": name,
-        "password": password,
-        "email": email,
-        "location": location,
-        "contact": contact,
-      };
-
-      print(jsonEncode(data));
-
-      dio.FormData formData = dio.FormData.fromMap({
-        "image": image?.path != "" ? await dio.MultipartFile.fromFile(image!.path,filename: image.path.split('/').last,contentType: dio.DioMediaType(mimeTypeImage.split('/').first,mimeTypeImage.split('/').last)) : "",
-        "data": jsonEncode(data),
-      });
-
-
-
-
-      var response = await dio.Dio().post(
-        "${AppApiUrl.serverLinkUrl()}auth/broker-sign-up",
-        data: formData,
-        options: dio.Options(headers: <String, String>{
-          'Content-Type': 'multipart/form-data',
-        }),
-      );
-      print(jsonEncode(response.data));
-      if (response.statusCode == 200 || response.statusCode == 201) {
-        onSuccess(response.data["message"]);
-      } else {
-        onFail(response.data["message"]);
-      }
-    } on dio.DioException catch (e) {
-      print(e.response?.data);
-      onExceptionFail(e.response?.data["message"]);
-    }
+    await BaseApiUtils.post(
+      url: ApiUtils.brokerSignUp,
+      formData: formData,
+      onSuccess: (e,data) async {
+        MessageSnackBarWidget.successSnackBarWidget(context: context, message: e);
+        isSubmit.value = false;
+        Get.off(()=>OtpVerifyScreen(email: emailController.value.text, isSignUp: true),duration: const Duration(milliseconds: 100),preventDuplicates: false);
+      },
+      onFail: (e,data) {
+        MessageSnackBarWidget.errorSnackBarWidget(context: context, message: e);
+        isSubmit.value = false;
+      },
+      onExceptionFail: (e,data) {
+        MessageSnackBarWidget.errorSnackBarWidget(context: context, message: e);
+        isSubmit.value = false;
+      },
+    );
   }
 
 
