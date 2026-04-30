@@ -4,6 +4,7 @@ import 'package:dio/dio.dart';
 import 'package:discount_me_app/res/res.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
+import 'package:discount_me_app/view/view.dart';
 
 class SignInController extends GetxController {
 
@@ -11,7 +12,8 @@ class SignInController extends GetxController {
   Rx<TextEditingController> passwordController = TextEditingController().obs;
   RxBool isSubmit = false.obs;
 
-  var isPasswordVisible = false.obs;   // For first password field
+  RxBool isPasswordVisible = true.obs;
+  // For first password field
 
   Future<void> togglePasswordVisibility() async {
     isPasswordVisible.value = !isPasswordVisible.value;
@@ -34,37 +36,44 @@ class SignInController extends GetxController {
   }
 
 
-  static Future<void> getUserLoginResponse({
+  Future<void> getUserLoginResponse({
+    required BuildContext context,
     required Map<String,dynamic> data,
-    required Function onSuccess,
-    required Function onFail,
-    required Function onExceptionFail
   }) async {
-    try{
-      print("${AppApiUrl.serverLinkUrl()}auth/login");
-      var response = await Dio().post(
-        "${AppApiUrl.serverLinkUrl()}auth/login",
-        options: Options(headers: <String, String>{
-          'Accept': 'application/json',
-          'Content-Type': 'application/json',
-        }),
-        data: jsonEncode(data),
-      );
-      print(response.data["data"]["accessToken"]);
-      if(response.statusCode == 200 || response.statusCode == 201) {
-        await LocalStorageUtils.setString(AppConstantUtils.loginResponse, jsonEncode(response.data));
-        Map<String, dynamic> decodedToken = parseJwt(response.data["data"]["accessToken"]);
+    await BaseApiUtils.post(
+      url: ApiUtils.loginResponse,
+      data: data,
+      onSuccess: (e,data) async {
+        isSubmit.value = false;
+        MessageSnackBarWidget.successSnackBarWidget(context: context, message: e);
+        await LocalStorageUtils.setString(AppConstantUtils.loginResponse, jsonEncode(data));
+        Map<String, dynamic> decodedToken = parseJwt(data["data"]["accessToken"]);
         print(decodedToken['role']);
-        onSuccess(response.data["message"],decodedToken['role']);
-      }else {
-        onFail(response.data["message"]);
-      }
-    } on DioException catch (e) {
-      onExceptionFail(e.response?.data["message"]);
-    }
-
+        if(decodedToken['role'] == "user") {
+          Get.off(()=>UserHome(selectedIndex: 0,),duration: const Duration(milliseconds: 100),preventDuplicates: false);
+          isSubmit.value = false;
+        } else if (decodedToken['role'] == "rider") {
+          Get.off(()=>RiderHome(selectedIndex: 0,),duration: const Duration(milliseconds: 100),preventDuplicates: false);
+          isSubmit.value = false;
+        } else if (decodedToken['role'] == "vendor") {
+          Get.off(()=>VendorHome(selectedIndex: 0,),duration: const Duration(milliseconds: 100),preventDuplicates: false);
+          isSubmit.value = false;
+        } else if (decodedToken['role'] == "broker") {
+          Get.off(()=>BrokerDashboardView(index: 0),duration: const Duration(milliseconds: 100),preventDuplicates: false);
+          isSubmit.value = false;
+        }
+      },
+      onFail: (e,data) {
+        MessageSnackBarWidget.errorSnackBarWidget(context: context, message: e);
+        isSubmit.value = false;
+      },
+      onExceptionFail: (e,data) {
+        print(data);
+        MessageSnackBarWidget.errorSnackBarWidget(context: context, message: e);
+        isSubmit.value = false;
+      },
+    );
   }
-
 
   static Map<String, dynamic> parseJwt(String token) {
     final parts = token.split('.');

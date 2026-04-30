@@ -184,7 +184,7 @@ class CreatePasswordScreenWidget {
                                 data: data,
                                 onSuccess: (e) async {
                                   CustomSnackBar().successCustomSnackBar(context: context, message: "${e}");
-                                  Get.off(()=>const SignInScreen(),duration: const Duration(milliseconds: 100),preventDuplicates: false);
+                                  Get.off(()=>SignInView(),duration: const Duration(milliseconds: 100),preventDuplicates: false);
                                   createPasswordController.isSubmit.value = false;
                                 },
                                 onFail: (e) {

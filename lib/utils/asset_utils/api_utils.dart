@@ -7,6 +7,7 @@ class ApiUtils {
 
 
   //user
+  static const String loginResponse = "$baseUrl/auth/login";
   static const String createPaymentResponse = "$baseUrl/payments/create-payment-session"; //done
   static const String createCheckoutSession = "$baseUrl/subscriptions/create-checkout-session"; //done
   static const String createOrderResponse = "$baseUrl/orders";//done
@@ -42,11 +43,15 @@ class ApiUtils {
   static String editBrokerProfile(String brokersId) {
     return "$baseUrl/brokers/${brokersId}";
   }
+  static String deleteBrokerProfile(String brokersId) {
+    return "$baseUrl/brokers/${brokersId}";
+  }
 
   static const String getAllSetting = "$baseUrl/settings";
 
 
   static const String riderChangePassword = "$baseUrl/auth/change-password";
+  static const String changePassword = "$baseUrl/auth/change-password";
   static const String billingAddress = "$baseUrl/billing-address";
   static const String shippingAddress = "$baseUrl/shipping-address";
   static const String categoriesResponse = "$baseUrl/categories";

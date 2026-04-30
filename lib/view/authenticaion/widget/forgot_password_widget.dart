@@ -59,7 +59,7 @@ class ForgotPasswordWidget {
                     context: context,
                     title: "Forgot Password",
                     onPress: () async {
-                      Get.off(()=>const SignInScreen(),duration: const Duration(milliseconds: 100),preventDuplicates: false);
+                      Get.off(()=>SignInView(),duration: const Duration(milliseconds: 100),preventDuplicates: false);
                     }
                 ),
 

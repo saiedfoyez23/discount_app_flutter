@@ -63,7 +63,7 @@ class BrokerSignUpScreenWidget {
                   context: context,
                   title: "Create Account",
                   onPress: () async {
-                    Get.off(()=>const WelcomeScreen(),duration: const Duration(milliseconds: 100),preventDuplicates: false);
+                    Get.off(()=> WelcomeView(),duration: const Duration(milliseconds: 100),preventDuplicates: false);
                   },
                 ),
 

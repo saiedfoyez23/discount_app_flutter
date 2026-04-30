@@ -220,7 +220,7 @@ class RiderProfileHome extends StatelessWidget {
                               PositivvebuttonText: 'Logout',
                               onPositiveButtonPressed: () async {
                                 await LocalStorageUtils.remove(AppConstantUtils.loginResponse);
-                                await Get.offAll(()=>SignInScreen(),duration: Duration(milliseconds: 100));
+                                await Get.offAll(()=>SignInView(),duration: Duration(milliseconds: 100));
                               },
                               onNegativeButtonPressed: () => Navigator.of(context).pop(),
                             );

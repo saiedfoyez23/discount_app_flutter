@@ -98,7 +98,6 @@ class VendorSubscriptionView extends StatelessWidget {
                                         ),
 
 
-
                                         // Discount Info Section
                                         Padding(
                                           padding: EdgeInsets.only(right: 40.w(context)),

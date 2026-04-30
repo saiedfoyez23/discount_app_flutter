@@ -2,6 +2,7 @@
 
 import 'package:discount_me_app/res/app_const/import_list.dart';
 import 'package:discount_me_app/utils/utils.dart';
+import 'package:discount_me_app/view/brokers/broker_home_view/controller/broker_home_controller.dart';
 import 'package:discount_me_app/view/brokers/broker_home_view/widget/custom_borker_appbar.dart';
 import 'package:discount_me_app/view/brokers/broker_referral_view/widget/referral_users_widget.dart';
 import 'package:flutter/material.dart';
@@ -28,7 +29,7 @@ class _BrokerReferralHomeScreenState extends State<BrokerReferralHomeScreen> {
             child: SingleChildScrollView(
               child: Column(
                 children: [
-                  CustomBrokerAppBar(),
+                  CustomBrokerAppBar(brokerHomeController: BrokerHomeController(context: context),),
 
 
                   // Recent referral users

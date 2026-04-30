@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:dio/dio.dart' as dio;
-import 'package:discount_me_app/view/authenticaion/view/sign_in_screen.dart';
+import 'package:discount_me_app/view/authenticaion/view/sign_in_view.dart';
 import 'package:get/get.dart';
 
 import '../../res/res.dart';
@@ -61,13 +61,13 @@ class BaseApiUtils {
         onFail(response.data?["message"], response.data);
       }
     } on dio.DioException catch (e) {
-      if(e.response?.data?["message"] == "jwt expired") {
+      if(e.response?.data?["message"] == "jwt expired" || e.response?.data?["message"] == "invalid token") {
         onExceptionFail(
           e.response?.data?["message"] ?? "Something went wrong",
           e.response?.data,
         );
         await AppLocalStorage.removeKey(key: "Login");
-        Get.off(()=>SignInScreen(),preventDuplicates: false,duration: Duration(milliseconds: 100));
+        Get.off(()=>SignInView(),preventDuplicates: false,duration: Duration(milliseconds: 100));
       } else {
         onExceptionFail(
           e.response?.data?["message"] ?? "Something went wrong",

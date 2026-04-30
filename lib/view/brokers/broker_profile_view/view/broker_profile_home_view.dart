@@ -1,6 +1,5 @@
 import 'package:discount_me_app/utils/utils.dart';
-import 'package:discount_me_app/view/brokers/broker_profile_view/view/broker_edit_profile_view.dart';
-import 'package:discount_me_app/view/brokers/broker_profile_view/view/broker_setting_screen.dart';
+import 'package:discount_me_app/view/brokers/broker_profile_view/view/broker_setting_view.dart';
 import 'package:discount_me_app/view/view.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -90,8 +89,8 @@ class BrokerProfileHomeView extends StatelessWidget {
 
                                         // Edit Icon Button
                                         Positioned(
-                                          bottom: 12.h(context),
-                                          right: 12.w(context),
+                                          bottom: 14.h(context),
+                                          right: 14.w(context),
                                           child: InkWell(
                                             onTap: () async {
                                               BrokerProfileDialogBox().chooseProfilePhotoEditDialogBox(
@@ -215,7 +214,7 @@ class BrokerProfileHomeView extends StatelessWidget {
                                     icon: Image.asset(ImageUtils.settingIcon, scale: 4,),
                                     navigateIcon: Icon(Icons.navigate_next, size: 24.r(context), color: Colors.black54,),
                                     onTap: () {
-                                      Get.off(()=>BrokerSettingScreen(),preventDuplicates: false);
+                                      Get.off(()=>BrokerSettingView(),preventDuplicates: false);
                                     },
                                   ),
 
@@ -232,7 +231,7 @@ class BrokerProfileHomeView extends StatelessWidget {
                                         },
                                         logoutFunction: () async {
                                           await LocalStorageUtils.remove(AppConstantUtils.loginResponse);
-                                          await Get.offAll(()=>SignInScreen(),duration: Duration(milliseconds: 100));
+                                          await Get.offAll(()=>SignInView(),duration: Duration(milliseconds: 100));
                                         },
                                       );
                                     },

@@ -308,7 +308,7 @@ class VendorAddItemScreenWidget extends GetxController {
                               onExceptionFail: (e) async {
                                 if(e == "jwt expired") {
                                   await AppLocalStorage.removeKey(key: "Login");
-                                  await Get.off(()=>SignInScreen(),preventDuplicates: false,duration: Duration(milliseconds: 100));
+                                  await Get.off(()=>SignInView(),preventDuplicates: false,duration: Duration(milliseconds: 100));
                                 }
                                 isSubmit.value = false;
                                 CustomSnackBar().errorCustomSnackBar(context: context, message: "${e}");

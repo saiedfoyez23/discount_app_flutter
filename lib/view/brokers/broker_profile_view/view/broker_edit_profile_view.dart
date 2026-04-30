@@ -243,7 +243,7 @@ class BrokerEditProfileView extends StatelessWidget {
                                       enableBorderColor: ColorUtils.whiteNormalActive,
                                       focusedBorderColor: ColorUtils.secondaryColor,
                                       prefixIcon: Padding(
-                                        padding: EdgeInsets.all(12.0.r(context)),
+                                        padding: EdgeInsets.all(20.r(context)),
                                         child: InkWell(
                                           onTap: () async {},
                                           child: ImageHelperWidget.assetImageWidget(
@@ -281,7 +281,7 @@ class BrokerEditProfileView extends StatelessWidget {
                                       enableBorderColor: ColorUtils.whiteNormalActive,
                                       focusedBorderColor: ColorUtils.secondaryColor,
                                       prefixIcon: Padding(
-                                        padding: EdgeInsets.all(12.0.r(context)),
+                                        padding: EdgeInsets.all(20.r(context)),
                                         child: InkWell(
                                           onTap: () async {},
                                           child: ImageHelperWidget.assetImageWidget(
