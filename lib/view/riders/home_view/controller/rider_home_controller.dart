@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../../res/res.dart';
 import '../../../../utils/utils.dart';
+import 'package:discount_me_app/view/view.dart';
 
 class RiderHomeController extends GetxController {
 
@@ -29,15 +30,11 @@ class RiderHomeController extends GetxController {
     required BuildContext context,
   }) async {
 
-    String accessToken = "";
-    await AppLocalStorage.getString(key: "Login").then((value) {
-      accessToken = jsonDecode(value!)["data"]["accessToken"];
-    });
-    print(accessToken);
+    LoginResponseModel loginResponseModel = LoginResponseModel.fromJson(jsonDecode(LocalStorageUtils.getString(AppConstantUtils.loginResponse)!),);
 
     BaseApiUtils.get(
       url: ApiUtils.riderProfile,
-      authorization: accessToken,
+      authorization: loginResponseModel.data?.accessToken,
       onSuccess: (e,data) async {
         isLoading.value = false;
         riderProfileResponse.value = RiderProfileResponse.fromJson(data);

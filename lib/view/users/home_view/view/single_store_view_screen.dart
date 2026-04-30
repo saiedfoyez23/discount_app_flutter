@@ -21,6 +21,8 @@ class SingleStoreViewScreen extends StatelessWidget {
           Get.off(()=>UserHome(selectedIndex: 0,),duration: const Duration(milliseconds: 100),preventDuplicates: false);
         } else if (isStoreListPage == true){
           Get.off(()=>StoreListViewScreen(),duration: const Duration(milliseconds: 100),preventDuplicates: false);
+        } else {
+          Get.off(()=>UserHome(selectedIndex: 0,),duration: const Duration(milliseconds: 100),preventDuplicates: false);
         }
       },
       child: Scaffold(

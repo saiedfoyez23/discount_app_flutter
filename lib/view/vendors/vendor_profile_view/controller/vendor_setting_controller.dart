@@ -1,10 +1,8 @@
 import 'dart:convert';
-
-import 'package:discount_me_app/view/authenticaion/view/sign_in_screen.dart';
 import 'package:discount_me_app/view/vendors/vendor_profile_view/model/vendor_profile_response_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
-
+import 'package:discount_me_app/view/view.dart';
 import '../../../../res/res.dart';
 import '../../../../utils/utils.dart';
 
@@ -32,15 +30,11 @@ class VendorSettingController extends GetxController {
     required BuildContext context,
   }) async {
 
-    String accessToken = "";
-    await AppLocalStorage.getString(key: "Login").then((value) {
-      accessToken = jsonDecode(value!)["data"]["accessToken"];
-    });
-    print(accessToken);
+    LoginResponseModel loginResponseModel = LoginResponseModel.fromJson(jsonDecode(LocalStorageUtils.getString(AppConstantUtils.loginResponse)!),);
 
     BaseApiUtils.get(
       url: ApiUtils.vendorsProfile,
-      authorization: accessToken,
+      authorization: loginResponseModel.data?.accessToken,
       onSuccess: (e,data) async {
         isLoading.value = false;
         vendorProfileResponseModel.value = VendorProfileResponseModel.fromJson(data);
@@ -65,15 +59,11 @@ class VendorSettingController extends GetxController {
 
     isSubmit.value = true;
 
-    String accessToken = "";
-    await AppLocalStorage.getString(key: "Login").then((value) {
-      accessToken = jsonDecode(value!)["data"]["accessToken"];
-    });
-    print(accessToken);
+    LoginResponseModel loginResponseModel = LoginResponseModel.fromJson(jsonDecode(LocalStorageUtils.getString(AppConstantUtils.loginResponse)!),);
 
     BaseApiUtils.delete(
       url: ApiUtils.vendorProfileDelete(riderId),
-      authorization: accessToken,
+      authorization: loginResponseModel.data?.accessToken,
       onSuccess: (e,data) async {
         isSubmit.value = false;
         await AppLocalStorage.removeKey(key: "Login");

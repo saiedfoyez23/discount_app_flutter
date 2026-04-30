@@ -3,6 +3,8 @@ import 'dart:io';
 import 'package:dio/dio.dart' as dio;
 import 'package:get/get.dart';
 import '../../../../res/res.dart';
+import '../../../../utils/utils.dart';
+import '../../../view.dart';
 
 class AddProductController extends GetxController {
 
@@ -19,11 +21,7 @@ class AddProductController extends GetxController {
   }) async {
     try {
 
-      String accessToken = "";
-      await AppLocalStorage.getString(key: "Login").then((value) {
-        accessToken = jsonDecode(value!)["data"]["accessToken"];
-      });
-      print(accessToken);
+      LoginResponseModel loginResponseModel = LoginResponseModel.fromJson(jsonDecode(LocalStorageUtils.getString(AppConstantUtils.loginResponse)!),);
 
 
       Map<String,dynamic> data = {
@@ -51,7 +49,7 @@ class AddProductController extends GetxController {
         data: formData,
         options: dio.Options(headers: <String, String>{
           'Content-Type': 'multipart/form-data',
-          'Authorization': 'Bearer, ${accessToken}'
+          'Authorization': 'Bearer ${loginResponseModel.data?.accessToken}'
         }),
       );
       print(jsonEncode(response.data));

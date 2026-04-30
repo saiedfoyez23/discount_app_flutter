@@ -1,8 +1,8 @@
 import 'dart:convert';
-
 import 'package:dio/dio.dart';
-
+import 'package:discount_me_app/utils/utils.dart';
 import '../../../../res/res.dart';
+import '../../../view.dart';
 
 class VendorProfileDetailsController {
 
@@ -12,18 +12,14 @@ class VendorProfileDetailsController {
     required Function onExceptionFail
   }) async {
     try {
-      String accessToken = "";
-      await AppLocalStorage.getString(key: "Login").then((value) {
-        accessToken = jsonDecode(value!)["data"]["accessToken"];
-      });
-      print(accessToken);
+      LoginResponseModel loginResponseModel = LoginResponseModel.fromJson(jsonDecode(LocalStorageUtils.getString(AppConstantUtils.loginResponse)!),);
 
       var response = await Dio().get(
         "${AppApiUrl.serverLinkUrl()}vendors/profile",
         options: Options(headers: <String, String>{
           'Accept': 'application/json',
           'Content-Type': 'application/json',
-          'Authorization': 'Bearer, ${accessToken}'
+          'Authorization': 'Bearer ${loginResponseModel.data?.accessToken}'
         }),
       );
       print(response.data);

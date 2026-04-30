@@ -3,6 +3,9 @@ import 'dart:convert';
 import 'package:dio/dio.dart';
 import 'package:discount_me_app/res/res.dart';
 
+import '../../../../utils/utils.dart';
+import '../../../brokers/broker_profile_view/model/login_response_model.dart';
+
 class UserHomeController {
 
 
@@ -12,17 +15,15 @@ class UserHomeController {
     required Function onExceptionFail
   }) async {
     try {
-      String accessToken = "";
-      await AppLocalStorage.getString(key: "Login").then((value) {
-        accessToken = jsonDecode(value!)["data"]["accessToken"];
-      });
-      print(accessToken);
+
+      LoginResponseModel loginResponseModel = LoginResponseModel.fromJson(jsonDecode(LocalStorageUtils.getString(AppConstantUtils.loginResponse)!),);
 
       var response = await Dio().get(
         "${AppApiUrl.serverLinkUrl()}categories",
         options: Options(headers: <String, String>{
           'Accept': 'application/json',
           'Content-Type': 'application/json',
+          'Authorization': 'Bearer ${loginResponseModel.data?.accessToken}'
         }),
       );
       print(response.data);
@@ -42,17 +43,15 @@ class UserHomeController {
     required Function onExceptionFail
   }) async {
     try {
-      String accessToken = "";
-      await AppLocalStorage.getString(key: "Login").then((value) {
-        accessToken = jsonDecode(value!)["data"]["accessToken"];
-      });
-      print(accessToken);
+
+      LoginResponseModel loginResponseModel = LoginResponseModel.fromJson(jsonDecode(LocalStorageUtils.getString(AppConstantUtils.loginResponse)!),);
 
       var response = await Dio().get(
         "${AppApiUrl.serverLinkUrl()}products?sort=-ratings",
         options: Options(headers: <String, String>{
           'Accept': 'application/json',
           'Content-Type': 'application/json',
+          'Authorization': 'Bearer ${loginResponseModel.data?.accessToken}'
         }),
       );
       print(response.data);
@@ -72,17 +71,15 @@ class UserHomeController {
     required Function onExceptionFail
   }) async {
     try {
-      String accessToken = "";
-      await AppLocalStorage.getString(key: "Login").then((value) {
-        accessToken = jsonDecode(value!)["data"]["accessToken"];
-      });
-      print(accessToken);
+
+      LoginResponseModel loginResponseModel = LoginResponseModel.fromJson(jsonDecode(LocalStorageUtils.getString(AppConstantUtils.loginResponse)!),);
 
       var response = await Dio().get(
         "${AppApiUrl.serverLinkUrl()}stores?sort=-ratings",
         options: Options(headers: <String, String>{
           'Accept': 'application/json',
           'Content-Type': 'application/json',
+          'Authorization': 'Bearer ${loginResponseModel.data?.accessToken}'
         }),
       );
       print(response.data);

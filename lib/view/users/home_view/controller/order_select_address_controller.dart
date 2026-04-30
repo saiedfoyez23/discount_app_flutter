@@ -1,13 +1,12 @@
 import 'dart:convert';
 import 'package:dio/dio.dart';
-import 'package:discount_me_app/view/authenticaion/view/sign_in_screen.dart';
-import 'package:discount_me_app/view/users/home_view/model/get_all_product_cart_response.dart';
 import 'package:discount_me_app/view/users/home_view/model/user_billing_address_response_model.dart';
 import 'package:discount_me_app/view/users/home_view/model/user_shipping_address_response_model.dart';
 import 'package:discount_me_app/view/users/home_view/view/order_payment_view.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../../res/res.dart';
+import 'package:discount_me_app/view/view.dart';
 import '../../../../utils/utils.dart';
 
 
@@ -34,6 +33,7 @@ class OrderSelectAddressController extends GetxController {
   Rx<TextEditingController> billingHouseNoController = TextEditingController().obs;
   Rx<TextEditingController> billingEmailController = TextEditingController().obs;
   Rx<TextEditingController> billingPhoneController = TextEditingController().obs;
+
 
   //Shipping Address
   Rx<TextEditingController> shippingNameController = TextEditingController().obs;
@@ -94,11 +94,7 @@ class OrderSelectAddressController extends GetxController {
   }) async {
     try{
 
-      String accessToken = "";
-      await AppLocalStorage.getString(key: "Login").then((value) {
-        accessToken = jsonDecode(value!)["data"]["accessToken"];
-      });
-      print(accessToken);
+      LoginResponseModel loginResponseModel = LoginResponseModel.fromJson(jsonDecode(LocalStorageUtils.getString(AppConstantUtils.loginResponse)!),);
 
 
       print("${AppApiUrl.serverLinkUrl()}carts");
@@ -107,7 +103,7 @@ class OrderSelectAddressController extends GetxController {
         options: Options(headers: <String, String>{
           'Accept': 'application/json',
           'Content-Type': 'application/json',
-          'Authorization': 'Bearer, ${accessToken}'
+          'Authorization': 'Bearer ${loginResponseModel.data?.accessToken}'
         }),
       );
       print(response.data);
@@ -127,15 +123,11 @@ class OrderSelectAddressController extends GetxController {
     required BuildContext context,
   }) async {
 
-    String accessToken = "";
-    await AppLocalStorage.getString(key: "Login").then((value) {
-      accessToken = jsonDecode(value!)["data"]["accessToken"];
-    });
-    print(accessToken);
+    LoginResponseModel loginResponseModel = LoginResponseModel.fromJson(jsonDecode(LocalStorageUtils.getString(AppConstantUtils.loginResponse)!),);
 
     BaseApiUtils.get(
       url: ApiUtils.billingAddress,
-      authorization: accessToken,
+      authorization: loginResponseModel.data?.accessToken,
       onSuccess: (e,data) async {
         MessageSnackBarWidget.successSnackBarWidget(context: context, message: e);
         userBillingAddressResponseModel.value = UserBillingAddressResponseModel.fromJson(data);
@@ -166,15 +158,11 @@ class OrderSelectAddressController extends GetxController {
     required BuildContext context,
   }) async {
 
-    String accessToken = "";
-    await AppLocalStorage.getString(key: "Login").then((value) {
-      accessToken = jsonDecode(value!)["data"]["accessToken"];
-    });
-    print(accessToken);
+    LoginResponseModel loginResponseModel = LoginResponseModel.fromJson(jsonDecode(LocalStorageUtils.getString(AppConstantUtils.loginResponse)!),);
 
     BaseApiUtils.get(
       url: ApiUtils.shippingAddress,
-      authorization: accessToken,
+      authorization: loginResponseModel.data?.accessToken,
       onSuccess: (e,data) async {
         MessageSnackBarWidget.successSnackBarWidget(context: context, message: e);
         userShippingAddressResponseModel.value = UserShippingAddressResponseModel.fromJson(data);
@@ -202,6 +190,8 @@ class OrderSelectAddressController extends GetxController {
     isSubmit.value = true;
 
     List<Map<String,dynamic>> items = [];
+    LoginResponseModel loginResponseModel = LoginResponseModel.fromJson(jsonDecode(LocalStorageUtils.getString(AppConstantUtils.loginResponse)!),);
+
 
     getAllProductCartResponse.value.data?.carts?.forEach((value) {
       items.add({
@@ -241,16 +231,10 @@ class OrderSelectAddressController extends GetxController {
 
     print(data);
 
-    String accessToken = "";
-    await AppLocalStorage.getString(key: "Login").then((value) {
-      accessToken = jsonDecode(value!)["data"]["accessToken"];
-    });
-    print(accessToken);
-
     BaseApiUtils.post(
       url: ApiUtils.createPaymentResponse,
       data: data,
-      authorization: accessToken,
+      authorization: loginResponseModel.data?.accessToken,
       onSuccess: (e,data) async {
         MessageSnackBarWidget.successSnackBarWidget(context: context, message: e);
         isSubmit.value = false;

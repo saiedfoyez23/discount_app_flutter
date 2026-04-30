@@ -6,6 +6,7 @@ import 'package:get/get.dart';
 import 'package:discount_me_app/utils/utils.dart';
 import 'package:dio/dio.dart' as dio;
 import '../../../../res/res.dart';
+import '../../../view.dart';
 
 class RiderProfileController extends GetxController {
 
@@ -31,15 +32,12 @@ class RiderProfileController extends GetxController {
     required BuildContext context,
   }) async {
 
-    String accessToken = "";
-    await AppLocalStorage.getString(key: "Login").then((value) {
-      accessToken = jsonDecode(value!)["data"]["accessToken"];
-    });
-    print(accessToken);
+    LoginResponseModel loginResponseModel = LoginResponseModel.fromJson(jsonDecode(LocalStorageUtils.getString(AppConstantUtils.loginResponse)!),);
+
 
     BaseApiUtils.get(
       url: ApiUtils.riderProfile,
-      authorization: accessToken,
+      authorization: loginResponseModel.data?.accessToken,
       onSuccess: (e,data) async {
         isLoading.value = false;
         riderProfileResponse.value = RiderProfileResponse.fromJson(data);
@@ -66,11 +64,7 @@ class RiderProfileController extends GetxController {
   }) async {
     isLoading.value = true;
 
-    String accessToken = "";
-    await AppLocalStorage.getString(key: "Login").then((value) {
-      accessToken = jsonDecode(value!)["data"]["accessToken"];
-    });
-    print(accessToken);
+    LoginResponseModel loginResponseModel = LoginResponseModel.fromJson(jsonDecode(LocalStorageUtils.getString(AppConstantUtils.loginResponse)!),);
 
     final Map<String, dynamic> jsonData = {
       "name": name,
@@ -95,7 +89,7 @@ class RiderProfileController extends GetxController {
     await BaseApiUtils.put(
       url: ApiUtils.riderProfileUpdate(riderId),
       formData: formData,
-      authorization: accessToken,
+      authorization: loginResponseModel.data?.accessToken,
       onSuccess: (e,data) async {
         await getRiderProfileApiService(context: context);
       },

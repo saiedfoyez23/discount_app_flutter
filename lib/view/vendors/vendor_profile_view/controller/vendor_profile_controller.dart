@@ -7,6 +7,7 @@ import 'package:get/get.dart';
 import 'package:discount_me_app/utils/utils.dart';
 import 'package:flutter/material.dart';
 import '../../../../res/res.dart';
+import 'package:discount_me_app/view/view.dart';
 
 
 class VendorProfileController extends GetxController {
@@ -43,15 +44,12 @@ class VendorProfileController extends GetxController {
     required BuildContext context,
   }) async {
 
-    String accessToken = "";
-    await AppLocalStorage.getString(key: "Login").then((value) {
-      accessToken = jsonDecode(value!)["data"]["accessToken"];
-    });
-    print(accessToken);
+    LoginResponseModel loginResponseModel = LoginResponseModel.fromJson(jsonDecode(LocalStorageUtils.getString(AppConstantUtils.loginResponse)!),);
+
 
     BaseApiUtils.get(
       url: ApiUtils.vendorsProfile,
-      authorization: accessToken,
+      authorization: loginResponseModel.data?.accessToken,
       onSuccess: (e,data) async {
         isLoading.value = false;
         vendorProfileResponseModel.value = VendorProfileResponseModel.fromJson(data);
@@ -104,11 +102,7 @@ class VendorProfileController extends GetxController {
   }) async {
     isLoading.value = true;
 
-    String accessToken = "";
-    await AppLocalStorage.getString(key: "Login").then((value) {
-      accessToken = jsonDecode(value!)["data"]["accessToken"];
-    });
-    print(accessToken);
+    LoginResponseModel loginResponseModel = LoginResponseModel.fromJson(jsonDecode(LocalStorageUtils.getString(AppConstantUtils.loginResponse)!),);
 
     final Map<String, dynamic> jsonData = {
       "store_name": storeName,
@@ -133,7 +127,7 @@ class VendorProfileController extends GetxController {
     await BaseApiUtils.put(
       url: ApiUtils.vendorProfileUpdate(vendorId),
       formData: formData,
-      authorization: accessToken,
+      authorization: loginResponseModel.data?.accessToken,
       onSuccess: (e,data) async {
         await getVendorProfileController(context: context);
       },

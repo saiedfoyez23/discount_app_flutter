@@ -1,8 +1,9 @@
 import 'dart:convert';
 import 'dart:io';
 import 'package:dio/dio.dart' as dio;
-
+import 'package:discount_me_app/view/view.dart';
 import '../../../../res/res.dart';
+import '../../../../utils/utils.dart';
 
 
 class UserProfileEditController {
@@ -16,11 +17,7 @@ class UserProfileEditController {
   }) async {
     try {
 
-      String accessToken = "";
-      await AppLocalStorage.getString(key: "Login").then((value) {
-        accessToken = jsonDecode(value!)["data"]["accessToken"];
-      });
-      print(accessToken);
+      LoginResponseModel loginResponseModel = LoginResponseModel.fromJson(jsonDecode(LocalStorageUtils.getString(AppConstantUtils.loginResponse)!),);
 
       Map<String,dynamic> data = {
         "name": name,
@@ -40,7 +37,7 @@ class UserProfileEditController {
         data: formData,
         options: dio.Options(headers: <String, String>{
           'Content-Type': 'multipart/form-data',
-          'Authorization': 'Bearer, ${accessToken}'
+          'Authorization': 'Bearer ${loginResponseModel.data?.accessToken}'
         }),
       );
       print(jsonEncode(response.data));
@@ -65,11 +62,7 @@ class UserProfileEditController {
   }) async {
     try {
 
-      String accessToken = "";
-      await AppLocalStorage.getString(key: "Login").then((value) {
-        accessToken = jsonDecode(value!)["data"]["accessToken"];
-      });
-      print(accessToken);
+      LoginResponseModel loginResponseModel = LoginResponseModel.fromJson(jsonDecode(LocalStorageUtils.getString(AppConstantUtils.loginResponse)!),);
 
       String? mimeTypeImage = image.path == "" ? "" : CustomMimeType.getMimeType(image.path);
 
@@ -94,7 +87,7 @@ class UserProfileEditController {
         data: formData,
         options: dio.Options(headers: <String, String>{
           'Content-Type': 'multipart/form-data',
-          'Authorization': 'Bearer, ${accessToken}'
+          'Authorization': 'Bearer ${loginResponseModel.data?.accessToken}'
         }),
       );
       print(jsonEncode(response.data));
@@ -122,11 +115,7 @@ class UserProfileEditController {
   }) async {
     try {
 
-      String accessToken = "";
-      await AppLocalStorage.getString(key: "Login").then((value) {
-        accessToken = jsonDecode(value!)["data"]["accessToken"];
-      });
-      print(accessToken);
+      LoginResponseModel loginResponseModel = LoginResponseModel.fromJson(jsonDecode(LocalStorageUtils.getString(AppConstantUtils.loginResponse)!),);
 
       String? mimeTypeImage = image.path == "" ? "" : CustomMimeType.getMimeType(image.path);
 
@@ -154,7 +143,7 @@ class UserProfileEditController {
         data: formData,
         options: dio.Options(headers: <String, String>{
           'Content-Type': 'multipart/form-data',
-          'Authorization': 'Bearer, ${accessToken}'
+          'Authorization': 'Bearer ${loginResponseModel.data?.accessToken}'
         }),
       );
       print(jsonEncode(response.data));
@@ -179,11 +168,7 @@ class UserProfileEditController {
   }) async {
     try {
 
-      String accessToken = "";
-      await AppLocalStorage.getString(key: "Login").then((value) {
-        accessToken = jsonDecode(value!)["data"]["accessToken"];
-      });
-      print(accessToken);
+      LoginResponseModel loginResponseModel = LoginResponseModel.fromJson(jsonDecode(LocalStorageUtils.getString(AppConstantUtils.loginResponse)!),);
 
       Map<String,dynamic> data = {
         "email": email,
@@ -202,7 +187,7 @@ class UserProfileEditController {
         options: dio.Options(headers: <String, String>{
           'Accept': 'application/json',
           'Content-Type': 'application/json',
-          'Authorization': 'Bearer, ${accessToken}'
+          'Authorization': 'Bearer ${loginResponseModel.data?.accessToken}'
         }),
       );
       print(jsonEncode(response.statusCode));
@@ -226,18 +211,14 @@ class UserProfileEditController {
   }) async {
     try {
 
-      String accessToken = "";
-      await AppLocalStorage.getString(key: "Login").then((value) {
-        accessToken = jsonDecode(value!)["data"]["accessToken"];
-      });
-      print(accessToken);
+      LoginResponseModel loginResponseModel = LoginResponseModel.fromJson(jsonDecode(LocalStorageUtils.getString(AppConstantUtils.loginResponse)!),);
 
       var response = await dio.Dio().delete(
         "${AppApiUrl.serverLinkUrl()}users/${userId}",
         options: dio.Options(headers: <String, String>{
           'Accept': 'application/json',
           'Content-Type': 'application/json',
-          'Authorization': 'Bearer, ${accessToken}'
+          'Authorization': 'Bearer ${loginResponseModel.data?.accessToken}'
         }),
       );
       print(jsonEncode(response.statusCode));

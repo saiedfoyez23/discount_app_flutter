@@ -7,6 +7,7 @@ import 'package:get/get.dart';
 
 import '../../../../res/res.dart';
 import '../../../../utils/utils.dart';
+import '../../../view.dart';
 
 class RiderSettingController extends GetxController {
 
@@ -32,15 +33,12 @@ class RiderSettingController extends GetxController {
     required BuildContext context,
   }) async {
 
-    String accessToken = "";
-    await AppLocalStorage.getString(key: "Login").then((value) {
-      accessToken = jsonDecode(value!)["data"]["accessToken"];
-    });
-    print(accessToken);
+    LoginResponseModel loginResponseModel = LoginResponseModel.fromJson(jsonDecode(LocalStorageUtils.getString(AppConstantUtils.loginResponse)!),);
+
 
     BaseApiUtils.get(
       url: ApiUtils.riderProfile,
-      authorization: accessToken,
+      authorization: loginResponseModel.data?.accessToken,
       onSuccess: (e,data) async {
         isLoading.value = false;
         riderProfileResponse.value = RiderProfileResponse.fromJson(data);
@@ -65,15 +63,12 @@ class RiderSettingController extends GetxController {
 
     isSubmit.value = true;
 
-    String accessToken = "";
-    await AppLocalStorage.getString(key: "Login").then((value) {
-      accessToken = jsonDecode(value!)["data"]["accessToken"];
-    });
-    print(accessToken);
+    LoginResponseModel loginResponseModel = LoginResponseModel.fromJson(jsonDecode(LocalStorageUtils.getString(AppConstantUtils.loginResponse)!),);
+
 
     BaseApiUtils.delete(
       url: ApiUtils.riderProfileDelete(riderId),
-      authorization: accessToken,
+      authorization: loginResponseModel.data?.accessToken,
       onSuccess: (e,data) async {
         isSubmit.value = false;
         await AppLocalStorage.removeKey(key: "Login");

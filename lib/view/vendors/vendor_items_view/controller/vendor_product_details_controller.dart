@@ -1,11 +1,8 @@
 import 'dart:async';
 import 'dart:convert';
-import 'package:discount_me_app/view/users/home_view/model/single_product_response_model.dart';
-import 'package:discount_me_app/view/vendors/vendor_home_view/view/vendor_home.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
-import '../../../../res/res.dart';
+import 'package:discount_me_app/view/view.dart';
 import '../../../../utils/utils.dart';
 
 class VendorProductDetailsController extends GetxController {
@@ -61,15 +58,11 @@ class VendorProductDetailsController extends GetxController {
     required String productId,
   }) async {
 
-    String accessToken = "";
-    await AppLocalStorage.getString(key: "Login").then((value) {
-      accessToken = jsonDecode(value!)["data"]["accessToken"];
-    });
-    print(accessToken);
+    LoginResponseModel loginResponseModel = LoginResponseModel.fromJson(jsonDecode(LocalStorageUtils.getString(AppConstantUtils.loginResponse)!),);
 
     BaseApiUtils.get(
       url: ApiUtils.productDetails(productId),
-      authorization: accessToken,
+      authorization: loginResponseModel.data?.accessToken,
       onSuccess: (e,data) async {
         isLoading.value = false;
         singleProductResponseModel.value = SingleProductResponseModel.fromJson(data);
@@ -94,15 +87,11 @@ class VendorProductDetailsController extends GetxController {
 
     isDelete.value = true;
 
-    String accessToken = "";
-    await AppLocalStorage.getString(key: "Login").then((value) {
-      accessToken = jsonDecode(value!)["data"]["accessToken"];
-    });
-    print(accessToken);
+    LoginResponseModel loginResponseModel = LoginResponseModel.fromJson(jsonDecode(LocalStorageUtils.getString(AppConstantUtils.loginResponse)!),);
 
     BaseApiUtils.delete(
       url: ApiUtils.productDelete(productId),
-      authorization: accessToken,
+      authorization: loginResponseModel.data?.accessToken,
       onSuccess: (e,data) async {
         Get.back();
         MessageSnackBarWidget.errorSnackBarWidget(context: context, message: e);

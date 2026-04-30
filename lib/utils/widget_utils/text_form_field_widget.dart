@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_intl_phone_field/countries.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:discount_me_app/utils/utils.dart';
 import 'package:flutter_intl_phone_field/flutter_intl_phone_field.dart';
@@ -78,6 +79,7 @@ class TextFormFieldWidget {
     required BuildContext context,
     String? hintText,
     String? labelText,
+    required Key key,
     TextEditingController? controller,
     bool disableLengthCheck = true,
     String initialCountryCode = 'IN',
@@ -92,20 +94,24 @@ class TextFormFieldWidget {
     FontWeight fontWeight = FontWeight.w400,
     EdgeInsetsGeometry? contentPadding,
     void Function(PhoneNumber)? onChanged,
+    void Function(Country)? onCountryChanged,
   }) {
     return SizedBox(
       width: 428.w(context),
       child: IntlPhoneField(
+        key: key,
         controller: controller,
         disableLengthCheck: disableLengthCheck,
         initialCountryCode: initialCountryCode,
         onChanged: onChanged,
+        onCountryChanged: onCountryChanged,
         style: GoogleFonts.urbanist(
           fontStyle: FontStyle.normal,
           fontWeight: FontWeight.w600,
           fontSize: fontSize.sp(context),
           color: ColorUtils.black29,
         ),
+        maxLength: 20,
         decoration: InputDecoration(
           hintText: hintText,
           labelText: labelText,

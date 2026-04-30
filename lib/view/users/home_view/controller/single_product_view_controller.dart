@@ -1,7 +1,8 @@
 import 'dart:convert';
 
 import 'package:dio/dio.dart';
-
+import 'package:discount_me_app/view/view.dart';
+import 'package:discount_me_app/utils/utils.dart';
 import '../../../../res/res.dart';
 
 class SingleProductViewController {
@@ -14,17 +15,14 @@ class SingleProductViewController {
     required Function onExceptionFail
   }) async {
     try {
-      String accessToken = "";
-      await AppLocalStorage.getString(key: "Login").then((value) {
-        accessToken = jsonDecode(value!)["data"]["accessToken"];
-      });
-      print(accessToken);
+      LoginResponseModel loginResponseModel = LoginResponseModel.fromJson(jsonDecode(LocalStorageUtils.getString(AppConstantUtils.loginResponse)!),);
 
       var response = await Dio().get(
         "${AppApiUrl.serverLinkUrl()}products/${productId}",
         options: Options(headers: <String, String>{
           'Accept': 'application/json',
           'Content-Type': 'application/json',
+          'Authorization': 'Bearer ${loginResponseModel.data?.accessToken}'
         }),
       );
       print(response.data);

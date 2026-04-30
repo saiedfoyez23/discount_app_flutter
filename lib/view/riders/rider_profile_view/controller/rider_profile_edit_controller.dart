@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../../res/res.dart';
 import '../../../../utils/utils.dart';
+import '../../../view.dart';
 
 class RiderProfileEditController extends GetxController {
 
@@ -43,15 +44,11 @@ class RiderProfileEditController extends GetxController {
     required BuildContext context,
   }) async {
 
-    String accessToken = "";
-    await AppLocalStorage.getString(key: "Login").then((value) {
-      accessToken = jsonDecode(value!)["data"]["accessToken"];
-    });
-    print(accessToken);
+    LoginResponseModel loginResponseModel = LoginResponseModel.fromJson(jsonDecode(LocalStorageUtils.getString(AppConstantUtils.loginResponse)!),);
 
     BaseApiUtils.get(
       url: ApiUtils.riderProfile,
-      authorization: accessToken,
+      authorization: loginResponseModel.data?.accessToken,
       onSuccess: (e,data) async {
         isLoading.value = false;
         riderProfileResponse.value = RiderProfileResponse.fromJson(data);
@@ -87,11 +84,7 @@ class RiderProfileEditController extends GetxController {
   }) async {
     isSubmit.value = true;
 
-    String accessToken = "";
-    await AppLocalStorage.getString(key: "Login").then((value) {
-      accessToken = jsonDecode(value!)["data"]["accessToken"];
-    });
-    print(accessToken);
+    LoginResponseModel loginResponseModel = LoginResponseModel.fromJson(jsonDecode(LocalStorageUtils.getString(AppConstantUtils.loginResponse)!),);
 
     final Map<String, dynamic> jsonData = {
       "name": name,
@@ -129,7 +122,7 @@ class RiderProfileEditController extends GetxController {
     await BaseApiUtils.put(
       url: ApiUtils.riderProfileUpdate(riderId),
       formData: formData,
-      authorization: accessToken,
+      authorization: loginResponseModel.data?.accessToken,
       onSuccess: (e,data) async {
         MessageSnackBarWidget.successSnackBarWidget(context: context, message: e);
         isSubmit.value = false;
@@ -156,11 +149,7 @@ class RiderProfileEditController extends GetxController {
   }) async {
     try {
 
-      String accessToken = "";
-      await AppLocalStorage.getString(key: "Login").then((value) {
-        accessToken = jsonDecode(value!)["data"]["accessToken"];
-      });
-      print(accessToken);
+      LoginResponseModel loginResponseModel = LoginResponseModel.fromJson(jsonDecode(LocalStorageUtils.getString(AppConstantUtils.loginResponse)!),);
 
       Map<String,dynamic> data = {
         "oldPassword": oldPassword,
@@ -177,7 +166,7 @@ class RiderProfileEditController extends GetxController {
         options: dio.Options(headers: <String, String>{
           'Accept': 'application/json',
           'Content-Type': 'application/json',
-          'Authorization': 'Bearer, ${accessToken}'
+          'Authorization': 'Bearer, ${loginResponseModel.data?.accessToken}'
         }),
       );
       print(jsonEncode(response.statusCode));

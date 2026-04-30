@@ -18,7 +18,7 @@ class BaseApiUtils {
     return {
       "Content-Type": "application/json",
       "Accept": "application/json",
-      if (authorization != "") "Authorization": "Bearer, ${authorization}",
+      if (authorization != "") "Authorization": "Bearer ${authorization}",
     };
   }
 
@@ -27,7 +27,7 @@ class BaseApiUtils {
   }) {
     return {
       "Content-Type": "multipart/form-data",
-      if (authorization != "") "Authorization": "Bearer, ${authorization}",
+      if (authorization != "") "Authorization": "Bearer ${authorization}",
     };
   }
 
