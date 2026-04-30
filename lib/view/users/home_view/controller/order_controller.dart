@@ -1,7 +1,8 @@
 import 'dart:convert';
-
 import 'package:dio/dio.dart';
 import 'package:discount_me_app/res/res.dart';
+import '../../../../utils/utils.dart';
+import '../../../view.dart';
 
 class OrderController {
 
@@ -14,12 +15,7 @@ class OrderController {
   }) async {
     try{
 
-      String accessToken = "";
-      await AppLocalStorage.getString(key: "Login").then((value) {
-        accessToken = jsonDecode(value!)["data"]["accessToken"];
-      });
-      print(accessToken);
-
+      LoginResponseModel loginResponseModel = LoginResponseModel.fromJson(jsonDecode(LocalStorageUtils.getString(AppConstantUtils.loginResponse)!),);
 
       print("${AppApiUrl.serverLinkUrl()}carts");
       var response = await Dio().post(
@@ -27,7 +23,7 @@ class OrderController {
         options: Options(headers: <String, String>{
           'Accept': 'application/json',
           'Content-Type': 'application/json',
-          'Authorization': 'Bearer, ${accessToken}'
+          'Authorization': 'Bearer ${loginResponseModel.data?.accessToken}'
         }),
         data: jsonEncode(data),
       );
@@ -51,11 +47,7 @@ class OrderController {
   }) async {
     try{
 
-      String accessToken = "";
-      await AppLocalStorage.getString(key: "Login").then((value) {
-        accessToken = jsonDecode(value!)["data"]["accessToken"];
-      });
-      print(accessToken);
+      LoginResponseModel loginResponseModel = LoginResponseModel.fromJson(jsonDecode(LocalStorageUtils.getString(AppConstantUtils.loginResponse)!),);
 
 
       print("${AppApiUrl.serverLinkUrl()}carts");
@@ -64,7 +56,7 @@ class OrderController {
         options: Options(headers: <String, String>{
           'Accept': 'application/json',
           'Content-Type': 'application/json',
-          'Authorization': 'Bearer, ${accessToken}'
+          'Authorization': 'Bearer ${loginResponseModel.data?.accessToken}'
         }),
       );
       print(response.data);
@@ -87,11 +79,7 @@ class OrderController {
   }) async {
     try{
 
-      String accessToken = "";
-      await AppLocalStorage.getString(key: "Login").then((value) {
-        accessToken = jsonDecode(value!)["data"]["accessToken"];
-      });
-      print(accessToken);
+      LoginResponseModel loginResponseModel = LoginResponseModel.fromJson(jsonDecode(LocalStorageUtils.getString(AppConstantUtils.loginResponse)!),);
 
 
       print("${AppApiUrl.serverLinkUrl()}carts/increase/${productId}");
@@ -100,7 +88,7 @@ class OrderController {
         options: Options(headers: <String, String>{
           'Accept': 'application/json',
           'Content-Type': 'application/json',
-          'Authorization': 'Bearer, ${accessToken}'
+          'Authorization': 'Bearer ${loginResponseModel.data?.accessToken}'
         }),
       );
       print(response.data);
@@ -123,11 +111,7 @@ class OrderController {
   }) async {
     try{
 
-      String accessToken = "";
-      await AppLocalStorage.getString(key: "Login").then((value) {
-        accessToken = jsonDecode(value!)["data"]["accessToken"];
-      });
-      print(accessToken);
+      LoginResponseModel loginResponseModel = LoginResponseModel.fromJson(jsonDecode(LocalStorageUtils.getString(AppConstantUtils.loginResponse)!),);
 
 
       print("${AppApiUrl.serverLinkUrl()}carts/decrease/${productId}");
@@ -136,7 +120,7 @@ class OrderController {
         options: Options(headers: <String, String>{
           'Accept': 'application/json',
           'Content-Type': 'application/json',
-          'Authorization': 'Bearer, ${accessToken}'
+          'Authorization': 'Bearer ${loginResponseModel.data?.accessToken}'
         }),
       );
       print(response.data);
@@ -159,11 +143,7 @@ class OrderController {
   }) async {
     try{
 
-      String accessToken = "";
-      await AppLocalStorage.getString(key: "Login").then((value) {
-        accessToken = jsonDecode(value!)["data"]["accessToken"];
-      });
-      print(accessToken);
+      LoginResponseModel loginResponseModel = LoginResponseModel.fromJson(jsonDecode(LocalStorageUtils.getString(AppConstantUtils.loginResponse)!),);
 
 
       print("${AppApiUrl.serverLinkUrl()}carts/${cardId}");
@@ -172,7 +152,7 @@ class OrderController {
         options: Options(headers: <String, String>{
           'Accept': 'application/json',
           'Content-Type': 'application/json',
-          'Authorization': 'Bearer, ${accessToken}'
+          'Authorization': 'Bearer ${loginResponseModel.data?.accessToken}'
         }),
       );
       print(response.data);

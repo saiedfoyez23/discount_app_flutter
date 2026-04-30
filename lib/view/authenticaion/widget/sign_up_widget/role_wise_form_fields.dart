@@ -51,7 +51,7 @@ class RoleWiseFormField {
             context: context,
             maxLines: 5,
             hintText: "Enter description...",
-            controller: controller.restaurantNameController.value,
+            controller: controller.restaurantDescriptionController.value,
             keyboardType: TextInputType.emailAddress,
             borderColor: ColorUtils.whiteNormalActive,
             enableBorderColor: ColorUtils.whiteNormalActive,
@@ -173,6 +173,26 @@ class RoleWiseFormField {
 
           _space20(context: context),
         ],
+
+
+        if (isUser || isRider || isVendor)...[
+
+          _label(text: "Referral Code", context: context),
+          _space8(context: context),
+          TextFormFieldWidget.build(
+            context: context,
+            hintText: "Referral Code",
+            controller: controller.referralCodeController.value,
+            keyboardType: TextInputType.emailAddress,
+            borderColor: ColorUtils.whiteNormalActive,
+            enableBorderColor: ColorUtils.whiteNormalActive,
+            focusedBorderColor: ColorUtils.secondaryColor,
+          ),
+
+          _space20(context: context),
+
+        ],
+
 
         /// ================= CONTACT =================
         _label(text: "Contact", context: context),
@@ -430,7 +450,7 @@ class RoleWiseFormField {
         _space8(context: context),
         TextFormFieldWidget.build(
           context: context,
-          hintText: "First Name",
+          hintText: hint,
           controller: controller,
           keyboardType: TextInputType.emailAddress,
           borderColor: ColorUtils.whiteNormalActive,

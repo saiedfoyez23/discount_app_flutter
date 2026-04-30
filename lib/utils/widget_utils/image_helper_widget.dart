@@ -79,7 +79,7 @@ class ImageHelperWidget {
     double? height,
     double size = 150,
     double radius = 75,
-    double padding = 4.5,
+    double padding = 0,
     double? verticalPadding,
     double? horizontalPadding,
     Color backgroundColor = ColorUtils.orange213,

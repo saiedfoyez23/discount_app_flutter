@@ -1,5 +1,4 @@
 import 'package:discount_me_app/utils/utils.dart';
-import 'package:discount_me_app/view/brokers/broker_profile_view/view/broker_edit_profile_view.dart';
 import 'package:discount_me_app/view/brokers/broker_profile_view/view/broker_setting_view.dart';
 import 'package:discount_me_app/view/view.dart';
 import 'package:flutter/material.dart';

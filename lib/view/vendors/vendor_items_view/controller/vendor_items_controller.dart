@@ -1,11 +1,8 @@
 import 'dart:convert';
-
-import 'package:discount_me_app/view/users/home_view/model/categories_response_model.dart';
-import 'package:discount_me_app/view/users/home_view/model/products_response_model.dart';
 import 'package:discount_me_app/view/vendors/vendor_profile_view/model/vendor_profile_response_model.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
+import 'package:discount_me_app/view/view.dart';
 import '../../../../res/res.dart';
 import '../../../../utils/utils.dart';
 
@@ -39,15 +36,11 @@ class VendorItemsController extends GetxController {
     required BuildContext context,
   }) async {
 
-    String accessToken = "";
-    await AppLocalStorage.getString(key: "Login").then((value) {
-      accessToken = jsonDecode(value!)["data"]["accessToken"];
-    });
-    print(accessToken);
+    LoginResponseModel loginResponseModel = LoginResponseModel.fromJson(jsonDecode(LocalStorageUtils.getString(AppConstantUtils.loginResponse)!),);
 
     BaseApiUtils.get(
       url: ApiUtils.categoriesResponse,
-      authorization: accessToken,
+      authorization: loginResponseModel.data?.accessToken,
       onSuccess: (e,data) async {
         categoriesResponseModel.value = CategoriesResponseModel.fromJson(data);
       },
@@ -68,15 +61,11 @@ class VendorItemsController extends GetxController {
     required BuildContext context,
   }) async {
 
-    String accessToken = "";
-    await AppLocalStorage.getString(key: "Login").then((value) {
-      accessToken = jsonDecode(value!)["data"]["accessToken"];
-    });
-    print(accessToken);
+    LoginResponseModel loginResponseModel = LoginResponseModel.fromJson(jsonDecode(LocalStorageUtils.getString(AppConstantUtils.loginResponse)!),);
 
     BaseApiUtils.get(
       url: ApiUtils.vendorsProfile,
-      authorization: accessToken,
+      authorization: loginResponseModel.data?.accessToken,
       onSuccess: (e,data) async {
         vendorProfileResponseModel.value = VendorProfileResponseModel.fromJson(data);
         await getProductsByStoreController(context: context, storeId: vendorProfileResponseModel.value.data?.store?.sId ?? "");
@@ -99,15 +88,11 @@ class VendorItemsController extends GetxController {
     required String storeId,
   }) async {
 
-    String accessToken = "";
-    await AppLocalStorage.getString(key: "Login").then((value) {
-      accessToken = jsonDecode(value!)["data"]["accessToken"];
-    });
-    print(accessToken);
+    LoginResponseModel loginResponseModel = LoginResponseModel.fromJson(jsonDecode(LocalStorageUtils.getString(AppConstantUtils.loginResponse)!),);
 
     BaseApiUtils.get(
       url: ApiUtils.storeWiseProduct(storeId),
-      authorization: accessToken,
+      authorization: loginResponseModel.data?.accessToken,
       onSuccess: (e,data) async {
         isLoading.value = false;
         productsResponseModel.value = ProductsResponseModel.fromJson(data);
@@ -131,15 +116,11 @@ class VendorItemsController extends GetxController {
     required String categoryId,
   }) async {
 
-    String accessToken = "";
-    await AppLocalStorage.getString(key: "Login").then((value) {
-      accessToken = jsonDecode(value!)["data"]["accessToken"];
-    });
-    print(accessToken);
+    LoginResponseModel loginResponseModel = LoginResponseModel.fromJson(jsonDecode(LocalStorageUtils.getString(AppConstantUtils.loginResponse)!),);
 
     BaseApiUtils.get(
       url: ApiUtils.vendorsProfile,
-      authorization: accessToken,
+      authorization: loginResponseModel.data?.accessToken,
       onSuccess: (e,data) async {
         vendorProfileResponseModel.value = VendorProfileResponseModel.fromJson(data);
         await getProductsByCategoryController(

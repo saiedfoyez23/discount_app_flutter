@@ -9,6 +9,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../../res/res.dart';
 import '../../../../utils/utils.dart';
+import '';
+import '../../../view.dart';
 
 class VendorProductEditController extends GetxController {
 
@@ -79,15 +81,11 @@ class VendorProductEditController extends GetxController {
     required String productId,
   }) async {
 
-    String accessToken = "";
-    await AppLocalStorage.getString(key: "Login").then((value) {
-      accessToken = jsonDecode(value!)["data"]["accessToken"];
-    });
-    print(accessToken);
+    LoginResponseModel loginResponseModel = LoginResponseModel.fromJson(jsonDecode(LocalStorageUtils.getString(AppConstantUtils.loginResponse)!),);
 
     BaseApiUtils.get(
       url: ApiUtils.productDetails(productId),
-      authorization: accessToken,
+      authorization: loginResponseModel.data?.accessToken,
       onSuccess: (e,data) async {
         print(data);
         isLoading.value = false;
@@ -118,15 +116,12 @@ class VendorProductEditController extends GetxController {
   required BuildContext context,
     required Function onComplete,
   }) async {
-    String accessToken = "";
-    await AppLocalStorage.getString(key: "Login").then((value) {
-      accessToken = jsonDecode(value!)["data"]["accessToken"];
-    });
-    print(accessToken);
+
+    LoginResponseModel loginResponseModel = LoginResponseModel.fromJson(jsonDecode(LocalStorageUtils.getString(AppConstantUtils.loginResponse)!),);
 
     BaseApiUtils.get(
       url: ApiUtils.categoriesResponse,
-      authorization: accessToken,
+      authorization: loginResponseModel.data?.accessToken,
       onSuccess: (e,data) async {
         categoriesResponseModel.value = CategoriesResponseModel.fromJson(data);
         print(categoriesResponseModel.value.categories?.length);
@@ -158,11 +153,7 @@ class VendorProductEditController extends GetxController {
   }) async {
     isSubmit.value = true;
 
-    String accessToken = "";
-    await AppLocalStorage.getString(key: "Login").then((value) {
-      accessToken = jsonDecode(value!)["data"]["accessToken"];
-    });
-    print(accessToken);
+    LoginResponseModel loginResponseModel = LoginResponseModel.fromJson(jsonDecode(LocalStorageUtils.getString(AppConstantUtils.loginResponse)!),);
 
     // Clear old files
     filesList.clear();
@@ -204,7 +195,7 @@ class VendorProductEditController extends GetxController {
     await BaseApiUtils.put(
       url: ApiUtils.productEdit(productId),
       formData: formData,
-      authorization: accessToken,
+      authorization: loginResponseModel.data?.accessToken,
       onSuccess: (e,data) async {
         isSubmit.value = false;
         Get.off(()=>VendorHome(selectedIndex: 2,),duration: const Duration(milliseconds: 100),preventDuplicates: false);

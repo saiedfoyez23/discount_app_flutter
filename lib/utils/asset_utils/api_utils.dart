@@ -9,9 +9,20 @@ class ApiUtils {
   //user
   static const String loginResponse = "$baseUrl/auth/login";
   static const String createPaymentResponse = "$baseUrl/payments/create-payment-session"; //done
+  static const String createCheckoutSession = "$baseUrl/subscriptions/create-checkout-session"; //done
   static const String createOrderResponse = "$baseUrl/orders";//done
   static const String riderProfile = "$baseUrl/riders/profile";//done
   static const String brokersProfile = "$baseUrl/brokers/profile";//done
+  static const String brokerSignUp = "$baseUrl/auth/broker-sign-up";//done
+  static const String vendorSignUp = "$baseUrl/auth/vendor-sign-up";//done
+  static const String riderSignUp = "$baseUrl/auth/rider-sign-up";//done
+  static const String userSignUp = "$baseUrl/auth/user-sign-up";//done
+  static const String verifyOtp = "$baseUrl/auth/verify-otp";//done
+  static const String sendOtp = "$baseUrl/auth/send-otp";//done
+  static const String forgotEmailOtp = "$baseUrl/auth/send-otp";//done
+  static const String resetForgottenPassword = "$baseUrl/auth/reset-forgotten-password";
+
+
   static String riderProfileUpdate(String riderId) {
     return "$baseUrl/riders/$riderId";
   }
@@ -45,6 +56,9 @@ class ApiUtils {
   static String deleteBrokerProfile(String brokersId) {
     return "$baseUrl/brokers/${brokersId}";
   }
+
+  static const String getAllSetting = "$baseUrl/settings";
+
 
   static const String riderChangePassword = "$baseUrl/auth/change-password";
   static const String changePassword = "$baseUrl/auth/change-password";

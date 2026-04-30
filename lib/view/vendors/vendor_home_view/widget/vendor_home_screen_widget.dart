@@ -11,7 +11,7 @@ import 'package:skeletonizer/skeletonizer.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import '../../../../res/common_widget/RoundButton.dart';
 import '../../vendor_earning_view/view/vendor_earning_home_screen.dart';
-import '../../vendor_subscription_view/view/vendor_subscription_home_screen.dart';
+import '../../vendor_subscription_view/view/vendor_subscription_view.dart';
 import '../view/vendor_order_manage_screen.dart';
 
 class VendorHomeScreenWidget extends GetxController {
@@ -385,7 +385,7 @@ class VendorHomeScreenWidget extends GetxController {
                             title: "Subscription",
                             context: context,
                             onTap: () {
-                              Get.to(()=>VendorSubscriptionHomeScreen());
+                              Get.to(()=>VendorSubscriptionView());
                             },),
 
                           _itemWidget(

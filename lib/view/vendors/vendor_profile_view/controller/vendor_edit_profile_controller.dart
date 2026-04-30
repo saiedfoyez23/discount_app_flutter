@@ -10,6 +10,7 @@ import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import '../../../../res/res.dart';
 import '../../../../utils/utils.dart';
+import '../../../view.dart';
 
 class VendorEditProfileController extends GetxController {
 
@@ -88,15 +89,11 @@ class VendorEditProfileController extends GetxController {
     required BuildContext context,
   }) async {
 
-    String accessToken = "";
-    await AppLocalStorage.getString(key: "Login").then((value) {
-      accessToken = jsonDecode(value!)["data"]["accessToken"];
-    });
-    print(accessToken);
+    LoginResponseModel loginResponseModel = LoginResponseModel.fromJson(jsonDecode(LocalStorageUtils.getString(AppConstantUtils.loginResponse)!),);
 
     BaseApiUtils.get(
       url: ApiUtils.vendorsProfile,
-      authorization: accessToken,
+      authorization: loginResponseModel.data?.accessToken,
       onSuccess: (e,data) async {
         isLoading.value = false;
         vendorProfileResponseModel.value = VendorProfileResponseModel.fromJson(data);
@@ -134,11 +131,7 @@ class VendorEditProfileController extends GetxController {
   }) async {
     isSubmit.value = true;
 
-    String accessToken = "";
-    await AppLocalStorage.getString(key: "Login").then((value) {
-      accessToken = jsonDecode(value!)["data"]["accessToken"];
-    });
-    print(accessToken);
+    LoginResponseModel loginResponseModel = LoginResponseModel.fromJson(jsonDecode(LocalStorageUtils.getString(AppConstantUtils.loginResponse)!),);
 
     Map<String,dynamic> jsonData = {
       "email": email,
@@ -182,7 +175,7 @@ class VendorEditProfileController extends GetxController {
     await BaseApiUtils.put(
       url: ApiUtils.vendorProfileUpdate(vendorId),
       formData: formData,
-      authorization: accessToken,
+      authorization: loginResponseModel.data?.accessToken,
       onSuccess: (e,data) async {
         MessageSnackBarWidget.successSnackBarWidget(context: context, message: e);
         isSubmit.value = false;

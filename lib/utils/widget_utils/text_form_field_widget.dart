@@ -4,6 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:discount_me_app/utils/utils.dart';
 import 'package:flutter_intl_phone_field/flutter_intl_phone_field.dart';
 import 'package:flutter_intl_phone_field/phone_number.dart';
+import 'package:pinput/pinput.dart';
 
 class TextFormFieldWidget {
 
@@ -146,6 +147,41 @@ class TextFormFieldWidget {
     );
   }
 
+  Widget normalTextFormFiledWidget({
+    required BuildContext context,
+    required TextEditingController controller,
+    required String hintText,
+    TextInputType textInputType = TextInputType.text,
+    Widget? prefixIcon,
+    Widget? suffixIcon,
+  }) {
+    return TextFormField(
+      controller: controller,
+      keyboardType: textInputType,
+      style: GoogleFonts.urbanist(
+        fontWeight: FontWeight.w600,
+        fontSize: 18.sp(context),
+        color: ColorUtils.white253,
+      ),
+      decoration: InputDecoration(
+        contentPadding: EdgeInsets.symmetric(
+          vertical: 8.vpm(context),
+        ),
+        filled: true,
+        fillColor: Colors.transparent,
+        border: InputBorder.none,
+        prefixIcon: prefixIcon,
+        suffixIcon: suffixIcon,
+        hintText: hintText,
+        hintStyle: GoogleFonts.urbanist(
+          fontWeight: FontWeight.w600,
+          fontSize: 18.sp(context),
+          color: ColorUtils.white253,
+        ),
+      ),
+    );
+  }
+
 
   static Widget textFiledWithMaxLineBuild({
     required BuildContext context,
@@ -215,6 +251,84 @@ class TextFormFieldWidget {
       ),
     );
   }
+
+
+  static Widget otpInputFiledBuild({
+    required BuildContext context,
+    required ValueChanged<String> onCompleted,
+    required TextEditingController pinController,
+    int length = 6,
+    bool showCursor = true,
+    bool obscureText = false,
+    MainAxisAlignment mainAxisAlignment = MainAxisAlignment.spaceBetween,
+
+    // Sizing
+    double width = 48,
+    double height = 60,
+
+    // Text Style
+    double fontSize = 24,
+    Color textColor = ColorUtils.black89,
+    FontWeight fontWeight = FontWeight.w500,
+
+    // Box Decoration
+    Color backgroundColor = ColorUtils.white253,
+    double borderRadius = 8,
+
+    // Focused State
+    Color focusedBorderColor = ColorUtils.orange213,
+    double focusedBorderWidth = 1,
+
+    // Submitted State
+    Color submittedBorderColor = Colors.transparent,
+  }) {
+    final defaultPinTheme = PinTheme(
+      width: width.w(context),
+      height: height.h(context),
+      textStyle: GoogleFonts.poppins(
+        fontSize: fontSize.sp(context),
+        color: textColor,
+        fontWeight: fontWeight,
+      ),
+      decoration: BoxDecoration(
+        color: backgroundColor,
+        borderRadius: BorderRadius.circular(borderRadius.r(context)),
+        border: Border.all(color: Colors.transparent),
+      ),
+    );
+
+    final focusedPinTheme = defaultPinTheme.copyWith(
+      decoration: BoxDecoration(
+        color: backgroundColor,
+        borderRadius: BorderRadius.circular(borderRadius.r(context)),
+        border: Border.all(
+          color: focusedBorderColor,
+          width: focusedBorderWidth,
+        ),
+      ),
+    );
+
+    final submittedPinTheme = defaultPinTheme.copyWith(
+      decoration: BoxDecoration(
+        color: backgroundColor,
+        borderRadius: BorderRadius.circular(borderRadius.r(context)),
+        border: Border.all(color: submittedBorderColor),
+      ),
+    );
+
+    return Pinput(
+      controller: pinController,
+      length: length,
+      defaultPinTheme: defaultPinTheme,
+      focusedPinTheme: focusedPinTheme,
+      submittedPinTheme: submittedPinTheme,
+      showCursor: showCursor,
+      obscureText: obscureText,
+      onCompleted: onCompleted,
+      mainAxisAlignment: mainAxisAlignment,
+    );
+  }
+
 
 
 

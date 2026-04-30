@@ -1,8 +1,8 @@
 import 'dart:convert';
-
 import 'package:dio/dio.dart';
-
 import '../../../../res/res.dart';
+import '../../../../utils/utils.dart';
+import '../../../view.dart';
 
 class VendorProductCategoryDetailsController {
 
@@ -12,17 +12,15 @@ class VendorProductCategoryDetailsController {
     required Function onExceptionFail
   }) async {
     try {
-      String accessToken = "";
-      await AppLocalStorage.getString(key: "Login").then((value) {
-        accessToken = jsonDecode(value!)["data"]["accessToken"];
-      });
-      print(accessToken);
+
+      LoginResponseModel loginResponseModel = LoginResponseModel.fromJson(jsonDecode(LocalStorageUtils.getString(AppConstantUtils.loginResponse)!),);
 
       var response = await Dio().get(
         "${AppApiUrl.serverLinkUrl()}categories",
         options: Options(headers: <String, String>{
           'Accept': 'application/json',
           'Content-Type': 'application/json',
+          'Authorization': 'Bearer ${loginResponseModel.data?.accessToken}'
         }),
       );
       print(response.data);
@@ -45,17 +43,17 @@ class VendorProductCategoryDetailsController {
     required Function onExceptionFail
   }) async {
     try {
-      String accessToken = "";
-      await AppLocalStorage.getString(key: "Login").then((value) {
-        accessToken = jsonDecode(value!)["data"]["accessToken"];
-      });
-      print(accessToken);
+
+
+      LoginResponseModel loginResponseModel = LoginResponseModel.fromJson(jsonDecode(LocalStorageUtils.getString(AppConstantUtils.loginResponse)!),);
+
 
       var response = await Dio().get(
         "${AppApiUrl.serverLinkUrl()}products?sort=-ratings&store=${storeId}&category=${categoryId}",
         options: Options(headers: <String, String>{
           'Accept': 'application/json',
           'Content-Type': 'application/json',
+          'Authorization': 'Bearer ${loginResponseModel.data?.accessToken}'
         }),
       );
       print(response.data);
@@ -77,17 +75,16 @@ class VendorProductCategoryDetailsController {
     required Function onExceptionFail
   }) async {
     try {
-      String accessToken = "";
-      await AppLocalStorage.getString(key: "Login").then((value) {
-        accessToken = jsonDecode(value!)["data"]["accessToken"];
-      });
-      print(accessToken);
+
+      LoginResponseModel loginResponseModel = LoginResponseModel.fromJson(jsonDecode(LocalStorageUtils.getString(AppConstantUtils.loginResponse)!),);
+
 
       var response = await Dio().get(
         "${AppApiUrl.serverLinkUrl()}products?sort=-ratings&store=${storeId}",
         options: Options(headers: <String, String>{
           'Accept': 'application/json',
           'Content-Type': 'application/json',
+          'Authorization': 'Bearer ${loginResponseModel.data?.accessToken}'
         }),
       );
       print(response.data);
