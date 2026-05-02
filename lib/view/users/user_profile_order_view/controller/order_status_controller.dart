@@ -1,5 +1,5 @@
 import 'dart:convert';
-import 'package:discount_me_app/view/users/user_profile_order_view/view/user_order_delivered_status_screen.dart';
+import 'package:discount_me_app/view/users/user_profile_order_view/view/user_order_delivered_status_view.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:discount_me_app/view/view.dart';
@@ -139,7 +139,7 @@ class OrderStatusController extends GetxController {
 
   void selectOrder(OrderStatusModel order) {
     selectedOrder.value = order;
-    Get.to(()=> UserOrderDeliveredStatusScreen(orderId: selectedOrder.value!.id),duration: const Duration(milliseconds: 100),preventDuplicates: false);
+    Get.to(()=> UserOrderDeliveredStatusView(orderId: selectedOrder.value!.id),duration: const Duration(milliseconds: 100),preventDuplicates: false);
   }
 
   void updateStatus(String id, String status) {
