@@ -102,3 +102,9 @@ export 'brokers/broker_profile_view/controller/broker_edit_profile_controller.da
 export 'brokers/broker_profile_view/view/broker_setting_view.dart';
 export 'brokers/broker_profile_view/controller/broker_change_password_controller.dart';
 export 'brokers/broker_profile_view/controller/broker_setting_controller.dart';
+export 'users/user_profile_order_view/controller/order_status_controller.dart';
+export 'users/user_profile_order_view/model/order_status_model.dart';
+export 'users/user_profile_order_view/widget/order_card_widget.dart';
+export 'users/user_profile_order_view/model/get_all_order_retrieved_response_model.dart';
+export 'users/user_profile_order_view/model/get_order_details_retrieved_response_model.dart';
+export 'users/user_profile_order_view/controller/order_details_controller.dart';

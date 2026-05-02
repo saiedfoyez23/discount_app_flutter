@@ -3,7 +3,7 @@
 import 'package:discount_me_app/res/app_const/appNames.dart';
 import 'package:discount_me_app/res/app_const/import_list.dart';
 import 'package:get/get.dart';
-import 'package:discount_me_app/view/users/user_profile_order_view/view/user_profile_order_status_screen.dart';
+import 'package:discount_me_app/view/users/user_profile_order_view/view/user_profile_order_view.dart';
 
 class AppRoutes {
   static final routes = [
@@ -29,6 +29,5 @@ class AppRoutes {
     GetPage(name: RouteNames.userProfileSettingScreen, page: () => UserProfileSettingScreen()),
     GetPage(name: RouteNames.userChangePasswordScreen, page: () => UserChangePasswordScreen()),
     GetPage(name: RouteNames.userNotificationScreen, page: () => UserNotificationScreen()),
-    GetPage(name: RouteNames.userProfileOrderStatusScreen, page: () => UserProfileOrderStatusScreen()),
   ];
 }
