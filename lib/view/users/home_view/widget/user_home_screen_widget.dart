@@ -251,9 +251,9 @@ class UserHomeScreenWidget extends GetxController {
                             Row(
                               children: [
 
-                                GestureDetector(
+                                InkWell(
                                   onTap: () {
-                                    Get.to(UserNotificationScreen());
+                                    Get.off(()=>UserNotificationScreen(),duration: const Duration(milliseconds: 100),preventDuplicates: false);
                                   },
                                   child: Container(
                                     width: 45.w(context),
@@ -272,9 +272,9 @@ class UserHomeScreenWidget extends GetxController {
 
                                 CustomSpaceWidget.spacerWidget(spaceWidth: 6.w(context)),
 
-                                GestureDetector(
+                                InkWell(
                                   onTap: () {
-                                    Get.to(OrderScreen());
+                                    Get.off(()=>OrderScreen(),duration: const Duration(milliseconds: 100),preventDuplicates: false);
                                   },
                                   child: Container(
                                     width: 45.w(context),
@@ -388,7 +388,7 @@ class UserHomeScreenWidget extends GetxController {
                               child: TextButton(
                                 style: TextButton.styleFrom(padding: EdgeInsets.zero),
                                 onPressed: () async {
-                                  Get.off(ProductListScreen(categoryId: categoriesResponseModel.value.categories![index].sId,storeId: "",),preventDuplicates: false,duration: Duration(milliseconds: 100));
+                                  Get.off(()=>ProductListScreen(categoryId: categoriesResponseModel.value.categories![index].sId,storeId: "",),preventDuplicates: false,duration: Duration(milliseconds: 100));
                                 },
                                 child: Column(
                                   mainAxisAlignment: MainAxisAlignment.center,
