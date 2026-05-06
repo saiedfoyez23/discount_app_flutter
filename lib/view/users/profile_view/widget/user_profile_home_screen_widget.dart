@@ -9,7 +9,7 @@ import 'package:skeletonizer/skeletonizer.dart';
 import 'package:discount_me_app/utils/utils.dart';
 import '../../../../res/res.dart';
 import '../../../view.dart';
-import '../../user_profile_order_view/view/user_profile_order_status_screen.dart';
+import '../../user_profile_order_view/view/user_profile_order_view.dart';
 
 class UserProfileHomeScreenWidget extends GetxController {
 
@@ -328,7 +328,7 @@ class UserProfileHomeScreenWidget extends GetxController {
                         icon: Image.asset(ImageUtils.shoppingCardIcon, scale: 5,),
                         navigateIcon: Icon(Icons.navigate_next,size: 24.r(context), color: Colors.black54,),
                         onTap: () {
-                          Get.off(OrderScreen(),preventDuplicates: false,duration: Duration(milliseconds: 100));
+                          Get.off(()=>OrderScreen(),preventDuplicates: false,duration: Duration(milliseconds: 100));
                         },
                       ),
 
@@ -337,7 +337,7 @@ class UserProfileHomeScreenWidget extends GetxController {
                         icon: Image.asset(ImageUtils.userOrder, scale: 5,),
                         navigateIcon: Icon(Icons.navigate_next,size: 24.r(context), color: Colors.black54,),
                         onTap: () {
-                          Get.to(UserProfileOrderStatusScreen());
+                          Get.off(()=>UserProfileOrderView(),preventDuplicates: false,duration: Duration(milliseconds: 100));
                         },
                       ),
                       ProfileItemWidget(
