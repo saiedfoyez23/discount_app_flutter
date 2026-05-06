@@ -17,7 +17,7 @@ class _UserHomeState extends State<UserHome> {
   int _selectedIndex = 0;
   // List of body views based on selected index
   static List<Widget> _bodyOptions = <Widget>[
-    UserHomeScreen(),
+    UserHomeView(),
     CouponHomeScreen(),
     ExploreProductListScreen(),
     UserProfileHomeScreen(),

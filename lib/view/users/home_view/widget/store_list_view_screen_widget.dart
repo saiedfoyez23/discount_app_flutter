@@ -266,21 +266,21 @@ class StoreListViewScreenWidget extends GetxController {
                         ),
                         child: TextField(
                           onTap: () async {
-                            await UserHomeController.getStoriesApiService(
-                                onSuccess: (e) {
-                                  storesResponseModel.value = StoresResponseModel.fromJson(e);
-                                  stores.value = storesResponseModel.value.data!.data!;
-                                  isLoading.value = false;
-                                },
-                                onFail: (e) {
-                                  isLoading.value = false;
-                                  CustomSnackBar().errorCustomSnackBar(context: context, message: "${e}");
-                                },
-                                onExceptionFail: (e) {
-                                  isLoading.value = false;
-                                  CustomSnackBar().errorCustomSnackBar(context: context, message: "${e}");
-                                }
-                            );
+                            // await UserHomeController.getStoriesApiService(
+                            //     onSuccess: (e) {
+                            //       storesResponseModel.value = StoresResponseModel.fromJson(e);
+                            //       stores.value = storesResponseModel.value.data!.data!;
+                            //       isLoading.value = false;
+                            //     },
+                            //     onFail: (e) {
+                            //       isLoading.value = false;
+                            //       CustomSnackBar().errorCustomSnackBar(context: context, message: "${e}");
+                            //     },
+                            //     onExceptionFail: (e) {
+                            //       isLoading.value = false;
+                            //       CustomSnackBar().errorCustomSnackBar(context: context, message: "${e}");
+                            //     }
+                            // );
                           },
                           onChanged: (search) async {
                             stores.value = storesResponseModel.value.data!.data!.where((e)=>e.name.toString().contains(search)).toList();

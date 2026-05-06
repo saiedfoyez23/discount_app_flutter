@@ -1,96 +1,245 @@
+import 'dart:async';
 import 'dart:convert';
-
 import 'package:dio/dio.dart';
-import 'package:discount_me_app/res/res.dart';
+import 'package:discount_me_app/view/view.dart';
+import 'package:flutter/material.dart';
+import 'package:geocoding/geocoding.dart';
+import 'package:geolocator/geolocator.dart';
+import 'package:get/get.dart';
+import 'package:discount_me_app/utils/utils.dart';
+import '../../../../res/res.dart';
 
-import '../../../../utils/utils.dart';
-import '../../../brokers/broker_profile_view/model/login_response_model.dart';
-
-class UserHomeController {
+class UserHomeController extends GetxController {
 
 
-  static Future<void> getCategoriesApiService({
-    required Function onSuccess,
-    required Function onFail,
-    required Function onExceptionFail
-  }) async {
+  Future<void> determinePosition() async {
+    Position position = await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
+    print(position.longitude);
+    print(position.latitude);
+  }
+
+  Future<String> getAddressFromLatLng(double lat, double lng) async {
     try {
-
-      LoginResponseModel loginResponseModel = LoginResponseModel.fromJson(jsonDecode(LocalStorageUtils.getString(AppConstantUtils.loginResponse)!),);
-
-      var response = await Dio().get(
-        "${AppApiUrl.serverLinkUrl()}categories",
-        options: Options(headers: <String, String>{
-          'Accept': 'application/json',
-          'Content-Type': 'application/json',
-          'Authorization': 'Bearer ${loginResponseModel.data?.accessToken}'
-        }),
-      );
-      print(response.data);
-      if (response.statusCode == 200) {
-        onSuccess(response.data);
-      } else {
-        onFail(response.data["message"]);
-      }
-    } on DioException catch (e) {
-      onExceptionFail(e.response?.data["message"]);
+      List<Placemark> placemarks = await placemarkFromCoordinates(lat, lng);
+      Placemark place = placemarks[0];
+      return "${place.street}, ${place.locality}, ${place.subAdministrativeArea},${place.administrativeArea}, ${place.country}";
+    } catch (e) {
+      return "Place in not found";
     }
   }
 
-  static Future<void> getProductsApiService({
-    required Function onSuccess,
-    required Function onFail,
-    required Function onExceptionFail
-  }) async {
-    try {
+  RxList<String> imageList = [
+    ImageUtils.sliderImg,
+    ImageUtils.sliderImg,
+    ImageUtils.sliderImg,
+  ].obs;
 
-      LoginResponseModel loginResponseModel = LoginResponseModel.fromJson(jsonDecode(LocalStorageUtils.getString(AppConstantUtils.loginResponse)!),);
+  Rx<PageController> pageController = PageController(initialPage: 0).obs; // Start at the first page
+  var currentPage = 0.obs;
+  Timer? _timer;
 
-      var response = await Dio().get(
-        "${AppApiUrl.serverLinkUrl()}products?sort=-ratings",
-        options: Options(headers: <String, String>{
-          'Accept': 'application/json',
-          'Content-Type': 'application/json',
-          'Authorization': 'Bearer ${loginResponseModel.data?.accessToken}'
-        }),
-      );
-      print(response.data);
-      if (response.statusCode == 200) {
-        onSuccess(response.data);
-      } else {
-        onFail(response.data["message"]);
-      }
-    } on DioException catch (e) {
-      onExceptionFail(e.response?.data["message"]);
-    }
+
+
+  void onPageChanged(int page) {
+    currentPage.value = page;
   }
 
-  static Future<void> getStoriesApiService({
-    required Function onSuccess,
-    required Function onFail,
-    required Function onExceptionFail
-  }) async {
-    try {
-
-      LoginResponseModel loginResponseModel = LoginResponseModel.fromJson(jsonDecode(LocalStorageUtils.getString(AppConstantUtils.loginResponse)!),);
-
-      var response = await Dio().get(
-        "${AppApiUrl.serverLinkUrl()}stores?sort=-ratings",
-        options: Options(headers: <String, String>{
-          'Accept': 'application/json',
-          'Content-Type': 'application/json',
-          'Authorization': 'Bearer ${loginResponseModel.data?.accessToken}'
-        }),
-      );
-      print(response.data);
-      if (response.statusCode == 200) {
-        onSuccess(response.data);
+  Future<void> startAutoPlay() async {
+    _timer = Timer.periodic(const Duration(seconds: 5), (Timer timer) {
+      if (currentPage.value < 2) {
+        currentPage.value++;
       } else {
-        onFail(response.data["message"]);
+        currentPage.value = 0;
       }
-    } on DioException catch (e) {
-      onExceptionFail(e.response?.data["message"]);
-    }
+      if (pageController.value.hasClients) {
+        pageController.value.animateToPage(
+          currentPage.value,
+          duration: const Duration(milliseconds: 350),
+          curve: Curves.linearToEaseOut, // Swapping-like effect
+        );
+      }
+    });
+  }
+
+
+  Future<void> checkLocationPermission() async {
+    Future.delayed(const Duration(milliseconds: 500),() async {
+      LocationPermission permission;
+      var checkPermission = await Geolocator.checkPermission();
+      permission = await Geolocator.requestPermission();
+      print(permission);
+      if(permission == LocationPermission.denied){
+        await checkLocationPermission();
+      }else if(permission == LocationPermission.deniedForever){
+        CustomSnackBar().errorCustomSnackBar(context: context, message: "Location Permission need.Please go to app setting or unInstall the app");
+      }else {
+        await determinePosition();
+      }
+    });
+  }
+
+
+  RxBool isLoading = false.obs;
+  RxString selectProductId = "".obs;
+  RxBool isAdd = false.obs;
+  Rx<CategoriesResponseModel> categoriesResponseModel = CategoriesResponseModel().obs;
+  Rx<ProductsResponseModel> productsResponseModel = ProductsResponseModel().obs;
+  Rx<StoresResponseModel> storesResponseModel = StoresResponseModel().obs;
+  Rx<LoginResponseModel> loginResponseModel = LoginResponseModel.fromJson(jsonDecode(LocalStorageUtils.getString(AppConstantUtils.loginResponse)!),).obs;
+  Rx<UserProfileResponseModel> userProfileResponseModel = UserProfileResponseModel().obs;
+  BuildContext context;
+  UserHomeController({required this.context});
+
+
+
+
+  @override
+  void onInit() {
+    // TODO: implement onInit
+    super.onInit();
+    isLoading.value = true;
+    Future.delayed(Duration(seconds: 1),() async {
+      await getCategoriesApiService(
+        context: context,
+        onSuccess: () async {
+          await getProductsApiService(
+            context: context,
+            onSuccess: () async {
+              await getStoriesApiService(
+                context: context,
+                onSuccess: () async {
+                  await getUserProfileApiService(
+                    context: context,
+                    onSuccess: () async {
+                      await checkLocationPermission();
+                    },
+                  );
+                },
+              );
+            },
+          );
+        },
+      );
+    });
+  }
+
+
+  Future<void> getCategoriesApiService({
+    required BuildContext context,
+    required Function() onSuccess,
+  }) async {
+    await BaseApiUtils.get(
+      url: ApiUtils.categoriesResponse,
+      authorization: loginResponseModel.value.data?.accessToken,
+      onSuccess: (e,data) async {
+        categoriesResponseModel.value = CategoriesResponseModel.fromJson(data);
+        onSuccess();
+      },
+      onFail: (e,data) {
+        MessageSnackBarWidget.errorSnackBarWidget(context: context, message: e);
+        isLoading.value = false;
+      },
+      onExceptionFail: (e,data) {
+        MessageSnackBarWidget.errorSnackBarWidget(context: context, message: e);
+        isLoading.value = false;
+      },
+    );
+  }
+
+
+
+  Future<void> getProductsApiService({
+    required BuildContext context,
+    required Function() onSuccess,
+  }) async {
+    await BaseApiUtils.get(
+      url: ApiUtils.getAllProductsResponse,
+      authorization: loginResponseModel.value.data?.accessToken,
+      onSuccess: (e,data) async {
+        productsResponseModel.value = ProductsResponseModel.fromJson(data);
+        onSuccess();
+      },
+      onFail: (e,data) {
+        MessageSnackBarWidget.errorSnackBarWidget(context: context, message: e);
+        isLoading.value = false;
+      },
+      onExceptionFail: (e,data) {
+        MessageSnackBarWidget.errorSnackBarWidget(context: context, message: e);
+        isLoading.value = false;
+      },
+    );
+  }
+
+
+  Future<void> getStoriesApiService({
+    required BuildContext context,
+    required Function() onSuccess,
+  }) async {
+    await BaseApiUtils.get(
+      url: ApiUtils.getAllStoresResponse,
+      authorization: loginResponseModel.value.data?.accessToken,
+      onSuccess: (e,data) async {
+        storesResponseModel.value = StoresResponseModel.fromJson(data);
+        onSuccess();
+      },
+      onFail: (e,data) {
+        MessageSnackBarWidget.errorSnackBarWidget(context: context, message: e);
+        isLoading.value = false;
+      },
+      onExceptionFail: (e,data) {
+        MessageSnackBarWidget.errorSnackBarWidget(context: context, message: e);
+        isLoading.value = false;
+      },
+    );
+  }
+
+
+  Future<void> getUserProfileApiService({
+    required BuildContext context,
+    required Function() onSuccess,
+  }) async {
+    await BaseApiUtils.get(
+      url: ApiUtils.getUserProfileResponse,
+      authorization: loginResponseModel.value.data?.accessToken,
+      onSuccess: (e,data) async {
+        isLoading.value = false;
+        userProfileResponseModel.value = UserProfileResponseModel.fromJson(data);
+        onSuccess();
+      },
+      onFail: (e,data) {
+        MessageSnackBarWidget.errorSnackBarWidget(context: context, message: e);
+        isLoading.value = false;
+      },
+      onExceptionFail: (e,data) {
+        MessageSnackBarWidget.errorSnackBarWidget(context: context, message: e);
+        isLoading.value = false;
+      },
+    );
+  }
+
+
+  Future<void> addProductToCartResponse({
+    required BuildContext context,
+    required Map<String,dynamic> data,
+  }) async {
+    await BaseApiUtils.post(
+      url: ApiUtils.addToCartResponse,
+      data: data,
+      authorization: loginResponseModel.value.data?.accessToken,
+      onSuccess: (e,data) async {
+        isAdd.value = false;
+        Get.off(()=>OrderScreen(),preventDuplicates: false,duration: Duration(milliseconds: 100));
+      },
+      onFail: (e,data) {
+        MessageSnackBarWidget.errorSnackBarWidget(context: context, message: e);
+        isAdd.value = false;
+      },
+      onExceptionFail: (e,data) {
+        print(data);
+        MessageSnackBarWidget.errorSnackBarWidget(context: context, message: e);
+        isAdd.value = false;
+      },
+    );
   }
 
 

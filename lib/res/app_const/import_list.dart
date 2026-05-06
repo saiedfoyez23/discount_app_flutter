@@ -23,7 +23,6 @@ export 'package:discount_me_app/view/splash/screens/welcome_view.dart';
 export 'package:discount_me_app/view/users/home_view/view/user_home.dart';
 
 export 'package:discount_me_app/view/riders/home_view/view/rider_home_view.dart';
-export 'package:discount_me_app/view/users/home_view/view/user_home_screen.dart';
 export 'package:discount_me_app/view/users/home_view/widget/home_resturant_app_bar.dart';
 export 'package:discount_me_app/view/users/profile_view/widget/user_profile_appbar_widget.dart';
 

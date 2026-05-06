@@ -28,10 +28,9 @@ class ImageHelperWidget {
 
   static Widget styledImage({
     required BuildContext context,
-    double? height,
-    double? width,
+    required double height,
+    required double width,
     BoxFit fit = BoxFit.cover,
-    Color containerColor = ColorUtils.white217,
     double borderRadius = 10,
     String? imageAsset,
     String? imageUrl,
@@ -47,29 +46,22 @@ class ImageHelperWidget {
       provider = AssetImage(imageAsset);
     }
 
-    Widget? child;
-
-    if (provider != null) {
-      child = ClipRRect(
-        clipBehavior: Clip.antiAlias,
+    return SizedBox(
+      height: height.h(context),
+      width: width.w(context),
+      child: ClipRRect(
         borderRadius: BorderRadius.circular(borderRadius.r(context)),
-        child: Image(
-          height: height?.h(context),
-          width: width?.w(context),
-          image: provider,
+        child: provider != null ?
+        FittedBox(
           fit: fit,
+          child: Image(
+            image: provider,
+          ),
+        ) :
+        Container(
+          color: ColorUtils.white217,
         ),
-      );
-    }
-
-    return Container(
-      height: height?.h(context),
-      width: width?.w(context),
-      decoration: BoxDecoration(
-        color: containerColor,
-        borderRadius: BorderRadius.circular(borderRadius.r(context)),
       ),
-      child: child,
     );
   }
 

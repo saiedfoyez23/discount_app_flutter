@@ -110,19 +110,28 @@ class TextHelperClass {
     Color textColor = const Color.fromRGBO(35, 47, 48, 1),
     FontWeight fontWeight = FontWeight.w700,
     FontStyle fontStyle = FontStyle.normal,
-    TextOverflow textOverFlow = TextOverflow.visible,
-    // Container styling parameters
+
+    // ✅ Overflow & line control
+    TextOverflow textOverFlow = TextOverflow.ellipsis,
+    int? maxLines, // ✅ optional
+
+    // Container styling
     BorderRadiusGeometry? borderRadius,
     EdgeInsetsGeometry? padding,
-    // Shape parameters
+
+    // Shape
     BoxShape boxShape = BoxShape.rectangle,
     double? circleDiameter,
+
+    // Text decoration
     TextDecoration? textDecoration,
-    // Border parameters
+
+    // Border
     bool hasBorder = false,
     Color borderColor = Colors.black,
     double borderWidth = 1.0,
-    // Gradient parameters - optional
+
+    // Gradient
     Gradient? gradient,
     List<Color>? gradientColors,
     AlignmentGeometry gradientBegin = Alignment.topLeft,
@@ -131,8 +140,7 @@ class TextHelperClass {
 
     final EdgeInsetsGeometry actualPadding = padding ?? EdgeInsets.zero;
 
-    final Gradient? actualGradient = gradient ?? (gradientColors != null ?
-    LinearGradient(
+    final Gradient? actualGradient = gradient ?? (gradientColors != null ? LinearGradient(
       colors: gradientColors,
       begin: gradientBegin,
       end: gradientEnd,
@@ -142,24 +150,25 @@ class TextHelperClass {
       width: boxShape == BoxShape.circle ? (circleDiameter ?? 48) : null,
       height: boxShape == BoxShape.circle ? (circleDiameter ?? 48) : null,
       alignment: boxShape == BoxShape.circle ? Alignment.center : alignment,
+      padding: actualPadding,
       decoration: BoxDecoration(
         color: actualGradient != null ? null : containerColor,
         gradient: actualGradient,
         borderRadius: boxShape == BoxShape.rectangle ? borderRadius : null,
         shape: boxShape,
-        border: hasBorder ?
-        Border.all(
+        border: hasBorder ? Border.all(
           color: borderColor,
           width: borderWidth.w(context),
         ) : null,
       ),
-      padding: actualPadding,
+
       child: boxShape == BoxShape.circle ?
       FittedBox(
         fit: BoxFit.scaleDown,
         child: Text(
           text,
-          overflow: textOverFlow,
+          maxLines: maxLines,
+          overflow: maxLines != null ? textOverFlow : TextOverflow.visible,
           textAlign: TextAlign.center,
           style: GoogleFonts.poppins(
             fontSize: fontSize.sp(context),
@@ -172,7 +181,8 @@ class TextHelperClass {
       ) :
       Text(
         text,
-        overflow: textOverFlow,
+        maxLines: maxLines,
+        overflow: maxLines != null ? textOverFlow : TextOverflow.visible,
         textAlign: textAlign,
         style: GoogleFonts.urbanist(
           fontSize: fontSize.sp(context),
@@ -184,7 +194,6 @@ class TextHelperClass {
       ),
     );
   }
-
 
   static Widget headingTextWithoutWidthAdventPro({
     required BuildContext context,

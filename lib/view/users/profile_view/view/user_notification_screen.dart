@@ -58,7 +58,7 @@ class UserNotificationScreen extends StatelessWidget {
     );
   }
 
-  Widget _notificationWidget({required BuildContext context}){
+  Widget _notificationWidget({required BuildContext context}) {
     return Row(
       children: [
 

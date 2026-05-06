@@ -63,6 +63,7 @@ class ApiUtils {
 
   static const String getAllSetting = "$baseUrl/settings";
 
+
   static const String getAllOrdersResponse = "$baseUrl/orders/user";
   static const String riderChangePassword = "$baseUrl/auth/change-password";
   static const String changePassword = "$baseUrl/auth/change-password";
@@ -70,6 +71,14 @@ class ApiUtils {
   static const String shippingAddress = "$baseUrl/shipping-address";
   static const String categoriesResponse = "$baseUrl/categories";
   static const String vendorsProfile = "$baseUrl/vendors/profile";//done
+  static const String getAllProductsResponse = "$baseUrl/products?sort=-ratings"; //done
+  static const String getAllStoresResponse = "$baseUrl/stores?sort=-ratings"; //done
+  static const String getUserProfileResponse = "$baseUrl/users/profile"; //done
+  static const String addToCartResponse = "$baseUrl/carts"; //done
+
+
+
+
 
 
 }
