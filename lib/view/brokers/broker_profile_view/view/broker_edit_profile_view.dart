@@ -86,12 +86,13 @@ class BrokerEditProfileView extends StatelessWidget {
 
                                           // Profile Picture
                                           ImageHelperWidget.circleImageHelperWidget(
-                                            width: 170.w(context),
-                                            height: 170.h(context),
-                                            verticalPadding: 2.vpm(context),
-                                            horizontalPadding: 2.vpm(context),
+                                            width: 170,
+                                            height: 170,
+                                            context: context,
+                                            verticalPadding: 2,
+                                            horizontalPadding: 2,
                                             backgroundColor: ColorUtils.primaryColor,
-                                            radius: 75.r(context),
+                                            radius: 75,
                                             imageFile: brokerEditProfileController.getBrokerProfileResponseModel.value.data?.image != "" ?
                                             brokerEditProfileController.getBrokerProfileResponseModel.value.data?.image :  null,
                                             imageUrl: brokerEditProfileController.getBrokerProfileResponseModel.value.data?.image != null && brokerEditProfileController.profileImageFile.value.path == "" ?

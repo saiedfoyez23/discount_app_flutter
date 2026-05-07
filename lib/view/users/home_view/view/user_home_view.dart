@@ -217,6 +217,7 @@ class UserHomeView extends StatelessWidget {
 
                           SpaceHelperWidget.v(20.h(context)),
 
+
                           userHomeController.categoriesResponseModel.value.categories?.isNotEmpty == true ||
                               userHomeController.categoriesResponseModel.value.categories != null ?
                           Container(
@@ -232,42 +233,40 @@ class UserHomeView extends StatelessWidget {
                               physics: ScrollPhysics(),
                               shrinkWrap: true,
                               itemBuilder: (context, index) {
-                                return Obx(()=>Container(
-                                  height: 90.h(context),
-                                  width: 90.w(context),
-                                  alignment: Alignment.center,
-                                  decoration: BoxDecoration(
-                                    color: Colors.white, // Color of the container
-                                    boxShadow: [
-                                      BoxShadow(
-                                        color: Colors.black.withOpacity(0.08), // Shadow color with opacity
-                                        spreadRadius: 0, // Spread radius of the shadow
-                                        blurRadius: 8, // Blur radius of the shadow
-                                        offset: Offset(0, 2), // Offset of the shadow (x, y)
-                                      ),
-                                    ],
-                                    borderRadius: BorderRadius.circular(8.r(context)),
-                                  ),
-                                  margin: EdgeInsets.only(right: 10.rpm(context)),
-                                  child: TextButton(
-                                    style: TextButton.styleFrom(
-                                      padding: EdgeInsets.symmetric(
-                                        horizontal: 10.hpm(context),
-                                        vertical: 10.vpm(context),
-                                      ),
+                                return Obx(()=> InkWell(
+                                  onTap: () async {
+                                    Get.off(()=>ProductListScreen(categoryId: userHomeController.categoriesResponseModel.value.categories![index].sId,storeId: "",),preventDuplicates: false,duration: Duration(milliseconds: 100));
+                                  },
+                                  child: Container(
+                                    width: 90.w(context),
+                                    padding: EdgeInsets.symmetric(
+                                      horizontal: 10.hpm(context),
+                                      vertical: 10.vpm(context),
                                     ),
-                                    onPressed: () async {
-                                      Get.off(()=>ProductListScreen(categoryId: userHomeController.categoriesResponseModel.value.categories![index].sId,storeId: "",),preventDuplicates: false,duration: Duration(milliseconds: 100));
-                                    },
+                                    alignment: Alignment.center,
+                                    decoration: BoxDecoration(
+                                      color: Colors.white, // Color of the container
+                                      boxShadow: [
+                                        BoxShadow(
+                                          color: Colors.black.withOpacity(0.08), // Shadow color with opacity
+                                          spreadRadius: 0, // Spread radius of the shadow
+                                          blurRadius: 8, // Blur radius of the shadow
+                                          offset: Offset(0, 2), // Offset of the shadow (x, y)
+                                        ),
+                                      ],
+                                      borderRadius: BorderRadius.circular(8.r(context)),
+                                    ),
+                                    margin: EdgeInsets.only(right: 10.rpm(context)),
                                     child: Column(
                                       mainAxisAlignment: MainAxisAlignment.center,
                                       crossAxisAlignment: CrossAxisAlignment.center,
                                       children: [
                                         ImageHelperWidget.styledImage(
                                           context: context,
-                                          height: 50.h(context),
-                                          width: 50.w(context),
+                                          height: 40,
+                                          width: 40,
                                           borderRadius: 0,
+                                          fit: BoxFit.cover,
                                           imageUrl: userHomeController.categoriesResponseModel.value.categories?[index].icon,
                                         ),
 
@@ -390,6 +389,7 @@ class UserHomeView extends StatelessWidget {
                                           crossAxisAlignment: CrossAxisAlignment.start,
                                           children: [
                                             // Top Image with rounded corners
+
                                             userHomeController.productsResponseModel.value.data?.data?[index].images?.isEmpty == true ?
                                             Container(
                                               height: 140.h(context),
@@ -403,30 +403,32 @@ class UserHomeView extends StatelessWidget {
                                                 color: Color.fromRGBO(175, 175, 175, 1),
                                               ),
                                             ) :
-                                            ClipRRect(
-                                              borderRadius: BorderRadius.vertical(top: Radius.circular(15.r(context))),
-                                              child: Image.network(
-                                                userHomeController.productsResponseModel.value.data!.data![index].images!.first, // Replace with your image path
+                                            ImageHelperWidget.styledImage(
+                                              context: context,
+                                              height: 140.h(context),
+                                              width: double.infinity,
+                                              fit: BoxFit.cover,
+                                              topLeftRadius: 15,
+                                              topRightRadius: 15,
+                                              bottomLeftRadius: 0,
+                                              bottomRightRadius: 0,
+                                              imageUrl: userHomeController.productsResponseModel.value.data!.data![index].images!.first,
+                                              errorWidget: Container(
                                                 height: 140.h(context),
                                                 width: double.infinity,
-                                                fit: BoxFit.cover,
-                                                errorBuilder: (BuildContext context, Object exception, StackTrace? stackTrace) {
-                                                  return Container(
-                                                    height: 140.h(context),
-                                                    width: double.infinity,
-                                                    decoration: BoxDecoration(
-                                                      image: DecorationImage(
-                                                        image: AssetImage(ImageUtils.carousel1),
-                                                        fit: BoxFit.fill,
-                                                      ),
-                                                      borderRadius: BorderRadius.vertical(top: Radius.circular(15.r(context))),
-                                                      color: Color.fromRGBO(175, 175, 175, 1),
-                                                    ),
-                                                  );
-                                                },
-                                              ),
+                                                decoration: BoxDecoration(
+                                                  image: DecorationImage(
+                                                    image: AssetImage(ImageUtils.carousel1),
+                                                    fit: BoxFit.fill,
+                                                  ),
+                                                  borderRadius: BorderRadius.vertical(top: Radius.circular(15.r(context))),
+                                                  color: Color.fromRGBO(175, 175, 175, 1),
+                                                ),
+                                              )
                                             ),
 
+
+                                            
                                             // Padding around the text and details
                                             Padding(
                                               padding: EdgeInsets.symmetric(
@@ -622,30 +624,6 @@ class UserHomeView extends StatelessWidget {
                               ),
 
 
-
-                              // Container(
-                              //   height: 30.h(context),
-                              //   padding: EdgeInsets.symmetric(horizontal: 15.hpm(context), vertical: 5.vpm(context)),
-                              //   decoration: BoxDecoration(
-                              //     color: ColorUtils.orangeLight,
-                              //     borderRadius: BorderRadius.circular(50.r(context)),
-                              //   ),
-                              //   child: TextButton(
-                              //     style: TextButton.styleFrom(padding: EdgeInsets.zero),
-                              //     onPressed: () {
-                              //
-                              //       //Get.to(ResturantListScreen());
-                              //     },
-                              //     child: CustomTextContainer.plainTextContainerWidgetWithoutHeightWidth(
-                              //       plainTextString: "See all",
-                              //       plainTextStringFontSize: 14.sp(context),
-                              //       plainTextStringFontWeight: FontWeight.w400,
-                              //       plainTextContainerAlignment: Alignment.center,
-                              //       plainTextStringColor: ColorUtils.secondaryColor,
-                              //       plainTextStringTextAlign: TextAlign.center,
-                              //     ),
-                              //   ),
-                              // ),
                             ],
                           ),
 
@@ -702,29 +680,29 @@ class UserHomeView extends StatelessWidget {
                                         mainAxisAlignment: MainAxisAlignment.center,
                                         children: [
                                           // Restaurant Image
-                                          ClipRRect(
-                                            borderRadius: BorderRadius.circular(5.r(context)),
-                                            child: Image.network(
-                                              userHomeController.storesResponseModel.value.data!.data![index].coverImages!.first,
+
+                                          ImageHelperWidget.styledImage(
+                                            context: context,
+                                            height: 180,
+                                            width: 90,
+                                            fit: BoxFit.cover,
+                                            borderRadius: 5,
+                                            imageUrl: userHomeController.storesResponseModel.value.data!.data![index].coverImages!.first,
+                                            errorWidget: Container(
                                               height: 180.h(context),
                                               width: 90.w(context),
-                                              fit: BoxFit.cover,
-                                              errorBuilder: (BuildContext context, Object exception, StackTrace? stackTrace) {
-                                                return Container(
-                                                  height: 180.h(context),
-                                                  width: 90.w(context),
-                                                  decoration: BoxDecoration(
-                                                    image: DecorationImage(
-                                                      image: AssetImage(ImageUtils.carousel1),
-                                                      fit: BoxFit.fill,
-                                                    ),
-                                                    borderRadius: BorderRadius.circular(5.r(context)),
-                                                    color: Color.fromRGBO(175, 175, 175, 1),
-                                                  ),
-                                                );
-                                              },
+                                              decoration: BoxDecoration(
+                                                image: DecorationImage(
+                                                  image: AssetImage(ImageUtils.carousel1),
+                                                  fit: BoxFit.fill,
+                                                ),
+                                                borderRadius: BorderRadius.vertical(top: Radius.circular(15.r(context))),
+                                                color: Color.fromRGBO(175, 175, 175, 1),
+                                              ),
                                             ),
                                           ),
+
+
 
                                           SpaceHelperWidget.h(10.w(context)),
 
