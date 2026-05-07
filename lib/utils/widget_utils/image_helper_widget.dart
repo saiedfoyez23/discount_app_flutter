@@ -32,9 +32,14 @@ class ImageHelperWidget {
     required double width,
     BoxFit fit = BoxFit.cover,
     double borderRadius = 10,
+    double? topLeftRadius,
+    double? topRightRadius,
+    double? bottomLeftRadius,
+    double? bottomRightRadius,
     String? imageAsset,
     String? imageUrl,
     String? imageFile,
+    Widget? errorWidget,
   }) {
     ImageProvider? provider;
 
@@ -46,27 +51,39 @@ class ImageHelperWidget {
       provider = AssetImage(imageAsset);
     }
 
+    final border = BorderRadius.only(
+      topLeft: Radius.circular((topLeftRadius ?? borderRadius).r(context)),
+      topRight: Radius.circular((topRightRadius ?? borderRadius).r(context)),
+      bottomLeft: Radius.circular((bottomLeftRadius ?? borderRadius).r(context)),
+      bottomRight: Radius.circular((bottomRightRadius ?? borderRadius).r(context)),
+    );
+    
+
     return SizedBox(
       height: height.h(context),
       width: width.w(context),
       child: ClipRRect(
-        borderRadius: BorderRadius.circular(borderRadius.r(context)),
-        child: provider != null ?
-        FittedBox(
+        borderRadius: border,
+        child: provider != null ? Image(
+          image: provider,
           fit: fit,
-          child: Image(
-            image: provider,
-          ),
-        ) :
-        Container(
-          color: ColorUtils.white217,
-        ),
+          height: height.h(context),
+          width: width.w(context),
+          errorBuilder: (context, error, stackTrace) {
+            return errorWidget ?? Icon(
+              Icons.broken_image, 
+              color: ColorUtils.white221,
+              size: 40.r(context),
+            );
+          },
+        ) : SizedBox.shrink(),
       ),
     );
   }
 
 
   static Widget circleImageHelperWidget({
+    required BuildContext context,
     double? width,
     double? height,
     double size = 150,
@@ -137,11 +154,11 @@ class ImageHelperWidget {
 
 
     return Container(
-      width: effectiveWidth,
-      height: effectiveHeight,
+      width: effectiveWidth.w(context),
+      height: effectiveHeight.h(context),
       padding: EdgeInsets.symmetric(
-        vertical: effectiveVerticalPadding,
-        horizontal: effectiveHorizontalPadding,
+        vertical: effectiveVerticalPadding.vpm(context),
+        horizontal: effectiveHorizontalPadding.hpm(context),
       ),
       decoration: BoxDecoration(
         color: backgroundColor,
@@ -156,8 +173,5 @@ class ImageHelperWidget {
       child: imageWidget,
     );
   }
-
-
-
 
 }

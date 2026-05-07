@@ -18,12 +18,13 @@ class CustomBrokerAppBar extends StatelessWidget {
 
 
               ImageHelperWidget.circleImageHelperWidget(
-                width: 50.w(context),
-                height: 50.h(context),
-                verticalPadding: 1.vpm(context),
-                horizontalPadding: 1.hpm(context),
+                width: 50,
+                height: 50,
+                verticalPadding: 1,
+                horizontalPadding: 1,
                 backgroundColor: ColorUtils.orange213,
-                radius: 25.r(context),
+                radius: 25,
+                context: context,
                 imageAsset: brokerHomeController.getBrokerProfileResponseModel.value.data?.image ==  null ? ImageUtils.noImage : null,
                 imageUrl: brokerHomeController.getBrokerProfileResponseModel.value.data?.image,
               ),

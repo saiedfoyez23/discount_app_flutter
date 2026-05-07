@@ -71,12 +71,13 @@ class BrokerProfileHomeView extends StatelessWidget {
 
                                         // Profile Picture
                                         ImageHelperWidget.circleImageHelperWidget(
-                                          width: 170.w(context),
-                                          height: 170.h(context),
-                                          verticalPadding: 2.vpm(context),
-                                          horizontalPadding: 2.vpm(context),
+                                          width: 170,
+                                          height: 170,
+                                          verticalPadding: 2,
+                                          horizontalPadding: 2,
                                           backgroundColor: ColorUtils.primaryColor,
-                                          radius: 75.r(context),
+                                          radius: 75,
+                                          context: context,
                                           imageFile: brokerProfileHomeController.getBrokerProfileResponseModel.value.data?.image != "" ?
                                           brokerProfileHomeController.getBrokerProfileResponseModel.value.data?.image :  null,
                                           imageUrl: brokerProfileHomeController.getBrokerProfileResponseModel.value.data?.image != null && brokerProfileHomeController.profileImageFile.value.path == "" ?

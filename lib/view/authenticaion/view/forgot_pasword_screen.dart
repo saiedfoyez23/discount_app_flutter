@@ -133,11 +133,12 @@ class ForgotPasswordScreen extends StatelessWidget {
 
 
                                     ImageHelperWidget.circleImageHelperWidget(
-                                      height: 80.h(context),
-                                      width: 80.w(context),
-                                      radius: 40.r(context),
+                                      height: 80,
+                                      width: 80,
+                                      radius: 40,
                                       imageAsset: ImageUtils.forgotPasswordScreenEmailImage,
-                                      fit: BoxFit.fitWidth
+                                      fit: BoxFit.fitWidth,
+                                      context: context,
                                     ),
 
 

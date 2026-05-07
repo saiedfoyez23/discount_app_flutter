@@ -36,14 +36,15 @@ class ProfileImagePicker {
 
                     // Profile Picture
                     ImageHelperWidget.circleImageHelperWidget(
-                      width: 150.w(context),
-                      height: 150.h(context),
-                      verticalPadding: 2.vpm(context),
-                      horizontalPadding: 2.vpm(context),
+                      width: 150,
+                      height: 150,
+                      verticalPadding: 2,
+                      horizontalPadding: 2,
                       backgroundColor: ColorUtils.green176,
-                      radius: 75.r(context),
+                      radius: 75,
                       imageFile: signUpController.imageFile.value.path != "" ? signUpController.imageFile.value.path :  null,
                       imageAsset: signUpController.imageFile.value.path != "" ? null : ImageUtils.imagePickerIcon,
+                      context: context
                     ),
 
 
