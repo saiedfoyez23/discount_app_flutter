@@ -23,7 +23,7 @@ class SplashController extends GetxController{
       if(loginResponseModel.value.data != null) {
         Map<String, dynamic> decodedToken = parseJwt(loginResponseModel.value.data!.accessToken);
         if(decodedToken['role'] == "user") {
-          Get.off(()=>UserHome(selectedIndex: 0,),duration: const Duration(milliseconds: 100),preventDuplicates: false);
+          Get.off(()=>UserDashboardView(index: 0,),duration: const Duration(milliseconds: 100),preventDuplicates: false);
         } else if (decodedToken['role'] == "rider") {
           Get.off(()=>RiderHome(selectedIndex: 0),duration: const Duration(milliseconds: 100),preventDuplicates: false);
         } else if (decodedToken['role'] == "vendor") {

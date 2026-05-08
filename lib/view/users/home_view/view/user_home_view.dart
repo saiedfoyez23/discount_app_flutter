@@ -1,4 +1,3 @@
-import 'package:discount_me_app/res/common_widget/RoundTextField.dart';
 import 'package:discount_me_app/view/view.dart';
 import 'package:flutter/material.dart';
 import 'package:discount_me_app/utils/utils.dart';
@@ -29,7 +28,7 @@ class UserHomeView extends StatelessWidget {
           enabled: userHomeController.isLoading.value,
           child: RefreshIndicator(
             onRefresh: () async {
-              Get.off(()=>UserHome(selectedIndex: 0,),duration: const Duration(milliseconds: 100),preventDuplicates: false);
+              Get.off(()=>UserDashboardView(index: 0,),duration: const Duration(milliseconds: 100),preventDuplicates: false);
             },
             child: CustomScrollView(
               slivers: [
@@ -55,35 +54,27 @@ class UserHomeView extends StatelessWidget {
                                   child: Row(
                                     children: [
 
-                                      userHomeController.userProfileResponseModel.value.data?.image == null ?
-                                      Container(
-                                        width: 40.w(context),
-                                        height: 40.h(context),
-                                        decoration: BoxDecoration(
-                                            shape: BoxShape.circle,
-                                            color: Colors.lightBlueAccent,
-                                            image: DecorationImage(
-                                              image: AssetImage(ImageUtils.homeProfileAvatar),
-                                              fit: BoxFit.fitHeight,
-                                            )
-                                        ),
-                                      ) :
-                                      Container(
-                                        width: 40.w(context),
-                                        height: 40.h(context),
-                                        decoration: BoxDecoration(
-                                            shape: BoxShape.circle,
-                                            color: Colors.lightBlueAccent,
-                                            image: DecorationImage(
-                                              image: NetworkImage(userHomeController.userProfileResponseModel.value.data!.image),
-                                              fit: BoxFit.fitHeight,
-                                            )
-                                        ),
+
+                                      ImageHelperWidget.circleImageHelperWidget(
+                                        width: 40,
+                                        height: 40,
+                                        verticalPadding: 1,
+                                        horizontalPadding: 1,
+                                        backgroundColor: ColorUtils.orange213,
+                                        radius: 25,
+                                        context: context,
+                                        imageAsset: userHomeController.userProfileResponseModel.value.data?.image ==  null ? ImageUtils.noImage : null,
+                                        imageUrl: userHomeController.userProfileResponseModel.value.data?.image,
                                       ),
 
                                       SpaceHelperWidget.h(20.w(context)),
 
-                                      Icon(Icons.location_on, size: 16.r(context),),
+                                      ImageHelperWidget.assetImageWidget(
+                                        context: context,
+                                        height: 24.h(context),
+                                        width: 24.w(context),
+                                        imageString: ImageUtils.locationImage,
+                                      ),
 
 
                                       SpaceHelperWidget.h(5.w(context)),
@@ -165,13 +156,35 @@ class UserHomeView extends StatelessWidget {
 
 
                           //======================Search Section================================
-                          RoundTextField(
-                            hint: "Search",
-                            prefixIcon: Icon(Icons.search_outlined),
+
+
+                          TextFormFieldWidget.build(
+                            context: context,
+                            hintText: "Search",
+                            controller: userHomeController.searchController.value,
+                            keyboardType: TextInputType.emailAddress,
+                            fillColor: ColorUtils.white253,
+                            readOnly: true,
                             onTap: () async {
-                              Get.off(ProductListScreen(categoryId: "",storeId: "",),preventDuplicates: false,duration: Duration(milliseconds: 100));
+                              Get.off(()=>ProductListScreen(categoryId: "",storeId: "",),preventDuplicates: false,duration: Duration(milliseconds: 100));
                             },
+                            borderColor: ColorUtils.white202,
+                            enableBorderColor: ColorUtils.white202,
+                            focusedBorderColor: ColorUtils.secondaryColor,
+                            prefixIcon: Padding(
+                              padding: EdgeInsets.all(20.r(context)),
+                              child: InkWell(
+                                onTap: () async {},
+                                child: ImageHelperWidget.assetImageWidget(
+                                  context: context,
+                                  height: 24.h(context),
+                                  width: 24.w(context),
+                                  imageString: ImageUtils.searchNormalImage,
+                                ),
+                              ),
+                            ),
                           ),
+
 
 
                           SpaceHelperWidget.v(20.h(context)),
@@ -183,7 +196,8 @@ class UserHomeView extends StatelessWidget {
                             decoration: BoxDecoration(
                               color: Colors.transparent,
                             ),
-                            child: userHomeController.imageList.isNotEmpty == true ?
+                            child: userHomeController.getAllBannersResponseModel.value.data?.isNotEmpty == true ||
+                                userHomeController.getAllBannersResponseModel.value.data != null ?
                             Column(
                               children: [
                                 Expanded(
@@ -195,19 +209,22 @@ class UserHomeView extends StatelessWidget {
                                     scrollDirection: Axis.horizontal,
                                     itemCount: userHomeController.imageList.length,
                                     itemBuilder: (context, index) {
-                                      return _buildScalingTransition(userHomeController.imageList[index], index);
+                                      return _buildScalingTransition(
+                                        image: userHomeController.getAllBannersResponseModel.value.data?[index].image,
+                                        index: index,
+                                      );
                                     },
                                   ),
                                 ),
                                 SpaceHelperWidget.v(10.h(context)),
                                 SmoothPageIndicator(
                                   controller: userHomeController.pageController.value,
-                                  count: userHomeController.imageList.length,
+                                  count: userHomeController.getAllBannersResponseModel.value.data!.length,
                                   effect: ExpandingDotsEffect(
-                                    activeDotColor: Colors.deepPurple,
-                                    dotColor: Colors.deepPurple.shade100,
-                                    dotHeight: 10,
-                                    dotWidth: 10,
+                                    activeDotColor: ColorUtils.black51,
+                                    dotColor: ColorUtils.black51,
+                                    dotHeight: 11.h(context),
+                                    dotWidth: 11.w(context),
                                   ),
                                 ),
                               ],
@@ -266,7 +283,7 @@ class UserHomeView extends StatelessWidget {
                                           height: 40,
                                           width: 40,
                                           borderRadius: 0,
-                                          fit: BoxFit.cover,
+                                          fit: BoxFit.fill,
                                           imageUrl: userHomeController.categoriesResponseModel.value.categories?[index].icon,
                                         ),
 
@@ -392,7 +409,7 @@ class UserHomeView extends StatelessWidget {
 
                                             userHomeController.productsResponseModel.value.data?.data?[index].images?.isEmpty == true ?
                                             Container(
-                                              height: 140.h(context),
+                                              height: 180.h(context),
                                               width: double.infinity,
                                               decoration: BoxDecoration(
                                                 image: DecorationImage(
@@ -405,9 +422,9 @@ class UserHomeView extends StatelessWidget {
                                             ) :
                                             ImageHelperWidget.styledImage(
                                               context: context,
-                                              height: 140.h(context),
+                                              height: 180.h(context),
                                               width: double.infinity,
-                                              fit: BoxFit.cover,
+                                              fit: BoxFit.fill,
                                               topLeftRadius: 15,
                                               topRightRadius: 15,
                                               bottomLeftRadius: 0,
@@ -787,7 +804,7 @@ class UserHomeView extends StatelessWidget {
                                                   textColor: ColorUtils.blackColor,
                                                   textAlign: TextAlign.start,
                                                   alignment: Alignment.centerLeft,
-                                                  maxLines: 2,
+                                                  maxLines: 3,
                                                   textOverFlow: TextOverflow.ellipsis
                                                 ),
 
@@ -802,7 +819,12 @@ class UserHomeView extends StatelessWidget {
                                                       return Row(
                                                         children: [
 
-                                                          Icon(Icons.location_on, color: Colors.grey, size: 16.r(context)),
+                                                          ImageHelperWidget.assetImageWidget(
+                                                            context: context,
+                                                            height: 24.h(context),
+                                                            width: 24.w(context),
+                                                            imageString: ImageUtils.locationImage,
+                                                          ),
 
                                                           SpaceHelperWidget.v(6.h(context)),
 
@@ -861,16 +883,32 @@ class UserHomeView extends StatelessWidget {
   }
 
 
-  Widget _buildScalingTransition(String image, int index) {
+  Widget _buildScalingTransition({required String image, required int index}) {
     return TweenAnimationBuilder(
       tween: Tween<double>(begin: 0.8, end: 1.0), // Scaling from 50% to 100%
       duration: const Duration(milliseconds: 600),
       builder: (context, double scale, child) {
         return Transform.scale(
           scale: scale, // Scale the image
-          child: Image.asset(
-            image,
+          child: ImageHelperWidget.styledImage(
+            context: context,
+            height: 250,
+            width: 428,
             fit: BoxFit.fill,
+            borderRadius: 10,
+            imageUrl: image,
+            errorWidget: Container(
+              height: 250.h(context),
+              width: 428.w(context),
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                  image: AssetImage(ImageUtils.carousel1),
+                  fit: BoxFit.fill,
+                ),
+                borderRadius: BorderRadius.vertical(top: Radius.circular(15.r(context))),
+                color: Color.fromRGBO(175, 175, 175, 1),
+              ),
+            ),
           ),
         );
       },

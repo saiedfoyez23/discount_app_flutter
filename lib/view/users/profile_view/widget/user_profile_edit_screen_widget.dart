@@ -92,7 +92,7 @@ class UserProfileEditScreenWidget extends GetxController {
                     UserProfileAppbarWidget(
                       title: "Edit Profile",
                       onTap: () {
-                        Get.off(()=>UserHome(selectedIndex: 3,),duration: const Duration(milliseconds: 100),preventDuplicates: false);
+                        Get.off(()=>UserDashboardView(index: 3,),duration: const Duration(milliseconds: 100),preventDuplicates: false);
                       },
                     ),
 
@@ -392,7 +392,7 @@ class UserProfileEditScreenWidget extends GetxController {
                             contact: contact.value,
                             onSuccess: (e) {
                               isSubmit.value = false;
-                              Get.off(()=>UserHome(selectedIndex: 3,),duration: const Duration(milliseconds: 100),preventDuplicates: false);
+                              Get.off(()=>UserDashboardView(index: 3,),duration: const Duration(milliseconds: 100),preventDuplicates: false);
                               CustomSnackBar().successCustomSnackBar(context: context, message: "${e}");
                             },
                             onFail: (e) {

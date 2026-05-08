@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
+import 'package:discount_me_app/view/view.dart';
 import 'package:discount_me_app/utils/utils.dart';
 
 class TransactionSuccessScreen extends StatelessWidget {
@@ -163,7 +164,7 @@ class TransactionSuccessScreen extends StatelessWidget {
                                 title: "Close",
                                 buttonColor: ColorUtils.primaryColor,
                                 onTap: () {
-                                  Get.to(UserHome(selectedIndex: 2,));
+                                  Get.to(()=>UserDashboardView(index: 2,));
                                 },
                               ),
                             ],

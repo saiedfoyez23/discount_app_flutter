@@ -73,7 +73,7 @@ class UserProfileSettingScreenWidget extends GetxController {
                     UserProfileAppbarWidget(
                       title: "Setting",
                       onTap: () {
-                        Get.off(()=>UserHome(selectedIndex: 3,),duration: const Duration(milliseconds: 100),preventDuplicates: false);
+                        Get.off(()=>UserDashboardView(index: 3,),duration: const Duration(milliseconds: 100),preventDuplicates: false);
                       },
                     ),
 

@@ -114,6 +114,8 @@ class ImageUtils {
   static String whiteUnvisibleImage = "assets/images/password_image/white_unvisible_image.png";
   static String whiteVisibleImage = "assets/images/password_image/white_visible_image.png";
 
+  static String searchNormalImage = "assets/images/search_normal_image.png";
+
 
   static String successAnim = "assets/lottie/success.json";
   static String transactionSuccessAnim = "assets/lottie/tran_suc_anim.json";
@@ -128,6 +130,17 @@ class ImageUtils {
   static String unselectedProfile = "assets/images/broker_bottom_navagation_bar_image/unselected_profile.png";
   static String unselectedReferral = "assets/images/broker_bottom_navagation_bar_image/unselected_referral.png";
   static String unselectedSubscription = "assets/images/broker_bottom_navagation_bar_image/unselected_subscription.png";
+
+
+  // broker bottom navigation bar image
+  static String selectedCouponImage = "assets/images/user_bottom_navagation_bar_image/selected_coupon_image.png";
+  static String selectedExploreImage = "assets/images/user_bottom_navagation_bar_image/selected_explore_image.png";
+  static String selectedHomeImage = "assets/images/user_bottom_navagation_bar_image/selected_home_image.png";
+  static String selectedUserImage = "assets/images/user_bottom_navagation_bar_image/selected_user_image.png";
+  static String unselectedCouponImage = "assets/images/user_bottom_navagation_bar_image/unselected_coupon_image.png";
+  static String unselectedExploreImage = "assets/images/user_bottom_navagation_bar_image/unselected_explore_image.png";
+  static String unselectedHomeImage = "assets/images/user_bottom_navagation_bar_image/unselected_home_image.png";
+  static String unselectedUserImage = "assets/images/user_bottom_navagation_bar_image/unselected_user_image.png";
 
 
 

@@ -82,9 +82,11 @@ class UserHomeController extends GetxController {
   RxBool isLoading = false.obs;
   RxString selectProductId = "".obs;
   RxBool isAdd = false.obs;
+  Rx<TextEditingController> searchController = TextEditingController().obs;
   Rx<CategoriesResponseModel> categoriesResponseModel = CategoriesResponseModel().obs;
   Rx<ProductsResponseModel> productsResponseModel = ProductsResponseModel().obs;
   Rx<StoresResponseModel> storesResponseModel = StoresResponseModel().obs;
+  Rx<GetAllBannersResponseModel> getAllBannersResponseModel = GetAllBannersResponseModel().obs;
   Rx<LoginResponseModel> loginResponseModel = LoginResponseModel.fromJson(jsonDecode(LocalStorageUtils.getString(AppConstantUtils.loginResponse)!),).obs;
   Rx<UserProfileResponseModel> userProfileResponseModel = UserProfileResponseModel().obs;
   BuildContext context;
@@ -111,7 +113,12 @@ class UserHomeController extends GetxController {
                   await getUserProfileApiService(
                     context: context,
                     onSuccess: () async {
-                      await checkLocationPermission();
+                      await getAllBannerApiService(
+                        context: context,
+                        onSuccess: () async {
+                          await checkLocationPermission();
+                        },
+                      );
                     },
                   );
                 },
@@ -204,6 +211,30 @@ class UserHomeController extends GetxController {
       onSuccess: (e,data) async {
         isLoading.value = false;
         userProfileResponseModel.value = UserProfileResponseModel.fromJson(data);
+        onSuccess();
+      },
+      onFail: (e,data) {
+        MessageSnackBarWidget.errorSnackBarWidget(context: context, message: e);
+        isLoading.value = false;
+      },
+      onExceptionFail: (e,data) {
+        MessageSnackBarWidget.errorSnackBarWidget(context: context, message: e);
+        isLoading.value = false;
+      },
+    );
+  }
+
+
+  Future<void> getAllBannerApiService({
+    required BuildContext context,
+    required Function() onSuccess,
+  }) async {
+    await BaseApiUtils.get(
+      url: ApiUtils.getAllBannerResponse,
+      authorization: loginResponseModel.value.data?.accessToken,
+      onSuccess: (e,data) async {
+        isLoading.value = false;
+        getAllBannersResponseModel.value = GetAllBannersResponseModel.fromJson(data);
         onSuccess();
       },
       onFail: (e,data) {

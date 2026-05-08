@@ -27,13 +27,13 @@ class SingleProductViewScreen extends StatelessWidget {
       canPop: false,
       onPopInvokedWithResult: (canPop,onOpoInvoked) {
         if(isHomeScreen == true) {
-          Get.off(()=>UserHome(selectedIndex: 0,),duration: const Duration(milliseconds: 100),preventDuplicates: false);
+          Get.off(()=>UserDashboardView(index: 0,),duration: const Duration(milliseconds: 100),preventDuplicates: false);
         } else if (isSingleStoreScreen == true) {
           Get.off(()=>SingleStoreViewScreen(storeId: storeId,isStoreListPage: isStoreScreen,isHomePage: isHomeScreen,),duration: const Duration(milliseconds: 100),preventDuplicates: false);
         } else if (isProductListPage == true) {
           Get.off(()=>ProductListScreen(categoryId: "",storeId: "",),duration: const Duration(milliseconds: 100),preventDuplicates: false);
         }else if (isExplorePage == true) {
-          Get.off(()=>UserHome(selectedIndex: 2,),duration: const Duration(milliseconds: 100),preventDuplicates: false);
+          Get.off(()=>UserDashboardView(index: 2,),duration: const Duration(milliseconds: 100),preventDuplicates: false);
         }
       },
       child: Scaffold(
