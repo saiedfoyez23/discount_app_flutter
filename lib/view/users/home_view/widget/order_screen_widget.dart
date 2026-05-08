@@ -213,7 +213,7 @@ class OrderScreenWidget extends GetxController {
                                 child: TextButton(
                                   style: TextButton.styleFrom(padding: EdgeInsets.zero),
                                   onPressed: () async {
-                                    Get.off(()=>UserHome(selectedIndex: 2,),duration: const Duration(milliseconds: 100),preventDuplicates: false);
+                                    Get.off(()=>UserDashboardView(index: 2,),duration: const Duration(milliseconds: 100),preventDuplicates: false);
                                   },
                                   child: Row(
                                     children: [

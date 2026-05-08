@@ -63,7 +63,7 @@ class UserProfileHomeScreenWidget extends GetxController {
         enabled: isLoading.value,
         child: RefreshIndicator(
           onRefresh: () async {
-            Get.off(()=>UserHome(selectedIndex: 3,),duration: const Duration(milliseconds: 100),preventDuplicates: false);
+            Get.off(()=>UserDashboardView(index: 3,),duration: const Duration(milliseconds: 100),preventDuplicates: false);
           },
           child: CustomScrollView(
             slivers: [
@@ -144,7 +144,7 @@ class UserProfileHomeScreenWidget extends GetxController {
                                                         image: File(pickedFile.path),
                                                         name: userProfileResponseModel.value.data?.name ?? "",
                                                         onSuccess: (e) {
-                                                          Get.off(()=>UserHome(selectedIndex: 3,),duration: const Duration(milliseconds: 100),preventDuplicates: false);
+                                                          Get.off(()=>UserDashboardView(index: 3,),duration: const Duration(milliseconds: 100),preventDuplicates: false);
                                                         },
                                                         onFail: (e) {
                                                           isLoading.value = false;
@@ -186,7 +186,7 @@ class UserProfileHomeScreenWidget extends GetxController {
                                                         name: userProfileResponseModel.value.data?.name ?? "",
                                                         image: File(pickedFile.path),
                                                         onSuccess: (e) {
-                                                          Get.off(()=>UserHome(selectedIndex: 3,),duration: const Duration(milliseconds: 100),preventDuplicates: false);
+                                                          Get.off(()=>UserDashboardView(index: 3,),duration: const Duration(milliseconds: 100),preventDuplicates: false);
                                                           CustomSnackBar().successCustomSnackBar(context: context, message: "${e}");
                                                         },
                                                         onFail: (e) {
@@ -276,7 +276,7 @@ class UserProfileHomeScreenWidget extends GetxController {
                                         await UserProfileEditController.getUserNameUpdateResponse(
                                             name: nameControllerText.value.text,
                                             onSuccess: (e) {
-                                              Get.off(()=>UserHome(selectedIndex: 3,),duration: const Duration(milliseconds: 100),preventDuplicates: false);
+                                              Get.off(()=>UserDashboardView(index: 3,),duration: const Duration(milliseconds: 100),preventDuplicates: false);
                                               CustomSnackBar().successCustomSnackBar(context: context, message: "${e}");
                                             },
                                             onFail: (e) {

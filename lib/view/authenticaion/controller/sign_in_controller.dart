@@ -50,7 +50,7 @@ class SignInController extends GetxController {
         Map<String, dynamic> decodedToken = parseJwt(data["data"]["accessToken"]);
         print(decodedToken['role']);
         if(decodedToken['role'] == "user") {
-          Get.off(()=>UserHome(selectedIndex: 0,),duration: const Duration(milliseconds: 100),preventDuplicates: false);
+          Get.off(()=>UserDashboardView(index: 0,),duration: const Duration(milliseconds: 100),preventDuplicates: false);
           isSubmit.value = false;
         } else if (decodedToken['role'] == "rider") {
           Get.off(()=>RiderHome(selectedIndex: 0,),duration: const Duration(milliseconds: 100),preventDuplicates: false);

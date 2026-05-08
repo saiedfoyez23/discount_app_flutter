@@ -95,7 +95,7 @@ class ExploreProductListViewWidget extends GetxController {
         enabled: isLoading.value,
         child: RefreshIndicator(
           onRefresh: () async {
-            Get.off(()=>UserHome(selectedIndex: 2,),duration: const Duration(milliseconds: 100),preventDuplicates: false);
+            Get.off(()=>UserDashboardView(index: 2,),duration: const Duration(milliseconds: 100),preventDuplicates: false);
           },
           child: CustomScrollView(
             slivers: [

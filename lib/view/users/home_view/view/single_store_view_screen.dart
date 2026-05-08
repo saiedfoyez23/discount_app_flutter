@@ -18,11 +18,11 @@ class SingleStoreViewScreen extends StatelessWidget {
       canPop: false,
       onPopInvokedWithResult: (canPop,onOpoInvoked) {
         if(isHomePage == true) {
-          Get.off(()=>UserHome(selectedIndex: 0,),duration: const Duration(milliseconds: 100),preventDuplicates: false);
+          Get.off(()=>UserDashboardView(index: 0,),duration: const Duration(milliseconds: 100),preventDuplicates: false);
         } else if (isStoreListPage == true){
           Get.off(()=>StoreListViewScreen(),duration: const Duration(milliseconds: 100),preventDuplicates: false);
         } else {
-          Get.off(()=>UserHome(selectedIndex: 0,),duration: const Duration(milliseconds: 100),preventDuplicates: false);
+          Get.off(()=>UserDashboardView(index: 0,),duration: const Duration(milliseconds: 100),preventDuplicates: false);
         }
       },
       child: Scaffold(
