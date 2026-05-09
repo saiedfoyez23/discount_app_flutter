@@ -110,3 +110,5 @@ export 'vendors/vendor_home_view/controller/dashboard_vendor_controller.dart';
 export 'vendors/vendor_home_view/view/vendor_dashboard_view.dart';
 export 'riders/home_view/controller/dashboard_rider_controller.dart';
 export 'riders/home_view/view/rider_dashboard_view.dart';
+export 'users/explore_view/controller/explore_controller.dart';
+export 'users/explore_view/view/explore_view.dart';

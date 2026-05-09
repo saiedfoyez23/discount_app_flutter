@@ -72,6 +72,7 @@ class ApiUtils {
   static const String categoriesResponse = "$baseUrl/categories";
   static const String vendorsProfile = "$baseUrl/vendors/profile";//done
   static const String getAllProductsResponse = "$baseUrl/products?sort=-ratings"; //done
+  static const String getAllExploreProductsResponse = "$baseUrl/products?sort=-ratings"; //done
   static const String getAllStoresResponse = "$baseUrl/stores?sort=-ratings"; //done
   static const String getUserProfileResponse = "$baseUrl/users/profile"; //done
   static const String getAllBannerResponse = "$baseUrl/banners"; //done
