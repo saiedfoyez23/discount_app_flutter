@@ -82,7 +82,7 @@ class VendorAddItemScreenWidget extends GetxController {
                     UserProfileAppbarWidget(
                       title: "Add Item",
                       onTap: () {
-                        Get.off(()=>VendorHome(selectedIndex: 0,),duration: const Duration(milliseconds: 100),preventDuplicates: false);
+                        Get.off(()=>VendorDashboardView(index: 0,),duration: const Duration(milliseconds: 100),preventDuplicates: false);
                       },
                     ),
 
@@ -298,7 +298,7 @@ class VendorAddItemScreenWidget extends GetxController {
                               price: double.parse(itemPrice.value.text),
                               quantity: double.parse(itemQuantity.value.text),
                               onSuccess: (e) async {
-                                await Get.off(()=>VendorHome(selectedIndex: 2),preventDuplicates: false,duration: Duration(milliseconds: 100));
+                                await Get.off(()=>VendorDashboardView(index: 2),preventDuplicates: false,duration: Duration(milliseconds: 100));
                                 isSubmit.value = false;
                               },
                               onFail: (e) {

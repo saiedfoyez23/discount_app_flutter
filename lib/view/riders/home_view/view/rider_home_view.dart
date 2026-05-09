@@ -1,7 +1,7 @@
 import 'package:discount_me_app/res/app_const/import_list.dart';
 import 'package:discount_me_app/view/riders/home_view/controller/rider_home_controller.dart';
-import 'package:discount_me_app/view/riders/home_view/view/rider_home.dart';
 import 'package:discount_me_app/view/riders/home_view/view/rider_home_order_request_details_screen.dart';
+import 'package:discount_me_app/view/view.dart';
 import 'package:flutter/material.dart';
 import 'package:discount_me_app/utils/utils.dart';
 import 'package:get/get.dart';
@@ -27,7 +27,7 @@ class RiderHomeView extends StatelessWidget {
           enabled: riderHomeController.isLoading.value,
           child: RefreshIndicator(
             onRefresh: () async {
-              Get.off(()=>RiderHome(selectedIndex: 0,),duration: const Duration(milliseconds: 100),preventDuplicates: false);
+              Get.off(()=>RiderDashboardView(index: 0,),duration: const Duration(milliseconds: 100),preventDuplicates: false);
             },
             child: CustomScrollView(
               slivers: [

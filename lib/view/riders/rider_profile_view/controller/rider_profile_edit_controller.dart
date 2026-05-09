@@ -1,8 +1,6 @@
 import 'dart:convert';
 import 'dart:io';
 import 'package:dio/dio.dart' as dio;
-import 'package:discount_me_app/view/riders/home_view/view/rider_home.dart';
-import 'package:discount_me_app/view/riders/rider_profile_view/model/rider_profile_response.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../../res/res.dart';
@@ -126,7 +124,7 @@ class RiderProfileEditController extends GetxController {
       onSuccess: (e,data) async {
         MessageSnackBarWidget.successSnackBarWidget(context: context, message: e);
         isSubmit.value = false;
-        Get.off(()=>RiderHome(selectedIndex: 3,),duration: const Duration(milliseconds: 100),preventDuplicates: false);
+        Get.off(()=>RiderDashboardView(index: 3,),duration: const Duration(milliseconds: 100),preventDuplicates: false);
       },
       onFail: (e,data) {
         MessageSnackBarWidget.errorSnackBarWidget(context: context, message: e);

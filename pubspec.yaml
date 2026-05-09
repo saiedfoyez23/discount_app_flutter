@@ -91,6 +91,8 @@ flutter:
     - assets/images/broker_bottom_navagation_bar_image/
     - assets/images/password_image/
     - assets/images/user_bottom_navagation_bar_image/
+    - assets/images/vendor_bottom_navagation_bar_image/
+    - assets/images/rider_bottom_navagation_bar_image/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images

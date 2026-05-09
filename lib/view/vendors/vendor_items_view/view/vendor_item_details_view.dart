@@ -18,7 +18,7 @@ class VendorItemDetailsView extends StatelessWidget {
     return PopScope(
       canPop: false,
       onPopInvokedWithResult: (canPop,onPopInvoked) {
-        Get.off(()=>VendorHome(selectedIndex: 2,),duration: const Duration(milliseconds: 100),preventDuplicates: false);
+        Get.off(()=>VendorDashboardView(index: 2,),duration: const Duration(milliseconds: 100),preventDuplicates: false);
       },
       child: Scaffold(
         body: Container(
@@ -45,7 +45,7 @@ class VendorItemDetailsView extends StatelessWidget {
                         UserProfileAppbarWidget(
                           title: "Items Details",
                           onTap: () {
-                            Get.off(()=>VendorHome(selectedIndex: 2,),duration: const Duration(milliseconds: 100),preventDuplicates: false);
+                            Get.off(()=>VendorDashboardView(index: 2,),duration: const Duration(milliseconds: 100),preventDuplicates: false);
                           },
                         ),
 

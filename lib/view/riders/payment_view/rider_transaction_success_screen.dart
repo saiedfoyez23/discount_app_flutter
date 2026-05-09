@@ -1,5 +1,5 @@
 import 'package:discount_me_app/res/app_const/import_list.dart';
-import 'package:discount_me_app/view/riders/home_view/view/rider_home.dart';
+import 'package:discount_me_app/view/view.dart';
 import 'package:flutter/material.dart';
 import 'package:discount_me_app/utils/utils.dart';
 import 'package:get/get.dart';
@@ -166,7 +166,7 @@ class RiderTransactionSuccessScreen extends StatelessWidget {
                                 title: "Close",
                                 buttonColor: ColorUtils.primaryColor,
                                 onTap: () {
-                                  Get.to(RiderHome(selectedIndex: 0,));
+                                  Get.to(RiderDashboardView(index: 0,));
                                 },
                               ),
                             ],

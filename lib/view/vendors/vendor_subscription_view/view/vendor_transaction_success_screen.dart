@@ -1,5 +1,5 @@
 import 'package:discount_me_app/res/app_const/import_list.dart';
-import 'package:discount_me_app/view/vendors/vendor_home_view/view/vendor_home.dart';
+import 'package:discount_me_app/view/view.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -166,7 +166,7 @@ class VendorTransactionSuccessScreen extends StatelessWidget {
                                 title: "Close",
                                 buttonColor: ColorUtils.primaryColor,
                                 onTap: () {
-                                  Get.to(VendorHome(selectedIndex: 0,));
+                                  Get.to(VendorDashboardView(index: 0,));
                                 },
                               ),
                             ],

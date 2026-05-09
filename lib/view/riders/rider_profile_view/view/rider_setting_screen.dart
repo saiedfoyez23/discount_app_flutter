@@ -17,7 +17,7 @@ class RiderSettingScreen extends StatelessWidget {
     return PopScope(
       canPop: false,
       onPopInvokedWithResult: (canPop,onPopInvoked) {
-        Get.off(()=>RiderHome(selectedIndex: 3,),duration: const Duration(milliseconds: 100),preventDuplicates: false);
+        Get.off(()=>RiderDashboardView(index: 3,),duration: const Duration(milliseconds: 100),preventDuplicates: false);
       },
       child: Scaffold(
         body: Obx(()=>Skeletonizer(
@@ -50,7 +50,7 @@ class RiderSettingScreen extends StatelessWidget {
                         UserProfileAppbarWidget(
                           title: "Setting",
                           onTap: () {
-                            Get.off(()=>RiderHome(selectedIndex: 3,),duration: const Duration(milliseconds: 100),preventDuplicates: false);
+                            Get.off(()=>RiderDashboardView(index: 3,),duration: const Duration(milliseconds: 100),preventDuplicates: false);
                           },
                         ),
 

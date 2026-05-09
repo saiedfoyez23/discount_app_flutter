@@ -2,12 +2,8 @@ import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
 import 'package:dio/dio.dart' as dio;
-import 'package:discount_me_app/view/users/home_view/model/categories_response_model.dart';
-import 'package:discount_me_app/view/users/home_view/model/single_product_response_model.dart';
-import 'package:discount_me_app/view/vendors/vendor_home_view/view/vendor_home.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../../../../res/res.dart';
 import '../../../../utils/utils.dart';
 import '';
 import '../../../view.dart';
@@ -198,7 +194,7 @@ class VendorProductEditController extends GetxController {
       authorization: loginResponseModel.data?.accessToken,
       onSuccess: (e,data) async {
         isSubmit.value = false;
-        Get.off(()=>VendorHome(selectedIndex: 2,),duration: const Duration(milliseconds: 100),preventDuplicates: false);
+        Get.off(()=>VendorDashboardView(index: 2,),duration: const Duration(milliseconds: 100),preventDuplicates: false);
       },
       onFail: (e,data) {
         MessageSnackBarWidget.errorSnackBarWidget(context: context, message: e);

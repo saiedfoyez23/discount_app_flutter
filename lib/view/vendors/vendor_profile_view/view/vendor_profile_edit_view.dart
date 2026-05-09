@@ -1,5 +1,4 @@
 import 'dart:io';
-import 'package:discount_me_app/view/vendors/vendor_home_view/view/vendor_home.dart';
 import 'package:discount_me_app/view/vendors/vendor_profile_view/controller/vendor_edit_profile_controller.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
@@ -8,7 +7,7 @@ import 'package:get/get.dart';
 import 'package:intl_phone_number_input/intl_phone_number_input.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 import '../../../../res/res.dart';
-import '../../../users/profile_view/widget/user_profile_appbar_widget.dart';
+import 'package:discount_me_app/view/view.dart';
 
 
 class VendorProfileEditView extends StatelessWidget {
@@ -20,7 +19,7 @@ class VendorProfileEditView extends StatelessWidget {
     return PopScope(
       canPop: false,
       onPopInvokedWithResult: (canPop,onPopInvoked) {
-        Get.off(()=>VendorHome(selectedIndex: 3,),duration: const Duration(milliseconds: 100),preventDuplicates: false);
+        Get.off(()=>VendorDashboardView(index: 3,),duration: const Duration(milliseconds: 100),preventDuplicates: false);
       },
       child: Scaffold(
         body: Obx(()=>Container(
@@ -48,7 +47,7 @@ class VendorProfileEditView extends StatelessWidget {
                         UserProfileAppbarWidget(
                           title: "Edit Profile",
                           onTap: () {
-                            Get.off(()=>VendorHome(selectedIndex: 3,),duration: const Duration(milliseconds: 100),preventDuplicates: false);
+                            Get.off(()=>VendorDashboardView(index: 3,),duration: const Duration(milliseconds: 100),preventDuplicates: false);
                           },
                         ),
 

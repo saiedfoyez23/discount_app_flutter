@@ -1,5 +1,4 @@
 import 'package:discount_me_app/res/app_const/import_list.dart';
-import 'package:discount_me_app/view/vendors/vendor_home_view/view/vendor_home.dart';
 import 'package:discount_me_app/view/vendors/vendor_profile_view/controller/vendor_setting_controller.dart';
 import 'package:discount_me_app/view/vendors/vendor_profile_view/view/vendor_change_password_view.dart';
 import 'package:discount_me_app/view/vendors/vendor_profile_view/widget/vendor_account_delete_dialog_box.dart';
@@ -8,6 +7,7 @@ import 'package:discount_me_app/utils/utils.dart';
 import 'package:get/get.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 import '../../../../res/res.dart';
+import 'package:discount_me_app/view/view.dart';
 
 
 class VendorSettingView extends StatelessWidget {
@@ -19,7 +19,7 @@ class VendorSettingView extends StatelessWidget {
     return PopScope(
       canPop: false,
       onPopInvokedWithResult: (canPop,onPopInvoked) {
-        Get.off(()=>VendorHome(selectedIndex: 3,),duration: const Duration(milliseconds: 100),preventDuplicates: false);
+        Get.off(()=>VendorDashboardView(index: 3,),duration: const Duration(milliseconds: 100),preventDuplicates: false);
       },
       child: Scaffold(
         body: Obx(()=>Container(
@@ -52,7 +52,7 @@ class VendorSettingView extends StatelessWidget {
                         UserProfileAppbarWidget(
                           title: "Setting",
                           onTap: () {
-                            Get.off(()=>VendorHome(selectedIndex: 3,),duration: const Duration(milliseconds: 100),preventDuplicates: false);
+                            Get.off(()=>VendorDashboardView(index: 3,),duration: const Duration(milliseconds: 100),preventDuplicates: false);
                           },
                         ),
 
