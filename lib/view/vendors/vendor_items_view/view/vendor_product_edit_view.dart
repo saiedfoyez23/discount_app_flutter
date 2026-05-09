@@ -1,17 +1,13 @@
 import 'dart:io';
-
 import 'package:discount_me_app/utils/utils.dart';
-import 'package:discount_me_app/view/users/profile_view/widget/user_profile_appbar_widget.dart';
-import 'package:discount_me_app/view/vendors/vendor_home_view/view/vendor_home.dart';
 import 'package:discount_me_app/view/vendors/vendor_items_view/controller/vendor_product_edit_controller.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
-
 import '../../../../res/res.dart';
-import '../../../users/home_view/model/categories_response_model.dart';
+import 'package:discount_me_app/view/view.dart';
 
 class VendorProductEditView extends StatelessWidget {
   const VendorProductEditView({super.key,required this.productId});
@@ -24,7 +20,7 @@ class VendorProductEditView extends StatelessWidget {
     return PopScope(
       canPop: false,
       onPopInvokedWithResult: (canPop,onPopInvoked) {
-        Get.off(()=>VendorHome(selectedIndex: 2,),duration: const Duration(milliseconds: 100),preventDuplicates: false);
+        Get.off(()=>VendorDashboardView(index: 2,),duration: const Duration(milliseconds: 100),preventDuplicates: false);
       },
       child: Scaffold(
         body: Container(
@@ -50,7 +46,7 @@ class VendorProductEditView extends StatelessWidget {
                         UserProfileAppbarWidget(
                           title: "Product Edit",
                           onTap: () {
-                            Get.off(()=>VendorHome(selectedIndex: 2,),duration: const Duration(milliseconds: 100),preventDuplicates: false);
+                            Get.off(()=>VendorDashboardView(index: 2,),duration: const Duration(milliseconds: 100),preventDuplicates: false);
                           },
                         ),
 

@@ -1,5 +1,4 @@
 import 'package:discount_me_app/view/view.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -18,7 +17,7 @@ class StorePositionScreenPage extends StatelessWidget {
       canPop: false,
       onPopInvokedWithResult: (canPop,onOpoInvoked) {
         if(isVendorHomePage == true) {
-          Get.off(()=>VendorHome(selectedIndex: 0),preventDuplicates: false,duration: Duration(milliseconds: 100));
+          Get.off(()=>VendorDashboardView(index: 0),preventDuplicates: false,duration: Duration(milliseconds: 100));
         } else {
           Get.off(()=>SingleStoreViewScreen(storeId: storeId,isStoreListPage: isStoreListPage,isHomePage: isHomePage,),preventDuplicates: false,duration: Duration(milliseconds: 100));
         }

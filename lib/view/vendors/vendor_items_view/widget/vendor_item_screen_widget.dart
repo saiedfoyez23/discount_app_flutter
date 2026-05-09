@@ -84,7 +84,7 @@ class VendorItemScreenWidget extends GetxController {
         enabled: isLoading.value,
         child: RefreshIndicator(
           onRefresh: () async {
-            Get.off(()=>VendorHome(selectedIndex: 2),duration: const Duration(milliseconds: 100),preventDuplicates: false);
+            Get.off(()=>VendorDashboardView(index: 2),duration: const Duration(milliseconds: 100),preventDuplicates: false);
           },
           child: CustomScrollView(
             slivers: [
@@ -102,7 +102,7 @@ class VendorItemScreenWidget extends GetxController {
                       UserProfileAppbarWidget(
                         title: "Items",
                         onTap: () {
-                          Get.off(()=>VendorHome(selectedIndex: 0,),duration: const Duration(milliseconds: 100),preventDuplicates: false);
+                          Get.off(()=>VendorDashboardView(index: 0,),duration: const Duration(milliseconds: 100),preventDuplicates: false);
                         },
                       ),
 

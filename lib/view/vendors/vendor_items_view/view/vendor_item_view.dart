@@ -26,7 +26,7 @@ class VendorItemView extends StatelessWidget {
           enabled: vendorItemsController.isLoading.value,
           child: RefreshIndicator(
             onRefresh: () async {
-              Get.off(()=>VendorHome(selectedIndex: 2),duration: const Duration(milliseconds: 100),preventDuplicates: false);
+              Get.off(()=>VendorDashboardView(index: 2),duration: const Duration(milliseconds: 100),preventDuplicates: false);
             },
             child: CustomScrollView(
               slivers: [
@@ -44,7 +44,7 @@ class VendorItemView extends StatelessWidget {
                         UserProfileAppbarWidget(
                           title: "Items",
                           onTap: () {
-                            Get.off(()=>VendorHome(selectedIndex: 0,),duration: const Duration(milliseconds: 100),preventDuplicates: false);
+                            Get.off(()=>VendorDashboardView(index: 0,),duration: const Duration(milliseconds: 100),preventDuplicates: false);
                           },
                         ),
 

@@ -28,7 +28,7 @@ class RiderProfileHome extends StatelessWidget {
           enabled: riderProfileController.isLoading.value,
           child: RefreshIndicator(
             onRefresh: () async {
-              Get.off(()=>RiderHome(selectedIndex: 3,),duration: const Duration(milliseconds: 100),preventDuplicates: false);
+              Get.off(()=>RiderDashboardView(index: 3,),duration: const Duration(milliseconds: 100),preventDuplicates: false);
             },
             child: CustomScrollView(
               slivers: [

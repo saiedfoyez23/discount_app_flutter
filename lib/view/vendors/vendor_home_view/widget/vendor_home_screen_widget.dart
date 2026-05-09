@@ -147,7 +147,7 @@ class VendorHomeScreenWidget extends GetxController {
         enabled: isLoading.value,
         child: RefreshIndicator(
           onRefresh: () async {
-            Get.off(()=>VendorHome(selectedIndex: 0,),duration: const Duration(milliseconds: 100),preventDuplicates: false);
+            Get.off(()=>VendorDashboardView(index: 0,),duration: const Duration(milliseconds: 100),preventDuplicates: false);
           },
           child: CustomScrollView(
             slivers: [

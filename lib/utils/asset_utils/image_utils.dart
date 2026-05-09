@@ -132,7 +132,7 @@ class ImageUtils {
   static String unselectedSubscription = "assets/images/broker_bottom_navagation_bar_image/unselected_subscription.png";
 
 
-  // broker bottom navigation bar image
+  // user bottom navigation bar image
   static String selectedCouponImage = "assets/images/user_bottom_navagation_bar_image/selected_coupon_image.png";
   static String selectedExploreImage = "assets/images/user_bottom_navagation_bar_image/selected_explore_image.png";
   static String selectedHomeImage = "assets/images/user_bottom_navagation_bar_image/selected_home_image.png";
@@ -141,6 +141,29 @@ class ImageUtils {
   static String unselectedExploreImage = "assets/images/user_bottom_navagation_bar_image/unselected_explore_image.png";
   static String unselectedHomeImage = "assets/images/user_bottom_navagation_bar_image/unselected_home_image.png";
   static String unselectedUserImage = "assets/images/user_bottom_navagation_bar_image/unselected_user_image.png";
+
+
+
+  // vendor bottom navigation bar image
+  static String vendorSelectedHomeImage = "assets/images/vendor_bottom_navagation_bar_image/selected_home_image.png";
+  static String vendorSelectedItemsImage = "assets/images/vendor_bottom_navagation_bar_image/selected_items_image.png";
+  static String vendorSelectedProfileImage = "assets/images/vendor_bottom_navagation_bar_image/selected_profile_image.png";
+  static String vendorSelectedSubscriptionImage = "assets/images/vendor_bottom_navagation_bar_image/selected_subscription_image.png";
+  static String vendorUnselectedHomeImage = "assets/images/vendor_bottom_navagation_bar_image/unselected_home_image.png";
+  static String vendorUnselectedItemsImage = "assets/images/vendor_bottom_navagation_bar_image/unselected_items_image.png";
+  static String vendorUnselectedProfileImage = "assets/images/vendor_bottom_navagation_bar_image/unselected_profile_image.png";
+  static String vendorUnselectedSubscriptionImage = "assets/images/vendor_bottom_navagation_bar_image/unselected_subscription_image.png";
+
+
+  // rider bottom navigation bar image
+  static String riderSelectedHomeImage = "assets/images/rider_bottom_navagation_bar_image/selected_home_image.png";
+  static String riderSelectedOrderImage = "assets/images/rider_bottom_navagation_bar_image/selected_order_image.png";
+  static String riderSelectedProfileImage = "assets/images/rider_bottom_navagation_bar_image/selected_profile_image.png";
+  static String riderSelectedSubscriptionImage = "assets/images/rider_bottom_navagation_bar_image/selected_subscription_image.png";
+  static String riderUnselectedHomeImage = "assets/images/rider_bottom_navagation_bar_image/unselected_home_image.png";
+  static String riderUnselectedOrderImage = "assets/images/rider_bottom_navagation_bar_image/unselected_order_image.png";
+  static String riderUnselectedProfileImage = "assets/images/rider_bottom_navagation_bar_image/unselected_profile_image.png";
+  static String riderUnselectedSubscriptionImage = "assets/images/rider_bottom_navagation_bar_image/unselected_subscription_image.png";
 
 
 
