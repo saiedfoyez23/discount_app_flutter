@@ -27,6 +27,5 @@ class AppRoutes {
     GetPage(name: RouteNames.userProfileEditScreen, page: () => UserProfileEditScreen()),
     GetPage(name: RouteNames.userProfileSettingScreen, page: () => UserProfileSettingScreen()),
     GetPage(name: RouteNames.userChangePasswordScreen, page: () => UserChangePasswordScreen()),
-    GetPage(name: RouteNames.userNotificationScreen, page: () => UserNotificationScreen()),
   ];
 }

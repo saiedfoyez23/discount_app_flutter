@@ -6,7 +6,6 @@ import 'package:skeletonizer/skeletonizer.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import '../../../../res/res.dart';
 import 'package:discount_me_app/utils/utils.dart';
-import '../../profile_view/view/user_notification_screen.dart';
 
 class SingleProductViewScreenWidget extends GetxController {
 
@@ -182,7 +181,7 @@ class SingleProductViewScreenWidget extends GetxController {
                                 child: TextButton(
                                   style: TextButton.styleFrom(padding: EdgeInsets.zero),
                                   onPressed: () {
-                                    Get.off(()=>UserNotificationScreen(),preventDuplicates: false,duration: const Duration(milliseconds: 100));
+                                    Get.off(()=>UserNotificationView(),preventDuplicates: false,duration: const Duration(milliseconds: 100));
                                   },
                                   child: Icon(
                                     Icons.notifications,

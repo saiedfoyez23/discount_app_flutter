@@ -1,7 +1,6 @@
 import 'dart:io';
 import 'package:discount_me_app/res/common_widget/custom_alert_dialog.dart';
 import 'package:discount_me_app/view/users/chat_view/view/user_chat_vendor_list_screen.dart';
-import 'package:discount_me_app/view/users/profile_view/view/user_notification_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
@@ -353,7 +352,7 @@ class UserProfileHomeScreenWidget extends GetxController {
                         icon: Image.asset(ImageUtils.userNotification, scale: 5,),
                         navigateIcon: Icon(Icons.navigate_next,size: 24.r(context), color: Colors.black54,),
                         onTap: () {
-                          Get.to(UserNotificationScreen());
+                          Get.off(()=>UserNotificationView(),preventDuplicates: false,duration: Duration(milliseconds: 100));
                         },
                       ),
                       ProfileItemWidget(

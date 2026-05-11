@@ -15,7 +15,7 @@ class ExploreController extends GetxController {
   RxList<Products> products = <Products>[].obs;
   ExploreController({required this.context});
   RxString updatedCategoryId = "".obs;
-
+  Rx<TextEditingController> searchController = TextEditingController().obs;
 
   @override
   void onInit() {
@@ -87,6 +87,27 @@ class ExploreController extends GetxController {
   }
 
 
+  Future<void> getSearchProductsApiService({
+    required BuildContext context,
+  }) async {
+    await BaseApiUtils.get(
+      url: ApiUtils.getAllExploreProductsResponse,
+      authorization: loginResponseModel.value.data?.accessToken,
+      onSuccess: (e,data) async {
+        productsResponseModel.value = ProductsResponseModel.fromJson(data);
+        products.value = productsResponseModel.value.data!.data!;
+      },
+      onFail: (e,data) {
+        MessageSnackBarWidget.errorSnackBarWidget(context: context, message: e);
+        isLoading.value = false;
+      },
+      onExceptionFail: (e,data) {
+        MessageSnackBarWidget.errorSnackBarWidget(context: context, message: e);
+        isLoading.value = false;
+      },
+    );
+  }
+
 
   Future<void> getUserProfileApiService({
     required BuildContext context,
@@ -96,6 +117,31 @@ class ExploreController extends GetxController {
       authorization: loginResponseModel.value.data?.accessToken,
       onSuccess: (e,data) async {
         userProfileResponseModel.value = UserProfileResponseModel.fromJson(data);
+        isLoading.value = false;
+      },
+      onFail: (e,data) {
+        MessageSnackBarWidget.errorSnackBarWidget(context: context, message: e);
+        isLoading.value = false;
+      },
+      onExceptionFail: (e,data) {
+        MessageSnackBarWidget.errorSnackBarWidget(context: context, message: e);
+        isLoading.value = false;
+      },
+    );
+  }
+
+
+  Future<void> getProductsByCategoryApiService({
+    required BuildContext context,
+    required String categoryId,
+  }) async {
+    await BaseApiUtils.get(
+      url: ApiUtils.getCategoryWiseProducts(categoryId),
+      authorization: loginResponseModel.value.data?.accessToken,
+      onSuccess: (e,data) async {
+        productsResponseModel.value = ProductsResponseModel.fromJson(data);
+        products.value = productsResponseModel.value.data!.data!;
+        isLoading.value = false;
       },
       onFail: (e,data) {
         MessageSnackBarWidget.errorSnackBarWidget(context: context, message: e);

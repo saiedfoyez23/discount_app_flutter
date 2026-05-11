@@ -39,7 +39,8 @@ class ExploreView extends StatelessWidget {
                     child: Column(
                       children: [
 
-                        CustomSpaceWidget.spacerWidget(spaceHeight: 40.h(context)),
+                        SpaceHelperWidget.v(40.h(context)),
+
 
                         Container(
                           width: 428.w(context),
@@ -52,157 +53,175 @@ class ExploreView extends StatelessWidget {
                                 child: Row(
                                   children: [
 
-                                    userProfileResponseModel.value.data?.image == null ?
-                                    Container(
-                                      width: 45.w(context),
-                                      height: 45.h(context),
-                                      decoration: BoxDecoration(
-                                          shape: BoxShape.circle,
-                                          color: Colors.lightBlueAccent,
-                                          image: DecorationImage(
-                                            image: AssetImage(ImageUtils.homeProfileAvatar),
-                                            fit: BoxFit.fitHeight,
-                                          )
-                                      ),
-                                    ) :
-                                    Container(
-                                      width: 45.w(context),
-                                      height: 45.h(context),
-                                      decoration: BoxDecoration(
-                                          shape: BoxShape.circle,
-                                          color: Colors.lightBlueAccent,
-                                          image: DecorationImage(
-                                            image: NetworkImage(userProfileResponseModel.value.data!.image),
-                                            fit: BoxFit.fitHeight,
-                                          )
-                                      ),
+
+                                    ImageHelperWidget.circleImageHelperWidget(
+                                      width: 45,
+                                      height: 45,
+                                      verticalPadding: 1,
+                                      horizontalPadding: 1,
+                                      backgroundColor: ColorUtils.orange213,
+                                      radius: 25,
+                                      context: context,
+                                      imageAsset: exploreController.userProfileResponseModel.value.data?.image ==  null ? ImageUtils.noImage : null,
+                                      imageUrl: exploreController.userProfileResponseModel.value.data?.image,
                                     ),
 
-                                    CustomSpaceWidget.spacerWidget(spaceWidth: 20.w(context)),
+                                    SpaceHelperWidget.h(20.w(context)),
 
                                     Expanded(
-                                      child: Align(
-                                        alignment: Alignment.center,
-                                        child: Image.asset(
-                                          ImageUtils.discountMeLogo,
-                                          scale: 10,
+                                      child: Center(
+                                        child: ImageHelperWidget.assetImageWidget(
+                                          context: context,
+                                          height: 64.h(context),
+                                          width: 170.w(context),
+                                          imageString: ImageUtils.discountMeLogo,
                                         ),
                                       ),
                                     ),
+
+
                                   ],
                                 ),
                               ),
 
+                              SpaceHelperWidget.h(5.w(context)),
+
+
                               Row(
                                 children: [
 
-                                  Container(
-                                    width: 45.w(context),
-                                    height: 45.h(context),
-                                    decoration: BoxDecoration(
+                                  InkWell(
+                                    onTap: () {
+                                      Get.off(()=>UserNotificationView(),preventDuplicates: false,duration: const Duration(milliseconds: 100));
+                                    },
+                                    child: Container(
+                                      width: 45.w(context),
+                                      height: 45.h(context),
+                                      decoration: BoxDecoration(
                                         shape: BoxShape.circle,
                                         color: ColorUtils.primaryColor,
                                         boxShadow: const [
-                                          BoxShadow(color: ColorUtils.whiteColor,
-                                              blurRadius: 10, offset: Offset(0, 1))
-                                        ]
-                                    ),
-                                    child: TextButton(
-                                      style: TextButton.styleFrom(padding: EdgeInsets.zero),
-                                      onPressed: () {
-                                        Get.off(()=>UserNotificationScreen(),preventDuplicates: false,duration: const Duration(milliseconds: 100));
-                                      },
-                                      child: Icon(
-                                        Icons.notifications,
-                                        color: ColorUtils.whiteColor,
-                                        size: 25.r(context),
+                                          BoxShadow(
+                                            color: ColorUtils.whiteColor,
+                                            blurRadius: 10,
+                                            offset: Offset(0, 1),
+                                          )
+                                        ],
                                       ),
+                                      child: Icon(Icons.notifications, color: ColorUtils.whiteColor, size: 25.r(context),),
                                     ),
                                   ),
 
-                                  CustomSpaceWidget.spacerWidget(spaceWidth: 6.w(context)),
+                                  SpaceHelperWidget.h(6.w(context)),
 
 
-                                  Container(
-                                    width: 45.w(context),
-                                    height: 45.h(context),
-                                    decoration: BoxDecoration(
+                                  InkWell(
+                                    onTap: () {
+                                      Get.off(()=>OrderScreen(),preventDuplicates: false,duration: const Duration(milliseconds: 100));
+                                    },
+                                    child: Container(
+                                      width: 45.w(context),
+                                      height: 45.h(context),
+                                      decoration: BoxDecoration(
                                         shape: BoxShape.circle,
                                         color: ColorUtils.primaryColor,
                                         boxShadow: const [
-                                          BoxShadow(color: ColorUtils.whiteColor,
-                                              blurRadius: 10, offset: Offset(0, 2))
-                                        ]
-                                    ),
-                                    child: TextButton(
-                                      style: TextButton.styleFrom(padding: EdgeInsets.zero),
-                                      onPressed: () {
-                                        Get.off(()=>OrderScreen(),preventDuplicates: false,duration: const Duration(milliseconds: 100));
-                                      },
-                                      child: Icon(
-                                        Icons.shopping_cart,
-                                        color: ColorUtils.whiteColor,
-                                        size: 22.r(context),
+                                          BoxShadow(
+                                            color: ColorUtils.whiteColor,
+                                            blurRadius: 10,
+                                            offset: Offset(0, 2),
+                                          ),
+                                        ],
                                       ),
+                                      child: Icon(Icons.shopping_cart, color: ColorUtils.whiteColor,size: 22.r(context),),
                                     ),
                                   ),
 
                                 ],
-                              ),
+                              )
+
                             ],
                           ),
                         ),
 
-                        CustomSpaceWidget.spacerWidget(spaceHeight: 20.h(context)),
 
-                        Container(
-                          width: 428.w(context),
-                          decoration: BoxDecoration(
-                            color: Colors.transparent,
-                            borderRadius: BorderRadius.circular(8.r(context)),
-                            border:Border.all(width: 1, color: ColorUtils.whiteDark),
-                          ),
-                          child: TextField(
-                            onTap: () async {
-                              updatedCategoryId.value = "";
-                              await ExploreProductListViewController.getProductsApiService(
-                                  onSuccess: (e) {
-                                    isLoading.value = false;
-                                    productsResponseModel.value = ProductsResponseModel.fromJson(e);
-                                    products.value = productsResponseModel.value.data!.data!;
-                                  },
-                                  onFail: (e) {
-                                    isLoading.value = false;
-                                    CustomSnackBar().errorCustomSnackBar(context: context, message: "${e}");
-                                  },
-                                  onExceptionFail: (e) {
-                                    isLoading.value = false;
-                                    CustomSnackBar().errorCustomSnackBar(context: context, message: "${e}");
-                                  }
-                              );
-                            },
-                            onChanged: (search) async {
-                              products.value = productsResponseModel.value.data!.data!.where((e)=>e.name.toString().contains(search)).toList();
-                            },
-                            decoration: InputDecoration(
-                              hintText: "Search",
-                              prefixIcon: Icon(
-                                Icons.search_outlined,
-                                color: Colors.grey,
-                                size: 32.r(context),
-                              ),
-                              border: OutlineInputBorder(
-                                borderSide: BorderSide.none,
-                                borderRadius: BorderRadius.circular(10.r(context),
-                                ),
+                        SpaceHelperWidget.v(20.h(context)),
+
+
+                        TextFormFieldWidget.build(
+                          context: context,
+                          hintText: "Search",
+                          controller: exploreController.searchController.value,
+                          keyboardType: TextInputType.emailAddress,
+                          fillColor: ColorUtils.white253,
+                          onTap: () async {
+                            exploreController.updatedCategoryId.value = "";
+                            await exploreController.getSearchProductsApiService(
+                              context: context,
+                            );
+                          },
+                          onChanged: (search) async {
+                            if(search != null) {
+                              exploreController.products.value = exploreController.productsResponseModel.value.data!.data!.where((e)=>e.name.toString().contains(search)).toList();
+                            }
+                          },
+                          borderColor: ColorUtils.white202,
+                          enableBorderColor: ColorUtils.white202,
+                          focusedBorderColor: ColorUtils.secondaryColor,
+                          prefixIcon: Padding(
+                            padding: EdgeInsets.all(20.r(context)),
+                            child: InkWell(
+                              onTap: () async {},
+                              child: ImageHelperWidget.assetImageWidget(
+                                context: context,
+                                height: 24.h(context),
+                                width: 24.w(context),
+                                imageString: ImageUtils.searchNormalImage,
                               ),
                             ),
                           ),
                         ),
 
-                        CustomSpaceWidget.spacerWidget(spaceHeight: 20.h(context)),
 
-                        categoriesResponseModel.value.categories?.isNotEmpty == true || categoriesResponseModel.value.categories != null ?
+
+                        // Container(
+                        //   width: 428.w(context),
+                        //   decoration: BoxDecoration(
+                        //     color: Colors.transparent,
+                        //     borderRadius: BorderRadius.circular(8.r(context)),
+                        //     border:Border.all(width: 1, color: ColorUtils.whiteDark),
+                        //   ),
+                        //   child: TextField(
+                        //     onTap: () async {
+                        //       exploreController.updatedCategoryId.value = "";
+                        //       await exploreController.getSearchProductsApiService(
+                        //         context: context,
+                        //       );
+                        //     },
+                        //     onChanged: (search) async {
+                        //       exploreController.products.value = exploreController.productsResponseModel.value.data!.data!.where((e)=>e.name.toString().contains(search)).toList();
+                        //     },
+                        //     decoration: InputDecoration(
+                        //       hintText: "Search",
+                        //       prefixIcon: Icon(
+                        //         Icons.search_outlined,
+                        //         color: Colors.grey,
+                        //         size: 32.r(context),
+                        //       ),
+                        //       border: OutlineInputBorder(
+                        //         borderSide: BorderSide.none,
+                        //         borderRadius: BorderRadius.circular(10.r(context),
+                        //         ),
+                        //       ),
+                        //     ),
+                        //   ),
+                        // ),
+
+                        SpaceHelperWidget.v(20.h(context)),
+
+
+                        exploreController.categoriesResponseModel.value.categories?.isNotEmpty == true ||
+                            exploreController.categoriesResponseModel.value.categories != null ?
                         Container(
                           height: 120.h(context),
                           width: 428.w(context),
@@ -211,13 +230,12 @@ class ExploreView extends StatelessWidget {
                           ),
                           child: ListView.builder(
                             scrollDirection: Axis.horizontal,
-                            itemCount: categoriesResponseModel.value.categories?.length,
-                            padding: EdgeInsets.all(5),
+                            itemCount: exploreController.categoriesResponseModel.value.categories?.length,
+                            padding: EdgeInsets.all(5.r(context)),
                             physics: ScrollPhysics(),
                             shrinkWrap: true,
                             itemBuilder: (context, index) {
                               return Obx(()=>Container(
-                                height: 90.h(context),
                                 width: 90.w(context),
                                 padding: EdgeInsets.symmetric(
                                   horizontal: 10.hpm(context),
@@ -225,59 +243,55 @@ class ExploreView extends StatelessWidget {
                                 ),
                                 alignment: Alignment.center,
                                 decoration: BoxDecoration(
-                                    color: categoriesResponseModel.value.categories![index].sId == updatedCategoryId.value ? Colors.blueGrey : Colors.white, // Color of the container
-                                    boxShadow: [
-                                      BoxShadow(
-                                        color: Colors.black.withOpacity(0.08), // Shadow color with opacity
-                                        spreadRadius: 0, // Spread radius of the shadow
-                                        blurRadius: 8, // Blur radius of the shadow
-                                        offset: Offset(0, 2), // Offset of the shadow (x, y)
-                                      ),
-                                    ],
-                                    borderRadius: BorderRadius.circular(8.r(context))
+                                  color: exploreController.categoriesResponseModel.value.categories![index].sId == exploreController.updatedCategoryId.value ?
+                                  Colors.blueGrey : Colors.white, // Color of the container
+                                  boxShadow: [
+                                    BoxShadow(
+                                      color: Colors.black.withOpacity(0.08), // Shadow color with opacity
+                                      spreadRadius: 0, // Spread radius of the shadow
+                                      blurRadius: 8, // Blur radius of the shadow
+                                      offset: Offset(0, 2), // Offset of the shadow (x, y)
+                                    ),
+                                  ],
+                                  borderRadius: BorderRadius.circular(8.r(context)),
                                 ),
-                                margin: EdgeInsets.only(right: 10),
+                                margin: EdgeInsets.only(right: 10.rpm(context)),
                                 child: TextButton(
                                   style: TextButton.styleFrom(padding: EdgeInsets.zero),
                                   onPressed: () async {
-                                    isLoading.value = true;
-                                    products.value = [];
-                                    updatedCategoryId.value = categoriesResponseModel.value.categories![index].sId;
-                                    await ExploreProductListViewController.getProductsByCategoryApiService(
-                                      categoryId: categoriesResponseModel.value.categories![index].sId,
-                                      onSuccess: (e) {
-                                        isLoading.value = false;
-                                        productsResponseModel.value = ProductsResponseModel.fromJson(e);
-                                        products.value = productsResponseModel.value.data!.data!;
-                                      },
-                                      onFail: (e) {
-                                        isLoading.value = false;
-                                        CustomSnackBar().errorCustomSnackBar(context: context, message: "${e}");
-                                      },
-                                      onExceptionFail: (e) {
-                                        isLoading.value = false;
-                                        CustomSnackBar().errorCustomSnackBar(context: context, message: "${e}");
-                                      },
+                                    exploreController.isLoading.value = true;
+                                    exploreController.products.value = [];
+                                    exploreController.updatedCategoryId.value = exploreController.categoriesResponseModel.value.categories![index].sId;
+                                    await exploreController.getProductsByCategoryApiService(
+                                      categoryId: exploreController.categoriesResponseModel.value.categories![index].sId,
+                                      context: context
                                     );
                                   },
                                   child: Column(
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     crossAxisAlignment: CrossAxisAlignment.center,
                                     children: [
-                                      CustomImageContainer.networkImageContainer(
-                                          height: 40.h(context),
-                                          width: 40.w(context),
-                                          networkImage: categoriesResponseModel.value.categories?[index].icon
+                                      ImageHelperWidget.styledImage(
+                                        context: context,
+                                        height: 40,
+                                        width: 40,
+                                        borderRadius: 0,
+                                        fit: BoxFit.fill,
+                                        imageUrl: exploreController.categoriesResponseModel.value.categories?[index].icon,
                                       ),
-                                      CustomSpaceWidget.spacerWidget(spaceHeight: 6.h(context)),
-                                      CustomTextContainer.plainTextContainerWidgetWithoutHeightWidth(
-                                        plainTextString: categoriesResponseModel.value.categories?[index].name,
-                                        plainTextStringFontSize: 14.sp(context),
-                                        plainTextStringFontWeight: FontWeight.w500,
-                                        plainTextContainerAlignment: Alignment.center,
-                                        plainTextStringColor: ColorUtils.black29,
-                                        plainTextStringTextAlign: TextAlign.center,
+
+                                      SpaceHelperWidget.v(6.h(context)),
+
+                                      TextHelperClass.headingTextWithoutWidth(
+                                        context: context,
+                                        text: exploreController.categoriesResponseModel.value.categories?[index].name,
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.w500,
+                                        textColor: ColorUtils.black29,
+                                        textAlign: TextAlign.center,
+                                        alignment: Alignment.center,
                                       ),
+
                                     ],
                                   ),
                                 ),
@@ -293,25 +307,27 @@ class ExploreView extends StatelessWidget {
                           ),
                         ),
 
-                        CustomSpaceWidget.spacerWidget(spaceHeight: 20.h(context)),
 
-                        products != [] && products.isNotEmpty == true ?
+                        SpaceHelperWidget.v(20.h(context)),
+
+
+                        exploreController.products != [] && exploreController.products.isNotEmpty == true ?
                         ListView.builder(
                           padding: EdgeInsets.zero,
-                          itemCount: products.length,
+                          itemCount: exploreController.products.length,
                           shrinkWrap: true,
                           physics: ScrollPhysics(),
                           itemBuilder: (context, index) {
                             return TextButton(
                               style: TextButton.styleFrom(padding: EdgeInsets.zero),
                               onPressed: () async {
-                                Get.off(SingleProductViewScreen(
-                                  productId: products[index].sId,
+                                Get.off(()=> SingleProductViewScreen(
+                                  productId: exploreController.products[index].sId,
                                   isSingleStoreScreen: false,isHomeScreen: false,storeId: '',isProductListPage: false,isExplorePage: true, isStoreScreen: false,
-                                ),duration: Duration(milliseconds: 100),preventDuplicates: false,);
+                                ), duration: Duration(milliseconds: 100),preventDuplicates: false,);
                               },
                               child: Container(
-                                margin: EdgeInsets.only(bottom: 10.bpm(context)),
+                                margin: EdgeInsets.only(bottom: 20.bpm(context)),
                                 decoration: BoxDecoration(
                                   color: Colors.white,
                                   borderRadius: BorderRadius.circular(15.r(context)), // Responsive border radius
@@ -328,42 +344,45 @@ class ExploreView extends StatelessWidget {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     // Top Image with rounded corners
-                                    products[index].images?.isEmpty == true ?
+
+
+                                    exploreController.products[index].images?.isEmpty == true ?
                                     Container(
-                                      height: 180.h(context), // Responsive height
-                                      width: 428.w(context), // Full width
+                                      height: 180.h(context),
+                                      width: 428.w(context),
                                       decoration: BoxDecoration(
                                         image: DecorationImage(
                                           image: AssetImage(ImageUtils.carousel1),
-                                          fit: BoxFit.fill,
+                                          fit: BoxFit.cover,
                                         ),
                                         borderRadius: BorderRadius.vertical(top: Radius.circular(15.r(context))),
                                         color: Color.fromRGBO(175, 175, 175, 1),
                                       ),
                                     ) :
-                                    ClipRRect(
-                                      borderRadius: BorderRadius.vertical(top: Radius.circular(15.r(context))),
-                                      child: Image.network(
-                                        products[index].images!.first,
-                                        height: 180.h(context), // Responsive height
-                                        width: 428.w(context), // Full width
-                                        fit: BoxFit.cover,
-                                        errorBuilder: (BuildContext context, Object exception, StackTrace? stackTrace) {
-                                          return Container(
-                                            height: 180.h(context), // Responsive height
-                                            width: 428.w(context), // Full width
-                                            decoration: BoxDecoration(
-                                              image: DecorationImage(
-                                                image: AssetImage(ImageUtils.carousel1),
-                                                fit: BoxFit.fill,
-                                              ),
-                                              borderRadius: BorderRadius.vertical(top: Radius.circular(15.r(context))),
-                                              color: Color.fromRGBO(175, 175, 175, 1),
-                                            ),
-                                          );
-                                        },
+                                    ImageHelperWidget.styledImage(
+                                      context: context,
+                                      height: 180,
+                                      width: 428,
+                                      fit: BoxFit.cover,
+                                      topLeftRadius: 15,
+                                      topRightRadius: 15,
+                                      bottomLeftRadius: 0,
+                                      bottomRightRadius: 0,
+                                      imageUrl: exploreController.products[index].images!.first,
+                                      errorWidget: Container(
+                                        height: 180.h(context),
+                                        width: 428.w(context),
+                                        decoration: BoxDecoration(
+                                          image: DecorationImage(
+                                            image: AssetImage(ImageUtils.carousel1),
+                                            fit: BoxFit.cover,
+                                          ),
+                                          borderRadius: BorderRadius.vertical(top: Radius.circular(15.r(context))),
+                                          color: Color.fromRGBO(175, 175, 175, 1),
+                                        ),
                                       ),
                                     ),
+
 
                                     // Padding around the text and details
                                     Padding(
@@ -377,32 +396,39 @@ class ExploreView extends StatelessWidget {
 
                                           // Title
 
-                                          CustomTextContainer.plainTextContainerWidgetWithoutHeightWidth(
-                                            plainTextString: products[index].name ?? "N/A",
-                                            plainTextStringFontSize: 22.sp(context),
-                                            plainTextStringFontWeight: FontWeight.w700,
-                                            plainTextContainerAlignment: Alignment.centerLeft,
-                                            plainTextStringColor: ColorUtils.black29,
-                                            plainTextStringTextAlign: TextAlign.start,
+                                          TextHelperClass.headingTextWithoutWidth(
+                                            context: context,
+                                            text: exploreController.products[index].name ?? "N/A",
+                                            fontSize: 22,
+                                            fontWeight: FontWeight.w700,
+                                            textColor: ColorUtils.black29,
+                                            textAlign: TextAlign.start,
+                                            alignment: Alignment.centerLeft,
+                                            maxLines: 1,
+                                            textOverFlow: TextOverflow.ellipsis,
                                           ),
 
-                                          CustomSpaceWidget.spacerWidget(spaceHeight: 5.h(context)),
+                                          SpaceHelperWidget.v(5.h(context)),
 
 
-                                          // Description
-                                          CustomTextContainer.plainTextContainerWidgetWithoutHeightWidth(
-                                            plainTextString:  products[index].description != null ?
-                                            "${products[index].description.toString().length > 50 ?
-                                            products[index].description.toString().substring(0,50) :
-                                            products[index].description.toString()}...." : "N/A",
-                                            plainTextStringFontSize: 14.sp(context),
-                                            plainTextStringFontWeight: FontWeight.w700,
-                                            plainTextContainerAlignment: Alignment.centerLeft,
-                                            plainTextStringColor: Colors.grey.shade600,
-                                            plainTextStringTextAlign: TextAlign.start,
+                                          TextHelperClass.headingTextWithoutWidth(
+                                            context: context,
+                                            text: exploreController.products[index].description != null ?
+                                            "${exploreController.products[index].description.toString().length > 50 ?
+                                            exploreController.products[index].description.toString().substring(0,50) :
+                                            exploreController.products[index].description.toString()}...." : "N/A",
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.w700,
+                                            textColor: ColorUtils.black76,
+                                            textAlign: TextAlign.start,
+                                            alignment: Alignment.centerLeft,
+                                            maxLines: 3,
+                                            textOverFlow: TextOverflow.ellipsis,
                                           ),
 
-                                          CustomSpaceWidget.spacerWidget(spaceHeight: 10.h(context)),
+
+                                          SpaceHelperWidget.v(10.h(context)),
+
 
                                           // Bottom section with icons, labels, and price
                                           Row(
@@ -414,47 +440,54 @@ class ExploreView extends StatelessWidget {
                                                   children: [
                                                     // Time icon and label
                                                     Icon(Icons.ac_unit, size: 16.r(context), color: Colors.orange),
-                                                    SizedBox(width: 4.w(context)),
-                                                    CustomTextContainer.plainTextContainerWidgetWithoutHeightWidth(
-                                                      plainTextString: products[index].quantity != null ?
-                                                      "${products[index].quantity} pics" : "N/A",
-                                                      plainTextStringFontSize: 14.sp(context),
-                                                      plainTextStringFontWeight: FontWeight.w500,
-                                                      plainTextContainerAlignment: Alignment.centerLeft,
-                                                      plainTextStringColor: Colors.grey.shade700,
-                                                      plainTextStringTextAlign: TextAlign.start,
+
+                                                    SpaceHelperWidget.h(6.w(context)),
+
+
+                                                    TextHelperClass.headingTextWithoutWidth(
+                                                      context: context,
+                                                      text: exploreController.products[index].quantity != null ?
+                                                      "${exploreController.products[index].quantity} pics" : "N/A",
+                                                      fontSize: 14,
+                                                      fontWeight: FontWeight.w500,
+                                                      textColor: ColorUtils.black76,
+                                                      textAlign: TextAlign.start,
+                                                      alignment: Alignment.centerLeft,
                                                     ),
 
 
+                                                    SpaceHelperWidget.h(10.w(context)),
 
-                                                    SizedBox(width: 10.w(context)),
 
                                                     // Rating icon and label
                                                     Icon(Icons.star, size: 16.r(context), color: Colors.orange),
-                                                    SizedBox(width: 4.w(context)),
+                                                    SpaceHelperWidget.h(6.w(context)),
 
-                                                    CustomTextContainer.plainTextContainerWidgetWithoutHeightWidth(
-                                                      plainTextString: productsResponseModel.value.data?.data?[index].ratings != null ?
-                                                      "${productsResponseModel.value.data?.data?[index].ratings}" : "N/A",
-                                                      plainTextStringFontSize: 14.sp(context),
-                                                      plainTextStringFontWeight: FontWeight.w500,
-                                                      plainTextContainerAlignment: Alignment.centerLeft,
-                                                      plainTextStringColor: Colors.grey.shade700,
-                                                      plainTextStringTextAlign: TextAlign.start,
+                                                    TextHelperClass.headingTextWithoutWidth(
+                                                      context: context,
+                                                      text: exploreController.productsResponseModel.value.data?.data?[index].ratings != null ?
+                                                      "${exploreController.productsResponseModel.value.data?.data?[index].ratings}" : "N/A",
+                                                      fontSize: 14,
+                                                      fontWeight: FontWeight.w500,
+                                                      textColor: ColorUtils.black76,
+                                                      textAlign: TextAlign.start,
+                                                      alignment: Alignment.centerLeft,
                                                     ),
+
                                                   ],
                                                 ),
                                               ),
 
 
-                                              CustomTextContainer.plainTextContainerWidgetWithoutHeightWidth(
-                                                plainTextString: productsResponseModel.value.data?.data?[index].price != null ?
-                                                "${"\$"}${productsResponseModel.value.data!.data![index].price.toString()}" : "N/A",
-                                                plainTextStringFontSize: 22.sp(context),
-                                                plainTextStringFontWeight: FontWeight.w700,
-                                                plainTextContainerAlignment: Alignment.centerLeft,
-                                                plainTextStringColor: ColorUtils.black29,
-                                                plainTextStringTextAlign: TextAlign.start,
+                                              TextHelperClass.headingTextWithoutWidth(
+                                                context: context,
+                                                text: exploreController.productsResponseModel.value.data?.data?[index].price != null ?
+                                                "${"\$"}${exploreController.productsResponseModel.value.data!.data![index].price.toString()}" : "N/A",
+                                                fontSize: 22,
+                                                fontWeight: FontWeight.w700,
+                                                textColor: ColorUtils.black29,
+                                                textAlign: TextAlign.start,
+                                                alignment: Alignment.centerLeft,
                                               ),
 
 
@@ -469,16 +502,17 @@ class ExploreView extends StatelessWidget {
                             );
                           },
                         ) :
-                        products.isEmpty == true ?
-                        CustomTextContainer.plainTextContainerWidgetWithoutHeightWidth(
-                          plainTextString: "No Product Available",
-                          plainTextStringFontSize: 22.sp(context),
-                          plainTextStringFontWeight: FontWeight.w700,
-                          plainTextContainerAlignment: Alignment.center,
-                          plainTextStringColor: ColorUtils.black29,
-                          plainTextStringTextAlign: TextAlign.center,
+                        exploreController.products.isEmpty == true ?
+                        TextHelperClass.headingTextWithoutWidth(
+                          context: context,
+                          text: "No Product Available",
+                          fontSize: 22,
+                          fontWeight: FontWeight.w700,
+                          textColor: ColorUtils.black29,
+                          textAlign: TextAlign.center,
+                          alignment: Alignment.center,
                         ) :
-                        CustomSpaceWidget.spacerWidget(),
+                        SizedBox.shrink(),
 
 
                       ],

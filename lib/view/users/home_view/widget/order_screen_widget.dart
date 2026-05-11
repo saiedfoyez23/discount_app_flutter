@@ -1,6 +1,5 @@
 import 'package:discount_me_app/res/common_widget/custom_text.dart';
 import 'package:discount_me_app/view/users/home_view/view/order_pick_location_view.dart';
-import 'package:discount_me_app/view/users/home_view/view/order_select_address_view.dart';
 import 'package:discount_me_app/view/view.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -8,7 +7,6 @@ import 'package:skeletonizer/skeletonizer.dart';
 import 'package:discount_me_app/utils/utils.dart';
 import '../../../../res/common_widget/RoundButton.dart';
 import '../../../../res/res.dart';
-import '../../profile_view/view/user_notification_screen.dart';
 
 class OrderScreenWidget extends GetxController {
   
@@ -175,7 +173,7 @@ class OrderScreenWidget extends GetxController {
                                 child: TextButton(
                                   style: TextButton.styleFrom(padding: EdgeInsets.zero),
                                   onPressed: () {
-                                    Get.off(()=>UserNotificationScreen(),preventDuplicates: false,duration: const Duration(milliseconds: 100));
+                                    Get.off(()=>UserNotificationView(),preventDuplicates: false,duration: const Duration(milliseconds: 100));
                                   },
                                   child: Icon(
                                     Icons.notifications,

@@ -44,7 +44,7 @@ class DashboardUserController extends GetxController {
   RxList<Widget> pages = [
     UserHomeView(),
     CouponHomeScreen(),
-    ExploreProductListScreen(),
+    ExploreView(),
     UserProfileHomeScreen(),
   ].obs;
 

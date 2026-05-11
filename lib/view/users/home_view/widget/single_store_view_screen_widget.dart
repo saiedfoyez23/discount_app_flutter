@@ -1,11 +1,6 @@
 import 'dart:async';
 import 'dart:math';
-import 'package:discount_me_app/view/users/home_view/controller/single_store_view_controller.dart';
-import 'package:discount_me_app/view/users/home_view/view/recipes_screen.dart';
-import 'package:discount_me_app/view/users/home_view/widget/home_resturant_app_bar.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:skeletonizer/skeletonizer.dart';
@@ -13,8 +8,6 @@ import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:discount_me_app/utils/utils.dart';
 import '../../../../res/res.dart';
 import '../../../view.dart';
-import '../../profile_view/view/user_notification_screen.dart';
-import '../view/order_screen.dart';
 
 class SingleStoreViewScreenWidget extends GetxController {
 
@@ -263,7 +256,7 @@ class SingleStoreViewScreenWidget extends GetxController {
                                 child: TextButton(
                                   style: TextButton.styleFrom(padding: EdgeInsets.zero),
                                   onPressed: () {
-                                    Get.off(()=>UserNotificationScreen(),preventDuplicates: false,duration: const Duration(milliseconds: 100));
+                                    Get.off(()=>UserNotificationView(),preventDuplicates: false,duration: const Duration(milliseconds: 100));
                                   },
                                   child: Icon(
                                     Icons.notifications,

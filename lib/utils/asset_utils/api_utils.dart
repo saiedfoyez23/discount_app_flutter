@@ -59,6 +59,9 @@ class ApiUtils {
   static String getOrderDetails(String orderId) {
     return "$baseUrl/orders/${orderId}";
   }
+  static String getCategoryWiseProducts(String categoryId) {
+    return "$baseUrl/products?category=${categoryId}";
+  }
 
 
   static const String getAllSetting = "$baseUrl/settings";
