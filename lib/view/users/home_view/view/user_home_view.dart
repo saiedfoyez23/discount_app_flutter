@@ -409,12 +409,12 @@ class UserHomeView extends StatelessWidget {
 
                                             userHomeController.productsResponseModel.value.data?.data?[index].images?.isEmpty == true ?
                                             Container(
-                                              height: 180.h(context),
+                                              height: 140.h(context),
                                               width: double.infinity,
                                               decoration: BoxDecoration(
                                                 image: DecorationImage(
                                                   image: AssetImage(ImageUtils.carousel1),
-                                                  fit: BoxFit.fill,
+                                                  fit: BoxFit.cover,
                                                 ),
                                                 borderRadius: BorderRadius.vertical(top: Radius.circular(15.r(context))),
                                                 color: Color.fromRGBO(175, 175, 175, 1),
@@ -422,9 +422,9 @@ class UserHomeView extends StatelessWidget {
                                             ) :
                                             ImageHelperWidget.styledImage(
                                               context: context,
-                                              height: 180.h(context),
+                                              height: 140,
                                               width: double.infinity,
-                                              fit: BoxFit.fill,
+                                              fit: BoxFit.cover,
                                               topLeftRadius: 15,
                                               topRightRadius: 15,
                                               bottomLeftRadius: 0,
@@ -436,7 +436,7 @@ class UserHomeView extends StatelessWidget {
                                                 decoration: BoxDecoration(
                                                   image: DecorationImage(
                                                     image: AssetImage(ImageUtils.carousel1),
-                                                    fit: BoxFit.fill,
+                                                    fit: BoxFit.cover,
                                                   ),
                                                   borderRadius: BorderRadius.vertical(top: Radius.circular(15.r(context))),
                                                   color: Color.fromRGBO(175, 175, 175, 1),

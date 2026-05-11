@@ -29,7 +29,6 @@ export 'package:discount_me_app/view/users/coupon_view/view/coupon_home_screen.d
 export 'package:discount_me_app/view/users/coupon_view/view/payment_information_screen.dart';
 export 'package:discount_me_app/view/users/coupon_view/view/payment_method_screen.dart';
 export 'package:discount_me_app/view/users/coupon_view/view/transaction_success_screen.dart';
-export 'package:discount_me_app/view/users/explore_view/view/explore_product_list_view_screen.dart';
 export 'package:discount_me_app/view/users/home_view/view/order_complete_view.dart';
 export 'package:discount_me_app/view/users/home_view/view/order_screen.dart';
 export 'package:discount_me_app/view/users/home_view/view/recipes_screen.dart';
@@ -37,7 +36,6 @@ export 'package:discount_me_app/view/users/profile_view/view/user_change_passwor
 export 'package:discount_me_app/view/users/profile_view/view/user_profile_edit_screen.dart';
 export 'package:discount_me_app/view/users/profile_view/view/user_profile_home_screen.dart';
 export 'package:discount_me_app/view/splash/screens/splash_view_two.dart';
-export 'package:discount_me_app/view/users/profile_view/view/user_notification_screen.dart';
 export 'package:discount_me_app/view/users/profile_view/view/user_profile_setting_screen.dart';
 
 export 'package:discount_me_app/view/vendors/vendor_earning_view/view/vendor_earning_home_screen.dart';

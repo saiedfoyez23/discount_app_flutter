@@ -6,7 +6,6 @@ import 'package:skeletonizer/skeletonizer.dart';
 import '../../../../res/res.dart';
 import '../../../view.dart';
 import 'package:discount_me_app/utils/utils.dart';
-import '../../profile_view/view/user_notification_screen.dart';
 
 class StoreListViewScreenWidget extends GetxController {
 
@@ -201,7 +200,7 @@ class StoreListViewScreenWidget extends GetxController {
                                   child: TextButton(
                                     style: TextButton.styleFrom(padding: EdgeInsets.zero),
                                     onPressed: () {
-                                      Get.off(()=>UserNotificationScreen(),preventDuplicates: false,duration: const Duration(milliseconds: 100));
+                                      Get.off(()=>UserNotificationView(),preventDuplicates: false,duration: const Duration(milliseconds: 100));
                                     },
                                     child: Icon(
                                       Icons.notifications,
