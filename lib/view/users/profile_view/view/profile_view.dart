@@ -1,6 +1,10 @@
+import 'package:discount_me_app/res/common_widget/custom_alert_dialog.dart';
 import 'package:discount_me_app/utils/utils.dart';
+import 'package:discount_me_app/view/users/chat_view/view/user_chat_vendor_list_screen.dart';
+import 'package:discount_me_app/view/users/user_profile_order_view/view/user_profile_order_view.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 import 'package:discount_me_app/view/view.dart';
 
@@ -9,6 +13,7 @@ class ProfileView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    ProfileController profileController = Get.put(ProfileController(context: context));
     return Scaffold(
       body: Container(
         height: 926.h(context),
@@ -23,333 +28,268 @@ class ProfileView extends StatelessWidget {
         ),
         child: Obx(()=>Skeletonizer(
           effect: PulseEffect(),
-          enabled: isLoading.value,
-          child: RefreshIndicator(
-            onRefresh: () async {
-              Get.off(()=>UserDashboardView(index: 3,),duration: const Duration(milliseconds: 100),preventDuplicates: false);
-            },
+          enabled: profileController.isLoading.value,
+          child: SafeArea(
             child: CustomScrollView(
+              physics: NeverScrollableScrollPhysics(),
               slivers: [
 
 
                 SliverToBoxAdapter(
                   child: Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 16.hpm(context), vertical: 16.vpm(context)),
+                    padding: EdgeInsets.symmetric(horizontal: 16.hpm(context)),
                     child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        // appBar
-                        CustomSpaceWidget.spacerWidget(spaceHeight: 40.h(context)),
 
-                        UserProfileAppbarWidget(title: " Profile", widget: SizedBox(),),
-
-                        // Profile image
-
-                        CustomSpaceWidget.spacerWidget(spaceHeight: 20.h(context)),
+                        UserProfileAppbarWidget(title: " Profile"),
 
 
-                        Center(
-                          child: Stack(
-                            children: [
-                              userProfileResponseModel.value.data?.image != null ?
-                              CustomImageContainer.networkImageContainer(
-                                height: 220.h(context),
-                                width: 220.w(context),
-                                networkImage: userProfileResponseModel.value.data?.image,
-                                boxFit: BoxFit.fitWidth,
-                                boxShape: BoxShape.circle,
-                              ) :
-                              CustomImageContainer.assetImageContainer(
-                                height: 220.h(context),
-                                width: 220.w(context),
-                                assetImage: ImageUtils.profileImage,
-                                boxFit: BoxFit.fitWidth,
-                                boxShape: BoxShape.circle,
-                              ),
-                              Positioned(
-                                bottom: 24.h(context),
-                                right: 17.w(context),
-                                child: Container(
-                                  alignment: Alignment.center,
-                                  width: 34.w(context),
-                                  height: 34.h(context),
-                                  decoration: BoxDecoration(
-                                    color: ColorUtils.secondaryColor,
-                                    borderRadius: BorderRadius.only(
-                                      topLeft: Radius.circular(10.r(context)),
-                                      topRight: Radius.circular(10.r(context)),
-                                      bottomRight: Radius.circular(10.r(context)),
-                                    ),
-                                  ),
-                                  child: TextButton(
-                                    style: TextButton.styleFrom(padding: EdgeInsets.zero),
-                                    onPressed: () async {
-                                      showDialog(
-                                        context: context,
-                                        builder: (BuildContext context) {
-                                          return AlertDialog(
-                                            title: Text('Select Profile Image'),
-                                            content: Column(
-                                              mainAxisSize: MainAxisSize.min,
-                                              children: <Widget>[
-                                                ListTile(
-                                                  leading: Icon(Icons.photo_library),
-                                                  title: Text('Gallery'),
-                                                  onTap: () async {
-                                                    final pickedFile = await ImagePicker().pickImage(
-                                                        source: ImageSource.gallery);
-                                                    if (pickedFile != null) {
-                                                      // Handle the picked image (e.g., update profile)
-                                                      print('Image selected: ${pickedFile.path}');
-                                                      isLoading.value = true;
-                                                      Get.back();
-                                                      await UserProfileEditController.getUserImageUpdateResponse(
-                                                          image: File(pickedFile.path),
-                                                          name: userProfileResponseModel.value.data?.name ?? "",
-                                                          onSuccess: (e) {
-                                                            Get.off(()=>UserDashboardView(index: 3,),duration: const Duration(milliseconds: 100),preventDuplicates: false);
-                                                          },
-                                                          onFail: (e) {
-                                                            isLoading.value = false;
-                                                            CustomSnackBar().errorCustomSnackBar(context: context, message: "${e}");
-                                                          },
-                                                          onExceptionFail: (e) async {
-                                                            if(e == "jwt expired") {
-                                                              await AppLocalStorage.removeKey(key: "Login");
-                                                              await Get.off(()=>SignInView(),preventDuplicates: false,duration: Duration(milliseconds: 100));
-                                                            }
-                                                            isLoading.value = false;
-                                                            CustomSnackBar().errorCustomSnackBar(context: context, message: "${e}");
-                                                          }
-                                                      );
-                                                    } else {
-                                                      // Show a SnackBar if no image is selected before popping the dialog
-                                                      ScaffoldMessenger.of(context).showSnackBar(
-                                                        SnackBar(
-                                                          content: Text('No image selected'),
-                                                          duration: Duration(seconds: 2),
-                                                        ),
-                                                      );
-                                                    }
-                                                    Get.back(); // Now safely pop the dialog after showing the SnackBar
-                                                  },
-                                                ),
-                                                ListTile(
-                                                  leading: Icon(Icons.camera_alt),
-                                                  title: Text('Camera'),
-                                                  onTap: () async {
-                                                    final pickedFile = await ImagePicker().pickImage(
-                                                        source: ImageSource.camera);
-                                                    if (pickedFile != null) {
-                                                      // Handle the picked image (e.g., update profile)
-                                                      print('Image selected: ${pickedFile.path}');
-                                                      isLoading.value = true;
-                                                      Get.back();
-                                                      await UserProfileEditController.getUserImageUpdateResponse(
-                                                          name: userProfileResponseModel.value.data?.name ?? "",
-                                                          image: File(pickedFile.path),
-                                                          onSuccess: (e) {
-                                                            Get.off(()=>UserDashboardView(index: 3,),duration: const Duration(milliseconds: 100),preventDuplicates: false);
-                                                            CustomSnackBar().successCustomSnackBar(context: context, message: "${e}");
-                                                          },
-                                                          onFail: (e) {
-                                                            isLoading.value = false;
-                                                            CustomSnackBar().errorCustomSnackBar(context: context, message: "${e}");
-                                                          },
-                                                          onExceptionFail: (e) async {
-                                                            if(e == "jwt expired") {
-                                                              await AppLocalStorage.removeKey(key: "Login");
-                                                              await Get.off(()=>SignInView(),preventDuplicates: false,duration: Duration(milliseconds: 100));
-                                                            }
-                                                            isLoading.value = false;
-                                                            CustomSnackBar().errorCustomSnackBar(context: context, message: "${e}");
-                                                          }
-                                                      );
-                                                    } else {
-                                                      // Show a SnackBar if no image is selected before popping the dialog
-                                                      ScaffoldMessenger.of(context).showSnackBar(
-                                                        SnackBar(
-                                                          content: Text('No image selected'),
-                                                          duration: Duration(seconds: 2),
-                                                        ),
-                                                      );
-                                                    }
-                                                    Get.back(); // Now safely pop the dialog after showing the SnackBar
-                                                  },
-                                                ),
-                                              ],
-                                            ),
-                                          );
-                                        },
-                                      );
-                                    },
-                                    child: Icon(
-                                      Icons.edit,
-                                      size: 16.r(context),
-                                      color: ColorUtils.whiteColor,
-                                    ),
-                                  ),
-                                ),
-                              )
-                            ],
-                          ),
-                        ),
+                        SpaceHelperWidget.v(20.h(context)),
 
-                        // name section
-
-                        CustomSpaceWidget.spacerWidget(spaceHeight: 10.h(context)),
-
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-
-                            CustomTextContainer.plainTextContainerWidgetWithoutHeightWidth(
-                              plainTextString: nameControllerText.value.text,
-                              plainTextStringFontSize: 18.sp(context),
-                              plainTextStringFontWeight: FontWeight.w700,
-                              plainTextContainerAlignment: Alignment.center,
-                              plainTextStringTextAlign: TextAlign.center,
-                              plainTextStringColor: ColorUtils.black29,
-                            ),
-
-
-                            TextButton(
-                              onPressed: () {
-                                Get.dialog(
-                                  Obx(()=>AlertDialog(
-                                    title: Text('Change Name'),
-                                    content: TextField(
-                                      controller: nameControllerText.value,
-                                      decoration: InputDecoration(
-                                        hintText: "Enter your name",
-                                      ),
-                                    ),
-                                    actions: <Widget>[
-                                      TextButton(
-                                        onPressed: () {
-                                          Get.back(); // Close the dialog
-                                        },
-                                        child: Text('Cancel'),
-                                      ),
-                                      TextButton(
-                                        onPressed: () async {
-                                          isLoading.value = true;
-                                          Get.back();
-                                          await UserProfileEditController.getUserNameUpdateResponse(
-                                              name: nameControllerText.value.text,
-                                              onSuccess: (e) {
-                                                Get.off(()=>UserDashboardView(index: 3,),duration: const Duration(milliseconds: 100),preventDuplicates: false);
-                                                CustomSnackBar().successCustomSnackBar(context: context, message: "${e}");
-                                              },
-                                              onFail: (e) {
-                                                isLoading.value = false;
-                                                CustomSnackBar().errorCustomSnackBar(context: context, message: "${e}");
-                                              },
-                                              onExceptionFail: (e) async {
-                                                if(e == "jwt expired") {
-                                                  await AppLocalStorage.removeKey(key: "Login");
-                                                  await Get.off(()=>SignInView(),preventDuplicates: false,duration: Duration(milliseconds: 100));
-                                                }
-                                                isLoading.value = false;
-                                                CustomSnackBar().errorCustomSnackBar(context: context, message: "${e}");
-                                              }
-                                          );// Close the dialog
-                                        },
-                                        child: Text('OK'),
-                                      ),
-                                    ],
-                                  )),
-                                );
-                              },
-                              child: Container(
-                                padding: EdgeInsets.all(5),
-                                decoration: BoxDecoration(
-                                    color: Colors.black,
-                                    shape: BoxShape.circle
-                                ),
-                                child: Icon(Icons.edit, color: Colors.white, size: 18.r(context),),
-                              ),
-                            )
-                          ],
-                        ),
-
-                        // profile item
-                        CustomSpaceWidget.spacerWidget(spaceHeight: 20.h(context)),
-
-                        ProfileItemWidget(
-                          title: "Edit Profile",
-                          icon: Image.asset(ImageUtils.userEdite, scale: 5,),
-                          navigateIcon: Icon(Icons.navigate_next, size: 24.r(context), color: Colors.black54,),
-                          onTap: () {
-                            Get.off(()=>UserProfileEditScreen(),preventDuplicates: false,duration: Duration(milliseconds: 100));
-                          },
-                        ),
-
-                        ProfileItemWidget(
-                          title: "Card",
-                          icon: Image.asset(ImageUtils.shoppingCardIcon, scale: 5,),
-                          navigateIcon: Icon(Icons.navigate_next,size: 24.r(context), color: Colors.black54,),
-                          onTap: () {
-                            Get.off(()=>OrderScreen(),preventDuplicates: false,duration: Duration(milliseconds: 100));
-                          },
-                        ),
-
-                        ProfileItemWidget(
-                          title: "Order",
-                          icon: Image.asset(ImageUtils.userOrder, scale: 5,),
-                          navigateIcon: Icon(Icons.navigate_next,size: 24.r(context), color: Colors.black54,),
-                          onTap: () {
-                            Get.off(()=>UserProfileOrderView(),preventDuplicates: false,duration: Duration(milliseconds: 100));
-                          },
-                        ),
-                        ProfileItemWidget(
-                          title: "Support Chat",
-                          icon: Image.asset(ImageUtils.chat, scale: 5,),
-                          navigateIcon: Icon(Icons.navigate_next,size: 24.r(context), color: Colors.black54,),
-                          onTap: () {
-                            Get.to(UserChatVendorListScreen());
-                          },
-                        ),
-                        ProfileItemWidget(
-                          title: "Notification",
-                          icon: Image.asset(ImageUtils.userNotification, scale: 5,),
-                          navigateIcon: Icon(Icons.navigate_next,size: 24.r(context), color: Colors.black54,),
-                          onTap: () {
-                            Get.off(()=>UserNotificationView(),preventDuplicates: false,duration: Duration(milliseconds: 100));
-                          },
-                        ),
-                        ProfileItemWidget(
-                          title: "Settings",
-                          icon: Image.asset(ImageUtils.settingIcon, scale: 5,),
-                          navigateIcon: Icon(Icons.navigate_next,size: 24.r(context), color: Colors.black54,),
-                          onTap: () {
-                            Get.off(()=>UserProfileSettingScreen(),preventDuplicates: false,duration: Duration(milliseconds: 100));
-                          },
-                        ),
-                        ProfileItemWidget(title: "Logout",
-                          icon: Image.asset(ImageUtils.logout, scale: 5,),
-                          onTap: () {
-                            CustomAlertDialog().customAlert(
-                              context: context, title: 'Logout',
-                              message: 'Are you sure you want to logout?',
-                              NegativebuttonText: 'Cancel',
-                              PositivvebuttonText: 'Logout',
-                              onPositiveButtonPressed: () async {
-                                await LocalStorageUtils.remove(AppConstantUtils.loginResponse);
-                                await Get.offAll(()=>SignInView(),duration: Duration(milliseconds: 100));
-
-                              },
-                              onNegativeButtonPressed: () => Navigator.of(context).pop(),
-                            );
-                          },
-                          widget: SizedBox(),
-                        ),
 
                       ],
                     ),
                   ),
-                )
+                ),
+
+
+                SliverFillRemaining(
+                  child: RefreshIndicator(
+                    onRefresh: () async {
+                      Get.delete<ProfileController>(force: true);
+                      Get.off(()=>UserDashboardView(index: 3,),duration: const Duration(milliseconds: 100),preventDuplicates: false);
+                    },
+                    child: CustomScrollView(
+                      slivers: [
+
+                        SliverToBoxAdapter(
+                          child: Padding(
+                            padding: EdgeInsets.symmetric(horizontal: 16.hpm(context)),
+                            child: Column(
+                              children: [
+
+
+                                SpaceHelperWidget.v(20.h(context)),
+
+                                SizedBox(
+                                  width: 170.w(context),
+                                  height: 170.h(context),
+                                  child: Stack(
+                                    children: [
+
+                                      // Profile Picture
+                                      ImageHelperWidget.circleImageHelperWidget(
+                                        width: 170,
+                                        height: 170,
+                                        verticalPadding: 2,
+                                        horizontalPadding: 2,
+                                        backgroundColor: ColorUtils.primaryColor,
+                                        radius: 75,
+                                        context: context,
+                                        imageFile: profileController.userProfileResponseModel.value.data?.image != "" ?
+                                        profileController.userProfileResponseModel.value.data?.image :  null,
+                                        imageUrl: profileController.userProfileResponseModel.value.data?.image != null && profileController.profileImageFile.value.path == "" ?
+                                        profileController.userProfileResponseModel.value.data?.image :
+                                        null,
+                                        imageAsset: profileController.profileImageFile.value.path == "" && profileController.userProfileResponseModel.value.data?.image == null ?
+                                        ImageUtils.noImage : null,
+                                      ),
+
+
+                                      // Edit Icon Button
+                                      Positioned(
+                                        bottom: 14.h(context),
+                                        right: 14.w(context),
+                                        child: InkWell(
+                                          onTap: () async {
+                                            ProfileDialogBox().chooseProfilePhotoEditDialogBox(
+                                              context: context,
+                                              galleryFunction: () async {
+                                                Map<String,dynamic> data = {
+                                                  "name": profileController.userProfileResponseModel.value.data?.name ?? "",
+                                                  "location": profileController.userProfileResponseModel.value.data?.location ?? "",
+                                                  "contact": profileController.userProfileResponseModel.value.data?.contact ?? "",
+                                                };
+                                                await profileController.userPickProfileImage(
+                                                  source: ImageSource.gallery,
+                                                  context: context,
+                                                  data: data,
+                                                );
+                                              },
+                                              cameraFunction: () async {
+                                                Map<String,dynamic> data = {
+                                                  "name": profileController.userProfileResponseModel.value.data?.name ?? "",
+                                                  "location": profileController.userProfileResponseModel.value.data?.location ?? "",
+                                                  "contact": profileController.userProfileResponseModel.value.data?.contact ?? "",
+                                                };
+                                                await profileController.userPickProfileImage(
+                                                  source: ImageSource.camera,
+                                                  context: context,
+                                                  data: data,
+                                                );
+                                              },
+                                            );
+                                          },
+
+
+                                          child: ImageHelperWidget.assetImageWidget(
+                                            context: context,
+                                            height: 32.h(context),
+                                            width: 32.w(context),
+                                            imageString: ImageUtils.editButtonImage,
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+
+
+                                SpaceHelperWidget.v(20.h(context)),
+
+                                Row(
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+
+                                    TextHelperClass.headingTextWithoutWidth(
+                                      context: context,
+                                      alignment: Alignment.center,
+                                      fontSize: 18,
+                                      textAlign: TextAlign.center,
+                                      fontWeight: FontWeight.w700,
+                                      textColor: ColorUtils.blackColor,
+                                      text: profileController.formatBrokerName(profileController.userProfileResponseModel.value.data?.name ?? ""),
+                                    ),
+
+                                    SpaceHelperWidget.h(10.w(context)),
+
+
+                                    InkWell(
+                                      onTap: () async {
+                                        ProfileDialogBox().nameEditDialogBox(
+                                          context: context,
+                                          firstNameController: profileController.firstNameController.value,
+                                          lastNameController: profileController.lastNameController.value,
+                                          title: "User Name",
+                                          cancelFunction: () async {
+                                            Navigator.pop(context);
+                                          },
+                                          editFunction: () async {
+                                            Navigator.pop(context);
+                                            profileController.isLoading.value = true;
+                                            Map<String,dynamic> data = {
+                                              "name" : "${profileController.firstNameController.value.text},${profileController.lastNameController.value.text}",
+                                              "location": profileController.userProfileResponseModel.value.data?.location ?? "",
+                                              "contact": profileController.userProfileResponseModel.value.data?.contact ?? "",
+                                            };
+                                            print(data);
+                                            await profileController.userUpdateAccountController(
+                                              context: context,
+                                              data: data,
+                                            );
+                                          },
+                                        );
+                                      },
+                                      child: ImageHelperWidget.assetImageWidget(
+                                        context: context,
+                                        height: 32.h(context),
+                                        width: 32.w(context),
+                                        imageString: ImageUtils.nameEditButtonImage,
+                                      ),
+                                    ),
+
+
+                                  ],
+                                ),
+
+
+                                SpaceHelperWidget.v(40.h(context)),
+
+                                ProfileItemWidget(
+                                  title: "Edit Profile",
+                                  icon: Image.asset(ImageUtils.userEdite, scale: 5,),
+                                  navigateIcon: Icon(Icons.navigate_next, size: 24.r(context), color: Colors.black54,),
+                                  onTap: () {
+                                    Get.off(()=>UserProfileEditScreen(),preventDuplicates: false,duration: Duration(milliseconds: 100));
+                                  },
+                                ),
+
+                                ProfileItemWidget(
+                                  title: "Card",
+                                  icon: Image.asset(ImageUtils.shoppingCardIcon, scale: 5,),
+                                  navigateIcon: Icon(Icons.navigate_next,size: 24.r(context), color: Colors.black54,),
+                                  onTap: () {
+                                    Get.off(()=>OrderScreen(),preventDuplicates: false,duration: Duration(milliseconds: 100));
+                                  },
+                                ),
+
+                                ProfileItemWidget(
+                                  title: "Order",
+                                  icon: Image.asset(ImageUtils.userOrder, scale: 5,),
+                                  navigateIcon: Icon(Icons.navigate_next,size: 24.r(context), color: Colors.black54,),
+                                  onTap: () {
+                                    Get.off(()=>UserProfileOrderView(),preventDuplicates: false,duration: Duration(milliseconds: 100));
+                                  },
+                                ),
+
+
+                                ProfileItemWidget(
+                                  title: "Support Chat",
+                                  icon: Image.asset(ImageUtils.chat, scale: 5,),
+                                  navigateIcon: Icon(Icons.navigate_next,size: 24.r(context), color: Colors.black54,),
+                                  onTap: () {
+                                    Get.to(UserChatVendorListScreen());
+                                  },
+                                ),
+
+
+                                ProfileItemWidget(
+                                  title: "Notification",
+                                  icon: Image.asset(ImageUtils.userNotification, scale: 5,),
+                                  navigateIcon: Icon(Icons.navigate_next,size: 24.r(context), color: Colors.black54,),
+                                  onTap: () {
+                                    Get.off(()=>UserNotificationView(),preventDuplicates: false,duration: Duration(milliseconds: 100));
+                                  },
+                                ),
+
+                                ProfileItemWidget(
+                                  title: "Settings",
+                                  icon: Image.asset(ImageUtils.settingIcon, scale: 5,),
+                                  navigateIcon: Icon(Icons.navigate_next,size: 24.r(context), color: Colors.black54,),
+                                  onTap: () {
+                                    Get.off(()=>UserProfileSettingView(),preventDuplicates: false,duration: Duration(milliseconds: 100));
+                                  },
+                                ),
+
+
+                                ProfileItemWidget(title: "Logout",
+                                  icon: Image.asset(ImageUtils.logout, scale: 5,),
+                                  onTap: () {
+                                    ProfileDialogBox().logOutDialogBox(
+                                      context: context,
+                                      cancelFunction: () async {
+                                        Navigator.pop(context);
+                                      },
+                                      logoutFunction: () async {
+                                        await LocalStorageUtils.remove(AppConstantUtils.loginResponse);
+                                        await Get.offAll(()=>SignInView(),duration: Duration(milliseconds: 100));
+                                      },
+                                    );
+                                  },
+                                  widget: SizedBox(),
+                                ),
+
+                              ],
+                            ),
+                          ),
+                        )
+
+
+                      ],
+                    ),
+                  ),
+                ),
 
 
               ],

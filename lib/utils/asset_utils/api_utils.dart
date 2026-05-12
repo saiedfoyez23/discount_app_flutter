@@ -56,6 +56,9 @@ class ApiUtils {
   static String deleteBrokerProfile(String brokersId) {
     return "$baseUrl/brokers/${brokersId}";
   }
+  static String deleteUserProfile(String userId) {
+    return "$baseUrl/users/${userId}";
+  }
   static String getOrderDetails(String orderId) {
     return "$baseUrl/orders/${orderId}";
   }
@@ -73,7 +76,8 @@ class ApiUtils {
   static const String billingAddress = "$baseUrl/billing-address";
   static const String shippingAddress = "$baseUrl/shipping-address";
   static const String categoriesResponse = "$baseUrl/categories";
-  static const String vendorsProfile = "$baseUrl/vendors/profile";//done
+  static const String editUserProfile = "$baseUrl/users";
+  static const String vendorsProfile = "$baseUrl/vendors/profile"; //done
   static const String getAllProductsResponse = "$baseUrl/products?sort=-ratings"; //done
   static const String getAllExploreProductsResponse = "$baseUrl/products?sort=-ratings"; //done
   static const String getAllStoresResponse = "$baseUrl/stores?sort=-ratings"; //done

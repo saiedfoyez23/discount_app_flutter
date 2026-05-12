@@ -1,5 +1,4 @@
 import 'package:discount_me_app/view/users/coupon_view/view/coupon_home_screen.dart';
-import 'package:discount_me_app/view/users/profile_view/view/user_profile_home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:discount_me_app/view/view.dart';
@@ -45,7 +44,7 @@ class DashboardUserController extends GetxController {
     UserHomeView(),
     CouponHomeScreen(),
     ExploreView(),
-    UserProfileHomeScreen(),
+    ProfileView(),
   ].obs;
 
 
