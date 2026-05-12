@@ -94,7 +94,7 @@ class BrokerProfileHomeView extends StatelessWidget {
                                           right: 14.w(context),
                                           child: InkWell(
                                             onTap: () async {
-                                              BrokerProfileDialogBox().chooseProfilePhotoEditDialogBox(
+                                              ProfileDialogBox().chooseProfilePhotoEditDialogBox(
                                                 context: context,
                                                 galleryFunction: () async {
                                                   Map<String,dynamic> data = {
@@ -159,7 +159,7 @@ class BrokerProfileHomeView extends StatelessWidget {
 
                                       InkWell(
                                         onTap: () async {
-                                          BrokerProfileDialogBox().nameEditDialogBox(
+                                          ProfileDialogBox().nameEditDialogBox(
                                             context: context,
                                             firstNameController: brokerProfileHomeController.firstNameController.value,
                                             lastNameController: brokerProfileHomeController.lastNameController.value,
@@ -212,7 +212,7 @@ class BrokerProfileHomeView extends StatelessWidget {
 
                                   ProfileItemWidget(
                                     title: "Settings",
-                                    icon: Image.asset(ImageUtils.settingIcon, scale: 4,),
+                                    icon: Image.asset(ImageUtils.settingIcon, scale: 5,),
                                     navigateIcon: Icon(Icons.navigate_next, size: 24.r(context), color: Colors.black54,),
                                     onTap: () {
                                       Get.off(()=>BrokerSettingView(),preventDuplicates: false);
@@ -222,10 +222,10 @@ class BrokerProfileHomeView extends StatelessWidget {
 
                                   ProfileItemWidget(
                                     title: "Logout",
-                                    icon: Image.asset(ImageUtils.logout, scale: 4,),
+                                    icon: Image.asset(ImageUtils.logout, scale: 5,),
                                     navigateIcon: Icon(Icons.navigate_next, size: 24.r(context), color: Colors.black54,),
                                     onTap: () {
-                                      BrokerProfileDialogBox().logOutDialogBox(
+                                      ProfileDialogBox().logOutDialogBox(
                                         context: context,
                                         cancelFunction: () async {
                                           Navigator.pop(context);

@@ -1,19 +1,25 @@
 import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:discount_me_app/utils/utils.dart';
 import 'package:discount_me_app/view/view.dart';
+import 'package:discount_me_app/utils/utils.dart';
 
-class BrokerSettingController extends GetxController {
+class UserChangePasswordController extends GetxController {
 
-  Rx<GetBrokerProfileResponseModel> getBrokerProfileResponseModel = GetBrokerProfileResponseModel().obs;
+  RxBool isCurrentPasswordVisible = true.obs;
+  RxBool isNewPasswordVisible = true.obs;
+  RxBool isConfirmPasswordVisible = true.obs;
+  Rx<TextEditingController> currentPasswordController = TextEditingController().obs;
+  Rx<TextEditingController> newPasswordController = TextEditingController().obs;
+  Rx<TextEditingController> confirmPasswordController = TextEditingController().obs;
   Rx<LoginResponseModel> loginResponseModel = LoginResponseModel.fromJson(jsonDecode(LocalStorageUtils.getString(AppConstantUtils.loginResponse)!),).obs;
+  Rx<UserProfileResponseModel> userProfileResponseModel = UserProfileResponseModel().obs;
   RxBool isLoading = false.obs;
   RxBool isSubmit = false.obs;
-  RxBool isDelete = false.obs;
 
   BuildContext context;
-  BrokerSettingController({required this.context});
+  UserChangePasswordController({required this.context});
 
   @override
   void onInit() {
@@ -21,27 +27,26 @@ class BrokerSettingController extends GetxController {
     super.onInit();
     isLoading.value = true;
     Future.delayed(Duration(seconds: 1),() async {
-      await getVendorProfileController(context: context);
+      await getUserProfileApiService(context: context);
     });
   }
 
 
-  Future<void> getVendorProfileController({
+  Future<void> getUserProfileApiService({
     required BuildContext context,
   }) async {
-    BaseApiUtils.get(
-      url: ApiUtils.brokersProfile,
+    await BaseApiUtils.get(
+      url: ApiUtils.getUserProfileResponse,
       authorization: loginResponseModel.value.data?.accessToken,
       onSuccess: (e,data) async {
         isLoading.value = false;
-        getBrokerProfileResponseModel.value = GetBrokerProfileResponseModel.fromJson(data);
+        userProfileResponseModel.value = UserProfileResponseModel.fromJson(data);
       },
       onFail: (e,data) {
         MessageSnackBarWidget.errorSnackBarWidget(context: context, message: e);
         isLoading.value = false;
       },
       onExceptionFail: (e,data) {
-        print(data);
         MessageSnackBarWidget.errorSnackBarWidget(context: context, message: e);
         isLoading.value = false;
       },
@@ -49,28 +54,32 @@ class BrokerSettingController extends GetxController {
   }
 
 
-
-  Future<void> deleteVendorProfileController({
+  Future<void> brokerChangePasswordController({
     required BuildContext context,
-    required String brokerId,
+    required Map<String,dynamic> data,
   }) async {
-    BaseApiUtils.delete(
-      url: ApiUtils.deleteBrokerProfile(brokerId),
+    await BaseApiUtils.post(
+      url: ApiUtils.changePassword,
+      data: data,
       authorization: loginResponseModel.value.data?.accessToken,
       onSuccess: (e,data) async {
-        isDelete.value = false;
+        isSubmit.value = false;
+        MessageSnackBarWidget.successSnackBarWidget(context: context, message: e);
         await LocalStorageUtils.remove(AppConstantUtils.loginResponse);
         await Get.offAll(()=>SignInView(),duration: Duration(milliseconds: 100));
       },
       onFail: (e,data) {
-        isDelete.value = false;
         MessageSnackBarWidget.errorSnackBarWidget(context: context, message: e);
+        isSubmit.value = false;
       },
       onExceptionFail: (e,data) {
-        isDelete.value = false;
+        print(data);
         MessageSnackBarWidget.errorSnackBarWidget(context: context, message: e);
+        isSubmit.value = false;
       },
     );
   }
+
+
 
 }

@@ -1,19 +1,21 @@
 import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:discount_me_app/utils/utils.dart';
 import 'package:discount_me_app/view/view.dart';
+import '../../../../utils/utils.dart';
 
-class BrokerSettingController extends GetxController {
+class UserSettingController extends GetxController {
 
-  Rx<GetBrokerProfileResponseModel> getBrokerProfileResponseModel = GetBrokerProfileResponseModel().obs;
+
   Rx<LoginResponseModel> loginResponseModel = LoginResponseModel.fromJson(jsonDecode(LocalStorageUtils.getString(AppConstantUtils.loginResponse)!),).obs;
+  Rx<UserProfileResponseModel> userProfileResponseModel = UserProfileResponseModel().obs;
   RxBool isLoading = false.obs;
   RxBool isSubmit = false.obs;
   RxBool isDelete = false.obs;
 
   BuildContext context;
-  BrokerSettingController({required this.context});
+  UserSettingController({required this.context});
 
   @override
   void onInit() {
@@ -21,27 +23,26 @@ class BrokerSettingController extends GetxController {
     super.onInit();
     isLoading.value = true;
     Future.delayed(Duration(seconds: 1),() async {
-      await getVendorProfileController(context: context);
+      await getUserProfileApiService(context: context);
     });
   }
 
 
-  Future<void> getVendorProfileController({
+  Future<void> getUserProfileApiService({
     required BuildContext context,
   }) async {
-    BaseApiUtils.get(
-      url: ApiUtils.brokersProfile,
+    await BaseApiUtils.get(
+      url: ApiUtils.getUserProfileResponse,
       authorization: loginResponseModel.value.data?.accessToken,
       onSuccess: (e,data) async {
         isLoading.value = false;
-        getBrokerProfileResponseModel.value = GetBrokerProfileResponseModel.fromJson(data);
+        userProfileResponseModel.value = UserProfileResponseModel.fromJson(data);
       },
       onFail: (e,data) {
         MessageSnackBarWidget.errorSnackBarWidget(context: context, message: e);
         isLoading.value = false;
       },
       onExceptionFail: (e,data) {
-        print(data);
         MessageSnackBarWidget.errorSnackBarWidget(context: context, message: e);
         isLoading.value = false;
       },
@@ -50,12 +51,12 @@ class BrokerSettingController extends GetxController {
 
 
 
-  Future<void> deleteVendorProfileController({
+  Future<void> deleteUserProfileController({
     required BuildContext context,
-    required String brokerId,
+    required String userId,
   }) async {
     BaseApiUtils.delete(
-      url: ApiUtils.deleteBrokerProfile(brokerId),
+      url: ApiUtils.deleteUserProfile(userId),
       authorization: loginResponseModel.value.data?.accessToken,
       onSuccess: (e,data) async {
         isDelete.value = false;
@@ -72,5 +73,7 @@ class BrokerSettingController extends GetxController {
       },
     );
   }
+
+
 
 }

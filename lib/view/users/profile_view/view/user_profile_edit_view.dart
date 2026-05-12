@@ -1,14 +1,7 @@
-import 'package:discount_me_app/res/app_const/import_list.dart';
-import 'package:discount_me_app/utils/utils.dart';
-import 'package:discount_me_app/view/view.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:image_picker/image_picker.dart';
-import 'package:skeletonizer/skeletonizer.dart';
 
-
-class BrokerEditProfileView extends StatelessWidget {
-  BrokerEditProfileView({super.key});
+class UserProfileEditView extends StatelessWidget {
+  const UserProfileEditView({super.key});
 
   @override
   Widget build(BuildContext context) {

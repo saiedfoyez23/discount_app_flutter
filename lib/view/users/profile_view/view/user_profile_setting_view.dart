@@ -1,27 +1,24 @@
-import 'package:discount_me_app/res/app_const/import_list.dart';
+import 'package:flutter/material.dart';
 import 'package:discount_me_app/utils/utils.dart';
 import 'package:discount_me_app/view/view.dart';
-import 'package:discount_me_app/view/brokers/broker_profile_view/view/broker_change_password_view.dart';
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:skeletonizer/skeletonizer.dart';
-
-class BrokerSettingView extends StatelessWidget {
-  const BrokerSettingView({super.key});
+class UserProfileSettingView extends StatelessWidget {
+  const UserProfileSettingView({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final BrokerSettingController brokerSettingController = Get.put(BrokerSettingController(context: context));
+    final UserSettingController userSettingController = Get.put(UserSettingController(context: context));
     return PopScope(
       canPop: false,
       onPopInvokedWithResult: (didPop,onPopInvoked) {
-        Get.off(()=>BrokerDashboardView(index: 3,),preventDuplicates: false);
+        Get.off(()=>UserDashboardView(index: 3,),duration: const Duration(milliseconds: 100),preventDuplicates: false);
       },
       child: Scaffold(
         backgroundColor: Colors.transparent,
         body: Obx(()=> Skeletonizer(
           effect: PulseEffect(),
-          enabled: brokerSettingController.isLoading.value,
+          enabled: userSettingController.isLoading.value,
           child: Container(
             height: 926.h(context),
             width: 428.w(context),
@@ -49,7 +46,7 @@ class BrokerSettingView extends StatelessWidget {
                           UserProfileAppbarWidget(
                             title: "Setting",
                             onTap: () async {
-                              Get.off(()=>BrokerDashboardView(index: 3,),preventDuplicates: false);
+                              Get.off(()=>UserDashboardView(index: 3,),duration: const Duration(milliseconds: 100),preventDuplicates: false);
                             },
                           ),
 
@@ -79,7 +76,7 @@ class BrokerSettingView extends StatelessWidget {
                                     rightIcon: ImageUtils.lockImage,
                                     title: "Change Password",
                                     onPressed: () async {
-                                      Get.off(()=>BrokerChangePasswordView(),preventDuplicates: false);
+                                      Get.off(()=>UserChangePasswordView(),preventDuplicates: false,duration: Duration(milliseconds: 100));
                                     },
                                     trailing: true,
                                     context: context,
@@ -93,17 +90,17 @@ class BrokerSettingView extends StatelessWidget {
                                     rightIcon: ImageUtils.deleteImage,
                                     title: "Delete Account",
                                     onPressed: () async {
-                                      ProfileDialogBox().deleteAccountDialogBox(
+                                      ProfileDialogBox().userDeleteAccountDialogBox(
                                         context: context,
-                                        brokerSettingController: brokerSettingController,
+                                        userSettingController: userSettingController,
                                         cancelFunction: () async {
                                           Navigator.pop(context);
                                         },
                                         logoutFunction: () async {
-                                          brokerSettingController.isDelete.value = true;
-                                          await brokerSettingController.deleteVendorProfileController(
+                                          userSettingController.isDelete.value = true;
+                                          await userSettingController.deleteUserProfileController(
                                             context: context,
-                                            brokerId: brokerSettingController.getBrokerProfileResponseModel.value.data?.sId ?? "",
+                                            userId: userSettingController.userProfileResponseModel.value.data?.sId ?? "",
                                           );
                                         },
                                       );

@@ -32,11 +32,8 @@ export 'package:discount_me_app/view/users/coupon_view/view/transaction_success_
 export 'package:discount_me_app/view/users/home_view/view/order_complete_view.dart';
 export 'package:discount_me_app/view/users/home_view/view/order_screen.dart';
 export 'package:discount_me_app/view/users/home_view/view/recipes_screen.dart';
-export 'package:discount_me_app/view/users/profile_view/view/user_change_password_screen.dart';
 export 'package:discount_me_app/view/users/profile_view/view/user_profile_edit_screen.dart';
-export 'package:discount_me_app/view/users/profile_view/view/user_profile_home_screen.dart';
 export 'package:discount_me_app/view/splash/screens/splash_view_two.dart';
-export 'package:discount_me_app/view/users/profile_view/view/user_profile_setting_screen.dart';
 
 export 'package:discount_me_app/view/vendors/vendor_earning_view/view/vendor_earning_home_screen.dart';
 export 'package:discount_me_app/view/vendors/vendor_profile_view/view/vendor_profile_edit_view.dart';
