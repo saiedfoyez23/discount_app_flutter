@@ -65,6 +65,19 @@ class ApiUtils {
   static String getCategoryWiseProducts(String categoryId) {
     return "$baseUrl/products?category=${categoryId}";
   }
+  static String getIncreaseCartItem(String productId) {
+    return "$baseUrl/carts/increase/${productId}";
+  }
+  static String getDecreaseCartItem(String productId) {
+    return "$baseUrl/carts/decrease/${productId}";
+  }
+  static String getDeleteCart(String cardId) {
+    return "$baseUrl/carts/${cardId}";
+  }
+
+
+
+
 
 
   static const String getAllSetting = "$baseUrl/settings";
@@ -84,6 +97,7 @@ class ApiUtils {
   static const String getUserProfileResponse = "$baseUrl/users/profile"; //done
   static const String getAllBannerResponse = "$baseUrl/banners"; //done
   static const String addToCartResponse = "$baseUrl/carts"; //done
+  static const String getAddToCartResponse = "$baseUrl/carts"; //done
 
 
 

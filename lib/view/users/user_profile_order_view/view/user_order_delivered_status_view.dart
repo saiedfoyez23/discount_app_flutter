@@ -1,5 +1,4 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
-import 'package:discount_me_app/res/app_const/import_list.dart';
 import 'package:discount_me_app/view/users/user_profile_order_view/view/user_share_review_screen.dart';
 import 'package:discount_me_app/utils/utils.dart';
 import 'package:discount_me_app/view/view.dart';
@@ -16,217 +15,324 @@ class UserOrderDeliveredStatusView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final OrderDetailsController orderDetailsController = Get.put(OrderDetailsController(context: context,orderId: orderId));
-    return Scaffold(
-      body: Obx(()=>Skeletonizer(
-        effect: PulseEffect(),
-        enabled: orderDetailsController.isLoading.value,
-        child: Container(
-          height: 926.h(context),
-          width: 428.w(context),
-          decoration: BoxDecoration(
-            color: Colors.white,
-            image: DecorationImage(
-              image: AssetImage(ImageUtils.homeBg),
-              alignment: Alignment.topRight,
-              opacity: 0.5,
+    return PopScope(
+      canPop: false,
+      onPopInvokedWithResult: (canPop,onOpoInvoked) {
+        Get.off(()=>UserProfileOrderView(),duration: const Duration(milliseconds: 100),preventDuplicates: false);
+      },
+      child: Scaffold(
+        body: Obx(()=>Skeletonizer(
+          effect: PulseEffect(),
+          enabled: orderDetailsController.isLoading.value,
+          child: Container(
+            height: 926.h(context),
+            width: 428.w(context),
+            decoration: BoxDecoration(
+              color: ColorUtils.white253,
+              image: DecorationImage(
+                image: AssetImage(ImageUtils.homeBg),
+                alignment: Alignment.topRight,
+                opacity: 0.5,
+              ),
             ),
-          ),
-          child: SafeArea(
-            child: CustomScrollView(
-              slivers: [
+            child: SafeArea(
+              child: CustomScrollView(
+                physics: NeverScrollableScrollPhysics(),
+                slivers: [
 
-                SliverToBoxAdapter(
-                  child: Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 16.hpm(context)),
-                    child: SingleChildScrollView(
+                  SliverFillRemaining(
+                    child: Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 16.hpm(context)),
                       child: Column(
                         children: [
-                          10.heightBox,
 
-                          HomeResturantAppBar(),
 
-                          // add order.......
-                          20.heightBox,
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              CustomText(
-                                title: "Order details",
-                                fontWeight: FontWeight.w700,
-                                fontSize: 20,
-                                color: ColorUtils.blackColor,
-                              ),
-                              GestureDetector(
-                                  onTap: () {
+                          SpaceHelperWidget.v(20.h(context)),
 
-                                  },
-                                  child: GestureDetector(
-                                    onTap: () {
-                                      Get.to(RecipesScreen());
-                                    },
-                                    child: Container(
-                                      padding:EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-                                      decoration: BoxDecoration(
-                                        color: ColorUtils.greenLightHover,
-                                        borderRadius: BorderRadius.circular(5.r(context)),
+                          Container(
+                            width: 428.w(context),
+                            decoration: BoxDecoration(
+                                color: Colors.transparent
+                            ),
+                            child: Row(
+                              children: [
+                                Expanded(
+                                  child: Row(
+                                    children: [
+
+
+                                      ImageHelperWidget.circleImageHelperWidget(
+                                        width: 45,
+                                        height: 45,
+                                        verticalPadding: 1,
+                                        horizontalPadding: 1,
+                                        backgroundColor: ColorUtils.orange213,
+                                        radius: 25,
+                                        context: context,
+                                        imageAsset: orderDetailsController.userProfileResponseModel.value.data?.image ==  null ? ImageUtils.noImage : null,
+                                        imageUrl: orderDetailsController.userProfileResponseModel.value.data?.image,
                                       ),
-                                      child: CustomText(
-                                        title: "Delivered",
-                                        color: ColorUtils.primaryColor,
-                                        fontSize: 14.sp(context),
-                                        fontWeight: FontWeight.w600,
-                                      ),
-                                    ),
-                                  )
-                              )
-                            ],
-                          ),
 
-                          20.heightBox,
-                          ListView.builder(
-                            itemCount: 3,
-                            shrinkWrap: true,
-                            itemBuilder: (context, index) {
-                              return Container(
-                                padding: EdgeInsets.all(8.w(context)),
-                                margin: EdgeInsets.only(bottom: 10),
-                                decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  borderRadius: BorderRadius.circular(8.r(context)),
-                                  boxShadow: [
-                                    BoxShadow(
-                                      color: Colors.black.withOpacity(0.07),
-                                      blurRadius: 10,
-                                      spreadRadius: 0,
-                                      offset: Offset(0, 2),
-                                    ),
-                                  ],
+                                      SpaceHelperWidget.h(20.w(context)),
+
+                                      Expanded(
+                                        child: Center(
+                                          child: ImageHelperWidget.assetImageWidget(
+                                            context: context,
+                                            height: 64.h(context),
+                                            width: 170.w(context),
+                                            imageString: ImageUtils.discountMeLogo,
+                                          ),
+                                        ),
+                                      ),
+
+
+                                    ],
+                                  ),
                                 ),
-                                child: Row(
-                                  crossAxisAlignment: CrossAxisAlignment.center,
+
+                                SpaceHelperWidget.h(5.w(context)),
+
+
+                                Row(
                                   children: [
-                                    // Product Image
-                                    ClipRRect(
-                                      borderRadius: BorderRadius.circular(8.r(context)),
-                                      child: Image.asset(
-                                        ImageUtils.burgerCard, // Replace with your image path
-                                        scale: 4,
-                                        fit: BoxFit.cover,
-                                      ),
-                                    ),
-                                    SizedBox(width: 12.w(context)),
 
-                                    // Product details
-                                    Expanded(
-                                      child: Column(
-                                        crossAxisAlignment: CrossAxisAlignment.start,
-                                        children: [
-                                          Text(
-                                            'Chicken Burger',
-                                            style: GoogleFonts.urbanist(
-                                              fontSize: 17.sp(context),
-                                              fontWeight: FontWeight.w600,
-                                              color: ColorUtils.blackColor,
-                                            ),
-                                          ),
-                                          SizedBox(height: 4.h(context)),
-                                          Text(
-                                            'Burger Factory LTD',
-                                            style: GoogleFonts.urbanist(
-                                              fontSize: 14.sp(context),
-                                              fontWeight: FontWeight.w400,
-                                              color: ColorUtils.blackColor,
-                                            ),
-                                          ),
-                                          SizedBox(height: 4.h(context)),
-                                          Text(
-                                            'Rs 200',
-                                            style: GoogleFonts.urbanist(
-                                              fontSize: 21.sp(context),
-                                              fontWeight: FontWeight.w700,
-                                              color: ColorUtils.primaryColor,
-                                            ),
-                                          ),
-                                        ],
+                                    InkWell(
+                                      onTap: () {
+                                        Get.off(()=>UserNotificationView(),preventDuplicates: false,duration: const Duration(milliseconds: 100));
+                                      },
+                                      child: Container(
+                                        width: 45.w(context),
+                                        height: 45.h(context),
+                                        decoration: BoxDecoration(
+                                          shape: BoxShape.circle,
+                                          color: ColorUtils.primaryColor,
+                                          boxShadow: const [
+                                            BoxShadow(
+                                              color: ColorUtils.whiteColor,
+                                              blurRadius: 10,
+                                              offset: Offset(0, 1),
+                                            )
+                                          ],
+                                        ),
+                                        child: Icon(Icons.notifications, color: ColorUtils.whiteColor, size: 25.r(context),),
                                       ),
                                     ),
 
-                                    // Quantity Selector
-                                    Row(
-                                      children: [
-                                        // Minus Button
-                                        Container(
-                                          height: 32.h(context),
-                                          width: 32.w(context),
-                                          decoration: BoxDecoration(
-                                            borderRadius: BorderRadius.circular(8.r(context)),
-                                            color: ColorUtils.greenLightHover,
-                                          ),
-                                          child: IconButton(
-                                            padding: EdgeInsets.zero,
-                                            icon: Icon(Icons.remove, color: ColorUtils.primaryColor),
-                                            onPressed: () {
-                                              // Reduce item quantity logic here
-                                            },
-                                          ),
-                                        ),
-                                        SizedBox(width: 8.w(context)),
-                                        // Quantity
-                                        Text(
-                                          '1', // Quantity value (replace with dynamic value)
-                                          style: GoogleFonts.urbanist(
-                                            fontSize: 16.sp(context),
-                                            fontWeight: FontWeight.w600,
-                                            color: Colors.black,
-                                          ),
-                                        ),
-                                        SizedBox(width: 8.w(context)),
+                                    SpaceHelperWidget.h(6.w(context)),
 
-                                        // Plus Button
-                                        Container(
-                                          height: 32.h(context),
-                                          width: 32.w(context),
-                                          decoration: BoxDecoration(
-                                            borderRadius: BorderRadius.circular(8.r(context)),
-                                            color: ColorUtils.primaryColor,
-                                          ),
-                                          child: IconButton(
-                                            padding: EdgeInsets.zero,
-                                            icon: Icon(Icons.add, color: Colors.white),
-                                            onPressed: () {
-                                              // Increase item quantity logic here
-                                            },
-                                          ),
+
+                                    InkWell(
+                                      onTap: () {
+                                        Get.off(()=>OrderScreen(),preventDuplicates: false,duration: const Duration(milliseconds: 100));
+                                      },
+                                      child: Container(
+                                        width: 45.w(context),
+                                        height: 45.h(context),
+                                        decoration: BoxDecoration(
+                                          shape: BoxShape.circle,
+                                          color: ColorUtils.primaryColor,
+                                          boxShadow: const [
+                                            BoxShadow(
+                                              color: ColorUtils.whiteColor,
+                                              blurRadius: 10,
+                                              offset: Offset(0, 2),
+                                            ),
+                                          ],
                                         ),
-                                      ],
+                                        child: Icon(Icons.shopping_cart, color: ColorUtils.whiteColor,size: 22.r(context),),
+                                      ),
                                     ),
+
                                   ],
-                                ),
-                              );
-                            },
+                                )
+
+                              ],
+                            ),
                           ),
-                          10.heightBox,
+
+
+                          SpaceHelperWidget.v(20.h(context)),
+
+
+
                           Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
-                              GestureDetector(
-                                onTap: () {
-                                  Get.to(UserShareReviewScreen());
-                                },
-                                child: CustomText(
-                                  title: "Share Review",
-                                  color: ColorUtils.secondaryColor,
-                                  fontSize: 18.sp(context),
-                                  fontWeight: FontWeight.w500,
-                                  decoration: TextDecoration.underline,
-                                  decorationColor: ColorUtils.secondaryColor,
+
+
+                              Expanded(
+                                child: TextHelperClass.headingTextWithoutWidth(
+                                  context: context,
+                                  text: "Order details",
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.w700,
+                                  textColor: ColorUtils.black21,
+                                  alignment: Alignment.centerLeft,
                                 ),
-                              )
+                              ),
+
+
+                              TextHelperClass.headingTextWithoutWidth(
+                                context: context,
+                                text: orderDetailsController.getOrderDetailsRetrievedResponseModel.value.data?.status == "received" ? "Received" :
+                                orderDetailsController.getOrderDetailsRetrievedResponseModel.value.data?.status  == "processing" ? "Processing" :
+                                orderDetailsController.getOrderDetailsRetrievedResponseModel.value.data?.status  == "ongoing" ? "Ongoing" :
+                                orderDetailsController.getOrderDetailsRetrievedResponseModel.value.data?.status  == "delivered" ? "Delivered" :
+                                "Canceled",
+                                fontSize: 18,
+                                borderRadius: BorderRadius.circular(7.r(context)),
+                                fontWeight: FontWeight.w700,
+                                textColor: orderDetailsController.getTextColor( orderDetailsController.getOrderDetailsRetrievedResponseModel.value.data?.status == "received" ? "Received" :
+                                orderDetailsController.getOrderDetailsRetrievedResponseModel.value.data?.status  == "processing" ? "Processing" :
+                                orderDetailsController.getOrderDetailsRetrievedResponseModel.value.data?.status  == "ongoing" ? "Ongoing" :
+                                orderDetailsController.getOrderDetailsRetrievedResponseModel.value.data?.status  == "delivered" ? "Delivered" :
+                                "Canceled"),
+                                containerColor: orderDetailsController.getColor( orderDetailsController.getOrderDetailsRetrievedResponseModel.value.data?.status == "received" ? "Received" :
+                                orderDetailsController.getOrderDetailsRetrievedResponseModel.value.data?.status  == "processing" ? "Processing" :
+                                orderDetailsController.getOrderDetailsRetrievedResponseModel.value.data?.status  == "ongoing" ? "Ongoing" :
+                                orderDetailsController.getOrderDetailsRetrievedResponseModel.value.data?.status  == "delivered" ? "Delivered" :
+                                "Canceled"),
+                                padding: EdgeInsets.symmetric(vertical: 5.vpm(context),horizontal: 12.33.hpm(context)),
+                              ),
+
+
                             ],
                           ),
 
-                          50.heightBox,
+
+                          SpaceHelperWidget.v(20.h(context)),
+
+
+
+                          Expanded(
+                            child: ListView.builder(
+                              shrinkWrap: true,
+                              itemCount: orderDetailsController.getOrderDetailsRetrievedResponseModel.value.data?.items?.length,
+                              itemBuilder: (context, index) {
+                                return Container(
+                                  padding: EdgeInsets.symmetric(vertical: 13.vpm(context),horizontal: 13.hpm(context)),
+                                  margin: EdgeInsets.only(bottom: 10.bpm(context)),
+                                  decoration: BoxDecoration(
+                                    color: ColorUtils.white255,
+                                    borderRadius: BorderRadius.circular(8.r(context)),
+                                    boxShadow: [
+                                      BoxShadow(
+                                        color: ColorUtils.blue108,
+                                        blurRadius: 54.76,
+                                        spreadRadius: 0,
+                                        offset: Offset(13.14, 28.47),
+                                      ),
+                                    ],
+                                  ),
+                                  child: Row(
+                                    children: [
+
+                                      orderDetailsController.getOrderDetailsRetrievedResponseModel.value.data?.items?[index].product?.images?.isEmpty == true ?
+                                      Container(
+                                        height: 120.h(context),
+                                        width: 100.w(context),
+                                        decoration: BoxDecoration(
+                                          image: DecorationImage(
+                                            image: AssetImage(ImageUtils.carousel1),
+                                            fit: BoxFit.cover,
+                                          ),
+                                          borderRadius: BorderRadius.vertical(top: Radius.circular(15.r(context))),
+                                          color: Color.fromRGBO(175, 175, 175, 1),
+                                        ),
+                                      ) :
+                                      ImageHelperWidget.styledImage(
+                                        context: context,
+                                        height: 120.h(context),
+                                        width: 100.w(context),
+                                        fit: BoxFit.cover,
+                                        borderRadius: 13,
+                                        imageUrl: orderDetailsController.getOrderDetailsRetrievedResponseModel.value.data?.items?[index].product?.images?.first,
+                                        errorWidget: Container(
+                                          height: 120.h(context),
+                                          width: 100.w(context),
+                                          decoration: BoxDecoration(
+                                            image: DecorationImage(
+                                              image: AssetImage(ImageUtils.carousel1),
+                                              fit: BoxFit.cover,
+                                            ),
+                                            borderRadius: BorderRadius.vertical(top: Radius.circular(15.r(context))),
+                                            color: Color.fromRGBO(175, 175, 175, 1),
+                                          ),
+                                        ),
+                                      ),
+
+
+                                      SpaceHelperWidget.h(12.w(context)),
+
+
+                                      Expanded(
+                                        child: Column(
+                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                          children: [
+                                            TextHelperClass.headingTextWithoutWidth(
+                                              context: context,
+                                              text: orderDetailsController.getOrderDetailsRetrievedResponseModel.value.data?.items?[index].product?.name ?? "",
+                                              fontSize: 17,
+                                              fontWeight: FontWeight.w600,
+                                              textColor: ColorUtils.black29,
+                                              alignment: Alignment.centerLeft,
+                                            ),
+
+                                            SpaceHelperWidget.v(5.h(context)),
+
+                                            TextHelperClass.headingTextWithoutWidth(
+                                              context: context,
+                                              text: "Quantity : ${orderDetailsController.getOrderDetailsRetrievedResponseModel.value.data?.items?[index].quantity ?? ""}",
+                                              fontSize: 17,
+                                              fontWeight: FontWeight.w600,
+                                              textColor: ColorUtils.black29,
+                                              alignment: Alignment.centerLeft,
+                                            ),
+
+                                            SpaceHelperWidget.v(5.h(context)),
+
+                                            TextHelperClass.headingTextWithoutWidth(
+                                              context: context,
+                                              text: "Rs ${orderDetailsController.getOrderDetailsRetrievedResponseModel.value.data?.items?[index].product?.price ?? "N/A"}",
+                                              fontSize: 21,
+                                              fontWeight: FontWeight.w600,
+                                              textColor: ColorUtils.primaryColor,
+                                              alignment: Alignment.centerLeft,
+                                            ),
+
+                                          ],
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                );
+                              },
+                            ),
+                          ),
+
+                          SpaceHelperWidget.v(10.h(context)),
+
+
+                          ButtonHelperWidget.customButtonWidget(
+                            context: context,
+                            height: 44,
+                            onPressed: () async {
+                              Get.to(UserShareReviewScreen());
+                            },
+                            text: "Share Review",
+                            padding: EdgeInsets.symmetric(vertical: 14.5.vpm(context)),
+                            alignment: Alignment.center,
+                            fontSize: 18,
+                            textColor: ColorUtils.orange125,
+                            fontWeight: FontWeight.w700,
+                            backgroundColor: Colors.transparent,
+                          ),
+
+
+
+                          SpaceHelperWidget.v(50.h(context)),
+
+
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -238,90 +344,136 @@ class UserOrderDeliveredStatusView extends StatelessWidget {
                                   Row(
                                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                     children: [
-                                      Text(
-                                        'Sub-Total',
-                                        style: GoogleFonts.manrope(
-                                          fontSize: 16.sp(context),
+                                      Expanded(
+                                        child: TextHelperClass.headingTextWithoutWidth(
+                                          context: context,
+                                          text: 'Sub-Total',
+                                          fontSize: 20,
                                           fontWeight: FontWeight.w500,
-                                          color: ColorUtils.blackColor, // Set text color to #fefeff
+                                          textColor: ColorUtils.black21,
+                                          alignment: Alignment.centerLeft,
                                         ),
                                       ),
-                                      Text(
-                                        'Rs 950',
-                                        style: GoogleFonts.manrope(
-                                          fontSize: 16.sp(context),
+
+
+                                      Expanded(
+                                        child: TextHelperClass.headingTextWithoutWidth(
+                                          context: context,
+                                          text: 'Rs ${orderDetailsController.getOrderDetailsRetrievedResponseModel.value.data?.total}',
+                                          fontSize: 20,
                                           fontWeight: FontWeight.w500,
-                                          color: ColorUtils.blackColor, // Set text color to #fefeff
+                                          textColor: ColorUtils.black21,
+                                          alignment: Alignment.centerRight,
                                         ),
                                       ),
+
                                     ],
                                   ),
-                                  SizedBox(height: 5.h(context)),
+
+                                  SpaceHelperWidget.v(5.h(context)),
+
+
+
                                   Row(
                                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                     children: [
-                                      Text(
-                                        'Delivery Charge',
-                                        style: GoogleFonts.manrope(
-                                          fontSize: 16.sp(context),
+                                      Expanded(
+                                        child: TextHelperClass.headingTextWithoutWidth(
+                                          context: context,
+                                          text: 'Delivery Charge',
+                                          fontSize: 20,
                                           fontWeight: FontWeight.w500,
-                                          color: ColorUtils.blackColor, // Set text color to #fefeff
+                                          textColor: ColorUtils.black21,
+                                          alignment: Alignment.centerLeft,
                                         ),
                                       ),
-                                      Text(
-                                        'Rs 50',
-                                        style: GoogleFonts.manrope(
-                                          fontSize: 16.sp(context),
+
+
+
+                                      Expanded(
+                                        child: TextHelperClass.headingTextWithoutWidth(
+                                          context: context,
+                                          text: 'Rs ${orderDetailsController.deliveryCharge}',
+                                          fontSize: 20,
                                           fontWeight: FontWeight.w500,
-                                          color: ColorUtils.blackColor,
+                                          textColor: ColorUtils.black21,
+                                          alignment: Alignment.centerRight,
                                         ),
                                       ),
                                     ],
                                   ),
-                                  SizedBox(height: 5.h(context)),
+
+
+                                  SpaceHelperWidget.v(5.h(context)),
+
+
+
                                   Row(
                                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                     children: [
-                                      Text(
-                                        'Discount',
-                                        style: GoogleFonts.manrope(
-                                            fontSize: 16.sp(context),
-                                            fontWeight: FontWeight.w500,
-                                            color: ColorUtils.blackColor
+
+                                      Expanded(
+                                        child: TextHelperClass.headingTextWithoutWidth(
+                                          context: context,
+                                          text: 'Discount',
+                                          fontSize: 20,
+                                          fontWeight: FontWeight.w500,
+                                          textColor: ColorUtils.black21,
+                                          alignment: Alignment.centerLeft,
                                         ),
                                       ),
-                                      Text(
-                                        'Rs 0',
-                                        style: GoogleFonts.manrope(
-                                            fontSize: 16.sp(context),
-                                            fontWeight: FontWeight.w500,
-                                            color: ColorUtils.blackColor
+
+
+                                      Expanded(
+                                        child: TextHelperClass.headingTextWithoutWidth(
+                                          context: context,
+                                          text: 'Rs ${orderDetailsController.discount}',
+                                          fontSize: 20,
+                                          fontWeight: FontWeight.w500,
+                                          textColor: ColorUtils.black21,
+                                          alignment: Alignment.centerRight,
                                         ),
                                       ),
+
                                     ],
                                   ),
+
                                   SizedBox(height: 20.h(context)),
+
+
                                   Row(
                                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                     children: [
-                                      Text(
-                                        'Total',
-                                        style: GoogleFonts.manrope(
-                                            fontSize: 20.sp(context),
-                                            fontWeight: FontWeight.w800,
-                                            color: ColorUtils.blackColor
+                                      Expanded(
+                                        child: TextHelperClass.headingTextWithoutWidth(
+                                          context: context,
+                                          text: 'Total',
+                                          fontSize: 20,
+                                          fontWeight: FontWeight.w700,
+                                          textColor: ColorUtils.black21,
+                                          alignment: Alignment.centerLeft,
                                         ),
                                       ),
-                                      Text(
-                                        'Rs 1,000',
-                                        style: GoogleFonts.manrope(
-                                            fontSize: 18.sp(context),
-                                            fontWeight: FontWeight.bold,
-                                            color: ColorUtils.blackColor
+
+
+
+                                      Expanded(
+                                        child: TextHelperClass.headingTextWithoutWidth(
+                                          context: context,
+                                          text: 'Rs ${orderDetailsController.getOrderDetailsRetrievedResponseModel.value.data?.total}',
+                                          fontSize: 20,
+                                          fontWeight: FontWeight.w700,
+                                          textColor: ColorUtils.black21,
+                                          alignment: Alignment.centerRight,
                                         ),
                                       ),
                                     ],
                                   ),
+
+
+                                  SizedBox(height: 20.h(context)),
+
+
                                 ],
                               ),
                             ],
@@ -332,12 +484,12 @@ class UserOrderDeliveredStatusView extends StatelessWidget {
                       ),
                     ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
-        ),
-      )),
+        )),
+      ),
     );
   }
 }

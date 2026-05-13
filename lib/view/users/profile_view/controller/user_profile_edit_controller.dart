@@ -115,7 +115,7 @@ class UserProfileEditController extends GetxController {
     required BuildContext context,
   }) async {
     BaseApiUtils.get(
-      url: ApiUtils.brokersProfile,
+      url: ApiUtils.getUserProfileResponse,
       authorization: loginResponseModel.value.data?.accessToken,
       onSuccess: (e, data) async {
         isLoading.value = false;

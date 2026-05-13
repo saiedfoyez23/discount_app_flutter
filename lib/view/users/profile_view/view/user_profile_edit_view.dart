@@ -1,20 +1,25 @@
+import 'package:discount_me_app/utils/utils.dart';
 import 'package:flutter/material.dart';
+import 'package:discount_me_app/view/view.dart';
+import 'package:get/get.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:skeletonizer/skeletonizer.dart';
 
 class UserProfileEditView extends StatelessWidget {
   const UserProfileEditView({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final BrokerEditProfileController brokerEditProfileController = Get.put(BrokerEditProfileController(context: context));
+    final UserProfileEditController userProfileEditController = Get.put(UserProfileEditController(context: context));
     return PopScope(
       canPop: false,
       onPopInvokedWithResult: (didPop,onPopInvoked) {
-        Get.off(()=>BrokerDashboardView(index: 3,),preventDuplicates: false);
+        Get.off(()=>UserDashboardView(index: 3,),duration: const Duration(milliseconds: 100),preventDuplicates: false);
       },
       child: Scaffold(
         body: Obx(()=>Skeletonizer(
           effect: PulseEffect(),
-          enabled: brokerEditProfileController.isLoading.value,
+          enabled: userProfileEditController.isLoading.value,
           child: Container(
             height: 926.h(context),
             width: 428.w(context),
@@ -39,7 +44,7 @@ class UserProfileEditView extends StatelessWidget {
 
                           UserProfileAppbarWidget(
                             onTap: () async {
-                              Get.off(()=>BrokerDashboardView(index: 3,),preventDuplicates: false);
+                              Get.off(()=>UserDashboardView(index: 3,),duration: const Duration(milliseconds: 100),preventDuplicates: false);
                             },
                             title: "Edit Profile",
                           ),
@@ -86,12 +91,12 @@ class UserProfileEditView extends StatelessWidget {
                                             horizontalPadding: 2,
                                             backgroundColor: ColorUtils.primaryColor,
                                             radius: 75,
-                                            imageFile: brokerEditProfileController.getBrokerProfileResponseModel.value.data?.image != "" ?
-                                            brokerEditProfileController.getBrokerProfileResponseModel.value.data?.image :  null,
-                                            imageUrl: brokerEditProfileController.getBrokerProfileResponseModel.value.data?.image != null && brokerEditProfileController.profileImageFile.value.path == "" ?
-                                            brokerEditProfileController.getBrokerProfileResponseModel.value.data?.image :
+                                            imageFile: userProfileEditController.userProfileResponseModel.value.data?.image != "" ?
+                                            userProfileEditController.userProfileResponseModel.value.data?.image :  null,
+                                            imageUrl: userProfileEditController.userProfileResponseModel.value.data?.image != null && userProfileEditController.profileImageFile.value.path == "" ?
+                                            userProfileEditController.userProfileResponseModel.value.data?.image :
                                             null,
-                                            imageAsset: brokerEditProfileController.profileImageFile.value.path == "" && brokerEditProfileController.getBrokerProfileResponseModel.value.data?.image == null ?
+                                            imageAsset: userProfileEditController.profileImageFile.value.path == "" && userProfileEditController.userProfileResponseModel.value.data?.image == null ?
                                             ImageUtils.noImage : null,
                                           ),
 
@@ -105,12 +110,12 @@ class UserProfileEditView extends StatelessWidget {
                                                 ProfileDialogBox().chooseProfilePhotoEditDialogBox(
                                                   context: context,
                                                   galleryFunction: () async {
-                                                    await brokerEditProfileController.pickProfileImage(
+                                                    await userProfileEditController.pickProfileImage(
                                                       source: ImageSource.gallery,
                                                     );
                                                   },
                                                   cameraFunction: () async {
-                                                    await brokerEditProfileController.pickProfileImage(
+                                                    await userProfileEditController.pickProfileImage(
                                                       source: ImageSource.camera,
                                                     );
                                                   },
@@ -162,7 +167,7 @@ class UserProfileEditView extends StatelessWidget {
                                               TextFormFieldWidget.build(
                                                 context: context,
                                                 hintText: "First Name",
-                                                controller: brokerEditProfileController.firstNameController.value,
+                                                controller: userProfileEditController.firstNameController.value,
                                                 keyboardType: TextInputType.emailAddress,
                                                 borderColor: ColorUtils.whiteNormalActive,
                                                 enableBorderColor: ColorUtils.whiteNormalActive,
@@ -196,7 +201,7 @@ class UserProfileEditView extends StatelessWidget {
                                               TextFormFieldWidget.build(
                                                 context: context,
                                                 hintText: "Last Name",
-                                                controller: brokerEditProfileController.lastNameController.value,
+                                                controller: userProfileEditController.lastNameController.value,
                                                 keyboardType: TextInputType.emailAddress,
                                                 borderColor: ColorUtils.whiteNormalActive,
                                                 enableBorderColor: ColorUtils.whiteNormalActive,
@@ -231,7 +236,7 @@ class UserProfileEditView extends StatelessWidget {
                                       context: context,
                                       hintText: "Enter your email",
                                       readOnly: true,
-                                      controller: brokerEditProfileController.emailController.value,
+                                      controller: userProfileEditController.emailController.value,
                                       keyboardType: TextInputType.emailAddress,
                                       borderColor: ColorUtils.whiteNormalActive,
                                       enableBorderColor: ColorUtils.whiteNormalActive,
@@ -269,7 +274,7 @@ class UserProfileEditView extends StatelessWidget {
                                     TextFormFieldWidget.build(
                                       context: context,
                                       hintText: "Enter your location",
-                                      controller: brokerEditProfileController.locationController.value,
+                                      controller: userProfileEditController.locationController.value,
                                       keyboardType: TextInputType.emailAddress,
                                       borderColor: ColorUtils.whiteNormalActive,
                                       enableBorderColor: ColorUtils.whiteNormalActive,
@@ -306,48 +311,48 @@ class UserProfileEditView extends StatelessWidget {
 
                                     TextFormFieldWidget.buildIntlPhoneField(
                                       context: context,
-                                      key: ValueKey(brokerEditProfileController.initialCountryCode.value),
+                                      key: ValueKey(userProfileEditController.initialCountryCode.value),
                                       hintText: 'Enter your number',
                                       borderColor: ColorUtils.whiteNormalActive,
                                       enableBorderColor: ColorUtils.whiteNormalActive,
                                       focusedBorderColor: ColorUtils.secondaryColor,
-                                      controller: brokerEditProfileController.phoneNumberController.value,
-                                      initialCountryCode: brokerEditProfileController.initialCountryCode.value,
+                                      controller: userProfileEditController.phoneNumberController.value,
+                                      initialCountryCode: userProfileEditController.initialCountryCode.value,
                                       onChanged: (phone) {
-                                        brokerEditProfileController.phoneNumber.value = phone.completeNumber.isNotEmpty ?
+                                        userProfileEditController.phoneNumber.value = phone.completeNumber.isNotEmpty ?
                                         phone.completeNumber :
                                         "${phone.countryCode}${phone.number}";
                                       },
                                       onCountryChanged: (country) {
-                                        brokerEditProfileController.initialCountryCode.value = country.code;
-                                        brokerEditProfileController.phoneNumber.value = "+${country.dialCode}${brokerEditProfileController.phoneNumberController.value.text}";
+                                        userProfileEditController.initialCountryCode.value = country.code;
+                                        userProfileEditController.phoneNumber.value = "+${country.dialCode}${userProfileEditController.phoneNumberController.value.text}";
                                       },
                                     ),
 
                                     SpaceHelperWidget.v(20.h(context)),
 
 
-                                    brokerEditProfileController.isSubmit.value == true ?
+                                    userProfileEditController.isSubmit.value == true ?
                                     LoadingHelperWidget.loadingHelperWidget(
                                       context: context,
                                     ) :
                                     ButtonHelperWidget.customButtonWidget(
                                       context: context,
                                       onPressed: () async {
-                                        brokerEditProfileController.isSubmit.value = true;
+                                        userProfileEditController.isSubmit.value = true;
                                         Map<String,dynamic> data = {
-                                          "name" : "${brokerEditProfileController.firstNameController.value.text},${brokerEditProfileController.lastNameController.value.text}",
-                                          "location": brokerEditProfileController.locationController.value.text,
-                                          "contact": brokerEditProfileController.phoneNumber.value == "" ?
-                                          brokerEditProfileController.getBrokerProfileResponseModel.value.data?.contact :
-                                          brokerEditProfileController.phoneNumber.value,
+                                          "name" : "${userProfileEditController.firstNameController.value.text},${userProfileEditController.lastNameController.value.text}",
+                                          "location": userProfileEditController.locationController.value.text,
+                                          "contact": userProfileEditController.phoneNumber.value == "" ?
+                                          userProfileEditController.userProfileResponseModel.value.data?.contact :
+                                          userProfileEditController.phoneNumber.value,
+                                          "isCbtHolder": false,
                                         };
                                         print(data);
-                                        await brokerEditProfileController.brokerUpdateAccountController(
+                                        await userProfileEditController.userUpdateAccountController(
                                           context: context,
                                           data: data,
-                                          brokerId: brokerEditProfileController.getBrokerProfileResponseModel.value.data?.sId ?? "",
-                                          profileImageFile: brokerEditProfileController.profileImageFile.value,
+                                          profileImageFile: userProfileEditController.profileImageFile.value,
                                         );
                                       },
                                       text: "Update",
