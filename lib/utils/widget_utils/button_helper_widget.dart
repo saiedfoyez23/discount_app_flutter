@@ -181,32 +181,69 @@ class ButtonHelperWidget {
   static Widget customIconButtonWidget({
     required BuildContext context,
     required VoidCallback onPressed,
-    required String iconPath,
+    String? iconPath,
+    IconData? iconData,
     String? text,
     Widget? textWidget,
     bool isIcon = true,
+    bool isIconLeft = true,
     double height = 56,
+    double borderRadius = 10,
     MainAxisAlignment mainAxisAlignment = MainAxisAlignment.center,
     CrossAxisAlignment crossAxisAlignment = CrossAxisAlignment.center,
-    double borderRadius = 10,
     Color? borderColor,
-    double? borderWidth,
+    double borderWidth = 0,
     Color textColor = ColorUtils.black61,
     double textSize = 18,
     FontWeight fontWeight = FontWeight.w700,
     double iconSize = 24,
+    Color iconColor = Colors.white,
     Color? backgroundColor,
     EdgeInsetsGeometry? padding,
+    double spacing = 10,
   }) {
+
+    /// ✅ ICON / IMAGE WIDGET
+    Widget iconWidget = const SizedBox.shrink();
+
+    if (isIcon) {
+      if (iconData != null) {
+        iconWidget = Icon(
+          iconData,
+          size: iconSize.r(context),
+          color: iconColor,
+        );
+      } else if (iconPath != null && iconPath.isNotEmpty) {
+        iconWidget = ImageHelperWidget.assetImageWidget(
+          context: context,
+          height: iconSize,
+          width: iconSize,
+          imageString: iconPath,
+        );
+      }
+    }
+
+    /// ✅ TEXT WIDGET
+    Widget titleWidget = textWidget ?? TextHelperClass.headingTextWithoutWidth(
+      context: context,
+      alignment: Alignment.centerLeft,
+      fontSize: textSize,
+      fontWeight: fontWeight,
+      textColor: textColor,
+      text: text ?? "",
+    );
+
     return Container(
       height: height.h(context),
       decoration: BoxDecoration(
         color: backgroundColor ?? Colors.transparent,
         border: Border.all(
           color: borderColor ?? Colors.transparent,
-          width: borderWidth ?? 0,
+          width: borderWidth,
         ),
-        borderRadius: BorderRadius.circular(borderRadius.r(context)),
+        borderRadius: BorderRadius.circular(
+          borderRadius.r(context),
+        ),
       ),
       child: TextButton(
         onPressed: onPressed,
@@ -217,29 +254,34 @@ class ButtonHelperWidget {
           ),
           shadowColor: Colors.transparent,
           overlayColor: Colors.transparent,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(
+              borderRadius.r(context),
+            ),
+          ),
         ),
         child: Row(
           mainAxisAlignment: mainAxisAlignment,
           crossAxisAlignment: crossAxisAlignment,
           children: [
-            isIcon == true ? ImageHelperWidget.assetImageWidget(
-              context: context,
-              height: iconSize,
-              width: iconSize,
-              imageString: iconPath,
-            ) : SizedBox.shrink(),
-
-            isIcon == true ? SpaceHelperWidget.h(10.w(context)) : SizedBox.shrink(),
-
-
-            textWidget ?? TextHelperClass.headingTextWithoutWidth(
-              context: context,
-              alignment: Alignment.centerLeft,
-              fontSize: textSize,
-              fontWeight: fontWeight,
-              textColor: textColor,
-              text: text!,
+            /// ✅ LEFT ICON
+            if (isIcon && isIconLeft) ...[
+              iconWidget,
+              SpaceHelperWidget.h(
+                spacing.w(context),
+              ),
+            ],
+            /// ✅ TEXT
+            Expanded(
+              child: titleWidget,
             ),
+            /// ✅ RIGHT ICON
+            if (isIcon && !isIconLeft) ...[
+              SpaceHelperWidget.h(
+                spacing.w(context),
+              ),
+              iconWidget,
+            ],
           ],
         ),
       ),

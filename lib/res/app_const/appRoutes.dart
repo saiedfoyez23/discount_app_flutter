@@ -23,6 +23,5 @@ class AppRoutes {
 
 
     // User Profile screens
-    GetPage(name: RouteNames.userProfileEditScreen, page: () => UserProfileEditScreen()),
   ];
 }

@@ -150,7 +150,8 @@ class GetOrderDetailsRetrievedResponseProduct {
     this.ratings,
     this.createdAt,
     this.updatedAt,
-    this.iV});
+    this.iV,
+  });
 
   GetOrderDetailsRetrievedResponseProduct.fromJson(Map<String, dynamic> json) {
     sId = json['_id'];

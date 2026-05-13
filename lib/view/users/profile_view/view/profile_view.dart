@@ -1,4 +1,3 @@
-import 'package:discount_me_app/res/common_widget/custom_alert_dialog.dart';
 import 'package:discount_me_app/utils/utils.dart';
 import 'package:discount_me_app/view/users/chat_view/view/user_chat_vendor_list_screen.dart';
 import 'package:discount_me_app/view/users/user_profile_order_view/view/user_profile_order_view.dart';
@@ -211,7 +210,7 @@ class ProfileView extends StatelessWidget {
                                   icon: Image.asset(ImageUtils.userEdite, scale: 5,),
                                   navigateIcon: Icon(Icons.navigate_next, size: 24.r(context), color: Colors.black54,),
                                   onTap: () {
-                                    Get.off(()=>UserProfileEditScreen(),preventDuplicates: false,duration: Duration(milliseconds: 100));
+                                    Get.off(()=>UserProfileEditView(),preventDuplicates: false,duration: Duration(milliseconds: 100));
                                   },
                                 ),
 
