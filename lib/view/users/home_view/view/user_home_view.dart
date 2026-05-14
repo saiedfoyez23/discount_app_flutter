@@ -125,7 +125,7 @@ class UserHomeView extends StatelessWidget {
 
                                     InkWell(
                                       onTap: () {
-                                        Get.off(()=>OrderScreen(),duration: const Duration(milliseconds: 100),preventDuplicates: false);
+                                        Get.off(()=>CartView(),duration: const Duration(milliseconds: 100),preventDuplicates: false);
                                       },
                                       child: Container(
                                         width: 45.w(context),

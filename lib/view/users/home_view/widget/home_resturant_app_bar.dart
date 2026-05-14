@@ -67,7 +67,7 @@ class HomeResturantAppBar extends StatelessWidget {
             6.widthBox,
             GestureDetector(
               onTap: () {
-                Get.to(OrderScreen());
+                Get.to(CartView());
               },
               child: Container(
                 width: 30,

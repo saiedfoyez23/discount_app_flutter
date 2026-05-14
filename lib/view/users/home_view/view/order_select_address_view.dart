@@ -1,11 +1,9 @@
-import 'package:discount_me_app/view/users/home_view/controller/order_select_address_controller.dart';
-import 'package:discount_me_app/view/users/home_view/view/order_screen.dart';
 import 'package:discount_me_app/view/users/home_view/widget/order_select_address_widget/order_billing_address_widget.dart';
 import 'package:discount_me_app/view/users/home_view/widget/order_select_address_widget/order_button_widget.dart';
 import 'package:discount_me_app/view/users/home_view/widget/order_select_address_widget/order_shipping_address_widget.dart';
-import 'package:discount_me_app/view/users/profile_view/widget/user_profile_appbar_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:discount_me_app/view/view.dart';
 import 'package:discount_me_app/utils/utils.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 import '../../../../res/res.dart';
@@ -21,7 +19,7 @@ class OrderSelectAddressView extends StatelessWidget {
     return PopScope(
       canPop: false,
       onPopInvokedWithResult: (canPop,onOpoInvoked) {
-        Get.off(()=>OrderScreen(),duration: const Duration(milliseconds: 100),preventDuplicates: false);
+        Get.off(()=>CartView(),duration: const Duration(milliseconds: 100),preventDuplicates: false);
       },
       child: Scaffold(
         body: Container(
@@ -51,7 +49,7 @@ class OrderSelectAddressView extends StatelessWidget {
                         UserProfileAppbarWidget(
                           title: "Order Billing Address",
                           onTap: () {
-                            Get.off(()=>OrderScreen(),duration: const Duration(milliseconds: 100),preventDuplicates: false);
+                            Get.off(()=>CartView(),duration: const Duration(milliseconds: 100),preventDuplicates: false);
                           },
                         ),
 

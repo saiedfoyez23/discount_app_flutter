@@ -36,6 +36,7 @@ class UserProfileResponse {
   var createdAt;
   var updatedAt;
   var iV;
+  var totalRewardPoints;
 
   UserProfileResponse({
     this.sId,
@@ -50,7 +51,8 @@ class UserProfileResponse {
     this.isDeleted,
     this.createdAt,
     this.updatedAt,
-    this.iV
+    this.iV,
+    this.totalRewardPoints,
   });
 
   UserProfileResponse.fromJson(Map<String, dynamic> json) {
@@ -67,6 +69,7 @@ class UserProfileResponse {
     createdAt = json['createdAt'];
     updatedAt = json['updatedAt'];
     iV = json['__v'];
+    totalRewardPoints = json['totalRewardPoints'];
   }
 
   Map<String, dynamic> toJson() {
@@ -84,6 +87,7 @@ class UserProfileResponse {
     data['createdAt'] = this.createdAt;
     data['updatedAt'] = this.updatedAt;
     data['__v'] = this.iV;
+    data['totalRewardPoints'] = this.totalRewardPoints;
     return data;
   }
 }

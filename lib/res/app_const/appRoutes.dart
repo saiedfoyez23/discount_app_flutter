@@ -12,16 +12,5 @@ class AppRoutes {
 
     // Authentication screens
     GetPage(name: RouteNames.forgotPasswordScreen, page: () => ForgotPasswordScreen()),
-
-    // User screens
-    GetPage(name: RouteNames.orderScreen, page: () => OrderScreen()),
-
-    GetPage(name: RouteNames.couponHomeScreen, page: () => CouponHomeScreen()),
-    GetPage(name: RouteNames.paymentMethodScreen, page: () => PaymentMethodScreen()),
-    GetPage(name: RouteNames.paymentInformationScreen, page: () => PaymentInformationScreen()),
-    GetPage(name: RouteNames.transactionSuccessScreen, page: () => TransactionSuccessScreen()),
-
-
-    // User Profile screens
   ];
 }

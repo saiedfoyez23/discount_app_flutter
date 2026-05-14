@@ -25,12 +25,8 @@ export 'package:discount_me_app/view/riders/home_view/view/rider_home_view.dart'
 export 'package:discount_me_app/view/users/home_view/widget/home_resturant_app_bar.dart';
 export 'package:discount_me_app/view/users/profile_view/widget/user_profile_appbar_widget.dart';
 
-export 'package:discount_me_app/view/users/coupon_view/view/coupon_home_screen.dart';
-export 'package:discount_me_app/view/users/coupon_view/view/payment_information_screen.dart';
-export 'package:discount_me_app/view/users/coupon_view/view/payment_method_screen.dart';
-export 'package:discount_me_app/view/users/coupon_view/view/transaction_success_screen.dart';
+
 export 'package:discount_me_app/view/users/home_view/view/order_complete_view.dart';
-export 'package:discount_me_app/view/users/home_view/view/order_screen.dart';
 export 'package:discount_me_app/view/users/home_view/view/recipes_screen.dart';
 export 'package:discount_me_app/view/splash/screens/splash_view_two.dart';
 
