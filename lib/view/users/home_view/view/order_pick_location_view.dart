@@ -1,12 +1,9 @@
-import 'package:discount_me_app/res/app_const/import_list.dart';
 import 'package:discount_me_app/utils/utils.dart';
-import 'package:discount_me_app/view/users/home_view/controller/order_pick_location_controller.dart';
-import 'package:discount_me_app/view/users/home_view/view/order_select_address_view.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:skeletonizer/skeletonizer.dart';
-
+import 'package:discount_me_app/view/view.dart';
 import '../../../../res/res.dart';
 
 class OrderPickLocationView extends StatelessWidget {
@@ -19,7 +16,7 @@ class OrderPickLocationView extends StatelessWidget {
     return PopScope(
       canPop: false,
       onPopInvokedWithResult: (canPop,onOpoInvoked) {
-        Get.off(()=>OrderScreen(),duration: const Duration(milliseconds: 100),preventDuplicates: false);
+        Get.off(()=>CartView(),duration: const Duration(milliseconds: 100),preventDuplicates: false);
       },
       child: Scaffold(
         body: Container(
@@ -46,7 +43,7 @@ class OrderPickLocationView extends StatelessWidget {
                         UserProfileAppbarWidget(
                           title: "Pick Location",
                           onTap: () {
-                            Get.off(()=>OrderScreen(),duration: const Duration(milliseconds: 100),preventDuplicates: false);
+                            Get.off(()=>CartView(),duration: const Duration(milliseconds: 100),preventDuplicates: false);
                           },
                         ),
 

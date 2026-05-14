@@ -2,7 +2,6 @@
 
 import 'package:discount_me_app/res/app_const/import_list.dart';
 import 'package:discount_me_app/res/common_widget/custom_card_number_input_formatter_widget.dart';
-import 'package:discount_me_app/view/riders/payment_view/rider_transaction_success_screen.dart';
 import 'package:discount_me_app/view/vendors/vendor_subscription_view/view/vendor_transaction_success_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:discount_me_app/utils/utils.dart';

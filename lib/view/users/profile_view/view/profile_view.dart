@@ -219,7 +219,7 @@ class ProfileView extends StatelessWidget {
                                   icon: Image.asset(ImageUtils.shoppingCardIcon, scale: 5,),
                                   navigateIcon: Icon(Icons.navigate_next,size: 24.r(context), color: Colors.black54,),
                                   onTap: () {
-                                    Get.off(()=>OrderScreen(),preventDuplicates: false,duration: Duration(milliseconds: 100));
+                                    Get.off(()=>CartView(),preventDuplicates: false,duration: Duration(milliseconds: 100));
                                   },
                                 ),
 

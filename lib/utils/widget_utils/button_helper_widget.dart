@@ -272,7 +272,7 @@ class ButtonHelperWidget {
               ),
             ],
             /// ✅ TEXT
-            Expanded(
+            FittedBox(
               child: titleWidget,
             ),
             /// ✅ RIGHT ICON

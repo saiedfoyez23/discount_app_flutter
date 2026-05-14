@@ -1,4 +1,4 @@
-import 'package:discount_me_app/view/users/coupon_view/view/coupon_home_screen.dart';
+import 'package:discount_me_app/view/users/points_view/view/points_home_view.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:discount_me_app/view/view.dart';
@@ -42,7 +42,7 @@ class DashboardUserController extends GetxController {
 
   RxList<Widget> pages = [
     UserHomeView(),
-    CouponHomeScreen(),
+    PointsHomeView(),
     ExploreView(),
     ProfileView(),
   ].obs;

@@ -208,7 +208,7 @@ class SingleProductViewScreenWidget extends GetxController {
                                 child: TextButton(
                                   style: TextButton.styleFrom(padding: EdgeInsets.zero),
                                   onPressed: () {
-                                    Get.off(()=>OrderScreen(),preventDuplicates: false,duration: const Duration(milliseconds: 100));
+                                    Get.off(()=>CartView(),preventDuplicates: false,duration: const Duration(milliseconds: 100));
                                   },
                                   child: Icon(
                                     Icons.shopping_cart,
@@ -489,7 +489,7 @@ class SingleProductViewScreenWidget extends GetxController {
                               data: data,
                               onSuccess: (e) async {
                                 isAdd.value = false;
-                                Get.off(()=>OrderScreen(),preventDuplicates: false,duration: Duration(milliseconds: 100));
+                                Get.off(()=>CartView(),preventDuplicates: false,duration: Duration(milliseconds: 100));
                                 CustomSnackBar().successCustomSnackBar(context: context, message: "${e}");
                               },
                               onFail: (e) {

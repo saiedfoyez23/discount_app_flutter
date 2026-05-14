@@ -1,6 +1,5 @@
 import 'package:discount_me_app/view/riders/home_view/view/rider_home_view.dart';
 import 'package:discount_me_app/view/riders/rider_order_view/view/rider_order_home_screen.dart';
-import 'package:discount_me_app/view/riders/subscription_view/view/subscription_home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:discount_me_app/utils/utils.dart';
 import 'package:get/get.dart';
@@ -44,7 +43,7 @@ class DashboardRiderController extends GetxController {
 
   RxList<Widget> pages = [
     RiderHomeView(),
-    SubscriptionHomeScreen(),
+    RiderSubscriptionView(),
     RiderOrderHomeScreen(),
     RiderProfileHome(),
   ].obs;

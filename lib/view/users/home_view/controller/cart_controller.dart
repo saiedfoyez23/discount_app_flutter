@@ -58,14 +58,23 @@ class CartController extends GetxController {
         });
         print(subTotal.value);
         onSuccess();
+        isIncrease.value = false;
+        isDecrease.value = false;
+        isDelete.value = false;
       },
       onFail: (e,data) {
         MessageSnackBarWidget.errorSnackBarWidget(context: context, message: e);
         isLoading.value = false;
+        isIncrease.value = false;
+        isDecrease.value = false;
+        isDelete.value = false;
       },
       onExceptionFail: (e,data) {
         MessageSnackBarWidget.errorSnackBarWidget(context: context, message: e);
         isLoading.value = false;
+        isIncrease.value = false;
+        isDecrease.value = false;
+        isDelete.value = false;
       },
     );
   }
@@ -125,12 +134,8 @@ class CartController extends GetxController {
       url: ApiUtils.getIncreaseCartItem(singleProductId),
       authorization: loginResponseModel.value.data?.accessToken,
       onSuccess: (e,data) async {
-        isIncrease.value = false;
-        getAllProductCartResponse.value = GetAllProductCartResponse.fromJson(data);
-        getAllProductCartResponse.value.data?.carts?.forEach((e){
-          subTotal.value = subTotal.value + double.parse(e.subtotal.toString());
-        });
         productId.value = "";
+        await addToCartApiService(context: context, onSuccess: () async {});
       },
       onFail: (e,data) {
         MessageSnackBarWidget.errorSnackBarWidget(context: context, message: e);
@@ -153,12 +158,8 @@ class CartController extends GetxController {
       url: ApiUtils.getDecreaseCartItem(singleProductId),
       authorization: loginResponseModel.value.data?.accessToken,
       onSuccess: (e,data) async {
-        isDecrease.value = false;
-        getAllProductCartResponse.value = GetAllProductCartResponse.fromJson(data);
-        getAllProductCartResponse.value.data?.carts?.forEach((e){
-          subTotal.value = subTotal.value + double.parse(e.subtotal.toString());
-        });
         productId.value = "";
+        await addToCartApiService(context: context, onSuccess: () async {});
       },
       onFail: (e,data) {
         MessageSnackBarWidget.errorSnackBarWidget(context: context, message: e);
@@ -181,12 +182,8 @@ class CartController extends GetxController {
       url: ApiUtils.getDeleteCart(cardId),
       authorization: loginResponseModel.value.data?.accessToken,
       onSuccess: (e,data) async {
-        getAllProductCartResponse.value = GetAllProductCartResponse.fromJson(e);
-        getAllProductCartResponse.value.data?.carts?.forEach((e){
-          subTotal.value = subTotal.value + double.parse(e.subtotal.toString());
-        });
-        productId.value = " ";
-        isDelete.value = false;
+        productId.value = "";
+        await addToCartApiService(context: context, onSuccess: () async {});
       },
       onFail: (e,data) {
         MessageSnackBarWidget.errorSnackBarWidget(context: context, message: e);

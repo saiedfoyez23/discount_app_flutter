@@ -124,7 +124,7 @@ class UserOrderDeliveredStatusView extends StatelessWidget {
 
                                     InkWell(
                                       onTap: () {
-                                        Get.off(()=>OrderScreen(),preventDuplicates: false,duration: const Duration(milliseconds: 100));
+                                        Get.off(()=>CartView(),preventDuplicates: false,duration: const Duration(milliseconds: 100));
                                       },
                                       child: Container(
                                         width: 45.w(context),
