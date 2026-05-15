@@ -1,4 +1,3 @@
-import 'package:discount_me_app/view/users/points_view/view/points_home_view.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:discount_me_app/view/view.dart';

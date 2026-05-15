@@ -9,10 +9,10 @@ import 'package:skeletonizer/skeletonizer.dart';
 import '../../../../res/res.dart';
 
 class OrderSelectAddressView extends StatelessWidget {
-  OrderSelectAddressView({super.key,required this.pickAddress});
+  OrderSelectAddressView({super.key,required this.pickAddress,required this.pointsToRedeem});
 
   final String pickAddress;
-
+  final double pointsToRedeem;
   @override
   Widget build(BuildContext context) {
     final OrderSelectAddressController orderSelectAddressController = Get.put(OrderSelectAddressController(context: context, pickAddress: pickAddress,));
@@ -102,7 +102,7 @@ class OrderSelectAddressView extends StatelessWidget {
 
                         CustomSpaceWidget.spacerWidget(spaceHeight: 20.h(context)),
 
-                        OrderButtonWidget().orderButtonWidget(context: context, orderSelectAddressController: orderSelectAddressController),
+                        OrderButtonWidget().orderButtonWidget(context: context, orderSelectAddressController: orderSelectAddressController,pointsToRedeem: pointsToRedeem),
 
 
                       ],

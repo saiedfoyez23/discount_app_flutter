@@ -7,8 +7,8 @@ import 'package:discount_me_app/view/view.dart';
 import '../../../../res/res.dart';
 
 class OrderPickLocationView extends StatelessWidget {
-  OrderPickLocationView({super.key});
-
+  OrderPickLocationView({super.key,required this.pointsToRedeem});
+  final double pointsToRedeem;
   final OrderPickLocationController orderPickLocationController = Get.put(OrderPickLocationController());
 
   @override
@@ -82,7 +82,7 @@ class OrderPickLocationView extends StatelessWidget {
                             if(orderPickLocationController.locationPicker.value == "") {
                               MessageSnackBarWidget.errorSnackBarWidget(context: context,message: "Address is not pick.");
                             } else {
-                              Get.off(()=>OrderSelectAddressView(pickAddress: orderPickLocationController.locationPicker.value),duration: const Duration(milliseconds: 100),preventDuplicates: false);
+                              Get.off(()=>OrderSelectAddressView(pickAddress: orderPickLocationController.locationPicker.value,pointsToRedeem: pointsToRedeem,),duration: const Duration(milliseconds: 100),preventDuplicates: false);
                             }
                           },
                           plainButtonHint: "Complete Order",

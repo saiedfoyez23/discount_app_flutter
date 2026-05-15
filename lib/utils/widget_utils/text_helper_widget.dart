@@ -110,34 +110,29 @@ class TextHelperClass {
     Color textColor = const Color.fromRGBO(35, 47, 48, 1),
     FontWeight fontWeight = FontWeight.w700,
     FontStyle fontStyle = FontStyle.normal,
-
+    // ✅ Add this
+    double letterSpacing = 0,
     // ✅ Overflow & line control
     TextOverflow textOverFlow = TextOverflow.ellipsis,
-    int? maxLines, // ✅ optional
-
+    int? maxLines,
     // Container styling
     BorderRadiusGeometry? borderRadius,
     EdgeInsetsGeometry? padding,
-
     // Shape
     BoxShape boxShape = BoxShape.rectangle,
     double? circleDiameter,
-
     // Text decoration
     TextDecoration? textDecoration,
-
     // Border
     bool hasBorder = false,
     Color borderColor = Colors.black,
     double borderWidth = 1.0,
-
     // Gradient
     Gradient? gradient,
     List<Color>? gradientColors,
     AlignmentGeometry gradientBegin = Alignment.topLeft,
     AlignmentGeometry gradientEnd = Alignment.bottomRight,
   }) {
-
     final EdgeInsetsGeometry actualPadding = padding ?? EdgeInsets.zero;
 
     final Gradient? actualGradient = gradient ?? (gradientColors != null ? LinearGradient(
@@ -149,33 +144,35 @@ class TextHelperClass {
     return Container(
       width: boxShape == BoxShape.circle ? (circleDiameter ?? 48) : null,
       height: boxShape == BoxShape.circle ? (circleDiameter ?? 48) : null,
-      alignment: boxShape == BoxShape.circle ? Alignment.center : alignment,
+      alignment:
+      boxShape == BoxShape.circle ? Alignment.center : alignment,
       padding: actualPadding,
       decoration: BoxDecoration(
         color: actualGradient != null ? null : containerColor,
         gradient: actualGradient,
-        borderRadius: boxShape == BoxShape.rectangle ? borderRadius : null,
+        borderRadius:
+        boxShape == BoxShape.rectangle ? borderRadius : null,
         shape: boxShape,
         border: hasBorder ? Border.all(
           color: borderColor,
           width: borderWidth.w(context),
         ) : null,
       ),
-
-      child: boxShape == BoxShape.circle ?
-      FittedBox(
+      child: boxShape == BoxShape.circle ? FittedBox(
         fit: BoxFit.scaleDown,
         child: Text(
           text,
           maxLines: maxLines,
           overflow: maxLines != null ? textOverFlow : TextOverflow.visible,
           textAlign: TextAlign.center,
-          style: GoogleFonts.poppins(
+          style: GoogleFonts.urbanist(
             fontSize: fontSize.sp(context),
             color: textColor,
             fontWeight: fontWeight,
             fontStyle: fontStyle,
-            decoration: textDecoration ?? TextDecoration.none,
+            letterSpacing: letterSpacing, // ✅ Added
+            decoration:
+            textDecoration ?? TextDecoration.none,
           ),
         ),
       ) :
@@ -189,7 +186,9 @@ class TextHelperClass {
           color: textColor,
           fontWeight: fontWeight,
           fontStyle: fontStyle,
-          decoration: textDecoration ?? TextDecoration.none,
+          letterSpacing: letterSpacing, // ✅ Added
+          decoration:
+          textDecoration ?? TextDecoration.none,
         ),
       ),
     );
