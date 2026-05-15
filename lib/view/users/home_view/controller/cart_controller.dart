@@ -11,7 +11,7 @@ class CartController extends GetxController {
   Rx<StoresResponseModel> storesResponseModel = StoresResponseModel().obs;
   Rx<UserProfileResponseModel> userProfileResponseModel = UserProfileResponseModel().obs;
   Rx<LoginResponseModel> loginResponseModel = LoginResponseModel.fromJson(jsonDecode(LocalStorageUtils.getString(AppConstantUtils.loginResponse)!),).obs;
-
+  RxBool isDiscountApplied = false.obs;
   RxBool isLoading = false.obs;
   RxBool isDelete = false.obs;
   RxBool isIncrease = false.obs;
@@ -41,6 +41,36 @@ class CartController extends GetxController {
         },
       );
     });
+  }
+
+
+  double calculateDiscountedAmount({
+    required double amount,
+    required double point,
+  }) {
+
+    /// 1000 points = 10% discount
+    double discountPercentage = (point / 100) / 100;
+
+    double finalAmount =
+        (amount + 0.0) - ((amount + 0.0) * discountPercentage);
+
+    return finalAmount;
+  }
+
+
+  double getRewardTier(double points) {
+    if (points >= 2000) {
+      return 2000;
+    } else if (points >= 1000) {
+      return 1000;
+    } else if (points >= 500) {
+      return 500;
+    } else if (points >= 100) {
+      return 100;
+    } else {
+      return 0;
+    }
   }
 
 

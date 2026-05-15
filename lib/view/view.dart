@@ -124,3 +124,7 @@ export 'riders/subscription_view/view/rider_payment_view.dart';
 export 'riders/subscription_view/view/rider_subscription_view.dart';
 export 'users/points_view/view/points_home_view.dart';
 export 'users/points_view/controller/points_home_controller.dart';
+export 'brokers/broker_subscription_view/controller/broker_payment_controller.dart';
+export 'brokers/broker_subscription_view/controller/broker_subscription_controller.dart';
+export 'brokers/broker_subscription_view/view/broker_payment_view.dart';
+export 'brokers/broker_subscription_view/view/broker_subscription_view.dart';

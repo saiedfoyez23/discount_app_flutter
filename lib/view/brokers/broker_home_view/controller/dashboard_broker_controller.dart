@@ -1,6 +1,5 @@
 import 'package:discount_me_app/view/view.dart';
 import 'package:discount_me_app/view/brokers/broker_referral_view/view/broker_referral_home_screen.dart';
-import 'package:discount_me_app/view/brokers/broker_subscription_view/view/broker_subscription_home_screen.dart';
 import 'package:discount_me_app/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -43,7 +42,7 @@ class DashboardBrokerController extends GetxController {
 
   RxList<Widget> pages = [
     BrokerHomeView(),
-    BrokerSubscriptionHomeScreen(),
+    BrokerSubscriptionView(),
     BrokerReferralHomeScreen(),
     BrokerProfileHomeView(),
   ].obs;

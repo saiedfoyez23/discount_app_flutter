@@ -185,6 +185,7 @@ class OrderSelectAddressController extends GetxController {
 
   Future<void> createPaymentController({
     required BuildContext context,
+    required double pointsToRedeem,
   }) async {
 
     isSubmit.value = true;
@@ -207,6 +208,7 @@ class OrderSelectAddressController extends GetxController {
     Map<String,dynamic> data = {
       "payment_status": "unpaid",
       "payment_method": "stripe",
+      "pointsToRedeem": pointsToRedeem,
       "items": items,
       "billing_address": {
         "name": billingNameController.value.text,
@@ -245,6 +247,7 @@ class OrderSelectAddressController extends GetxController {
         isSubmit.value = false;
       },
       onExceptionFail: (e,data) {
+        print(data);
         MessageSnackBarWidget.errorSnackBarWidget(context: context, message: e);
         isSubmit.value = false;
       },

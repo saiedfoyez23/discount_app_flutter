@@ -11,6 +11,7 @@ class OrderButtonWidget {
 
   Widget orderButtonWidget({
     required BuildContext context,
+    required double pointsToRedeem,
     required OrderSelectAddressController orderSelectAddressController,
   }) {
     return Obx(()=>orderSelectAddressController.isSubmit.value == true ?
@@ -58,7 +59,10 @@ class OrderButtonWidget {
         } else if(orderSelectAddressController.shippingPhoneController.value.text == "") {
           CustomSnackBar().errorCustomSnackBar(context: context, message: "Please enter shipping phone");
         } else {
-          await orderSelectAddressController.createPaymentController(context: context);
+          await orderSelectAddressController.createPaymentController(
+            context: context,
+            pointsToRedeem: pointsToRedeem,
+          );
         }
       },
       plainButtonHint: "Complete Order",
