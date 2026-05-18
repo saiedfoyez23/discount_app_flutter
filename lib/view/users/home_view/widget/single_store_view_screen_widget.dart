@@ -524,7 +524,7 @@ class SingleStoreViewScreenWidget extends GetxController {
                           child: TextButton(
                             style: TextButton.styleFrom(padding: EdgeInsets.zero),
                             onPressed: () {
-                              Get.off(ProductListScreen(categoryId: "",storeId: storeId,),preventDuplicates: false,duration: Duration(milliseconds: 100));
+                              Get.off(()=>UserProductListView(categoryId: "",storeId: storeId,),preventDuplicates: false,duration: Duration(milliseconds: 100));
                             },
                             child: CustomTextContainer.plainTextContainerWidgetWithoutHeightWidth(
                               plainTextString: "See all",

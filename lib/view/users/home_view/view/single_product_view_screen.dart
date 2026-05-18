@@ -31,7 +31,7 @@ class SingleProductViewScreen extends StatelessWidget {
         } else if (isSingleStoreScreen == true) {
           Get.off(()=>SingleStoreViewScreen(storeId: storeId,isStoreListPage: isStoreScreen,isHomePage: isHomeScreen,),duration: const Duration(milliseconds: 100),preventDuplicates: false);
         } else if (isProductListPage == true) {
-          Get.off(()=>ProductListScreen(categoryId: "",storeId: "",),duration: const Duration(milliseconds: 100),preventDuplicates: false);
+          Get.off(()=>UserProductListView(categoryId: "",storeId: "",),duration: const Duration(milliseconds: 100),preventDuplicates: false);
         }else if (isExplorePage == true) {
           Get.off(()=>UserDashboardView(index: 2,),duration: const Duration(milliseconds: 100),preventDuplicates: false);
         }

@@ -74,6 +74,14 @@ class ApiUtils {
   static String getDeleteCart(String cardId) {
     return "$baseUrl/carts/${cardId}";
   }
+  static String getProductsByCategoryApiService(String categoryId) {
+    return "$baseUrl/products?category=${categoryId}";
+  }
+  static String getProductsByStoreApiService(String storeId) {
+    return "$baseUrl/products?store=${storeId}";
+  }
+
+
 
 
 
@@ -98,6 +106,9 @@ class ApiUtils {
   static const String getAllBannerResponse = "$baseUrl/banners"; //done
   static const String addToCartResponse = "$baseUrl/carts"; //done
   static const String getAddToCartResponse = "$baseUrl/carts"; //done
+  static const String getAllProductResponse = "$baseUrl/products"; //done
+
+
 
 
 
