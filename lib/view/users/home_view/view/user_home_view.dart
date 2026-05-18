@@ -166,7 +166,7 @@ class UserHomeView extends StatelessWidget {
                             fillColor: ColorUtils.white253,
                             readOnly: true,
                             onTap: () async {
-                              Get.off(()=>ProductListScreen(categoryId: "",storeId: "",),preventDuplicates: false,duration: Duration(milliseconds: 100));
+                              Get.off(()=>UserProductListView(categoryId: "",storeId: "",),preventDuplicates: false,duration: Duration(milliseconds: 100));
                             },
                             borderColor: ColorUtils.white202,
                             enableBorderColor: ColorUtils.white202,
@@ -252,7 +252,7 @@ class UserHomeView extends StatelessWidget {
                               itemBuilder: (context, index) {
                                 return Obx(()=> InkWell(
                                   onTap: () async {
-                                    Get.off(()=>ProductListScreen(categoryId: userHomeController.categoriesResponseModel.value.categories![index].sId,storeId: "",),preventDuplicates: false,duration: Duration(milliseconds: 100));
+                                    Get.off(()=>UserProductListView(categoryId: userHomeController.categoriesResponseModel.value.categories![index].sId,storeId: "",),preventDuplicates: false,duration: Duration(milliseconds: 100));
                                   },
                                   child: Container(
                                     width: 90.w(context),
@@ -337,7 +337,7 @@ class UserHomeView extends StatelessWidget {
                               ButtonHelperWidget.customButtonWidget(
                                 context: context,
                                 onPressed: () async {
-                                  Get.off(()=>ProductListScreen(categoryId: "",storeId: "",),preventDuplicates: false,duration: Duration(milliseconds: 100));
+                                  Get.off(()=>UserProductListView(categoryId: "",storeId: "",),preventDuplicates: false,duration: Duration(milliseconds: 100));
                                 },
                                 text: "See all",
                                 padding: EdgeInsets.symmetric(vertical: 14.5.vpm(context)),

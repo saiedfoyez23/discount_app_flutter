@@ -24,7 +24,7 @@ export 'users/home_view/controller/dashboard_user_controller.dart';
 export 'users/home_view/view/single_product_view_screen.dart';
 export 'users/home_view/view/single_store_view_screen.dart';
 export 'users/home_view/view/store_position_screen_page.dart';
-export 'users/home_view/view/product_list_screen.dart';
+export 'users/home_view/view/user_product_list_view.dart';
 export 'users/home_view/view/store_list_view_screen.dart';
 export 'users/home_view/widget/single_store_view_screen_widget.dart';
 export 'users/home_view/widget/single_product_view_screen_widget.dart';
@@ -128,3 +128,5 @@ export 'brokers/broker_subscription_view/controller/broker_payment_controller.da
 export 'brokers/broker_subscription_view/controller/broker_subscription_controller.dart';
 export 'brokers/broker_subscription_view/view/broker_payment_view.dart';
 export 'brokers/broker_subscription_view/view/broker_subscription_view.dart';
+export 'users/home_view/view/user_product_list_view.dart';
+export 'users/home_view/controller/user_product_list_controller.dart';
