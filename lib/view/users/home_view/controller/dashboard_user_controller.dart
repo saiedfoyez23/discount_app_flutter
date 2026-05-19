@@ -34,7 +34,7 @@ class DashboardUserController extends GetxController {
 
   RxList<Map<String, dynamic>> items = [
     {'unselected': ImageUtils.unselectedHomeImage, 'select': ImageUtils.selectedHomeImage, 'label': 'Home'},
-    {'unselected': ImageUtils.unselectedCouponImage, 'select': ImageUtils.selectedCouponImage, 'label': 'Coupon'},
+    {'unselected': ImageUtils.unselectedCouponImage, 'select': ImageUtils.selectedCouponImage, 'label': 'Points'},
     {'unselected': ImageUtils.unselectedExploreImage, 'select': ImageUtils.selectedExploreImage, 'label': 'Explore'},
     {'unselected': ImageUtils.unselectedUserImage, 'select': ImageUtils.selectedUserImage, 'label': 'Profile'},
   ].obs;
