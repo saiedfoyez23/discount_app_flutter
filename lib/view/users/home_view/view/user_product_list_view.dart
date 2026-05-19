@@ -5,7 +5,6 @@ import 'package:get/get.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
 
-
 class UserProductListView extends StatelessWidget {
   const UserProductListView({super.key,required this.categoryId,required this.storeId});
 
