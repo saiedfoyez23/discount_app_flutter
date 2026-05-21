@@ -10,6 +10,7 @@ class SignInController extends GetxController {
 
   Rx<TextEditingController> emailController = TextEditingController().obs;
   Rx<TextEditingController> passwordController = TextEditingController().obs;
+  Rx<LoginResponseModel> loginResponseModel = LoginResponseModel().obs;
   RxBool isSubmit = false.obs;
 
   RxBool isPasswordVisible = true.obs;
@@ -39,6 +40,7 @@ class SignInController extends GetxController {
   Future<void> getUserLoginResponse({
     required BuildContext context,
     required Map<String,dynamic> data,
+    required Function onSuccess,
   }) async {
     await BaseApiUtils.post(
       url: ApiUtils.loginResponse,
@@ -48,20 +50,8 @@ class SignInController extends GetxController {
         MessageSnackBarWidget.successSnackBarWidget(context: context, message: e);
         await LocalStorageUtils.setString(AppConstantUtils.loginResponse, jsonEncode(data));
         Map<String, dynamic> decodedToken = parseJwt(data["data"]["accessToken"]);
-        print(decodedToken['role']);
-        if(decodedToken['role'] == "user") {
-          Get.off(()=>UserDashboardView(index: 0,),duration: const Duration(milliseconds: 100),preventDuplicates: false);
-          isSubmit.value = false;
-        } else if (decodedToken['role'] == "rider") {
-          Get.off(()=>RiderDashboardView(index: 0,),duration: const Duration(milliseconds: 100),preventDuplicates: false);
-          isSubmit.value = false;
-        } else if (decodedToken['role'] == "vendor") {
-          Get.off(()=>VendorDashboardView(index: 0,),duration: const Duration(milliseconds: 100),preventDuplicates: false);
-          isSubmit.value = false;
-        } else if (decodedToken['role'] == "broker") {
-          Get.off(()=>BrokerDashboardView(index: 0),duration: const Duration(milliseconds: 100),preventDuplicates: false);
-          isSubmit.value = false;
-        }
+        loginResponseModel.value = LoginResponseModel.fromJson(jsonDecode(LocalStorageUtils.getString(AppConstantUtils.loginResponse)!));
+        onSuccess(decodedToken);
       },
       onFail: (e,data) {
         MessageSnackBarWidget.errorSnackBarWidget(context: context, message: e);
