@@ -272,6 +272,7 @@ class ProfileView extends StatelessWidget {
                                       },
                                       logoutFunction: () async {
                                         await LocalStorageUtils.remove(AppConstantUtils.loginResponse);
+                                        await LocalStorageUtils.remove(AppConstantUtils.loginCredentialResponse);
                                         await Get.offAll(()=>SignInView(),duration: Duration(milliseconds: 100));
                                       },
                                     );

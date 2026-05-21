@@ -26,8 +26,14 @@ class LoginResponse {
   var accessToken;
   var refreshToken;
   LoginResponseSubscription? subscription;
+  var hasFreeTrial;
 
-  LoginResponse({this.accessToken, this.refreshToken, this.subscription});
+  LoginResponse({
+    this.accessToken,
+    this.refreshToken,
+    this.subscription,
+    this.hasFreeTrial,
+  });
 
   LoginResponse.fromJson(Map<String, dynamic> json) {
     accessToken = json['accessToken'];
@@ -35,6 +41,7 @@ class LoginResponse {
     subscription = json['subscription'] != null
         ? new LoginResponseSubscription.fromJson(json['subscription'])
         : null;
+    hasFreeTrial = json['hasFreeTrial'];
   }
 
   Map<String, dynamic> toJson() {
@@ -44,6 +51,7 @@ class LoginResponse {
     if (this.subscription != null) {
       data['subscription'] = this.subscription!.toJson();
     }
+    data['hasFreeTrial'] = this.hasFreeTrial;
     return data;
   }
 }
@@ -56,7 +64,7 @@ class LoginResponseSubscription {
   var currentPeriodStart;
   var currentPeriodEnd;
   var cancelAtPeriodEnd;
-  var subscription;
+  LoginResponseUserSubscription? subscription;
 
   LoginResponseSubscription({
     this.role,
@@ -77,7 +85,9 @@ class LoginResponseSubscription {
     currentPeriodStart = json['current_period_start'];
     currentPeriodEnd = json['current_period_end'];
     cancelAtPeriodEnd = json['cancel_at_period_end'];
-    subscription = json['subscription'];
+    subscription = json['subscription'] != null
+        ? new LoginResponseUserSubscription.fromJson(json['subscription'])
+        : null;
   }
 
   Map<String, dynamic> toJson() {
@@ -89,7 +99,91 @@ class LoginResponseSubscription {
     data['current_period_start'] = this.currentPeriodStart;
     data['current_period_end'] = this.currentPeriodEnd;
     data['cancel_at_period_end'] = this.cancelAtPeriodEnd;
-    data['subscription'] = this.subscription;
+    if (this.subscription != null) {
+      data['subscription'] = this.subscription!.toJson();
+    }
+    return data;
+  }
+}
+
+class LoginResponseUserSubscription {
+  var sId;
+  var email;
+  var role;
+  var iV;
+  var cancelAtPeriodEnd;
+  var createdAt;
+  var currentPeriodEnd;
+  var currentPeriodStart;
+  var isDeleted;
+  var ownerId;
+  var status;
+  var stripeCheckoutSessionId;
+  var stripeCustomerId;
+  var stripePriceId;
+  var stripeProductId;
+  var stripeSubscriptionId;
+  var updatedAt;
+
+  LoginResponseUserSubscription({
+    this.sId,
+    this.email,
+    this.role,
+    this.iV,
+    this.cancelAtPeriodEnd,
+    this.createdAt,
+    this.currentPeriodEnd,
+    this.currentPeriodStart,
+    this.isDeleted,
+    this.ownerId,
+    this.status,
+    this.stripeCheckoutSessionId,
+    this.stripeCustomerId,
+    this.stripePriceId,
+    this.stripeProductId,
+    this.stripeSubscriptionId,
+    this.updatedAt,
+  });
+
+  LoginResponseUserSubscription.fromJson(Map<String, dynamic> json) {
+    sId = json['_id'];
+    email = json['email'];
+    role = json['role'];
+    iV = json['__v'];
+    cancelAtPeriodEnd = json['cancel_at_period_end'];
+    createdAt = json['createdAt'];
+    currentPeriodEnd = json['current_period_end'];
+    currentPeriodStart = json['current_period_start'];
+    isDeleted = json['is_deleted'];
+    ownerId = json['owner_id'];
+    status = json['status'];
+    stripeCheckoutSessionId = json['stripe_checkout_session_id'];
+    stripeCustomerId = json['stripe_customer_id'];
+    stripePriceId = json['stripe_price_id'];
+    stripeProductId = json['stripe_product_id'];
+    stripeSubscriptionId = json['stripe_subscription_id'];
+    updatedAt = json['updatedAt'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['_id'] = this.sId;
+    data['email'] = this.email;
+    data['role'] = this.role;
+    data['__v'] = this.iV;
+    data['cancel_at_period_end'] = this.cancelAtPeriodEnd;
+    data['createdAt'] = this.createdAt;
+    data['current_period_end'] = this.currentPeriodEnd;
+    data['current_period_start'] = this.currentPeriodStart;
+    data['is_deleted'] = this.isDeleted;
+    data['owner_id'] = this.ownerId;
+    data['status'] = this.status;
+    data['stripe_checkout_session_id'] = this.stripeCheckoutSessionId;
+    data['stripe_customer_id'] = this.stripeCustomerId;
+    data['stripe_price_id'] = this.stripePriceId;
+    data['stripe_product_id'] = this.stripeProductId;
+    data['stripe_subscription_id'] = this.stripeSubscriptionId;
+    data['updatedAt'] = this.updatedAt;
     return data;
   }
 }

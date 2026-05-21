@@ -1,17 +1,18 @@
 import 'package:discount_me_app/res/custom_style/custom_size.dart';
-import 'package:discount_me_app/utils/utils.dart';
-import 'package:flutter/material.dart';
 import 'package:discount_me_app/view/view.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:discount_me_app/utils/utils.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
-class BrokerSubscriptionView extends StatelessWidget {
-  const BrokerSubscriptionView({super.key});
+
+class BrokerSubscriptionFreeTrailView extends StatelessWidget {
+  const BrokerSubscriptionFreeTrailView({super.key});
 
   @override
   Widget build(BuildContext context) {
-    BrokerSubscriptionController brokerSubscriptionController = Get.put(BrokerSubscriptionController(context: context));
+    BrokerSubscriptionFreeTrailController brokerSubscriptionFreeTrailController = Get.put(BrokerSubscriptionFreeTrailController(context: context));
     return Scaffold(
       body: Obx(()=>Container(
         height: 926.h(context),
@@ -21,7 +22,7 @@ class BrokerSubscriptionView extends StatelessWidget {
         ),
         child: Skeletonizer(
           effect: PulseEffect(),
-          enabled: brokerSubscriptionController.isLoading.value,
+          enabled: brokerSubscriptionFreeTrailController.isLoading.value,
           child: SafeArea(
             child: CustomScrollView(
               slivers: [
@@ -41,7 +42,7 @@ class BrokerSubscriptionView extends StatelessWidget {
                   ),
                 ),
 
-                if(brokerSubscriptionController.getAllSettingResponseModel.value.data?.isEmpty == true || brokerSubscriptionController.getAllSettingResponseModel.value.data == null)...[
+                if(brokerSubscriptionFreeTrailController.getAllSettingResponseModel.value.data?.isEmpty == true || brokerSubscriptionFreeTrailController.getAllSettingResponseModel.value.data == null)...[
                   SliverToBoxAdapter(
                     child: SizedBox.shrink(),
                   )
@@ -50,14 +51,14 @@ class BrokerSubscriptionView extends StatelessWidget {
                     child: Padding(
                       padding: EdgeInsets.all(16.r(context)),
                       child: Column(
-                        children: List.generate(brokerSubscriptionController.getAllSettingResponseModel.value.data!.length, (index) {
+                        children: List.generate(brokerSubscriptionFreeTrailController.getAllSettingResponseModel.value.data!.length, (index) {
                           return Center(
-                            child: brokerSubscriptionController.isSubmit.value == true ?
+                            child: brokerSubscriptionFreeTrailController.isSubmit.value == true ?
                             CircularProgressIndicator() :
                             InkWell(
                               onTap: () async {
-                                brokerSubscriptionController.isSubmit.value = true;
-                                await brokerSubscriptionController.createPaymentController(context: context);
+                                brokerSubscriptionFreeTrailController.isSubmit.value = true;
+                                await brokerSubscriptionFreeTrailController.createPaymentController(context: context);
                               },
                               child: Stack(
                                 children: [
@@ -85,7 +86,7 @@ class BrokerSubscriptionView extends StatelessWidget {
                                                 ),
                                               ),
                                               Text(
-                                                '\$${brokerSubscriptionController.getAllSettingResponseModel.value.data?[index].brokerMonthlySubscriptionFee}',
+                                                '\$${brokerSubscriptionFreeTrailController.getAllSettingResponseModel.value.data?[index].brokerMonthlySubscriptionFee}',
                                                 style: GoogleFonts.urbanist(
                                                   color: Colors.orange,
                                                   fontSize: 24.sp(context),

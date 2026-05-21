@@ -242,8 +242,36 @@ class SignInView extends StatelessWidget {
                                       "email": signInController.emailController.value.text,
                                       "password": signInController.passwordController.value.text,
                                     };
+                                    await LocalStorageUtils.setString(AppConstantUtils.loginCredentialResponse, jsonEncode(data));
                                     print(jsonEncode(data));
-                                    await signInController.getUserLoginResponse(data: data,context: context);
+                                    await signInController.getUserLoginResponse(
+                                      data: data,
+                                      context: context,
+                                      onSuccess: (decodedToken) async {
+                                        print(decodedToken['role']);
+                                        if(decodedToken['role'] == "user") {
+                                          Get.off(()=>UserDashboardView(index: 0,),duration: const Duration(milliseconds: 100),preventDuplicates: false);
+                                          signInController.isSubmit.value = false;
+                                        } else if (decodedToken['role'] == "rider") {
+                                          if(signInController.loginResponseModel.value.data?.hasFreeTrial == false && signInController.loginResponseModel.value.data?.subscription?.hasActiveSubscription == false) {
+                                            Get.off(()=>RiderSubscriptionFreeTrailView(),duration: const Duration(milliseconds: 100),preventDuplicates: false);
+                                          } else {
+                                            Get.off(()=>RiderDashboardView(index: 0,),duration: const Duration(milliseconds: 100),preventDuplicates: false);
+                                          }
+                                          signInController.isSubmit.value = false;
+                                        } else if (decodedToken['role'] == "vendor") {
+                                          Get.off(()=>VendorDashboardView(index: 0,),duration: const Duration(milliseconds: 100),preventDuplicates: false);
+                                          signInController.isSubmit.value = false;
+                                        } else if (decodedToken['role'] == "broker") {
+                                          if(signInController.loginResponseModel.value.data?.hasFreeTrial == false && signInController.loginResponseModel.value.data?.subscription?.hasActiveSubscription == false) {
+                                            Get.off(()=>BrokerSubscriptionFreeTrailView(),duration: const Duration(milliseconds: 100),preventDuplicates: false);
+                                          } else {
+                                            Get.off(()=>BrokerDashboardView(index: 0),duration: const Duration(milliseconds: 100),preventDuplicates: false);
+                                          }
+                                          signInController.isSubmit.value = false;
+                                        }
+                                      }
+                                    );
                                   }
                                 },
                                 text: "Log in",

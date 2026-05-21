@@ -3,16 +3,16 @@ import 'package:get/get.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 import 'package:discount_me_app/view/view.dart';
 
-class BrokerPaymentView extends StatefulWidget {
-  const BrokerPaymentView({super.key,required this.paymentUrl});
+class RiderPaymentFreeTrailView extends StatefulWidget {
+  const RiderPaymentFreeTrailView({super.key,required this.paymentUrl});
   final String paymentUrl;
   @override
-  State<BrokerPaymentView> createState() => _BrokerPaymentViewState();
+  State<RiderPaymentFreeTrailView> createState() => _RiderPaymentFreeTrailViewState();
 }
 
-class _BrokerPaymentViewState extends State<BrokerPaymentView> {
+class _RiderPaymentFreeTrailViewState extends State<RiderPaymentFreeTrailView> {
   late final WebViewController _controller;
-  final BrokerPaymentController brokerPaymentController = Get.put(BrokerPaymentController());
+  final RiderPaymentFreeTrailController brokerPaymentFreeTrailController = Get.put(RiderPaymentFreeTrailController());
   @override
   void initState() {
     super.initState();
@@ -36,7 +36,7 @@ class _BrokerPaymentViewState extends State<BrokerPaymentView> {
           onNavigationRequest: (NavigationRequest request) async {
             print("hello ${request.url}");
             //Handle redirects or specific URLs (e.g., success/failure callbacks)
-            await brokerPaymentController.getPaymentController(context: context, paymentUrl: request.url);
+            await brokerPaymentFreeTrailController.getPaymentController(context: context, paymentUrl: request.url);
             if (request.url.contains('success') || request.url.contains('failure')) {
               //Handle payment result
               //_handlePaymentResult(request.url);
