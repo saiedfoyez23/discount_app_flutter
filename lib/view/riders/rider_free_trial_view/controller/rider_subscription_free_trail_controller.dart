@@ -66,7 +66,6 @@ class RiderSubscriptionFreeTrailController extends GetxController {
         isSubmit.value = false;
       },
     );
-
   }
 
 
