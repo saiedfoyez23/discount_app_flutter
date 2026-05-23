@@ -260,7 +260,11 @@ class SignInView extends StatelessWidget {
                                           }
                                           signInController.isSubmit.value = false;
                                         } else if (decodedToken['role'] == "vendor") {
-                                          Get.off(()=>VendorDashboardView(index: 0,),duration: const Duration(milliseconds: 100),preventDuplicates: false);
+                                          if(signInController.loginResponseModel.value.data?.hasFreeTrial == false && signInController.loginResponseModel.value.data?.subscription?.hasActiveSubscription == false) {
+                                            Get.off(()=>VendorSubscriptionFreeTrailView(),duration: const Duration(milliseconds: 100),preventDuplicates: false);
+                                          } else {
+                                            Get.off(()=>VendorDashboardView(index: 0,),duration: const Duration(milliseconds: 100),preventDuplicates: false);
+                                          }
                                           signInController.isSubmit.value = false;
                                         } else if (decodedToken['role'] == "broker") {
                                           if(signInController.loginResponseModel.value.data?.hasFreeTrial == false && signInController.loginResponseModel.value.data?.subscription?.hasActiveSubscription == false) {

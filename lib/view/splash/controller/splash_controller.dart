@@ -22,7 +22,6 @@ class SplashController extends GetxController{
     isSubmit.value = true;
     Future.delayed(Duration(milliseconds: 100),() async {
       if(loginCredentialResponse.value.email != null) {
-        isSubmit.value = true;
         Map<String,dynamic> data = {
           "email": loginCredentialResponse.value.email,
           "password": loginCredentialResponse.value.password,
@@ -36,6 +35,7 @@ class SplashController extends GetxController{
         );
       } else {
         await redirectionFunction();
+        isSubmit.value = false;
       }
     });
   }
@@ -50,6 +50,7 @@ class SplashController extends GetxController{
       url: ApiUtils.loginResponse,
       data: data,
       onSuccess: (e,data) async {
+        print(data);
         await LocalStorageUtils.setString(AppConstantUtils.loginResponse, jsonEncode(data));
         Map<String, dynamic> decodedToken = parseJwt(data["data"]["accessToken"]);
         loginResponseModel.value = LoginResponseModel.fromJson(jsonDecode(LocalStorageUtils.getString(AppConstantUtils.loginResponse)!));
@@ -82,19 +83,23 @@ class SplashController extends GetxController{
           }
           isSubmit.value = false;
         } else if (decodedToken['role'] == "vendor") {
-          Get.off(()=>VendorDashboardView(index: 0,),duration: const Duration(milliseconds: 100),preventDuplicates: false);
+          if(loginResponseModel.value.data?.hasFreeTrial == false && loginResponseModel.value.data?.subscription?.hasActiveSubscription == false) {
+            Get.off(()=>VendorSubscriptionFreeTrailView(),duration: const Duration(milliseconds: 100),preventDuplicates: false);
+          } else {
+            Get.off(()=>VendorDashboardView(index: 0,),duration: const Duration(milliseconds: 100),preventDuplicates: false);
+          }
           isSubmit.value = false;
         } else if (decodedToken['role'] == "broker") {
           if(loginResponseModel.value.data?.hasFreeTrial == false && loginResponseModel.value.data?.subscription?.hasActiveSubscription == false) {
             Get.off(()=>BrokerSubscriptionFreeTrailView(),duration: const Duration(milliseconds: 100),preventDuplicates: false);
-            isSubmit.value = false;
           } else {
             Get.off(()=>BrokerDashboardView(index: 0),duration: const Duration(milliseconds: 100),preventDuplicates: false);
-            isSubmit.value = false;
           }
+          isSubmit.value = false;
         }
       } else {
         Get.off(()=> WelcomeView(),duration: const Duration(milliseconds: 100),preventDuplicates: false);
+        isSubmit.value = false;
       }
     }
   }
