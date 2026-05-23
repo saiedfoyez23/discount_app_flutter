@@ -138,3 +138,7 @@ export 'riders/rider_free_trial_view/controller/rider_subscription_free_trail_co
 export 'riders/rider_free_trial_view/view/rider_subscription_free_trail_view.dart';
 export 'riders/rider_free_trial_view/view/rider_payment_free_trail_view.dart';
 export 'riders/rider_free_trial_view/controller/rider_payment_free_trail_controller.dart';
+export 'vendors/vendor_free_trial_view/controller/vendor_subscription_free_trail_controller.dart';
+export 'vendors/vendor_free_trial_view/view/vendor_subscription_free_trail_view.dart';
+export 'vendors/vendor_free_trial_view/controller/vendor_payment_free_trail_controller.dart';
+export 'vendors/vendor_free_trial_view/view/vendor_payment_free_trail_view.dart';

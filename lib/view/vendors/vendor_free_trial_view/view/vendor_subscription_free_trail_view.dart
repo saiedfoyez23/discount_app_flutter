@@ -2,17 +2,16 @@ import 'package:discount_me_app/res/custom_style/custom_size.dart';
 import 'package:discount_me_app/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:discount_me_app/view/view.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:skeletonizer/skeletonizer.dart';
-import 'package:discount_me_app/view/view.dart';
 
-
-class RiderSubscriptionFreeTrailView extends StatelessWidget {
-  const RiderSubscriptionFreeTrailView({super.key});
+class VendorSubscriptionFreeTrailView extends StatelessWidget {
+  const VendorSubscriptionFreeTrailView({super.key});
 
   @override
   Widget build(BuildContext context) {
-    RiderSubscriptionFreeTrailController riderSubscriptionFreeTrailController = Get.put(RiderSubscriptionFreeTrailController(context: context));
+    VendorSubscriptionFreeTrailController vendorSubscriptionFreeTrailController = Get.put(VendorSubscriptionFreeTrailController(context: context));
     return Scaffold(
       body: Obx(()=>Container(
         height: 926.h(context),
@@ -22,7 +21,7 @@ class RiderSubscriptionFreeTrailView extends StatelessWidget {
         ),
         child: Skeletonizer(
           effect: PulseEffect(),
-          enabled: riderSubscriptionFreeTrailController.isLoading.value,
+          enabled: vendorSubscriptionFreeTrailController.isLoading.value,
           child: SafeArea(
             child: CustomScrollView(
               slivers: [
@@ -42,7 +41,7 @@ class RiderSubscriptionFreeTrailView extends StatelessWidget {
                   ),
                 ),
 
-                if(riderSubscriptionFreeTrailController.getAllSettingResponseModel.value.data?.isEmpty == true || riderSubscriptionFreeTrailController.getAllSettingResponseModel.value.data == null)...[
+                if(vendorSubscriptionFreeTrailController.getAllSettingResponseModel.value.data?.isEmpty == true || vendorSubscriptionFreeTrailController.getAllSettingResponseModel.value.data == null)...[
                   SliverToBoxAdapter(
                     child: SizedBox.shrink(),
                   )
@@ -51,14 +50,14 @@ class RiderSubscriptionFreeTrailView extends StatelessWidget {
                     child: Padding(
                       padding: EdgeInsets.all(16.r(context)),
                       child: Column(
-                        children: List.generate(riderSubscriptionFreeTrailController.getAllSettingResponseModel.value.data!.length, (index) {
+                        children: List.generate(vendorSubscriptionFreeTrailController.getAllSettingResponseModel.value.data!.length, (index) {
                           return Center(
-                            child: riderSubscriptionFreeTrailController.isSubmit.value == true ?
+                            child: vendorSubscriptionFreeTrailController.isSubmit.value == true ?
                             CircularProgressIndicator() :
                             InkWell(
                               onTap: () async {
-                                riderSubscriptionFreeTrailController.isSubmit.value = true;
-                                await riderSubscriptionFreeTrailController.createPaymentController(context: context);
+                                vendorSubscriptionFreeTrailController.isSubmit.value = true;
+                                await vendorSubscriptionFreeTrailController.createPaymentController(context: context);
                               },
                               child: Stack(
                                 children: [
@@ -86,7 +85,7 @@ class RiderSubscriptionFreeTrailView extends StatelessWidget {
                                                 ),
                                               ),
                                               Text(
-                                                '\$${riderSubscriptionFreeTrailController.getAllSettingResponseModel.value.data?[index].brokerMonthlySubscriptionFee}',
+                                                '\$${vendorSubscriptionFreeTrailController.getAllSettingResponseModel.value.data?[index].brokerMonthlySubscriptionFee}',
                                                 style: GoogleFonts.urbanist(
                                                   color: Colors.orange,
                                                   fontSize: 24.sp(context),
@@ -107,7 +106,7 @@ class RiderSubscriptionFreeTrailView extends StatelessWidget {
                                             crossAxisAlignment: CrossAxisAlignment.start,
                                             children: [
                                               Text(
-                                                'Take rider Subscription',
+                                                'Take Vendor Subscription',
                                                 style: GoogleFonts.urbanist(
                                                   color: Colors.black,
                                                   fontSize: 20.sp(context), // Responsive font size using ScreenUtil
